@@ -21,4 +21,9 @@ public class UserController {
     @GetMapping("/kakaologin")
     public void kakaologin(){}
 
+    @PostMapping("/join")
+    public String joinProc() {
+        return "redirect:/user/login";
+    }
+
 }
