@@ -2,7 +2,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <div>
-    <h1>TEST2</h1>
     <div class="text-aline-center m-20 font-size-30">회원가입</div>
     <form action="/user/join" method="post" id="join_frm">
         <hr>
