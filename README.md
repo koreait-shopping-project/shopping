@@ -8,6 +8,5 @@
 Programming Skill : { 프론트엔드 : html, css, javascript, jquery, bootstrap }<br>
                                 { 백엔드 : JDK 11, java, spring, jsp/servlet, apache-tomcat, MariaDB }<br>
                                 { Dev Tools : IntelliJ, Visual Studio Code, HeidiSQL, 그 외 기타 디자인 툴 }<br>
-github 주소 : https://github.com/wogml3270/MainProject<br>
 github 아이디 : <br>
 { 박재희 : wogml3270 }, { 주현진 : H-JJOO }, { 강지윤 : cooo23 }, { 이윤석 : sssaaa88916 } { 김호종 : Hojong-Kim }
