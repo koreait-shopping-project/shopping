@@ -10,7 +10,7 @@
             <p class="top_hold">password</p>
             <label><input type="password" name="upw"></label>
             <div class="login_submit_wrap m-t-10">
-                <span id="login_submit" class="login_submit pointer">log in</span>
+                <button type="submit" id="login_submit" class="login_submit pointer">log in</button>
                 <a href="/user/join"><span>create account</span></a>
             </div>
             <div class="login_find_wrap p-tb-10">
