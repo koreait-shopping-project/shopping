@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.model.entity.UserEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

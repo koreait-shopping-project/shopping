@@ -19,4 +19,6 @@ public class UserEntity {
     private String joindata;
     private String profileimg;
     private String cardinfo;
+    private String rdt;
+    private String mdt;
 }
