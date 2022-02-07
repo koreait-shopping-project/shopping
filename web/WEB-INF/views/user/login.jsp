@@ -20,8 +20,6 @@
             <picture class="api_login_btn pointer">
                 <img class="kakao_login" src="/res/img/kakao_login_large_narrow.png">
                 <img class="naver_login" src="/res/img/naver_login_btnG.png">
-                <img class="google_login" src="/res/img/google_login_btn.png">
-                <img class="facebook_login" src="/res/img/facebook_login_btn.png">
             </picture>
         </div>
     </form>
