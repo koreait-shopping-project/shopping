@@ -12,8 +12,6 @@
             } else if(upw === ''){
                 alert('비밀번호를 입력해주세요!');
                 e.preventDefault();
-            } else{
-                location.href = '/board/main';
             }
         });
     }
