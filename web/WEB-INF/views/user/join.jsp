@@ -165,7 +165,7 @@
             </div>
             <br>
             <div class="text-aline-center m-20 font-size-20">
-                <input type="submit" value="회원가입" id="join_submit">
+                <input type="submit" value="회원가입" id="join_submit" class="btn btn-success">
             </div>
         </div>
     </form>

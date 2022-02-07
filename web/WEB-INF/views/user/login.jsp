@@ -5,6 +5,7 @@
     <h2 class="hidden">Login</h2>
     <form action="/user/login" method="post" id="login_frm">
         <div class="frm_wrap">
+            <Strong class="color-red font-size-16">${requestScope.msg}</Strong>
             <p class="top_hold">id</p>
             <label><input type="text" name="uid"></label>
             <p class="top_hold">password</p>
@@ -17,10 +18,14 @@
                 <a href=""><span>find id</span></a>
                 <a href=""><span>find password</span></a>
             </div>
-            <picture class="api_login_btn pointer">
-                <img class="kakao_login" src="/res/img/kakao_login_large_narrow.png">
-                <img class="naver_login" src="/res/img/naver_login_btnG.png">
-            </picture>
+            <div class="api_login_btn">
+                <div class="kakao_login pointer bc-yellow">
+                    <span class="font-size-20 bold"></span>
+                </div>
+                <div class="github_login pointer bc-black">
+                    <span class="font-size-20 bold color-white"></span>
+                </div>
+            </div>
         </div>
     </form>
 </div>

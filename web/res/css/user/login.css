@@ -14,5 +14,7 @@
 .login_find_wrap a { padding-right: 14px; color: #353535; text-decoration: none; }
 .login_find_wrap a:hover { color: #cbcbcb; }
 
-.api_login_btn img { height: 50px; width: 49.5%; }
-.facebook_login { border-radius: 5%; }
+.api_login_btn { height: 115px; width: 400px; }
+.api_login_btn div { height: 50px; margin-top: 15px; border-radius: 5px; display: flex; }
+.kakao_login { background: url("/res/img/kakao_login_large_wide.png") center no-repeat; background-size: cover; }
+.github_login { background: url("/res/img/github_login_btn.png") center no-repeat; background-size: cover; }
