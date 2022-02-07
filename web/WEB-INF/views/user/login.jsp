@@ -5,6 +5,7 @@
     <h2 class="hidden">Login</h2>
     <form action="/user/login" method="post" id="login_frm">
         <div class="frm_wrap">
+            <Strong class="color-red font-size-16">${requestScope.msg}</Strong>
             <p class="top_hold">id</p>
             <label><input type="text" name="uid"></label>
             <p class="top_hold">password</p>
