@@ -5,6 +5,9 @@
 #header a { color: #353535; text-decoration: none; }
 #header_wrap { position: fixed; top: 0; height: 50px; width: 100%; z-index: 99; text-align: center; }
 
+/* header menu_selected */
+.menu_selected { display: inline-block; }
+
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }
 #container { margin: 0 auto; }

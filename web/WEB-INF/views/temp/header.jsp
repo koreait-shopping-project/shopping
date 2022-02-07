@@ -10,7 +10,7 @@
 <header id="header">
     <a href="/"><b class="pointer">grandetoile</b></a>
     <c:forEach items="${menuList}" var="item">
-        <div class="${lastPath == ''.concat(item.icategory) ? 'menu-selected' : ''}">
+        <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
             <a href="/board/list/${item.icategory}">${item.categorynm}</a>
         </div>
     </c:forEach>
