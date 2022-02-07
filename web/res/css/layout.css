@@ -6,7 +6,9 @@
 #header_wrap { position: fixed; top: 0; height: 50px; width: 100%; z-index: 99; text-align: center; }
 
 /* header menu_selected */
-.menu_selected { display: inline-block; }
+#menu_wrap { position: relative; }
+#menu_wrap div { display: inline-block; font-size: 14px; margin-left: 20px; }
+#menu_wrap div:nth-child(1) { margin: 0; }
 
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }

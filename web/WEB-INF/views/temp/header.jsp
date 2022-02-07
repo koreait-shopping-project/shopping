@@ -9,9 +9,11 @@
 <c:set var="lastPath" value="${splitURI[fn:length(splitURI) - 1]}"/>
 <header id="header">
     <a href="/"><b class="pointer">grandetoile</b></a>
-    <c:forEach items="${menuList}" var="item">
-        <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
-            <a href="/board/list/${item.icategory}">${item.categorynm}</a>
-        </div>
-    </c:forEach>
+    <div id="menu_wrap">
+        <c:forEach items="${menuList}" var="item">
+            <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
+                <a href="/board/list/${item.icategory}">${item.categorynm}</a>
+            </div>
+        </c:forEach>
+    </div>
 </header>
