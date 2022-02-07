@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardWriteEntity {
+public class BoardEntity {
     private int iboard;
     private String title;
     private String ctnt;
