@@ -45,7 +45,7 @@
                 e.preventDefault();
                 document.getElementById("email").focus();
             } else if (!birthRegex.test(birth)) {
-                alert('생년월일 6자리를 확인해주세요.');
+                alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
                 document.getElementById("birth").focus();
             }
