@@ -3,6 +3,7 @@ package com.koreait.shopping.user;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.model.entity.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +30,24 @@ public class UserService {
         dbUser.setModdate(null);
         utils.setLoginUser(dbUser);
         return 1;
+    }
+
+    public int join(UserEntity entity) {
+        UserEntity copyEntity = new UserEntity();//객체 복사
+        BeanUtils.copyProperties(entity, copyEntity);//깊은 복사
+
+        //비밀번호 암호화
+        String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
+        copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
+        return mapper.insUser(copyEntity);
+    }
+
+    public int idChk(String uid) {
+        UserEntity entity = new UserEntity();
+        entity.setUid(uid);
+
+        UserEntity result = mapper.selUser(entity);
+
+        return result == null ? 1 : 0;
     }
 }

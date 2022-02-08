@@ -8,6 +8,20 @@
     const phRegex = /^([0-9]{11})$/;
     const emailRegex = /^(?=.{8,50}$)([0-9a-z_]{4,})@([0-9a-z][0-9a-z\-]*[0-9a-z]\.)?([0-9a-z][0-9a-z\-]*[0-9a-z])\.([a-z]{2,15})(\.[a-z]{2})?$/;
     const birthRegex = /^([0-9]{6})$/;
+    const msg1 = '아이디는 대소문자, 숫자조합으로 4~15자 이상 되어야합니다.';
+
+    const setIdChkMsg = (data) => {
+        idChkState = data.result; // 0 or 1
+        const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
+        switch (data.result) {
+            case 0:
+                idChkMsgElem.innerText = '사용 중인 아이디입니다.';
+                break;
+            case 1:
+                idChkMsgElem.innerText = '사용 가능한 아이디입니다.';
+                break;
+        }
+    }
 
     if (joinFrmElem) {
         joinFrmElem.addEventListener('submit', (e) => {
@@ -48,28 +62,62 @@
                 alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
                 document.getElementById("birth").focus();
+            } else if (idChkState !== 1) {
+                switch (idChkState) {
+                    case 0:
+                        alert('다른 아이디를 사용해 주세요.');
+                        break;
+                    case 2:
+                        alert('아이디 중복 체크를 해 주세요.');
+                        break;
+                }
+                e.preventDefault();
             }
-        })
-    }
-    //하기는 했는데 아직 이해못함
-    //https://hianna.tistory.com/433
-    function checkSelectAll(checkbox)  {
-        const agreeall
-            = document.querySelector('input[name="agreeall"]');
+        });
 
-        if(checkbox.checked === false)  {
-            agreeall.checked = false;
-        }
-    }
+        //누른키에서 손 땔때 발생
+        joinFrmElem.uid.addEventListener('keyup', () => {
+            const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
+            idChkMsgElem.innerText = '';
+            idChkState = 2;
+        });
 
-    function selectAll(selectAll)  {
-        const checkboxes
-            = document.getElementsByName('agree');
 
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked
-        })
+        //아이디 중복 체크 버튼
+        const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
+        idBtnChkElem.addEventListener('click', () => {
+            const idVal = joinFrmElem.uid.value;
+            if (idVal.length < 4) {
+                alert('아이디는 4자 이상 작성해 주세요.');
+                return;
+            } else if (!idRegex.test(idVal)) {
+                alert(msg1);
+                return;
+            }
+            myFetch.get(`/user/idChk/${idVal}`, (data) => {
+                setIdChkMsg(data);
+            });
+        });
     }
+    // //하기는 했는데 아직 이해못함, 전체선택 보류
+    // //https://hianna.tistory.com/433
+    // function checkSelectAll(checkbox)  {
+    //     const agreeall
+    //         = document.querySelector('input[name="agreeall"]');
+    //
+    //     if(checkbox.checked === false)  {
+    //         agreeall.checked = false;
+    //     }
+    // }
+    //
+    // function selectAll(selectAll)  {
+    //     const checkboxes
+    //         = document.getElementsByName('agree');
+    //
+    //     checkboxes.forEach((checkbox) => {
+    //         checkbox.checked = selectAll.checked
+    //     })
+    // }
 }
 
 {
