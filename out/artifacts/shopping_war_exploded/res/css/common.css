@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
 * { margin: 0; padding: 0; box-sizing: border-box; font: 0.95em 'Roboto Condensed','Nanum Gothic',sans-serif,Dotum,AppleGothic,sans-serif; }
+
 body { width: 100%; height: 100vh; }
 ul, ol, li { list-style: none; }
 a { text-decoration: none; }
 th, td { margin : 10px 5px 20px 0; font-size: 14px;}
 hr {margin-bottom: 10px;}
+
+.bold { font-weight: bold; }
 
 .bc-white { background-color: #ffffff; }
 .bc-black { background-color: #000000; }
@@ -13,6 +16,7 @@ hr {margin-bottom: 10px;}
 .bc-yellow { background-color: #fff000; }
 .bc-red { background-color: #ff0000; }
 .bc-blue { background-color: #000fff; }
+
 
 .color-white { color: #ffffff; }
 .color-black { color: #000000; }
@@ -39,6 +43,11 @@ hr {margin-bottom: 10px;}
 .display-b-f-l {display: block; float: left;}
 .display-b { display: block; }
 
+.font-size-10 { font-size: 10px; }
+.font-size-12 { font-size: 12px; }
+.font-size-14 { font-size: 14px; }
+.font-size-16 { font-size: 16px; }
+.font-size-18 { font-size: 18px; }
 .font-size-20 {font-size: 20px;}
 .font-size-30 {font-size: 30px;}
 
@@ -51,6 +60,7 @@ hr {margin-bottom: 10px;}
 .h-150 { height: 150px; }
 .h-200 { height: 200px; }
 .h-all { height: 100%; }
+.h-vh { height: 100vh; }
 
 .hidden { display: none; }
 
@@ -111,4 +121,5 @@ hr {margin-bottom: 10px;}
 .w-150 { width: 150px; }
 .w-200 { width: 200px; }
 .w-all { width: 100%; }
+.w-vw { width: 100vw; }
 .w-auto { width: auto; }

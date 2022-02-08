@@ -37,8 +37,7 @@
             if (!idRegex.test(uid)) {
                 alert('아이디는 대소문자, 숫자조합으로 4~20자 되어야 합니다.');
                 e.preventDefault();
-                // document.querySelector('#uid').scrollIntoView(focus());
-                document.querySelector('#uid').focus();
+                document.getElementById('uid').focus();
             } else if (!pwRegex.test(upw)) {
                 alert('비밀번호는 대소문자, 숫자, !, @, _ 조합으로 4~100자 되어야합니다.');
                 e.preventDefault();
