@@ -10,6 +10,15 @@
 <header id="header">
     <a href="/"><b class="pointer">grandetoile</b></a>
     <div id="menu_wrap">
+        <c:choose>
+            <c:when test="${sessionScope.loginUser == null}">
+                <div><a href="/user/login">login</a></div>
+                <div><a href="/user/join">join</a></div>
+            </c:when>
+            <c:otherwise>
+                <div><a href="/user/logout">logout</a></div>
+            </c:otherwise>
+        </c:choose>
         <c:forEach items="${menuList}" var="item">
             <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
                 <a href="/board/list/${item.icategory}">${item.categorynm}</a>
