@@ -138,7 +138,7 @@
             <div>
                 <span class="display-b m-t-10 w-100">[선택]이메일수신 동의</span>
                 <label>
-                    <textarea readonly class="m-tb-10 w" style="height:100px;">할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.</textarea>
+                    <textarea readonly class="m-tb-10" style="width: 100%; height:100px;">할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.</textarea>
                 </label>
             </div>
 

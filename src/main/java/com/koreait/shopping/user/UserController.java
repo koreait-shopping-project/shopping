@@ -24,6 +24,12 @@ public class UserController {
     @GetMapping("/login")
     public void login(){}
 
+    @GetMapping("/logout")
+    public String logout(HttpSession hs){
+        hs.invalidate();
+        return "redirect:/user/login";
+    }
+
     @PostMapping("/login")
     public String loginProc(UserEntity entity, RedirectAttributes reAttr){
         int result = service.login(entity);
