@@ -20,10 +20,10 @@
             </div>
             <div class="api_login_btn">
                 <div class="kakao_login pointer">
-                    <span class="font-size-18 bold">Login with Kakao</span>
+                    <span class="font-size-20 bold">Login with Kakao</span>
                 </div>
                 <div class="github_login pointer">
-                    <span class="font-size-18 bold color-white">Login With GitHub</span>
+                    <span class="font-size-20 bold color-white">Login With GitHub</span>
                 </div>
             </div>
         </div>
