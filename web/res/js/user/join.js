@@ -37,31 +37,32 @@
             if (!idRegex.test(uid)) {
                 alert('아이디는 대소문자, 숫자조합으로 4~20자 되어야 합니다.');
                 e.preventDefault();
-                document.getElementById("uid").focus();
+                // document.querySelector('#uid').scrollIntoView(focus());
+                document.querySelector('#uid').focus();
             } else if (!pwRegex.test(upw)) {
                 alert('비밀번호는 대소문자, 숫자, !, @, _ 조합으로 4~100자 되어야합니다.');
                 e.preventDefault();
-                document.getElementById("upw").focus();
+                document.querySelector('#upw').scrollIntoView();
             } else if (upw !== upwChk) {
                 alert('비밀번호 확인을 확인해주세요.');
                 e.preventDefault();
-                document.getElementById("upw_check").focus();
+                document.querySelector('#upw-check').scrollIntoView();
             } else if (!nmRegex.test(nm)) {
                 alert('이름은 한글 조합으로 2~10자 여야합니다.');
                 e.preventDefault();
-                document.getElementById("nm").focus();
+                document.querySelector('#nm').scrollIntoView();
             } else if (!phRegex.test(ph)) {
                 alert('010 포함, - 없이 11자리를 입력해주세요.');
                 e.preventDefault();
-                document.getElementById("ph").focus();
+                document.querySelector('#ph').scrollIntoView();
             } else if (!emailRegex.test(email)) {
                 alert('이메일 형식을 확인해주세요. Ex) abc123@examle.com');
                 e.preventDefault();
-                document.getElementById("email").focus();
+                document.querySelector('#email').scrollIntoView();
             } else if (!birthRegex.test(birth)) {
                 alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
-                document.getElementById("birth").focus();
+                document.querySelector('#birth').scrollIntoView();
             } else if (idChkState !== 1) {
                 switch (idChkState) {
                     case 0:
