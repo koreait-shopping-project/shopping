@@ -20,6 +20,12 @@ public class BoardController {
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
-        return "board/list";
+        switch(icategory){
+            case 1:
+                return "redirect:/user/login";
+            case 2:
+                return "redirect:/user/join";
+        }
+        return "redirect:/board/list";
     }
 }

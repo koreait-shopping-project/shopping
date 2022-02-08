@@ -1,3 +1,3 @@
 <%
-    response.sendRedirect("/user/login");
+    response.sendRedirect("/board/main");
 %>
