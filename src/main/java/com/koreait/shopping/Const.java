@@ -17,15 +17,12 @@ public class Const {
     public static final String PREV_NEXT = "prevNext";
 
 
-    public static final String PREV_NEXT = "prevNext";
-
     public static final String ERR_1 = "아이디를 입력하세요.";
     public static final String ERR_2 = "아이디가 없습니다.";
     public static final String ERR_3 = "비밀번호를 확인하십시오.";
     public static final String ERR_4 = "회원가입을 실패하였습니다.";
     public static final String ERR_5 = "글 등록을 실패하였습니다.";
     public static final String ERR_6 = "글 수정을 실패하였습니다.";
-    public static final String IP_FORWARD = "X-FORWARDED-FOR";
 
 
     public static final String ERR_A = "알 수 없는 에러가 발생했습니다.";
