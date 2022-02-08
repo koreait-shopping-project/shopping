@@ -15,6 +15,11 @@
 .login_find_wrap a:hover { color: #cbcbcb; }
 
 .api_login_btn { height: 115px; width: 400px; }
-.api_login_btn div { height: 50px; margin-top: 15px; border-radius: 5px; display: flex; }
+.api_login_btn div {
+    height: 50px; margin-top: 15px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    text-transform: capitalize;
+}
+.api_login_btn div:hover { opacity: 0.75; }
 .kakao_login { background: url("/res/img/kakao_login_large_wide.png") center no-repeat; background-size: cover; }
 .github_login { background: url("/res/img/github_login_btn.png") center no-repeat; background-size: cover; }

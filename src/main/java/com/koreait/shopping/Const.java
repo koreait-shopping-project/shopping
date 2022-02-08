@@ -20,7 +20,6 @@ public class Const {
     public static final String ERR_5 = "글 등록을 실패하였습니다.";
     public static final String ERR_6 = "글 수정을 실패하였습니다.";
 
-
     public static final String ERR_A = "알 수 없는 에러가 발생했습니다.";
     public static final String ERR_ID = "Error!! 아이디를 확인해주세요.";
     public static final String ERR_PW = "Error!! 비밀번호를 확인해주세요.";
