@@ -69,11 +69,21 @@ public class UserController {
         return "redirect:/";
     }
 
+    //아이디 중복 체크
     @GetMapping("/idChk/{uid}")//@PathVariable 변수명이랑 이름 맞춤
     @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
     public Map<String, Integer> idChk(@PathVariable String uid) {
         Map<String, Integer> res = new HashMap();
         res.put("result", service.idChk(uid));
+        return res;
+        // {"result" : 1} 문자열이 Json 형태로 변환
+    }
+    //이메일 중복 체크
+    @GetMapping("/emailChk")//@PathVariable 변수명이랑 이름 맞춤
+    @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
+    public Map<String, Integer> emailChk(UserEntity entity) {
+        Map<String, Integer> res = new HashMap();
+        res.put("result", service.emailChk(entity));
         return res;
         // {"result" : 1} 문자열이 Json 형태로 변환
     }
