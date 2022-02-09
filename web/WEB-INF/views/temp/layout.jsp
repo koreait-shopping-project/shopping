@@ -27,7 +27,6 @@
 <div id="footer_wrap">
     <tiles:insertAttribute name="footer" />
 </div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script defer src="/res/js/<tiles:getAsString name='common'/>.js?ver=1.0"></script>
 <script defer src="/res/js/<tiles:getAsString name='addr1'/>/index.js?ver=1.0"></script>

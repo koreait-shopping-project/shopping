@@ -1,5 +1,6 @@
 {
     let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
+    let emailChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
 
     const joinFrmElem = document.querySelector('#join_frm');
     const idRegex = /^([a-zA-Z0-9]{4,15})$/;//대소문자 + 숫자 조합 4~15글자
@@ -9,16 +10,32 @@
     const emailRegex = /^(?=.{8,50}$)([0-9a-z_]{4,})@([0-9a-z][0-9a-z\-]*[0-9a-z]\.)?([0-9a-z][0-9a-z\-]*[0-9a-z])\.([a-z]{2,15})(\.[a-z]{2})?$/;
     const birthRegex = /^([0-9]{6})$/;
     const msg1 = '아이디는 대소문자, 숫자조합으로 4~15자 이상 되어야합니다.';
+    const msg2 = '이메일 형식을 확인해주세요. Ex) abc123@examle.com';
 
+    //아이디 체크 메세지
     const setIdChkMsg = (data) => {
         idChkState = data.result; // 0 or 1
         const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
         switch (data.result) {
             case 0:
-                idChkMsgElem.innerText = '사용 중인 아이디입니다.';
+                idChkMsgElem.innerHTML = `<span style="color: red">사용 중인 아이디입니다.</span>`;
                 break;
             case 1:
-                idChkMsgElem.innerText = '사용 가능한 아이디입니다.';
+                idChkMsgElem.innerHTML = `<span style="color: blue">사용 가능한 아이디입니다.</span>`;
+                break;
+        }
+    }
+
+    //이메일 체크 메세지
+    const setEmailChkMsg = (data) => {
+        emailChkState = data.result; // 0 or 1
+        const emailChkMsgElem = joinFrmElem.querySelector('#email-chk-msg');
+        switch (data.result) {
+            case 0:
+                emailChkMsgElem.innerHTML = `<span style="color: red">사용 중인 이메일입니다.</span>`;
+                break;
+            case 1:
+                emailChkMsgElem.innerHTML = `<span style="color: blue">사용 가능한 이메일입니다.</span>`;
                 break;
         }
     }
@@ -37,7 +54,7 @@
             if (!idRegex.test(uid)) {
                 alert('아이디는 대소문자, 숫자조합으로 4~20자 되어야 합니다.');
                 e.preventDefault();
-                document.getElementById('uid').focus();
+                document.querySelector('#uid').scrollIntoView();
             } else if (!pwRegex.test(upw)) {
                 alert('비밀번호는 대소문자, 숫자, !, @, _ 조합으로 4~100자 되어야합니다.');
                 e.preventDefault();
@@ -45,7 +62,7 @@
             } else if (upw !== upwChk) {
                 alert('비밀번호 확인을 확인해주세요.');
                 e.preventDefault();
-                document.querySelector('#upw-check').scrollIntoView();
+                document.querySelector('#upw_check').scrollIntoView();
             } else if (!nmRegex.test(nm)) {
                 alert('이름은 한글 조합으로 2~10자 여야합니다.');
                 e.preventDefault();
@@ -72,14 +89,31 @@
                         break;
                 }
                 e.preventDefault();
+            } else if (emailChkState !== 1) {
+                switch (emailChkState) {
+                    case 0:
+                        alert('다른 이메일을 사용해 주세요.');
+                        break;
+                    case 2:
+                        alert('이메일 중복 체크를 해 주세요.');
+                        break;
+                }
+                e.preventDefault();
             }
         });
 
-        //누른키에서 손 땔때 발생
+        //누른키에서 손 땔때 발생(아이디)
         joinFrmElem.uid.addEventListener('keyup', () => {
             const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
             idChkMsgElem.innerText = '';
             idChkState = 2;
+        });
+
+        //누른키에서 손 땔때 발생(이메일)
+        joinFrmElem.email.addEventListener('keyup', () => {
+            const emailChkMsgElem = joinFrmElem.querySelector('#email-chk-msg');
+            emailChkMsgElem.innerText = '';
+            emailChkState = 2;
         });
 
 
@@ -87,10 +121,7 @@
         const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
         idBtnChkElem.addEventListener('click', () => {
             const idVal = joinFrmElem.uid.value;
-            if (idVal.length < 4) {
-                alert('아이디는 4자 이상 작성해 주세요.');
-                return;
-            } else if (!idRegex.test(idVal)) {
+            if (!idRegex.test(idVal)) {
                 alert(msg1);
                 return;
             }
@@ -98,6 +129,21 @@
                 setIdChkMsg(data);
             });
         });
+
+        //이메일 중복 체크 버튼
+        const emailBtnChkElem = joinFrmElem.querySelector('#email-btn-chk');
+        emailBtnChkElem.addEventListener('click', () => {
+            const emailVal = joinFrmElem.email.value;
+            if (!emailRegex.test(emailVal)) {
+                alert(msg2);
+                return;
+            }
+            myFetch.get(`/user/emailChk`, (data) => {
+                setEmailChkMsg(data);
+            }, { 'email' : emailVal});
+        });
+
+
     }
     // //하기는 했는데 아직 이해못함, 전체선택 보류
     // //https://hianna.tistory.com/433
@@ -112,11 +158,12 @@
     //
     // function selectAll(selectAll)  {
     //     const checkboxes
-    //         = document.getElementsByName('agree');
+    //         = document.getElementsByName('agree_flag');
     //
     //     checkboxes.forEach((checkbox) => {
     //         checkbox.checked = selectAll.checked
     //     })
+    //     if(c)
     // }
 }
 
