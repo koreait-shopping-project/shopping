@@ -2,13 +2,12 @@
 <html>
 <head>
     <title>Title</title>
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <%-- kakao login script --%>
+<%--    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>--%>
 </head>
 <body>
-<div>
-    <a id="kakaoLogout">
-        로그아웃
-    </a>
-</div>
+    <div>
+
+    </div>
 </body>
 </html>
