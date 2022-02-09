@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="/res/css/<tiles:getAsString name='common'/>.css?ver=1.0">
     <link rel="stylesheet" href="/res/css/<tiles:getAsString name='addr1'/>/index.css?ver=1.0">
     <link rel="stylesheet" href="/res/css/<tiles:getAsString name='addr2'/>.css?ver=1.0">
-
     <title><tiles:getAsString name="title" /></title>
 </head>
 <body>

@@ -16,4 +16,21 @@
 #contents { width: 60%; margin: 0 auto; min-height: calc(100vh - 300px); }
 
 /* footer */
-#footer_wrap { position: relative; bottom: 0; padding-bottom: 100px; width: 100%; }
+#footer_wrap {
+    position: relative; bottom: 0; padding-bottom: 20px; width: 100%;
+    margin: 150px auto 0; clear: both; color: #525252; z-index: 99;
+}
+#footer { display: flex; align-items: center; justify-content: center; }
+#footer div { width: 100%; }
+#footer div ul { padding: 0; display: flex; align-items: center; justify-content: center; }
+#footer div ul li { float: left; margin: 0 10px; }
+
+#footer div #sns li a { display: block; }
+#footer div #sns li a img { width: 30px; height: 30px; }
+
+#footer div #f_menu { clear: both; }
+#footer div #f_menu li a { display: block; color: #353535; font-size: 13px; text-transform: uppercase; }
+
+#footer div p { text-align: center; }
+#footer div p span { color: #727272; }
+#footer div p span a { color: #353535; font-weight: bold; }
