@@ -145,26 +145,27 @@
 
 
     }
-    // //하기는 했는데 아직 이해못함, 전체선택 보류
-    // //https://hianna.tistory.com/433
-    // function checkSelectAll(checkbox)  {
-    //     const agreeall
-    //         = document.querySelector('input[name="agreeall"]');
     //
-    //     if(checkbox.checked === false)  {
-    //         agreeall.checked = false;
-    //     }
-    // }
-    //
-    // function selectAll(selectAll)  {
-    //     const checkboxes
-    //         = document.getElementsByName('agree_flag');
-    //
-    //     checkboxes.forEach((checkbox) => {
-    //         checkbox.checked = selectAll.checked
-    //     })
-    //     if(c)
-    // }
+    const all = document.querySelector('#all');
+    function selectAll(selectAll)  {
+        const checkboxes
+            = document.querySelectorAll('input[type="checkbox"]');
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.checked = selectAll.checked
+        })
+    }
+
+    function unselect() {
+        if (all.checked === true) {
+            all.checked = false;
+        }
+
+    }
+
+
+
+
 }
 
 {
