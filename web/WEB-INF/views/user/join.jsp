@@ -70,7 +70,7 @@
                     </td>
                 </tr>
                 <th class="display-b-f-l">이메일*</th>
-                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="id-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
+                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
                 </tr>
                 </tbody>
             </table>
@@ -128,7 +128,7 @@
                 </div>
                 <div>
                     <label class="display-b-f-l">
-                        <input type="checkbox" value="agreeAll">
+                        <input type="checkbox" value="selectall" id="all" onclick="selectAll(this)">
                         <span>이메일수신 동의(선택), sms수신 동의(선택)에 모두 동의합니다.</span>
                     </label>
                 </div>
@@ -145,7 +145,7 @@
             <div>
                 <label>
                     <span>이메일수신에 동의하십니까?</span>
-                    <input type="checkbox" name="email_agree_flag">동의함
+                    <input type="checkbox" name="email_agree_flag" onclick="unselect(this)">동의함
                 </label>
             </div>
             <br>
@@ -158,7 +158,7 @@
             <div>
                 <label class="display-b-f-l">
                     <span>[선택]sms수신에 동의하십니까?</span>
-                    <input type="checkbox" name="sms_agree_flag"> 동의함
+                    <input type="checkbox" name="sms_agree_flag" id="smsagree" onclick="unselect(this)"> 동의함
                 </label>
             </div>
         </div>

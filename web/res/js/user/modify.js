@@ -1,5 +1,4 @@
 {
-    let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
     let emailChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
 
     const joinFrmElem = document.querySelector('#join_frm');
@@ -9,27 +8,27 @@
     const phRegex = /^([0-9]{11})$/;
     const emailRegex = /^(?=.{8,50}$)([0-9a-z_]{4,})@([0-9a-z][0-9a-z\-]*[0-9a-z]\.)?([0-9a-z][0-9a-z\-]*[0-9a-z])\.([a-z]{2,15})(\.[a-z]{2})?$/;
     const birthRegex = /^([0-9]{6})$/;
-    const msg1 = '아이디는 대소문자, 숫자조합으로 4~15자 이상 되어야합니다.';
     const msg2 = '이메일 형식을 확인해주세요. Ex) abc123@examle.com';
 
-    //아이디 체크 메세지
-    const setIdChkMsg = (data) => {
-        idChkState = data.result; // 0 or 1
-        const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
-        switch (data.result) {
-            case 0:
-                idChkMsgElem.innerHTML = `<span style="color: red">사용 중인 아이디입니다.</span>`;
-                break;
-            case 1:
-                idChkMsgElem.innerHTML = `<span style="color: blue">사용 가능한 아이디입니다.</span>`;
-                break;
-        }
-    }
+    //회원 정보 수정에서 본인 이메일 중복아니게 하기 위한 작업
+    const currentEmailElem = document.querySelector('.email');
+    const currentEmail = currentEmailElem.dataset.email;
+    const emailVal = joinFrmElem.email.value;
 
     //이메일 체크 메세지
     const setEmailChkMsg = (data) => {
         emailChkState = data.result; // 0 or 1
+
         const emailChkMsgElem = joinFrmElem.querySelector('#email-chk-msg');
+
+        //회원 정보 수정에서 본인 이메일 중복아니게 하기 위한 작업, 보류
+        //
+        // if (emailVal === currentEmail) {
+        //     alert(emailVal);
+        //     alert(currentEmail);
+        //     data.result = 1;
+        // }
+
         switch (data.result) {
             case 0:
                 emailChkMsgElem.innerHTML = `<span style="color: red">사용 중인 이메일입니다.</span>`;
@@ -79,16 +78,6 @@
                 alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
                 document.querySelector('#birth').scrollIntoView();
-            } else if (idChkState !== 1) {
-                switch (idChkState) {
-                    case 0:
-                        alert('다른 아이디를 사용해 주세요.');
-                        break;
-                    case 2:
-                        alert('아이디 중복 체크를 해 주세요.');
-                        break;
-                }
-                e.preventDefault();
             } else if (emailChkState !== 1) {
                 switch (emailChkState) {
                     case 0:
@@ -100,13 +89,7 @@
                 }
                 e.preventDefault();
             }
-        });
 
-        //누른키에서 손 땔때 발생(아이디)
-        joinFrmElem.uid.addEventListener('keyup', () => {
-            const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
-            idChkMsgElem.innerText = '';
-            idChkState = 2;
         });
 
         //누른키에서 손 땔때 발생(이메일)
@@ -116,24 +99,13 @@
             emailChkState = 2;
         });
 
-
-        //아이디 중복 체크 버튼
-        const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
-        idBtnChkElem.addEventListener('click', () => {
-            const idVal = joinFrmElem.uid.value;
-            if (!idRegex.test(idVal)) {
-                alert(msg1);
-                return;
-            }
-            myFetch.get(`/user/idChk/${idVal}`, (data) => {
-                setIdChkMsg(data);
-            });
-        });
-
         //이메일 중복 체크 버튼
         const emailBtnChkElem = joinFrmElem.querySelector('#email-btn-chk');
         emailBtnChkElem.addEventListener('click', () => {
+
             const emailVal = joinFrmElem.email.value;
+            // alert(emailVal);
+            // alert(currentEmail);
             if (!emailRegex.test(emailVal)) {
                 alert(msg2);
                 return;
@@ -142,29 +114,7 @@
                 setEmailChkMsg(data);
             }, { 'email' : emailVal});
         });
-
-
     }
-    //
-    const all = document.querySelector('#all');
-    function selectAll(selectAll)  {
-        const checkboxes
-            = document.querySelectorAll('input[type="checkbox"]');
-
-        checkboxes.forEach((checkbox) => {
-            checkbox.checked = selectAll.checked
-        })
-    }
-
-    function unselect() {
-        if (all.checked === true) {
-            all.checked = false;
-        }
-
-    }
-
-
-
 
 }
 
