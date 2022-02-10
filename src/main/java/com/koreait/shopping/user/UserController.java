@@ -88,4 +88,8 @@ public class UserController {
         // {"result" : 1} 문자열이 Json 형태로 변환
     }
 
+    //회원 정보 수정
+    @GetMapping("/modify")
+    public void modify() { }
+
 }

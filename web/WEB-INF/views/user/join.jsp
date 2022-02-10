@@ -70,7 +70,7 @@
                     </td>
                 </tr>
                 <th class="display-b-f-l">이메일*</th>
-                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="id-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
+                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
                 </tr>
                 </tbody>
             </table>
