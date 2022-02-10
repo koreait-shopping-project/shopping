@@ -3,6 +3,7 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
+<!--  Main Header Menu Tiles  -->
     <definition name="tiles_template" template="/WEB-INF/views/temp/layout.jsp" preparer="MenuPreparer">
         <put-attribute name="header" value="/WEB-INF/views/temp/header.jsp" />
         <put-attribute name="footer" value="/WEB-INF/views/temp/footer.jsp" />
@@ -22,8 +23,9 @@
         <put-attribute name="addr2" value="{1}/{2}" />
     </definition>
 
+<!--  Left Sub Menu Tiles  -->
     <definition name="submenu.*.*" template="/WEB-INF/views/temp/submenu_container.jsp">
-        <put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp" cascade="true" />
+        <put-attribute name="content" value="/WEB-INF/views/board/{1}/{2}.jsp" cascade="true" />
     </definition>
 
     <definition name="user/*/*" extends="tiles_template">

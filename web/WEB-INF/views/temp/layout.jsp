@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/res/css/<tiles:getAsString name='addr2'/>.css?ver=1.0">
     <title><tiles:getAsString name="title" /></title>
 </head>
-<body>
+<body class="no-right-padding">
 <div id="header_wrap">
     <tiles:insertAttribute name="header" />
 </div>
