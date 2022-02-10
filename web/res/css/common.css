@@ -2,7 +2,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; font: 0.95em 'Roboto Condensed','Nanum Gothic',sans-serif,Dotum,AppleGothic,sans-serif; scroll-behavior: smooth; }
 
-body { width: 100%; height: 100vh; }
+body { width: 100%; height: 100vh; padding-right: 0!important; overflow: inherit!important; }
 ul, ol, li { list-style: none; }
 a { text-decoration: none; }
 label { width: 100%; }
@@ -112,7 +112,9 @@ hr {margin-bottom: 10px;}
 
 .pointer { cursor: pointer; }
 
-.text-aline-center { text-align: center; }
+.tx-a-center { text-align: center; }
+.tx-a-left { text-align: left; }
+.tx-a-right { text-align: right; }
 
 .w-10 { width: 10px; }
 .w-20 { width: 20px; }
