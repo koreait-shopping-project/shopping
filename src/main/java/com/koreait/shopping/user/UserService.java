@@ -57,4 +57,10 @@ public class UserService {
         UserEntity result = mapper.selUser(entity);
         return result == null ? 1 : 0;
     }
+
+    //비밀번호 확인(회원 정보 수정 진입)
+    public int checkpw(UserEntity entity) {
+        UserEntity result = mapper.selUser(entity);
+        return result == null ? 1 : 0;
+    }
 }

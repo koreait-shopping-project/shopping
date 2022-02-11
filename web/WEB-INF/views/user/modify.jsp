@@ -145,7 +145,7 @@
 
         <div class="text-aline-center m-20 font-size-20">
             <input type="submit" value="회원 정보 수정" id="modify_submit">
-            <input type="button" value="취소" id="modify_cancel">
+            <a href="/board/main"><input type="button" value="취소" id="modify_cancel"></a>
             <input type="button" value="탈퇴" id="delete">
         </div>
     </form>
