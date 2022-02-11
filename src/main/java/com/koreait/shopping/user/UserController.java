@@ -69,6 +69,7 @@ public class UserController {
         return "redirect:/";
     }
 
+    //아이디 중복 체크
     @GetMapping("/idChk/{uid}")//@PathVariable 변수명이랑 이름 맞춤
     @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
     public Map<String, Integer> idChk(@PathVariable String uid) {
@@ -77,5 +78,36 @@ public class UserController {
         return res;
         // {"result" : 1} 문자열이 Json 형태로 변환
     }
+    //이메일 중복 체크
+    @GetMapping("/emailChk")//@PathVariable 변수명이랑 이름 맞춤
+    @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
+    public Map<String, Integer> emailChk(UserEntity entity) {
+        Map<String, Integer> res = new HashMap();
+        res.put("result", service.emailChk(entity));
+        return res;
+        // {"result" : 1} 문자열이 Json 형태로 변환
+    }
+
+    //회원 정보 수정
+    @GetMapping("/modify")
+    public void modify() {}
+
+    //비밀번호 확인(회원 정보 수정 진입)
+    @GetMapping("/checkpw")
+    public void checkpw() {}
+
+    @PostMapping("/checkpw")
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
+        int result = service.checkpw(entity);
+        if (result == 0) {
+            reAttr.addFlashAttribute(Const.MSG, Const.ERR_3);
+            return "redirect:/user/checkpw";
+        }
+        return "redirect:/user/modify";
+    }
+
+    //마이 페이지
+    @GetMapping("/mypage")
+    public void mypage() {}
 
 }

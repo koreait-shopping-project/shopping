@@ -26,8 +26,8 @@ public class UserService {
             return 3; // 비밀번호 틀림
         }
         dbUser.setUpw(null);
-        dbUser.setJoindate(null);
-        dbUser.setModdate(null);
+        dbUser.setJoin_date(null);
+        dbUser.setMod_date(null);
         utils.setLoginUser(dbUser);
         return 1;
     }
@@ -42,12 +42,25 @@ public class UserService {
         return mapper.insUser(copyEntity);
     }
 
+    //아이디 중복 체크
     public int idChk(String uid) {
         UserEntity entity = new UserEntity();
         entity.setUid(uid);
 
         UserEntity result = mapper.selUser(entity);
 
+        return result == null ? 1 : 0;
+    }
+
+    //이메일 중복 체크
+    public int emailChk(UserEntity entity) {
+        UserEntity result = mapper.selUser(entity);
+        return result == null ? 1 : 0;
+    }
+
+    //비밀번호 확인(회원 정보 수정 진입)
+    public int checkpw(UserEntity entity) {
+        UserEntity result = mapper.selUser(entity);
         return result == null ? 1 : 0;
     }
 }

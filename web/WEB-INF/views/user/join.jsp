@@ -19,45 +19,45 @@
                 <tbody>
                 <tr>
                     <th class="display-b-f-l">아이디*</th>
-                    <td><input class="display-b-f-l" type="text" name="uid" id="uid" ><div><input class="h-25" type="button" value="id-check" id="id-btn-chk"><span id="id-chk-msg"></span></div></td>
+                    <td><input class="display-b-f-l" type="text" name="uid" id="uid" ><div><input class="h-25 m-l-5" type="button" value="id-check" id="id-btn-chk"><span id="id-chk-msg"></span></div></td>
                 </tr>
 
                 <tr>
                     <th class="display-b-f-l">비밀번호*</th>
-                    <td><input class="display-b-f-l" type="password" name="upw" id="upw"></td>
+                    <td><input class="display-b-f-l" type="password" name="upw" id="upw" ></td>
                 </tr>
                 <tr>
                     <th class="display-b-f-l">비밀번호 확인*</th>
-                    <td><input class="display-b-f-l" type="password" id="upw_check" id="upw-check"></td>
+                    <td><input class="display-b-f-l" type="password" id="upw_check" ></td>
                 </tr>
                 <tr>
                     <th class="display-b-f-l">이름*</th>
-                    <td><input class="display-b-f-l" type="text" name="nm" id="nm"></td>
+                    <td><input class="display-b-f-l" type="text" name="nm" id="nm" ></td>
                 </tr>
 
                 <tr>
                     <th class="display-b-f-l">일반전화</th>
                     <td>
-                        <input class="display-b-f-l" type="text" name="hnum" id="hnum">
+                        <input class="display-b-f-l" type="text" name="hnum" id="hnum" maxlength="11">
                     </td>
                 </tr>
                 <tr>
                     <th class="display-b-f-l">휴대전화*</th>
                     <td>
-                        <input class="display-b-f-l" type="text" name="ph" id="ph">
+                        <input class="display-b-f-l" type="text" name="ph" id="ph" maxlength="11" >
                     </td>
                 </tr>
                 <tr>
                     <!--카카오 우편주소 API-->
                     <th class="display-b-f-l">주소</th>
                     <td>
-                        <input type="text" id="sample4_postcode" name="postnum" placeholder="우편번호">
+                        <input type="text" id="sample4_postcode" name="post_num" placeholder="우편번호">
                         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                        <input type="text" id="sample4_roadAddress" name="loadnm" placeholder="도로명주소" class="w-350">
+                        <input type="text" id="sample4_roadAddress" name="load_nm" placeholder="도로명주소" class="w-350">
                         <br>
-                        <input type="text" id="sample4_jibunAddress" name="lotaddr" placeholder="지번주소">
+                        <input type="text" id="sample4_jibunAddress" name="lot_addr" placeholder="지번주소">
                         <span id="guide" style="color:#999;display:none"></span>
-                        <input type="text" id="sample4_detailAddress" name="detailaddr" placeholder="상세주소">
+                        <input type="text" id="sample4_detailAddress" name="detail_addr" placeholder="상세주소">
                         <input type="text" id="sample4_extraAddress" name="ref" placeholder="참고항목">
                         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                     </td>
@@ -70,7 +70,7 @@
                     </td>
                 </tr>
                 <th class="display-b-f-l">이메일*</th>
-                <td><input class="display-b-f-l" type="text" name="email" id="email"></td>
+                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
                 </tr>
                 </tbody>
             </table>
@@ -89,7 +89,7 @@
                     <tbody>
                     <tr>
                         <th class="display-b-f-l">생년월일*</th>
-                        <td><input class="display-b-f-l" type="text" name="birth" id="birth"></td>
+                        <td><input class="display-b-f-l" type="text" name="birth" maxlength="6" id="birth" ></td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l">지역</th>
@@ -128,7 +128,7 @@
                 </div>
                 <div>
                     <label class="display-b-f-l">
-                        <input type="checkbox" value="agreeall" onclick="selectAll(this)">
+                        <input type="checkbox" value="selectall" id="all" onclick="selectAll(this)">
                         <span>이메일수신 동의(선택), sms수신 동의(선택)에 모두 동의합니다.</span>
                     </label>
                 </div>
@@ -136,29 +136,29 @@
             </div>
             <br>
             <div>
-                <span class="display-b m-t-10 w-100">[선택]이메일수신 동의</span>
-                <label>
+                <span class="m-t-10 w-100">[선택]이메일수신 동의</span>
+                <label class="w-all">
                     <textarea readonly class="m-tb-10" style="width: 100%; height:100px;">할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.</textarea>
                 </label>
             </div>
 
             <div>
-                <label class="display-b">
+                <label>
                     <span>이메일수신에 동의하십니까?</span>
-                    <input type="checkbox" name="isemailconsent" id="agree" value="email" onclick="checkSelectAll(this)">동의함
+                    <input type="checkbox" name="email_agree_flag" onclick="unselect(this)">동의함
                 </label>
             </div>
             <br>
             <div>
                 <span class="display-b m-b-10">[선택]sms수신 동의</span>
-                <label>
+                <label class="w-all">
                     <textarea readonly style="width: 100%; height:100px; resize: none;">할인쿠폰 및 혜택, 이벤트, 신상품 소식 등 쇼핑몰에서 제공하는 유익한 쇼핑정보를 SMS나 이메일로 받아보실 수 있습니다.</textarea>
                 </label>
             </div>
             <div>
                 <label class="display-b-f-l">
                     <span>[선택]sms수신에 동의하십니까?</span>
-                    <input type="checkbox" name="issmsconsent" value="sms" onclick="checkSelectAll(this)"> 동의함
+                    <input type="checkbox" name="sms_agree_flag" id="smsagree" onclick="unselect(this)"> 동의함
                 </label>
             </div>
         </div>

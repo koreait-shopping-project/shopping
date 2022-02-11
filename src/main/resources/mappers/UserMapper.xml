@@ -4,10 +4,10 @@
 
     <insert id="insUser">
         INSERT INTO t_user
-        (uid, upw, nm, hnum, ph, postnum, loadnm, lotaddr, detailaddr, ref, gender, email, birth, location, recommendation, isemailconsent, issmsconsent)
+        (uid, upw, nm, hnum, ph, post_num, load_nm, lot_addr, detail_addr, ref, gender, email, birth, location, recommendation, email_agree_flag, sms_agree_flag)
         VALUES
-        (#{uid}, #{upw}, #{nm}, #{hnum}, #{ph}, #{postnum}, #{loadnm}, #{lotaddr} , #{detailaddr}, #{ref}, ${gender}, #{email}, #{birth}, #{location}, #{recommendation},
-         ${isemailconsent}, ${issmsconsent})
+        (#{uid}, #{upw}, #{nm}, #{hnum}, #{ph}, #{post_num}, #{load_nm}, #{lot_addr} , #{detail_addr}, #{ref}, ${gender}, #{email}, #{birth}, #{location}, #{recommendation},
+         #{email_agree_flag}, #{sms_agree_flag})
     </insert>
 
     <select id="selUser" resultType="UserEntity">
@@ -15,6 +15,10 @@
         WHERE
         <if test=" uid != null and uid != '' "> uid = #{uid} </if>
         <if test=" iuser > 0 "> iuser = ${iuser} </if>
+        <if test=" email != null and email != '' "> email = #{email} </if>
+
     </select>
+
+
 
 </mapper>
