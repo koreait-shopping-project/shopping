@@ -23,7 +23,7 @@
             <div class="offcanvas-body">
                 <c:forEach items="${subMenuList}" var="item">
                     <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
-                        <a href="/prodect/shop/${item.subcategorynm}">${item.subcategorynm}</a>
+                        <a href="/prodect/${item.subcategorynm}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
                 <c:if test="${sessionScope.loginUser != null}">
@@ -45,6 +45,7 @@
                 <div><a href="/user/logout">logout</a></div>
             </c:otherwise>
         </c:choose>
+                <div><a href="">search</a></div>
         <c:forEach items="${menuList}" var="item">
             <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
                 <a href="/board/list/${item.icategory}">${item.categorynm}</a>
