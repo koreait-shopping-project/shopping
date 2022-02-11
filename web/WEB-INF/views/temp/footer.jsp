@@ -22,7 +22,7 @@
         </ul>
         <ul id="f_menu">
             <li><a href="#">about</a></li>
-            <li><a href="#">my page</a></li>
+            <li><a href="/user/mypage">my page</a></li>
             <li><a href="#">order</a></li>
             <li><a href="#">agreement</a></li>
             <li><a href="#">privacy</a></li>

@@ -90,6 +90,24 @@ public class UserController {
 
     //회원 정보 수정
     @GetMapping("/modify")
-    public void modify() { }
+    public void modify() {}
+
+    //비밀번호 확인(회원 정보 수정 진입)
+    @GetMapping("/checkpw")
+    public void checkpw() {}
+
+    @PostMapping("/checkpw")
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
+        int result = service.checkpw(entity);
+        if (result == 0) {
+            reAttr.addFlashAttribute(Const.MSG, Const.ERR_3);
+            return "redirect:/user/checkpw";
+        }
+        return "redirect:/user/modify";
+    }
+
+    //마이 페이지
+    @GetMapping("/mypage")
+    public void mypage() {}
 
 }
