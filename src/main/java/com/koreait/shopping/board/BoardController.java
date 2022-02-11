@@ -17,6 +17,9 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
+    @GetMapping("/list")
+    public void list(){}
+
     @GetMapping("/board/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
