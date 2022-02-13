@@ -6,6 +6,7 @@ public class Const {
     public static final String RESULT = "result";
     public static final String LOGIN_USER = "loginUser";
     public static final String TRY_LOGIN = "tryLogin";
+    public static final String TRY_CHECK = "tryCheck";
     public static final String MSG = "msg";
     public static final String MENU_LIST = "menuList";
     public static final String SUB_MENU_LIST = "subMenuList";

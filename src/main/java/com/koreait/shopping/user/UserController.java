@@ -97,10 +97,18 @@ public class UserController {
     public void checkpw() {}
 
     @PostMapping("/checkpw")
-    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr){
         int result = service.checkpw(entity);
-        if (result == 0) {
-            reAttr.addFlashAttribute(Const.MSG, Const.ERR_3);
+        if (result != 1) {
+            reAttr.addFlashAttribute(Const.TRY_CHECK, entity);
+            switch(result){
+                case 0:
+                    reAttr.addFlashAttribute(Const.MSG, Const.ERR_A);
+                    break;
+                case 2:
+                    reAttr.addFlashAttribute(Const.MSG, Const.ERR_PW);
+                    break;
+            }
             return "redirect:/user/checkpw";
         }
         return "redirect:/user/modify";

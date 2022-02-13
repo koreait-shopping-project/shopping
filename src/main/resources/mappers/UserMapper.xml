@@ -16,9 +16,6 @@
         <if test=" uid != null and uid != '' "> uid = #{uid} </if>
         <if test=" iuser > 0 "> iuser = ${iuser} </if>
         <if test=" email != null and email != '' "> email = #{email} </if>
-
     </select>
-
-
 
 </mapper>
