@@ -9,20 +9,22 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-    @Autowired private UserMapper mapper;
-    @Autowired private UserUtils utils;
+    @Autowired
+    private UserMapper mapper;
+    @Autowired
+    private UserUtils utils;
 
-    public int login(UserEntity entity){
+    public int login(UserEntity entity) {
         UserEntity dbUser = null;
-        try{
+        try {
             dbUser = mapper.selUser(entity);
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return 0; // 알 수 없는 에러
         }
-        if(dbUser == null){ // 아이디 없음
+        if (dbUser == null) { // 아이디 없음
             return 2;
-        }else if(!BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())){
+        } else if (!BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
             return 3; // 비밀번호 틀림
         }
         dbUser.setUpw(null);
@@ -60,7 +62,16 @@ public class UserService {
 
     //비밀번호 확인(회원 정보 수정 진입)
     public int checkpw(UserEntity entity) {
-        UserEntity result = mapper.selUser(entity);
-        return result == null ? 1 : 0;
+        UserEntity dbUser = null;
+        try {
+            dbUser = mapper.selUser(entity);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0; // 알 수 없는 에러
+        }
+        if (BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+            return 1; // 비밀번호 맞음
+        }
+        return 2;
     }
 }
