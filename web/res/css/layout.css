@@ -7,7 +7,7 @@
 
 /* header menu */
 #menu_wrap { position: relative; }
-#menu_wrap div { display: inline-block; font-size: 14px; margin-left: 20px; }
+#menu_wrap div { display: inline-block; font-size: 14px; }
 #menu_wrap div:nth-child(1) { margin: 0; }
 #menu_wrap div a { transition: 0.45s; }
 #menu_wrap div a:hover { color: #cccccc; }
