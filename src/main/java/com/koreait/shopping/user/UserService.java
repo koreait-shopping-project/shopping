@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.model.entity.UserEntity;
+import com.koreait.shopping.user.model.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +42,13 @@ public class UserService {
         String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
         return mapper.insUser(copyEntity);
+    }
+
+    //소셜 로그인시 이메일 체크
+    public int selSocial(UserEntity entity) {
+        System.out.println(entity.getEmail());
+        UserEntity result = mapper.selSocial(entity);
+        return result == null ? 1 : 0;
     }
 
     //아이디 중복 체크
