@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.model.entity.UserEntity;
+import com.koreait.shopping.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/user")
@@ -55,8 +53,13 @@ public class UserController {
     @GetMapping("/join")
     public void join(){}
 
-    @GetMapping("/kakaologin")
-    public void kakaologin(){}
+    @GetMapping("/selSocial")
+    @ResponseBody
+    public Map<String, Integer> selSocial(UserEntity entity) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.selSocial(entity));
+        return res;
+    }
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
