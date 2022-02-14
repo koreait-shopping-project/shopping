@@ -17,19 +17,21 @@
                     <col class="w-auto">
                 </colgroup>
                 <tbody>
-                <tr>
-                    <th class="display-b-f-l">아이디*</th>
-                    <td><input class="display-b-f-l" type="text" name="uid" id="uid" ><div><input class="h-25 m-l-5" type="button" value="id-check" id="id-btn-chk"><span id="id-chk-msg"></span></div></td>
-                </tr>
+                <c:if test="${param.social == null}">
+                    <tr>
+                        <th class="display-b-f-l">아이디*</th>
+                        <td><input class="display-b-f-l" type="text" name="uid" id="uid" ><div><input class="h-25 m-l-5" type="button" value="id-check" id="id-btn-chk"><span id="id-chk-msg"></span></div></td>
+                    </tr>
 
-                <tr>
-                    <th class="display-b-f-l">비밀번호*</th>
-                    <td><input class="display-b-f-l" type="password" name="upw" id="upw" ></td>
-                </tr>
-                <tr>
-                    <th class="display-b-f-l">비밀번호 확인*</th>
-                    <td><input class="display-b-f-l" type="password" id="upw_check" ></td>
-                </tr>
+                    <tr>
+                        <th class="display-b-f-l">비밀번호*</th>
+                        <td><input class="display-b-f-l" type="password" name="upw" id="upw" ></td>
+                    </tr>
+                    <tr>
+                        <th class="display-b-f-l">비밀번호 확인*</th>
+                        <td><input class="display-b-f-l" type="password" id="upw_check" ></td>
+                    </tr>
+                </c:if>
                 <tr>
                     <th class="display-b-f-l">이름*</th>
                     <td><input class="display-b-f-l" type="text" name="nm" id="nm" ></td>
@@ -52,7 +54,8 @@
                     <th class="display-b-f-l">주소</th>
                     <td>
                         <input type="text" id="sample4_postcode" name="post_num" placeholder="우편번호">
-                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+                        <br>
                         <input type="text" id="sample4_roadAddress" name="load_nm" placeholder="도로명주소" class="w-350">
                         <br>
                         <input type="text" id="sample4_jibunAddress" name="lot_addr" placeholder="지번주소">
@@ -70,7 +73,13 @@
                     </td>
                 </tr>
                 <th class="display-b-f-l">이메일*</th>
-                <td><input class="display-b-f-l" type="text" name="email" id="email" ><div><input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk"><span id="email-chk-msg"></span></div></td>
+                <td>
+                    <input class="display-b-f-l" type="text" name="email" id="email" value="${param.email}">
+                    <div>
+                        <input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk">
+                        <span id="email-chk-msg"></span>
+                    </div>
+                </td>
                 </tr>
                 </tbody>
             </table>
