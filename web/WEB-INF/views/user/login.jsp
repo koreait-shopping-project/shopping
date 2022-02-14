@@ -22,8 +22,8 @@
                 <div class="kakao_login pointer" id="kakaologin">
                     <span class="font-size-18 bold">Login with Kakao</span>
                 </div>
-                <div id="googleLogin">
-                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                <div class="google_login pointer" id="googleLogin">
+                    <span class="font-size-18 bold">Login with Google</span>
                 </div>
             </div>
         </div>
