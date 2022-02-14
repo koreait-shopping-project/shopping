@@ -15,14 +15,17 @@
 /* header submenu */
 #submenu_wrap { position: absolute; left: 20px; top: 30px;  font-size: 18px; }
 
-.offcanvas-start { width: 250px; }
-.offcanvas-body { text-align: left;!important; }
-.offcanvas-body div { margin: 10px 0 0 1.5rem; }
-.offcanvas-body div a { transition: 0.75s; }
-.offcanvas-body div a:hover { border-bottom: 1px solid #353535; }
+.offcanvas-start { width: 300px; }
+#offcanvas_submenu_body { text-align: left;!important; }
+#offcanvas_submenu_body div { margin: 10px 0 0 1.5rem; }
+#offcanvas_submenu_body div a { transition: 0.75s; }
+#offcanvas_submenu_body div a:hover { border-bottom: 1px solid #353535; }
 
 #mypage_wrap { padding: 1.5rem; }
 #mypage_wrap span { font-size: 13px; margin-right: 15px; }
+
+/* header search */
+.offcanvasTopLabel { display: inline; }
 
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }

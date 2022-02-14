@@ -10,7 +10,8 @@ import java.util.Date;
 
 @Component
 public class UserUtils {
-    @Autowired private HttpSession hs;
+    @Autowired
+    private HttpSession hs;
 
     public void setLoginUser(UserEntity entity) {
         hs.setAttribute(Const.LOGIN_USER, entity);

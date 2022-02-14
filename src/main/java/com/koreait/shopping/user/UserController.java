@@ -1,8 +1,8 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.user.model.UserEntity;
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.model.dto.UserDto;
 import com.koreait.shopping.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

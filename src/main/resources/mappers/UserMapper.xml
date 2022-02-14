@@ -23,6 +23,11 @@
         WHERE email = #{email}
     </select>
 
+    <select id="selSocial" resultType="UserEntity">
+        SELECT * FROM t_user
+        WHERE email = #{email}
+    </select>
+
     <update id="updUser">
         UPDATE t_user
         SET
