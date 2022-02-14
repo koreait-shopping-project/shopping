@@ -49,7 +49,6 @@
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.2" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="Shopping/web/Web" />
     </root>
   </artifact>
 </component>

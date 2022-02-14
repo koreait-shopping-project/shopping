@@ -3,25 +3,18 @@ package com.koreait.shopping.user;
 import com.koreait.shopping.Const;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.model.dto.UserDto;
-import com.koreait.shopping.model.entity.UserEntity;
+import com.koreait.shopping.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/user")
@@ -64,8 +57,14 @@ public class UserController {
     @GetMapping("/join")
     public void join(){}
 
-    @GetMapping("/kakaologin")
-    public void kakaologin(){}
+    //소셜 로그인시 이메일 중복체크
+    @GetMapping("/selSocial")
+    @ResponseBody
+    public Map<String, Integer> selSocial(UserEntity entity) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.selSocial(entity));
+        return res;
+    }
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
@@ -82,7 +81,7 @@ public class UserController {
     @GetMapping("/idChk/{uid}")//@PathVariable 변수명이랑 이름 맞춤
     @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
     public Map<String, Integer> idChk(@PathVariable String uid) {
-        Map<String, Integer> res = new HashMap();
+        Map<String, Integer> res = new HashMap<>();
         res.put("result", service.idChk(uid));
         return res;
         // {"result" : 1} 문자열이 Json 형태로 변환
@@ -91,7 +90,7 @@ public class UserController {
     @GetMapping("/emailChk")//@PathVariable 변수명이랑 이름 맞춤
     @ResponseBody//return 이 Json 으로 바뀜, 받을때는 RequestBody
     public Map<String, Integer> emailChk(UserEntity entity) {
-        Map<String, Integer> res = new HashMap();
+        Map<String, Integer> res = new HashMap<>();
         res.put("result", service.emailChk(entity));
         return res;
         // {"result" : 1} 문자열이 Json 형태로 변환
@@ -101,33 +100,15 @@ public class UserController {
     @GetMapping("/modify")
     public void modify() { }
 
-    @PostMapping("/modify")
-    public String modifyProc(UserDto dto, RedirectAttributes rAttr) {
-        int result = service.updUser(dto);
-        if(result != 1) {
-            switch(result) {
-                case 0:
-                    rAttr.addFlashAttribute(Const.MSG, "비밀번호 변경에 실패하였습니다.");
-                    break;
-                case 2:
-                    rAttr.addFlashAttribute(Const.MSG, "현재 비밀번호를 확인해 주세요.");
-                    break;
-            }
-            return "redirect:/user/mypage/password";
-        }
-        return "redirect:/user/logout";
-    }
+
 
     //비밀번호 확인(회원 정보 수정 진입)
     @GetMapping("/checkpw")
-    public void checkpw() {
-
-    }
+    public void checkpw() {}
 
     @PostMapping("/checkpw")
-    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr, HttpServletResponse response) throws IOException {
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.checkpw(entity);
-        System.out.println(entity.getUpw());
         if (result != 1) {
             reAttr.addFlashAttribute(Const.TRY_CHECK, entity);
             switch(result){

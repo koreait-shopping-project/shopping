@@ -19,13 +19,27 @@
                 <a href=""><span>find password</span></a>
             </div>
             <div class="api_login_btn">
-                <div class="kakao_login pointer">
+                <div class="kakao_login pointer" id="kakaologin">
                     <span class="font-size-18 bold">Login with Kakao</span>
                 </div>
-                <div class="github_login pointer">
-                    <span class="font-size-18 bold color-white">Login With GitHub</span>
+                <div id="googleLogin">
+                    <div class="g-signin2" data-onsuccess="onSignIn"></div>
                 </div>
             </div>
         </div>
     </form>
+    <div>
+        <a id="kakaologout">로그아웃</a>
+    </div>
+    <div>
+        <a id="kakaosecession">탈퇴</a>
+    </div>
+    <div id="googleLogout">
+        <a>signOut</a>
+    </div>
+    <div id="secession">
+        <a>revokeAccess</a>
+    </div>
 </div>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>

@@ -1,4 +1,4 @@
-package com.koreait.shopping.model.entity;
+package com.koreait.shopping.user.model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +14,7 @@ public class UserEntity {
     private String nm;
     private String hnum;
     private String ph;
+    private String social;
     private String post_num;//우편번호
     private String load_nm;//도로명주소
     private String lot_addr;//지번주소

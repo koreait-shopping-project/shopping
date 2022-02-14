@@ -18,8 +18,8 @@
 .api_login_btn div {
     height: 50px; margin-top: 15px; border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    text-transform: capitalize;
+    text-transform: capitalize; box-shadow: 1px 1px 5px #353535;
 }
 .api_login_btn div:hover { opacity: 0.75; }
 .kakao_login { background: url("/res/img/kakao_login_large_wide.png") center no-repeat; background-size: cover; }
-.github_login { background: url("/res/img/github_login_btn.png") center no-repeat; background-size: cover; }
+.google_login { background: url("/res/img/google_login_btn.png") center no-repeat; background-size: cover; }
