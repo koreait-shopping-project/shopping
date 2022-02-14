@@ -1,6 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.model.dto.UserDto;
 import com.koreait.shopping.model.entity.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -69,9 +70,20 @@ public class UserService {
             e.printStackTrace();
             return 0; // 알 수 없는 에러
         }
-        if (BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
-            return 1; // 비밀번호 맞음
+        if (!BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+            return 2; // 비밀번호 틀림
         }
-        return 2;
+        return 1;
+    }
+    
+    public int updUser(UserDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        UserEntity dbUser = mapper.selUser(dto);
+        if(!BCrypt.checkpw(dto.getCurrentupw(), dbUser.getUpw())) {
+            return 2; //현재비밀번호 다름
+        }
+        String hashedPw = BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt());
+        dto.setUpw(hashedPw);
+        return mapper.updUser(dto);
     }
 }

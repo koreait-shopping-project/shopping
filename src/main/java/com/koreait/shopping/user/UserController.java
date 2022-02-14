@@ -1,9 +1,12 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.model.dto.UserDto;
 import com.koreait.shopping.model.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +14,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.http.HttpResponse;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -20,6 +27,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/user")
 public class UserController {
     @Autowired private UserService service;
+
+    @Autowired private UserUtils utils;
 
     @GetMapping("/login")
     public void login(){}
@@ -90,21 +99,41 @@ public class UserController {
 
     //회원 정보 수정
     @GetMapping("/modify")
-    public void modify() {}
+    public void modify() { }
+
+    @PostMapping("/modify")
+    public String modifyProc(UserDto dto, RedirectAttributes rAttr) {
+        int result = service.updUser(dto);
+        if(result != 1) {
+            switch(result) {
+                case 0:
+                    rAttr.addFlashAttribute(Const.MSG, "비밀번호 변경에 실패하였습니다.");
+                    break;
+                case 2:
+                    rAttr.addFlashAttribute(Const.MSG, "현재 비밀번호를 확인해 주세요.");
+                    break;
+            }
+            return "redirect:/user/mypage/password";
+        }
+        return "redirect:/user/logout";
+    }
 
     //비밀번호 확인(회원 정보 수정 진입)
     @GetMapping("/checkpw")
-    public void checkpw() {}
+    public void checkpw() {
+
+    }
 
     @PostMapping("/checkpw")
-    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr){
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr, HttpServletResponse response) throws IOException {
         int result = service.checkpw(entity);
+        System.out.println(entity.getUpw());
         if (result != 1) {
             reAttr.addFlashAttribute(Const.TRY_CHECK, entity);
             switch(result){
                 case 0:
                     reAttr.addFlashAttribute(Const.MSG, Const.ERR_A);
-                    break;
+                    return "redirect:/user/login";//알수 없는 오류시 로그인 창으로 이동
                 case 2:
                     reAttr.addFlashAttribute(Const.MSG, Const.ERR_PW);
                     break;

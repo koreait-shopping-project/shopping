@@ -4,6 +4,7 @@ import com.koreait.shopping.model.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Component
@@ -22,4 +23,5 @@ public class UserUtils {
     public int getLoginUserPk(){
         return getLoginUser() == null ? 0 : getLoginUser().getIuser();
     }
+
 }

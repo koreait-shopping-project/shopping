@@ -18,4 +18,11 @@
         <if test=" email != null and email != '' "> email = #{email} </if>
     </select>
 
+    <update id="updUser">
+        UPDATE t_user
+        SET
+        <if test=" upw != null and upw != ''">
+            upw = #{upw}
+        </if>
+    </update>
 </mapper>
