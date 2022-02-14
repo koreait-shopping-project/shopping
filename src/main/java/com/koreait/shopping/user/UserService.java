@@ -35,9 +35,13 @@ public class UserService {
     }
 
     public int join(UserEntity entity) {
+        if (entity.getSocial() != null) {
+            String[] uid = entity.getEmail().split("@");
+            entity.setUid(uid[0]);
+            entity.setUpw(utils.getRandomPassword(15));
+        }
         UserEntity copyEntity = new UserEntity();//객체 복사
         BeanUtils.copyProperties(entity, copyEntity);//깊은 복사
-
         //비밀번호 암호화
         String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
@@ -46,7 +50,6 @@ public class UserService {
 
     //소셜 로그인시 이메일 체크
     public int selSocial(UserEntity entity) {
-        System.out.println(entity.getEmail());
         UserEntity result = mapper.selSocial(entity);
         return result == null ? 1 : 0;
     }
