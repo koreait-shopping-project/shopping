@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.model.entity.UserEntity;
+import com.koreait.shopping.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,12 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/user")
@@ -55,8 +53,13 @@ public class UserController {
     @GetMapping("/join")
     public void join(){}
 
-    @GetMapping("/kakaologin")
-    public void kakaologin(){}
+    @GetMapping("/selSocial")
+    @ResponseBody
+    public Map<String, Integer> selSocial(UserEntity entity) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.selSocial(entity));
+        return res;
+    }
 
     @PostMapping("/join")
     public String joinProc(UserEntity entity, RedirectAttributes reAttr) {
@@ -97,10 +100,18 @@ public class UserController {
     public void checkpw() {}
 
     @PostMapping("/checkpw")
-    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr){
         int result = service.checkpw(entity);
-        if (result == 0) {
-            reAttr.addFlashAttribute(Const.MSG, Const.ERR_3);
+        if (result != 1) {
+            reAttr.addFlashAttribute(Const.TRY_CHECK, entity);
+            switch(result){
+                case 0:
+                    reAttr.addFlashAttribute(Const.MSG, Const.ERR_A);
+                    break;
+                case 2:
+                    reAttr.addFlashAttribute(Const.MSG, Const.ERR_PW);
+                    break;
+            }
             return "redirect:/user/checkpw";
         }
         return "redirect:/user/modify";

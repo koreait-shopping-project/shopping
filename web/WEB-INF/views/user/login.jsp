@@ -18,14 +18,15 @@
                 <a href=""><span>find id</span></a>
                 <a href=""><span>find password</span></a>
             </div>
-            <div class="api_login_btn">
+            <div class="api_login_btn" id="kakaologin">
                 <div class="kakao_login pointer">
                     <span class="font-size-18 bold">Login with Kakao</span>
                 </div>
-                <div class="github_login pointer">
-                    <span class="font-size-18 bold color-white">Login With GitHub</span>
+                <div class="google_login pointer">
+                    <span class="font-size-18 bold color-black">Login With Google</span>
                 </div>
             </div>
         </div>
     </form>
 </div>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
