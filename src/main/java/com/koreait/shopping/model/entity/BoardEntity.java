@@ -8,9 +8,13 @@ import lombok.Setter;
 public class BoardEntity {
     private int iboard;
     private String title;
-    private String ctnt;
-    private String img;
-    private String rdt;
-    private String mdt;
+    private String brand;
+    private String imgUrl;
+    private int price;
+    private int categorynum;
+    private int gender;
+    private int color;
     private int hits;
+//    private String rdt;
+//    private String mdt;
 }

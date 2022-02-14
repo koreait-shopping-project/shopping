@@ -7,4 +7,13 @@
     <select id="selSubMenuCategoryList" resultType="BoardSubCategoryEntity">
         SELECT * FROM t_board_sub_category ORDER BY isubcategory
     </select>
+
+    <select id="selBoardList" resultType="BoardVo">
+        SELECT *
+        FROM t_board_crawlist A
+                 LEFT JOIN t_board_sub_category B
+                           ON A.categoryNum = B.isubcategory
+        WHERE A.categoryNum = ${isubcategory}
+    </select>
+
 </mapper>
