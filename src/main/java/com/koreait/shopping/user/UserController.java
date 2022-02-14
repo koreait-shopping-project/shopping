@@ -2,6 +2,8 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
 import com.koreait.shopping.user.model.UserEntity;
+import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.user.model.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired private UserService service;
+
+    @Autowired private UserUtils utils;
 
     @GetMapping("/login")
     public void login(){}
@@ -94,21 +98,23 @@ public class UserController {
 
     //회원 정보 수정
     @GetMapping("/modify")
-    public void modify() {}
+    public void modify() { }
+
+
 
     //비밀번호 확인(회원 정보 수정 진입)
     @GetMapping("/checkpw")
     public void checkpw() {}
 
     @PostMapping("/checkpw")
-    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr){
+    public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.checkpw(entity);
         if (result != 1) {
             reAttr.addFlashAttribute(Const.TRY_CHECK, entity);
             switch(result){
                 case 0:
                     reAttr.addFlashAttribute(Const.MSG, Const.ERR_A);
-                    break;
+                    return "redirect:/user/login";//알수 없는 오류시 로그인 창으로 이동
                 case 2:
                     reAttr.addFlashAttribute(Const.MSG, Const.ERR_PW);
                     break;

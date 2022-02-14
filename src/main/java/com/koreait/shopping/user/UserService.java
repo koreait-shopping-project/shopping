@@ -2,6 +2,7 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.user.model.UserEntity;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class UserService {
         }
         UserEntity copyEntity = new UserEntity();//객체 복사
         BeanUtils.copyProperties(entity, copyEntity);//깊은 복사
+
         //비밀번호 암호화
         String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
@@ -79,9 +81,9 @@ public class UserService {
             e.printStackTrace();
             return 0; // 알 수 없는 에러
         }
-        if (BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
-            return 1; // 비밀번호 맞음
+        if (!BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+            return 2; // 비밀번호 틀림
         }
-        return 2;
+        return 1;
     }
 }

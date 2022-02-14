@@ -52,7 +52,7 @@
                 <h5 id="offcanvasTopLabel">item search</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body" id="offcanvas_search_body">
+            <div class="offcanvas-body">
                 <input type="search" placeholder="검색어를 입력하세요">
                 <input type="button" value="검색">
             </div>
