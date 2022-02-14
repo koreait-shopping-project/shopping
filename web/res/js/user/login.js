@@ -2,7 +2,7 @@
     const login_frm = document.querySelector('#login_frm'); // login from
     const login_submit_btn = document.querySelector('#login_submit'); // login btn
 
-    // enter 하면 login 버튼 이벤트 실행
+    // enter 누를 시 login 버튼 이벤트 실행
     login_submit_btn.addEventListener('enter', () => {
         loginBtnEvent();
     });
