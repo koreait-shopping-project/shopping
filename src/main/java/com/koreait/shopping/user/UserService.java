@@ -2,6 +2,7 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.user.model.UserEntity;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class UserService {
     }
 
     public int join(UserEntity entity) {
+        if (entity.getSocial() != null) {
+            String[] uid = entity.getEmail().split("@");
+            entity.setUid(uid[0]);
+            entity.setUpw(utils.getRandomPassword(15));
+        }
         UserEntity copyEntity = new UserEntity();//객체 복사
         BeanUtils.copyProperties(entity, copyEntity);//깊은 복사
 
@@ -46,7 +52,6 @@ public class UserService {
 
     //소셜 로그인시 이메일 체크
     public int selSocial(UserEntity entity) {
-        System.out.println(entity.getEmail());
         UserEntity result = mapper.selSocial(entity);
         return result == null ? 1 : 0;
     }
@@ -76,9 +81,9 @@ public class UserService {
             e.printStackTrace();
             return 0; // 알 수 없는 에러
         }
-        if (BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
-            return 1; // 비밀번호 맞음
+        if (!BCrypt.checkpw(entity.getUpw(), dbUser.getUpw())) {
+            return 2; // 비밀번호 틀림
         }
-        return 2;
+        return 1;
     }
 }

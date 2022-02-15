@@ -2,7 +2,7 @@
     const login_frm = document.querySelector('#login_frm'); // login from
     const login_submit_btn = document.querySelector('#login_submit'); // login btn
 
-    // enter 하면 login 버튼 이벤트 실행
+    // enter 누를 시 login 버튼 이벤트 실행
     login_submit_btn.addEventListener('enter', () => {
         loginBtnEvent();
     });
@@ -119,10 +119,10 @@
 
     function onSignIn(googleUser) {
         const profile = googleUser.getBasicProfile();
-        const account_email = profile.getEmail();
-        const social = 'google';
+        const email = profile.getEmail();
+        const social = 'google'
         const param = {
-            'email' : account_email
+            'email' : email
         }
         // window.location.href="/user/join?email=" + email;
         // console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -131,14 +131,13 @@
         myFetch.get('/user/selSocial', data => {
             switch (data.result) {
                 case 1:
-                    window.location.href = `/user/join?social=${social}&email=${account_email}`;
+                    window.location.href = `/user/join?social=${social}&email=${email}`;
                     break;
                 case 0:
                     window.location.href = '/user/main'
                     break;
             }
         }, param);
-
     }
 
     function onSignInFailure(t) {
@@ -163,5 +162,4 @@
             console.log('탈퇴');
         });
     }
-
 }

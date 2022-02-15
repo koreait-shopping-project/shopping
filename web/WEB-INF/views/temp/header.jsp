@@ -9,6 +9,7 @@
 <c:set var="splitURI" value="${fn:split(currentPagePath, '/')}"/>
 <c:set var="lastPath" value="${splitURI[fn:length(splitURI) - 1]}"/>
 <header id="header">
+    <meta name ="google-signin-client_id" content="883718995298-74pl9d4vsao303ogt1dhiv9mki93nffc.apps.googleusercontent.com">
     <a href="/"><b class="pointer">grandetoile</b></a>
     <div id="submenu_wrap">
         <div><a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
@@ -20,10 +21,10 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <hr>
-            <div class="offcanvas-body">
+            <div class="offcanvas-body" id="offcanvas_submenu_body">
                 <c:forEach items="${subMenuList}" var="item">
                     <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
-                        <a href="/prodect/${item.subcategorynm}">${item.subcategorynm}</a>
+                        <a href="/prodect/item/${item.isubcategory}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
                 <c:if test="${sessionScope.loginUser != null}">

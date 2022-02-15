@@ -20,7 +20,7 @@ public class BoardController {
     @GetMapping("/list")
     public void list(){}
 
-    @GetMapping("/board/{icategory}")
+    @GetMapping("/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
         return "redirect:/board/list";
@@ -28,6 +28,6 @@ public class BoardController {
     @GetMapping("/product/{isubcategory}")
     public String subList(@PathVariable int isubcategory, Model model){
         model.addAttribute("isubcategory", isubcategory);
-        return "redirect:/product";
+        return "/product/item";
     }
 }

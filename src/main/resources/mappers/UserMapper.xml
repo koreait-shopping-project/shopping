@@ -23,4 +23,11 @@
         WHERE email = #{email}
     </select>
 
+    <update id="updUser">
+        UPDATE t_user
+        SET
+        <if test=" upw != null and upw != ''">
+            upw = #{upw}
+        </if>
+    </update>
 </mapper>
