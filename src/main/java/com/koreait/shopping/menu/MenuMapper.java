@@ -1,7 +1,7 @@
 package com.koreait.shopping.menu;
 
-import com.koreait.shopping.model.entity.BoardCategoryEntity;
-import com.koreait.shopping.model.entity.BoardSubcategoryEntity;
+import com.koreait.shopping.board.model.entity.BoardCategoryEntity;
+import com.koreait.shopping.board.model.entity.BoardSubcategoryEntity;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

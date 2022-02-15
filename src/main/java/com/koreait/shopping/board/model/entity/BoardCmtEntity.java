@@ -1,16 +1,17 @@
-package com.koreait.shopping.model.entity;
+package com.koreait.shopping.board.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class BoardEntity {
+@ToString
+public class BoardCmtEntity {
+    private int icmt;
     private int iboard;
-    private String title;
+    private int iuser;
     private String ctnt;
-    private String img;
     private String rdt;
     private String mdt;
-    private int hits;
 }
