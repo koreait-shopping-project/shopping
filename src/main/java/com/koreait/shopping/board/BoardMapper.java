@@ -10,4 +10,5 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     List<BoardVo> selBoardList(BoardDto dto);
+    BoardVo selBoardDetail(BoardDto dto);
 }
