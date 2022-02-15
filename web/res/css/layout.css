@@ -7,10 +7,10 @@
 
 /* header menu */
 #menu_wrap { position: relative; }
-#menu_wrap div { display: inline-block; font-size: 14px; }
-#menu_wrap div:nth-child(1) { margin: 0; }
-#menu_wrap div a { transition: 0.45s; }
-#menu_wrap div a:hover { color: #cccccc; }
+#menu_wrap > div { display: inline-block; font-size: 14px; }
+#menu_wrap > div:nth-child(1) { margin: 0; }
+#menu_wrap > div a { transition: 0.45s; }
+#menu_wrap > div a:hover { color: #cccccc; }
 
 /* header submenu */
 #submenu_wrap { position: absolute; left: 20px; top: 30px;  font-size: 18px; }
@@ -25,7 +25,10 @@
 #mypage_wrap span { font-size: 13px; margin-right: 15px; }
 
 /* header search */
-.offcanvasTopLabel { display: inline; }
+#offcanvas_search_header { justify-content: space-around;!important; }
+#search_frm { display: flex; justify-content: center; align-items: center; }
+#search_input { width: 40%; display: inline-block; }
+#search_submit { margin-left: 0.75rem; }
 
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }
