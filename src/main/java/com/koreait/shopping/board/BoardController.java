@@ -28,6 +28,6 @@ public class BoardController {
     @GetMapping("/product/{isubcategory}")
     public String subList(@PathVariable int isubcategory, Model model){
         model.addAttribute("isubcategory", isubcategory);
-        return "redirect:/product";
+        return "/product/item";
     }
 }
