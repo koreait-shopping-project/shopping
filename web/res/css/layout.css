@@ -25,10 +25,15 @@
 #mypage_wrap span { font-size: 13px; margin-right: 15px; }
 
 /* header search */
-#offcanvas_search_header { justify-content: space-around;!important; }
+#offcanvasTop { padding: 0 100px; }
+#offcanvas_search_header { justify-content: flex-end;!important; }
 #search_frm { display: flex; justify-content: center; align-items: center; }
-#search_input { width: 40%; display: inline-block; }
-#search_submit { margin-left: 0.75rem; }
+#search_input { width: 50%; display: inline-block; border-top: 0; border-left: 0;
+                border-right: 0; border-bottom: 1.5px solid #525252; border-radius: 0.5px; }
+#search_submit { margin-left: 0.75rem; color: #fff; padding: 7px 10px;
+                 border: 0; border-radius: 0.25rem; background: linear-gradient(160deg,#44cbd4,#2881ef); }
+#search_submit:hover { background: linear-gradient(106deg,#6d44d4,#2881ef); }
+.search_press { font-size: 16px; font-weight: 500; text-transform: capitalize; margin-top: 0.5rem; }
 
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }
