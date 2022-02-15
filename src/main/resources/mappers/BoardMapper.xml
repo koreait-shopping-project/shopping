@@ -8,4 +8,11 @@
         WHERE category_num = ${isubcategory}
     </select>
 
+    <select id="selBoardDetail" resultType="BoardVo">
+        SELECT *
+        FROM board_list A
+        LEFT JOIN board_detail B
+        ON A.iboard = B.iboard
+        WHERE A.iboard = ${isubcategory}
+    </select>
 </mapper>
