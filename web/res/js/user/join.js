@@ -102,12 +102,17 @@
             }
         });
 
-        //누른키에서 손 땔때 발생(아이디)
-        joinFrmElem.uid.addEventListener('keyup', () => {
-            const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
-            idChkMsgElem.innerText = '';
-            idChkState = 2;
-        });
+        const uidElem = joinFrmElem.querySelector('#uid');
+
+        if (uidElem) {
+            //누른키에서 손 땔때 발생(아이디)
+            joinFrmElem.uid.addEventListener('keyup', () => {
+                const idChkMsgElem = joinFrmElem.querySelector('#id-chk-msg');
+                idChkMsgElem.innerText = '';
+                idChkState = 2;
+            });
+        }
+
 
         //누른키에서 손 땔때 발생(이메일)
         joinFrmElem.email.addEventListener('keyup', () => {
@@ -117,18 +122,21 @@
         });
 
 
-        //아이디 중복 체크 버튼
-        const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
-        idBtnChkElem.addEventListener('click', () => {
-            const idVal = joinFrmElem.uid.value;
-            if (!idRegex.test(idVal)) {
-                alert(msg1);
-                return;
-            }
-            myFetch.get(`/user/idChk/${idVal}`, (data) => {
-                setIdChkMsg(data);
+        if (uidElem) {
+            //아이디 중복 체크 버튼
+            const idBtnChkElem = joinFrmElem.querySelector('#id-btn-chk');
+            idBtnChkElem.addEventListener('click', () => {
+                const idVal = joinFrmElem.uid.value;
+                if (!idRegex.test(idVal)) {
+                    alert(msg1);
+                    return;
+                }
+                myFetch.get(`/user/idChk/${idVal}`, (data) => {
+                    setIdChkMsg(data);
+                });
             });
-        });
+        }
+
 
         //이메일 중복 체크 버튼
         const emailBtnChkElem = joinFrmElem.querySelector('#email-btn-chk');
