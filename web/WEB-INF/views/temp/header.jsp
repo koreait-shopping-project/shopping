@@ -24,7 +24,7 @@
             <div class="offcanvas-body" id="offcanvas_submenu_body">
                 <c:forEach items="${subMenuList}" var="item">
                     <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
-                        <a href="/prodect/${item.isubcategory}">${item.subcategorynm}</a>
+                        <a href="/prodect/item/${item.isubcategory}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
                 <c:if test="${sessionScope.loginUser != null}">
