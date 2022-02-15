@@ -2,6 +2,7 @@ package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
 import com.koreait.shopping.board.model.dto.BoardDto;
+import com.koreait.shopping.board.model.vo.BoardVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +18,14 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
-    @GetMapping("/detail")
-    public void detail(){}
+    @GetMapping("/detail/{iboard}")
+    public String detail(@PathVariable int iboard, Model model, BoardDto dto) {
+        model.addAttribute("iboard", iboard);
+        dto.setIboard(iboard);
+        BoardVo vo = service.selBoardDetail(dto);
+        model.addAttribute(Const.DETAIL, vo);
+        return "board/detail";
+    }
 
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){

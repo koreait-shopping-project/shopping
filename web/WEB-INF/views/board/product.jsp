@@ -9,14 +9,12 @@
         </c:when>
         <c:otherwise>
             <c:forEach items="${requestScope.list}" var="item">
-                <div data-isubcategory="${item.isubcategory}">
                     <div>${item.brand}</div>
                     <div><c:out value="${item.title}"/></div>
                     <div>${item.price}</div>
                     <div>${item.category_num}</div>
                     <div>${item.gender}</div>
-                    <img src="${item.img_url}">
-                </div>
+                    <a href="/board/detail/${item.iboard}"><img src="${item.img_url}"></a>
             </c:forEach>
         </c:otherwise>
     </c:choose>
