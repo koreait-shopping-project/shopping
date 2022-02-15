@@ -17,8 +17,12 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
-    @GetMapping("/detail")
-    public void detail(){}
+    @GetMapping("/detail/{isubcategory}")
+    public void detail(@PathVariable int isubcategory, Model model, BoardDto dto){
+        model.addAttribute("isubcategory", isubcategory);
+        dto.setIsubcategory(isubcategory);
+        model.addAttribute(Const.DETAIL, service.selBoardDetail(dto));
+    }
 
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){

@@ -15,7 +15,7 @@
                     <div>${item.price}</div>
                     <div>${item.category_num}</div>
                     <div>${item.gender}</div>
-                    <img src="${item.img_url}">
+                    <a href="/board/detail/${requestScope.detail}"><img src="${item.img_url}"></a>
                 </div>
             </c:forEach>
         </c:otherwise>
