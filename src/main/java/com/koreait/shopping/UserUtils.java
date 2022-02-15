@@ -1,6 +1,6 @@
 package com.koreait.shopping;
 
-import com.koreait.shopping.user.model.UserEntity;;
+import com.koreait.shopping.user.model.entity.UserEntity;;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

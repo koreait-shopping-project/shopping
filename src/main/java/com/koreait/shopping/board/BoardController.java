@@ -28,9 +28,17 @@ public class BoardController {
         model.addAttribute(Const.I_CATEGORY, icategory);
         return "redirect:/board/list";
     }
+
+    @GetMapping("/product")
+    public void product(){
+
+    }
+
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model){
+    public String subList(@PathVariable int isubcategory, Model model, BoardDto dto){
         model.addAttribute("isubcategory", isubcategory);
-        return "/product/item";
+        dto.setIsubcategory(isubcategory);
+        model.addAttribute(Const.LIST, service.selBoardList(dto));
+        return "redirect:/board/product";
     }
 }

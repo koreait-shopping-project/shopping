@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.user.model.UserEntity;
+import com.koreait.shopping.user.model.entity.UserEntity;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
