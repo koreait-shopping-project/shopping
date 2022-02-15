@@ -47,16 +47,18 @@
             </c:otherwise>
         </c:choose>
         <div><a class="pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">search</a></div>
-        <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
-            <div class="offcanvas-header">
-                <h5 id="offcanvasTopLabel">item search</h5>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header" id="offcanvas_search_header">
+                    <h5 id="offcanvasTopLabel">item search</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body" id="offcanvas_search_body">
+                    <form action="" method="post" id="search_frm">
+                        <input class="form-control" id="search_input" type="search" placeholder="검색어를 입력하세요">
+                        <input class="btn btn-primary" id="search_submit" type="submit" value="검색">
+                    </form>
+                </div>
             </div>
-            <div class="offcanvas-body">
-                <input type="search" placeholder="검색어를 입력하세요">
-                <input type="button" value="검색">
-            </div>
-        </div>
         <c:forEach items="${menuList}" var="item">
             <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
                 <a href="/board/list/${item.icategory}">${item.categorynm}</a>
