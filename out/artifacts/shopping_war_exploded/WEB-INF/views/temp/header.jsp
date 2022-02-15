@@ -24,7 +24,7 @@
             <div class="offcanvas-body" id="offcanvas_submenu_body">
                 <c:forEach items="${subMenuList}" var="item">
                     <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
-                        <a href="/prodect/${item.isubcategory}">${item.subcategorynm}</a>
+                        <a href="/board/product/${item.isubcategory}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
                 <c:if test="${sessionScope.loginUser != null}">
@@ -52,7 +52,7 @@
                 <h5 id="offcanvasTopLabel">item search</h5>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <div class="offcanvas-body" id="offcanvas_search_body">
+            <div class="offcanvas-body">
                 <input type="search" placeholder="검색어를 입력하세요">
                 <input type="button" value="검색">
             </div>

@@ -9,12 +9,8 @@ public class BoardEntity {
     private int iboard;
     private String title;
     private String brand;
-    private String imgUrl;
+    private String img_url;
     private int price;
-    private int categorynum;
+    private int category_num;
     private int gender;
-    private int color;
-    private int hits;
-//    private String rdt;
-//    private String mdt;
 }
