@@ -54,30 +54,10 @@ CREATE TABLE t_user (
                         mod_date DATETIME DEFAULT CURRENT_TIMESTAMP()
 );
 
-CREATE TABLE merchandise (
-                             iboard INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                             itemimg VARCHAR(50) NOT NULL,
-                             price INT UNSIGNED NOT NULL,
-                             color VARCHAR(15) NOT NULL,
-                             size INT UNSIGNED NOT NULL,
-                             sale INT UNSIGNED NOT NULL,
-                             num INT UNSIGNED NOT NULL
-);
-
 CREATE TABLE coupon (
                         icoupon INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
                         cpnum VARCHAR(50) NOT NULL,
                         indexnum TINYINT UNSIGNED CHECK(indexnum IN (1, 2))
-);
-
-CREATE TABLE t_board_category (
-                                  icategory INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                                  categorynm VARCHAR(20) NOT NULL
-);
-
-CREATE TABLE t_board_sub_category(
-                                     isubcategory INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                                     subcategorynm VARCHAR(30) NOT NULL
 );
 
 CREATE TABLE t_board_write (

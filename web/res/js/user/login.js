@@ -53,7 +53,7 @@
                                     window.location.href = `/user/join?social=${social}&email=${account_email}`;
                                     break;
                                 case 0:
-                                    window.location.href = '/user/main'
+                                    window.location.href = '/board/main'
                                     break;
                             }
                         }, param);
@@ -134,7 +134,7 @@
                     window.location.href = `/user/join?social=${social}&email=${email}`;
                     break;
                 case 0:
-                    window.location.href = '/user/main'
+                    window.location.href = '/board/main'
                     break;
             }
         }, param);

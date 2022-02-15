@@ -6,8 +6,8 @@
         SELECT *
         FROM board_list A
         LEFT JOIN t_board_sub_category B
-        ON A.categoryNum = B.isubcategory
-        WHERE A.categoryNum = ${isubcategory}
+        ON A.category_num = B.isubcategory
+        WHERE A.category_num = ${isubcategory}
     </select>
 
 </mapper>
