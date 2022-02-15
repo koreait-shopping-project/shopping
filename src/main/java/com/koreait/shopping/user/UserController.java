@@ -35,7 +35,6 @@ public class UserController {
     @PostMapping("/login")
     public String loginProc(UserEntity entity, RedirectAttributes reAttr){
         int result = service.login(entity);
-        System.out.println(result);
         if(result != 1){
             reAttr.addFlashAttribute(Const.TRY_LOGIN, entity);
             switch(result){

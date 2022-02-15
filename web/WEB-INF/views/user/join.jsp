@@ -17,6 +17,9 @@
                     <col class="w-auto">
                 </colgroup>
                 <tbody>
+                <tr>
+                    <td><input type="hidden" name="social" value="${param.social}"></td>
+                </tr>
                 <c:if test="${param.social == null}">
                     <tr>
                         <th class="display-b-f-l">아이디*</th>

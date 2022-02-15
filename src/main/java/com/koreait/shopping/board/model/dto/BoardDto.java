@@ -1,6 +1,6 @@
-package com.koreait.shopping.model.dto;
+package com.koreait.shopping.board.model.dto;
 
-import com.koreait.shopping.model.entity.BoardEntity;
+import com.koreait.shopping.board.model.entity.BoardEntity;
 import lombok.Getter;
 import lombok.Setter;
 

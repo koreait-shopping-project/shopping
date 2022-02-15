@@ -1,7 +1,7 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.model.dto.BoardDto;
+import com.koreait.shopping.board.model.dto.BoardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +19,9 @@ public class BoardController {
 
     @GetMapping("/list")
     public void list(){}
+
+    @GetMapping("/detail")
+    public void detail(){}
 
     @GetMapping("/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
