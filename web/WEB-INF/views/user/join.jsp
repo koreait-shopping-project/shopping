@@ -2,7 +2,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <div>
-    <div class="text-aline-center m-20 font-size-30">회원가입</div>
+    <div class="tx-a-center m-20 font-size-30">회원가입</div>
     <form action="/user/join" method="post" id="join_frm">
         <hr>
         <div style="display: flex; justify-content: space-between">
@@ -17,6 +17,9 @@
                     <col class="w-auto">
                 </colgroup>
                 <tbody>
+                <tr>
+                    <td><input type="hidden" name="social" value="${param.social}"></td>
+                </tr>
                 <c:if test="${param.social == null}">
                     <tr>
                         <th class="display-b-f-l">아이디*</th>
@@ -76,7 +79,7 @@
                 <td>
                     <input class="display-b-f-l" type="text" name="email" id="email" value="${param.email}">
                     <div>
-                        <input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk">
+                        <input class="h-25 m-l-5" type="button" value="email-check" id="email-btn-chk" <c:if test="${param.social != null}" >readonly</c:if>>
                         <span id="email-chk-msg"></span>
                     </div>
                 </td>
@@ -172,7 +175,7 @@
             </div>
         </div>
         <br>
-        <div class="text-aline-center m-20 font-size-20">
+        <div class="tx-a-center m-20 font-size-20">
             <input type="submit" value="회원가입" id="join_submit">
         </div>
     </form>

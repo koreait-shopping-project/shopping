@@ -1,4 +1,4 @@
-package com.koreait.shopping.model.vo;
+package com.koreait.shopping.menu.model.vo;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

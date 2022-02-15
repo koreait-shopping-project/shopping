@@ -1,7 +1,7 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.model.dto.BoardDto;
+import com.koreait.shopping.board.model.dto.BoardDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,17 +17,20 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
-    @GetMapping("/list")
-    public void list(){}
+    @GetMapping("/detail")
+    public void detail(){}
 
-    @GetMapping("/{icategory}")
+    @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
-        return "redirect:/board/list";
+        return "board/list";
     }
+
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model){
+    public String subList(@PathVariable int isubcategory, Model model, BoardDto dto){
         model.addAttribute("isubcategory", isubcategory);
-        return "/product/item";
+        dto.setIsubcategory(isubcategory);
+        model.addAttribute(Const.LIST, service.selBoardList(dto));
+        return "board/product";
     }
 }

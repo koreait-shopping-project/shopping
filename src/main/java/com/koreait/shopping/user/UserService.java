@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.user.model.UserEntity;
+import com.koreait.shopping.user.model.entity.UserEntity;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -38,6 +38,7 @@ public class UserService {
     public int join(UserEntity entity) {
         if (entity.getSocial() != null) {
             String[] uid = entity.getEmail().split("@");
+            System.out.println(uid[0]);
             entity.setUid(uid[0]);
             entity.setUpw(utils.getRandomPassword(15));
         }

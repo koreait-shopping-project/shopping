@@ -2,7 +2,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <div id="login_wrap">
-    <h2 class="hidden">Login</h2>
+    <h2 class="hidden">LoginTEST</h2>
     <form action="/user/login" method="post" id="login_frm">
         <div class="frm_wrap">
             <Strong class="color-red font-size-16">${requestScope.msg}</Strong>
@@ -28,18 +28,18 @@
             </div>
         </div>
     </form>
-    <div>
-        <a id="kakaologout">로그아웃</a>
-    </div>
-    <div>
-        <a id="kakaosecession">탈퇴</a>
-    </div>
-    <div id="googleLogout">
-        <a>signOut</a>
-    </div>
-    <div id="secession">
-        <a>revokeAccess</a>
-    </div>
+<%--    <div>--%>
+<%--        <a id="kakaologout">로그아웃</a>--%>
+<%--    </div>--%>
+<%--    <div>--%>
+<%--        <a id="kakaosecession">탈퇴</a>--%>
+<%--    </div>--%>
+<%--    <div id="googleLogout">--%>
+<%--        <a>signOut</a>--%>
+<%--    </div>--%>
+<%--    <div id="secession">--%>
+<%--        <a>revokeAccess</a>--%>
+<%--    </div>--%>
 </div>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
