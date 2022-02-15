@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class BoardService {
     @Autowired
-    private MenuMapper mapper;
+    private BoardMapper mapper;
 
     public List<BoardVo> selBoardList(BoardDto dto) {
         return mapper.selBoardList(dto);

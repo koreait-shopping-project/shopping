@@ -12,5 +12,4 @@ import java.util.List;
 public interface MenuMapper {
     List<BoardCategoryEntity> selMenuCategoryList();
     List<BoardSubcategoryEntity> selSubMenuCategoryList();
-    List<BoardVo> selBoardList(BoardDto dto);
 }
