@@ -16,5 +16,9 @@ public class BoardService {
     public List<BoardVo> selBoardList(BoardDto dto) {
         return mapper.selBoardList(dto);
     }
+
+    public BoardVo selBoardDetail(BoardDto dto) {
+        return mapper.selBoardDetail(dto);
+    }
 }
 
