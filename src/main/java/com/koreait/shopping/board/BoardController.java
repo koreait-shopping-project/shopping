@@ -17,21 +17,13 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
-    @GetMapping("/list")
-    public void list(){}
-
     @GetMapping("/detail")
     public void detail(){}
 
-    @GetMapping("/{icategory}")
+    @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
-        return "redirect:/board/list";
-    }
-
-    @GetMapping("/product")
-    public void product(){
-
+        return "board/list";
     }
 
     @GetMapping("/product/{isubcategory}")
@@ -39,6 +31,6 @@ public class BoardController {
         model.addAttribute("isubcategory", isubcategory);
         dto.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
-        return "redirect:/board/product";
+        return "board/product";
     }
 }
