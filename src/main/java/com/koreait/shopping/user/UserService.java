@@ -38,6 +38,7 @@ public class UserService {
     public int join(UserEntity entity) {
         if (entity.getSocial() != null) {
             String[] uid = entity.getEmail().split("@");
+            System.out.println(uid[0]);
             entity.setUid(uid[0]);
             entity.setUpw(utils.getRandomPassword(15));
         }
