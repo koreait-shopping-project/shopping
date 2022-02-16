@@ -1,6 +1,8 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.board.model.dto.BoardProductDto;
+import com.koreait.shopping.board.model.entity.BoardProductEntity;
+import com.koreait.shopping.board.model.entity.BoardSubcategoryEntity;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,13 +15,13 @@ public class BoardService {
     @Autowired
     private BoardMapper mapper;
 
-    public List<BoardProductVo> selProductList(BoardProductDto dto) {
-        return mapper.selProductList(dto);
+    public List<BoardProductVo> selProductList(BoardSubcategoryEntity entity) {
+        return mapper.selProductList(entity);
     }
 
-    public BoardProductVo selProductDetail(BoardProductDto dto) {
-        return mapper.selProductDetail(dto);
+    public BoardProductEntity selProductDetail(BoardProductVo vo) {
+        return mapper.selProductDetail(vo);
     }
 
-    public BoardProductVo selColor(BoardProductDto dto) { return mapper.selColor(dto); }
+    public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 }

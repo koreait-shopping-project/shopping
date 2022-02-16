@@ -27,7 +27,7 @@ const regex = {
 const myFetch = {
     send: function(fetchObj, cb) {
         return fetchObj
-            .then(res => res.json())
+            .then(res => res.json)
             .then(cb)
             .catch(e => { console.log(e) });
     },

@@ -7,5 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BoardProductVo extends BoardProductEntity {
-
+    private int isubcategory;
+    private String subcategorynm;
+    private int color;
 }

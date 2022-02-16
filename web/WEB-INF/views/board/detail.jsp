@@ -10,19 +10,27 @@
     <div>성별 :  ${requestScope.detail.gender}</div>
     <img src="${requestScope.detail.img_url}">
 </div>
+<div id="data" data-iboard="${requestScope.detail.iboard}">
+</div>
 
-<form action="/color" method="post">
-<%--    <div>"${requestScope.detail.iboard}"></div>--%>
 <%--  iboard와 선택한 컬러 값 같이 가게   --%>
-    <div>
-        <select name="color" id="color">
-            <option>컬러선택</option>
-            <option value="1">흰색</option>
-            <option value="2">검정색</option>
-            <option value="3">회색</option>
-        </select>
-    </div>
-</form>
+<div>
+    <select name="color" id="color" onchange="selColor(this)">
+        <option>컬러선택</option>
+        <option value="1">흰색</option>
+        <option value="2">검정색</option>
+        <option value="3">회색</option>
+    </select>
+</div>
+
+<div id="color_list"></div>
+<div>
+    <div>선택한 색 : ${requestScope.color.color}</div>
+    <div>스몰 : ${requestScope.color.sm}</div>
+    <div>미디움 : ${requestScope.color.md}</div>
+    <div>라지 : ${requestScope.color.lg}</div>
+    <div>엑스라지 : ${requestScope.color.xl}</div>
+</div>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
@@ -45,5 +53,5 @@
             </form>
         </div>
     </c:if>
-    <div class="m-t-20" id="cmt_list"></div>
+    <div class="m-t-20" id="select_color"></div>
 </div>

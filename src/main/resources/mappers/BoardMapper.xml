@@ -14,12 +14,11 @@
         WHERE iboard = ${iboard}
     </select>
 
-    <select id="selColor" resultType="BoardProductVo">
+    <select id="selDetailList" resultType="BoardProductVo">
         SELECT A.iboard, B.color
         FROM product_list A
         INNER JOIN product_detail B
         ON A.iboard = B.iboard
         WHERE A.iboard = ${iboard}
-        AND B.color = ${color}
     </select>
 </mapper>
