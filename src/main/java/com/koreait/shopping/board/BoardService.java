@@ -14,8 +14,11 @@ public class BoardService {
     private BoardMapper mapper;
 
     public List<BoardVo> selBoardList(BoardDto dto) {
-        System.out.println(dto.getBrand());
         return mapper.selBoardList(dto);
+    }
+
+    public BoardVo selBoardDetail(BoardDto dto) {
+        return mapper.selBoardDetail(dto);
     }
 }
 

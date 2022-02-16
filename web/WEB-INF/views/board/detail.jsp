@@ -1,5 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+<div>
+        <div>${requestScope.detail.brand}</div>
+        <div>${requestScope.detail.title}</div>
+        <div>${requestScope.detail.price}</div>
+        <div>${requestScope.detail.category_num}</div>
+        <div>${requestScope.detail.gender}</div>
+        <img src="${requestScope.detail.img_url}">
+</div>
+
 <div>
     <c:if test="${sessionScope.loginUser != null}">
         <div class="m-t-20">

@@ -8,4 +8,9 @@
         WHERE category_num = ${isubcategory}
     </select>
 
+    <select id="selBoardDetail" resultType="BoardVo">
+        SELECT *
+        FROM board_list
+        WHERE iboard = ${iboard}
+    </select>
 </mapper>
