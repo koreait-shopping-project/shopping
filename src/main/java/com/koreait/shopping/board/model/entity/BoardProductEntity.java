@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductEntity {
+public class BoardProductEntity {
     private int iboard;
     private String title;
     private String brand;

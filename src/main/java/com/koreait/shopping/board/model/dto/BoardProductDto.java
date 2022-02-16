@@ -1,12 +1,12 @@
 package com.koreait.shopping.board.model.dto;
 
-import com.koreait.shopping.board.model.entity.ProductEntity;
+import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class ProductDto extends ProductEntity {
+public class BoardProductDto extends BoardProductEntity {
     private int isubcategory;
     private String subcategorynm;
 }
