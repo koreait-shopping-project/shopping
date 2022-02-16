@@ -65,44 +65,53 @@
     }
 
     kakaoLogoutElem = document.querySelector('#kakaologout');
-    kakaoLogoutElem.addEventListener('click', ()=> {
-        kakaoLogout();
-    });
-    function kakaoLogout() {
-        if (!Kakao.Auth.getAccessToken()) {
-            console.log('Not logged in,');
-            return;
-        }
-        Kakao.Auth.logout(function (response) {
-            alert(response + 'logout');
-            window.location.href = '/user/login'
+    if (kakaoLogoutElem) {
+        kakaoLogoutElem.addEventListener('click', ()=> {
+            kakaoLogout();
         });
+        function kakaoLogout() {
+            if (!Kakao.Auth.getAccessToken()) {
+                console.log('Not logged in,');
+                return;
+            }
+            Kakao.Auth.logout(function (response) {
+                alert(response + 'logout');
+                window.location.href = '/user/login'
+            });
+        }
     }
 
+
     kakaosecessionElem = document.querySelector('#kakaosecession');
-    kakaosecessionElem.addEventListener('click', ()=> {
-        secession();
-    });
-    function secession() {
-        Kakao.API.request({
-            url: '/v1/user/unlink',
-            success: function(response) {
-                console.log(response);
-                //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
-                window.location.href='/'
-            },
-            fail: function(error) {
-                console.log('탈퇴 미완료')
-                console.log(error);
-            },
+    if (kakaosecessionElem) {
+        kakaosecessionElem.addEventListener('click', ()=> {
+            secession();
         });
+        function secession() {
+            Kakao.API.request({
+                url: '/v1/user/unlink',
+                success: function(response) {
+                    console.log(response);
+                    //callback(); //연결끊기(탈퇴)성공시 서버에서 처리할 함수
+                    window.location.href='/'
+                },
+                fail: function(error) {
+                    console.log('탈퇴 미완료')
+                    console.log(error);
+                },
+            });
+        }
     }
+
 
     //================================구글 로그인===================================
     googleLoginElem = document.querySelector('#googleLogout');
-    googleLoginElem.addEventListener('click', () => {
-        signOut();
-    });
+    if (googleLoginElem) {
+        googleLoginElem.addEventListener('click', () => {
+            signOut();
+        });
+    }
+
     //처음 실행하는 함수
     function init() {
         gapi.load('auth2', function () {
@@ -152,9 +161,12 @@
     }
 
     googleLoginElem = document.querySelector('#secession');
-    googleLoginElem.addEventListener('click', () => {
-        revokeAccess();
-    });
+    if (googleLoginElem) {
+        googleLoginElem.addEventListener('click', () => {
+            revokeAccess();
+        });
+    }
+
 
     function revokeAccess() {
         var auth2 = gapi.auth2.getAuthInstance();

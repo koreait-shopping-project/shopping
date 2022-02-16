@@ -12,8 +12,6 @@
 
     //회원 정보 수정에서 본인 이메일 중복아니게 하기 위한 작업
     const currentEmailElem = document.querySelector('.email');
-    const currentEmail = currentEmailElem.dataset.email;
-    const emailVal = joinFrmElem.email.value;
 
     //이메일 체크 메세지
     const setEmailChkMsg = (data) => {
