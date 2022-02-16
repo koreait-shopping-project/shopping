@@ -1,7 +1,7 @@
 package com.koreait.shopping.board;
 
-import com.koreait.shopping.board.model.dto.BoardDto;
-import com.koreait.shopping.board.model.vo.BoardVo;
+import com.koreait.shopping.board.model.dto.ProductDto;
+import com.koreait.shopping.board.model.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +13,11 @@ public class BoardService {
     @Autowired
     private BoardMapper mapper;
 
-    public List<BoardVo> selBoardList(BoardDto dto) {
-        System.out.println(dto.getBrand());
-        return mapper.selBoardList(dto);
+    public List<ProductVo> selProductList(ProductDto dto) {
+        return mapper.selProductList(dto);
+    }
+
+    public ProductVo selProductDetail(ProductDto dto) {
+        return mapper.selProductDetail(dto);
     }
 }
-

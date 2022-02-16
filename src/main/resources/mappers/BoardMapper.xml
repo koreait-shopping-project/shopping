@@ -2,10 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.shopping.board.BoardMapper">
 
-    <select id="selBoardList" resultType="BoardDto">
+    <select id="selProductList" resultType="ProductDto">
         SELECT *
-        FROM board_list
+        FROM product_list
         WHERE category_num = ${isubcategory}
     </select>
 
+    <select id="selProductDetail" resultType="ProductVo">
+        SELECT *
+        FROM product_list
+        WHERE iboard = ${iboard}
+    </select>
 </mapper>
