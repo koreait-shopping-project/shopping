@@ -1,9 +1,9 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.model.dto.UserDto;
-import com.koreait.shopping.user.model.UserEntity;
 
+import com.koreait.shopping.user.model.dto.UserDto;
+import com.koreait.shopping.user.model.entity.UserEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;

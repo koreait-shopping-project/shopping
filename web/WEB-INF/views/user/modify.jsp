@@ -53,7 +53,7 @@
                 </c:if>
                 <tr>
                     <th class="display-b-f-l font-size-12">이름*</th>
-                    <td><input class="display-b-f-l bolder" type="text" name="nm" id="nm" value="${sessionScope.loginUser.nm}"></td>
+                    <td><input class="display-b-f-l bolder" readonly type="text" name="nm" id="nm" value="${sessionScope.loginUser.nm}"></td>
                 </tr>
 
                 <tr>
