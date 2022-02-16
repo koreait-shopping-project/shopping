@@ -21,4 +21,3 @@ public class BoardService {
         return mapper.selProductDetail(dto);
     }
 }
-
