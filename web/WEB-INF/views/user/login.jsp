@@ -2,7 +2,7 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <div id="login_wrap">
-    <h2 class="hidden">LoginTEST</h2>
+    <h2 class="hidden">Login</h2>
     <form action="/user/login" method="post" id="login_frm">
         <div class="frm_wrap">
             <Strong class="color-red font-size-16">${requestScope.msg}</Strong>

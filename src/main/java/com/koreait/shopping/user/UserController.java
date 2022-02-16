@@ -1,6 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.model.dto.UserDto;
 import com.koreait.shopping.user.model.UserEntity;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.user.model.UserEntity;
@@ -97,7 +98,24 @@ public class UserController {
 
     //회원 정보 수정
     @GetMapping("/modify")
-    public void modify() { }
+    public void modify() {}
+
+    @PostMapping("/modify")
+    public String modifyProc(UserDto dto, RedirectAttributes rAttr) {
+        int result = service.modify(dto);
+        if(result != 1) {
+            switch(result) {
+                case 0:
+                    rAttr.addFlashAttribute(Const.MSG, "비밀번호 변경에 실패하였습니다.");
+                    break;
+                case 2:
+                    rAttr.addFlashAttribute(Const.MSG, "현재 비밀번호를 확인해 주세요.");
+                    break;
+            }
+            return "redirect:/user/modify";
+        }
+        return "redirect:/user/modify";
+    }
 
 
 

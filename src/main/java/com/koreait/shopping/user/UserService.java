@@ -1,6 +1,7 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.model.dto.UserDto;
 import com.koreait.shopping.user.model.UserEntity;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -17,6 +18,7 @@ public class UserService {
 
     public int login(UserEntity entity) {
         UserEntity dbUser = null;
+
         try {
             dbUser = mapper.selUser(entity);
         } catch (Exception e) {
@@ -36,9 +38,10 @@ public class UserService {
     }
 
     public int join(UserEntity entity) {
-        if (entity.getSocial() != null) {
+        if (!entity.getSocial().equals("general")) {
+            System.out.println("social :" + entity.getSocial());
             String[] uid = entity.getEmail().split("@");
-            System.out.println(uid[0]);
+            System.out.println("uid : " + uid[0]);
             entity.setUid(uid[0]);
             entity.setUpw(utils.getRandomPassword(15));
         }
@@ -48,6 +51,7 @@ public class UserService {
         //비밀번호 암호화
         String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
+        utils.setLoginUser(entity);
         return mapper.insUser(copyEntity);
     }
 
@@ -86,5 +90,16 @@ public class UserService {
             return 2; // 비밀번호 틀림
         }
         return 1;
+    }
+
+    public int modify(UserDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        UserEntity dbUser = mapper.selMdUser(dto);
+        if(!BCrypt.checkpw(dto.getCurrentupw(), dbUser.getUpw()))       {
+            return 2;
+        }
+        String hashedPw = BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt());
+        dto.setUpw(hashedPw);
+        return mapper.updUser(dto);
     }
 }

@@ -137,21 +137,20 @@
             });
         }
 
-
-        //이메일 중복 체크 버튼
         const emailBtnChkElem = joinFrmElem.querySelector('#email-btn-chk');
-        emailBtnChkElem.addEventListener('click', () => {
-            const emailVal = joinFrmElem.email.value;
-            if (!emailRegex.test(emailVal)) {
-                alert(msg2);
-                return;
-            }
-            myFetch.get(`/user/emailChk`, (data) => {
-                setEmailChkMsg(data);
-            }, { 'email' : emailVal});
-        });
-
-
+        if (emailBtnChkElem) {
+            //이메일 중복 체크 버튼
+            emailBtnChkElem.addEventListener('click', () => {
+                const emailVal = joinFrmElem.email.value;
+                if (!emailRegex.test(emailVal)) {
+                    alert(msg2);
+                    return;
+                }
+                myFetch.get(`/user/emailChk`, (data) => {
+                    setEmailChkMsg(data);
+                }, { 'email' : emailVal});
+            });
+        }
     }
     //
     const all = document.querySelector('#all');
