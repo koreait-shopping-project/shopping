@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -24,6 +25,18 @@ public class BoardController {
         dto.setIboard(iboard);
         BoardProductVo vo = service.selProductDetail(dto);
         model.addAttribute(Const.DETAIL, vo);
+        return "board/detail";
+    }
+
+    @GetMapping("/color")
+    public String color(BoardProductDto dto, Model model) {
+        model.addAttribute(Const.COLOR, service.selColor(dto));
+        return "board/detail";
+    }
+
+    @PostMapping("/color")
+    public String colorProc(BoardProductDto dto) {
+
         return "board/detail";
     }
 

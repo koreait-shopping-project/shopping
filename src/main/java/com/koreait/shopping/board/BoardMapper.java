@@ -11,4 +11,5 @@ import java.util.List;
 public interface BoardMapper {
     List<BoardProductVo> selProductList(BoardProductDto dto);
     BoardProductVo selProductDetail(BoardProductDto dto);
+    BoardProductVo selColor(BoardProductDto dto);
 }

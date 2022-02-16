@@ -20,4 +20,6 @@ public class BoardService {
     public BoardProductVo selProductDetail(BoardProductDto dto) {
         return mapper.selProductDetail(dto);
     }
+
+    public BoardProductVo selColor(BoardProductDto dto) { return mapper.selColor(dto); }
 }

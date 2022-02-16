@@ -11,6 +11,19 @@
     <img src="${requestScope.detail.img_url}">
 </div>
 
+<form action="/color" method="post">
+<%--    <div>"${requestScope.detail.iboard}"></div>--%>
+<%--  iboard와 선택한 컬러 값 같이 가게   --%>
+    <div>
+        <select name="color" id="color">
+            <option>컬러선택</option>
+            <option value="1">흰색</option>
+            <option value="2">검정색</option>
+            <option value="3">회색</option>
+        </select>
+    </div>
+</form>
+
 <div>
     <c:if test="${sessionScope.loginUser != null}">
         <div class="m-t-20">
