@@ -1,10 +1,11 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="shopping:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/shopping_war_exploded</output-path>
+  <artifact type="exploded-war" name="shopping:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/shopping_Web_exploded</output-path>
     <root id="root">
       <element id="javaee-facet-resources" facet="shopping/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
+          <element id="javaee-facet-classes" facet="shopping/web/Web" />
           <element id="module-output" name="shopping" />
         </element>
         <element id="directory" name="lib">
@@ -42,8 +43,8 @@
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.6" />
           <element id="library" level="project" name="Maven: org.mindrot:jbcrypt:0.4" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.1" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.1" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.1" />
           <element id="library" level="project" name="Maven: commons-fileupload:commons-fileupload:1.4" />
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.2" />
         </element>

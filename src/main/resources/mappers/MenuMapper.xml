@@ -4,7 +4,9 @@
     <select id="selMenuCategoryList" resultType="BoardCategoryEntity">
         SELECT * FROM t_board_category ORDER BY icategory
     </select>
+
     <select id="selSubMenuCategoryList" resultType="BoardSubCategoryEntity">
         SELECT * FROM t_board_sub_category ORDER BY isubcategory
     </select>
+
 </mapper>

@@ -18,7 +18,6 @@ public class UserService {
 
     public int login(UserEntity entity) {
         UserEntity dbUser = null;
-
         try {
             dbUser = mapper.selUser(entity);
         } catch (Exception e) {

@@ -1,6 +1,6 @@
-package com.koreait.shopping.model.dto;
+package com.koreait.shopping.user.model.dto;
 
-import com.koreait.shopping.user.model.UserEntity;
+import com.koreait.shopping.user.model.entity.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
 

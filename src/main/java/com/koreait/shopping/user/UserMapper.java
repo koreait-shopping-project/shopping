@@ -1,7 +1,7 @@
 package com.koreait.shopping.user;
 
-import com.koreait.shopping.model.dto.UserDto;
-import com.koreait.shopping.user.model.UserEntity;
+import com.koreait.shopping.user.model.dto.UserDto;
+import com.koreait.shopping.user.model.entity.UserEntity;
 
 import org.apache.ibatis.annotations.Mapper;
 

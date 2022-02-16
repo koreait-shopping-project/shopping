@@ -98,7 +98,7 @@ public class UserController {
 
     //회원 정보 수정
     @GetMapping("/modify")
-    public void modify() {}
+    public void modify() { }
 
     @PostMapping("/modify")
     public String modifyProc(UserDto dto, RedirectAttributes rAttr) {
