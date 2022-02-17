@@ -23,7 +23,7 @@
             <hr>
             <div class="offcanvas-body" id="offcanvas_submenu_body">
                 <c:forEach items="${subMenuList}" var="item">
-                    <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
+                    <div>
                         <a href="/board/product/${item.isubcategory}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
@@ -46,7 +46,9 @@
                 <div><a href="/user/logout">logout</a></div>
             </c:otherwise>
         </c:choose>
-        <div><a class="pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">search</a></div>
+        <div id="search_tab">
+            <a class="pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">search</a>
+        </div>
         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header" id="offcanvas_search_header">
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -60,7 +62,7 @@
             </div>
         </div>
         <c:forEach items="${menuList}" var="item">
-            <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
+            <div>
                 <a href="/board/list/${item.icategory}">${item.categorynm}</a>
             </div>
         </c:forEach>
