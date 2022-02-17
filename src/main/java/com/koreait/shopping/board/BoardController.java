@@ -24,7 +24,7 @@ public class BoardController {
         dto.setIboard(iboard);
         BoardProductVo vo = service.selProductDetail(dto);
         model.addAttribute(Const.DETAIL, vo);
-        return "board/detail";
+        return "productdetail";
     }
 
     @GetMapping("/list/{icategory}")

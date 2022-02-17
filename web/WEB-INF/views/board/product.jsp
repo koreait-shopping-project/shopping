@@ -2,20 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<div id="product_item_grid">
+<div>
     <c:choose>
         <c:when test="${fn:length(requestScope.list) == 0}">
-            상품 목록이 없습니다.
+            글이 없습니다.
         </c:when>
         <c:otherwise>
             <c:forEach items="${requestScope.list}" var="item">
-                <a id="product_item_link" href="/board/productdetail/${item.iboard}">
-                    <img src="${item.img_url}">
-                    <div>브랜드 : <span>${item.brand}</span></div>
-                    <div>제품명 : <span>${item.title}</span></div>
-                    <div>가격 : <span>${item.price}</span></div>
-                    <div>성별 : <span>${item.gender}</span></div>
-                </a>
+                <div>브랜드 : ${item.brand}</div>
+                <div>제품명 : ${item.title}</div>
+                <div>가격 : ${item.price}</div>
+                <div>카테고리 : ${item.category_num}</div>
+                <div>성별 : ${item.gender}</div>
+                <a href="/board/productdetail/${item.iboard}"><img src="${item.img_url}"></a>
             </c:forEach>
         </c:otherwise>
     </c:choose>
