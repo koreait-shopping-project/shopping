@@ -43,9 +43,9 @@ public class BoardController {
     public String writeProc(BoardListEntity entity) {
         int result = service.insBoard(entity);
         switch (result) {
-            case 1:
+            case 0:
                 break;
-            case 2:
+            case 1:
                 break;
         }
         return "redirect:/board/list/" + entity.getIcategory();
@@ -64,7 +64,7 @@ public class BoardController {
     }
 
     @GetMapping("/del")
-    public String delProc(BoardListEntity entity) { // icategory, iboard
+    public String delProc(BoardListEntity entity) {
         int result = service.delBoard(entity);
         return "redirect:/board/list/" + entity.getIcategory();
     }

@@ -26,7 +26,7 @@ public class BoardService {
             return mapper.insBoard(entity);
         } catch (Exception e) {
             e.printStackTrace();
-            return 2;
+            return 0;
         }
     }
 
@@ -44,13 +44,13 @@ public class BoardService {
             return mapper.updBoard(entity);
         } catch (Exception e) {
             e.printStackTrace();
-            return 2;
+            return 0;
         }
     }
 
     public int delBoard(BoardListEntity entity) {
         entity.setIuser(userUtils.getLoginUserPk());
-        return mapper.updBoard(entity);
+        return mapper.delBoard(entity);
     }
 
     public List<BoardProductVo> selProductList(BoardProductDto dto) {
