@@ -92,9 +92,12 @@ public class BoardController {
 
     @GetMapping("/size")
     @ResponseBody
-    public Map<String, Integer> selSize(BoardProductVo vo) {
+    public Map<String, Integer> selSize(Model model, BoardProductVo vo) {
+        model.addAttribute(Const.SIZE, service.selSize(vo));
         HashMap<String, Integer> res = new HashMap<>();
-        res.put(Const.SIZE, service.selSize(vo));
+        res.put("result", service.selSizeResult(vo));
+        System.out.println(service.selSize(vo).getColor());
+        System.out.println(service.selSize(vo).getIboard());
         return res;
     }
 }
