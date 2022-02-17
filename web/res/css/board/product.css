@@ -36,11 +36,11 @@
 */
 
 #product_item_grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     grid-gap: 20px;
 }
 
 #product_item_grid { gap: 15px; text-align: center; }
-#product_item_grid > a { color: #353535; }
-#product_item_grid > a > img { width: 100%; margin-bottom: 10px; }
-#product_item_grid p { text-align: left; font-size: 0.8rem; margin-bottom: 5px!important; }
+#product_item_grid > a { color: #353535; box-shadow: 2px 2px 3px #ccc; border-radius: 5px; overflow: hidden; }
+#product_item_grid > a > img { width: 100%; height: 75%; margin-bottom: 10px; }
+#product_item_grid p { text-align: left; font-size: 0.8rem; margin: 6px 0 0 6px!important; }
