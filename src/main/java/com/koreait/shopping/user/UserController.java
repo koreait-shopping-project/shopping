@@ -1,8 +1,11 @@
 package com.koreait.shopping.user;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.user.model.entity.UserEntity;
+
 import com.koreait.shopping.UserUtils;
+
+import com.koreait.shopping.user.model.dto.UserDto;
+import com.koreait.shopping.user.model.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -98,12 +101,28 @@ public class UserController {
     @GetMapping("/modify")
     public void modify() { }
 
-
+    @PostMapping("/modify")
+    public String modifyProc(UserDto dto, RedirectAttributes rAttr) {
+        int result = service.modify(dto);
+        if(result != 1) {
+            switch(result) {
+                case 0:
+                    rAttr.addFlashAttribute(Const.MSG, "비밀번호 변경에 실패하였습니다.");
+                    break;
+                case 2:
+                    rAttr.addFlashAttribute(Const.MSG, "현재 비밀번호를 확인해 주세요.");
+                    break;
+            }
+            return "redirect:/user/modify";
+        }
+        return "redirect:/user/modify";
+    }
 
     //비밀번호 확인(회원 정보 수정 진입)
     @GetMapping("/checkpw")
     public void checkpw() {}
 
+    //비밀번호 변경
     @PostMapping("/checkpw")
     public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.checkpw(entity);

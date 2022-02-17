@@ -8,5 +8,4 @@ import lombok.Setter;
 @Setter
 public class BoardProductDto extends BoardProductEntity {
     private int isubcategory;
-    private String subcategorynm;
 }

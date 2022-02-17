@@ -9,7 +9,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface UserMapper {
     int insUser(UserEntity entity);
     UserEntity selUser(UserEntity entity);
-    int updUser(UserDto dto);
+    UserEntity selMdUser(UserDto dto);
+    int updUserPw(UserEntity entity);
     UserEntity selSocial(UserEntity entity);
 
 }

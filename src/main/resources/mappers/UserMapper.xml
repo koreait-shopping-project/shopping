@@ -4,10 +4,19 @@
 
     <insert id="insUser">
         INSERT INTO t_user
-        (uid, upw, nm, hnum, ph, social, post_num, load_nm, lot_addr, detail_addr, ref, gender, email, birth, location, recommendation, email_agree_flag, sms_agree_flag)
+        (
+             uid, upw, nm, firsthnum, secondhnum, thirdhnum, firstph
+            , secondph, thirdph, social, post_num, load_nm, lot_addr
+            , detail_addr, ref, gender, email, birth, location, recommendation
+            , email_agree_flag, sms_agree_flag
+        )
         VALUES
-        (#{uid}, #{upw}, #{nm}, #{hnum}, #{ph}, #{social}, #{post_num}, #{load_nm}, #{lot_addr} , #{detail_addr}, #{ref}, ${gender}, #{email}, #{birth}, #{location}, #{recommendation},
-         #{email_agree_flag}, #{sms_agree_flag})
+        (
+             #{uid}, #{upw}, #{nm}, #{firsthnum}, #{secondhnum}, #{thirdhnum}
+             , #{firstph}, #{secondph}, #{thirdph}, #{social}, #{post_num}, #{load_nm}
+             , #{lot_addr} , #{detail_addr}, #{ref}, ${gender}, #{email}, #{birth}
+             , #{location}, #{recommendation}, #{email_agree_flag}, #{sms_agree_flag}
+         )
     </insert>
 
     <select id="selUser" resultType="UserEntity">
@@ -18,16 +27,24 @@
         <if test=" email != null and email != '' "> email = #{email} </if>
     </select>
 
+    <select id="selMdUser" resultType="UserEntity">
+        SELECT * FROM t_user
+        WHERE
+        <if test=" iuser > 0 "> iuser = ${iuser} </if>
+    </select>
+
     <select id="selSocial" resultType="UserEntity">
         SELECT * FROM t_user
         WHERE email = #{email}
     </select>
 
-    <update id="updUser">
+    <update id="updUserPw">
         UPDATE t_user
         SET
-        <if test=" upw != null and upw != ''">
+        <if test=" upw != null and upw != '' ">
             upw = #{upw}
         </if>
+        WHERE iuser = ${iuser}
     </update>
+
 </mapper>

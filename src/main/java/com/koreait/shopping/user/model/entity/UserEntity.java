@@ -12,8 +12,12 @@ public class UserEntity {
     private String uid;
     private String upw;
     private String nm;
-    private String hnum;
-    private String ph;
+    private String firsthnum;
+    private String secondhnum;
+    private String thirdhnum;
+    private String firstph;
+    private String secondph;
+    private String thirdph;
     private String social;
     private String post_num;//우편번호
     private String load_nm;//도로명주소
