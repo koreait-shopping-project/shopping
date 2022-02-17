@@ -39,7 +39,7 @@
     </select>
 
     <select id="selBoard" resultType="BoardListVo">
-        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt, A.lastip
+        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt
              , B.nm AS writerNm
         FROM t_board_list A
         LEFT JOIN t_user B
@@ -63,5 +63,6 @@
     <delete id="delBoard">
         DELETE FROM t_board_list
         WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
     </delete>
 </mapper>
