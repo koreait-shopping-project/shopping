@@ -20,14 +20,14 @@ public class BoardController {
     @GetMapping("/main")
     public void main(){}
 
-    @GetMapping("/detail/{iboard}")
+    @GetMapping("/productdetail/{iboard}")
     public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);
         model.addAttribute(Const.COLOR ,service.selDetailList(vo));
-        return "board/detail";
+        return "board/productdetail";
     }
 
     @GetMapping("/list/{icategory}")
