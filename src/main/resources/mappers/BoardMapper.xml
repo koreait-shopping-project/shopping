@@ -44,7 +44,7 @@
         FROM t_board_list A
         LEFT JOIN t_user B
         ON A.iuser = B.iuser
-        WHERE A.iboard = ${iboard}
+        WHERE iboard = ${iboard}
     </select>
 
     <update id="updBoard">
