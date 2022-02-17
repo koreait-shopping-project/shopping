@@ -10,11 +10,10 @@
         <c:otherwise>
             <c:forEach items="${requestScope.list}" var="item">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
-                    <img src="${item.img_url}">
-                    <div>브랜드 : <span>${item.brand}</span></div>
-                    <div>제품명 : <span>${item.title}</span></div>
-                    <div>가격 : <span>${item.price}</span></div>
-                    <div>성별 : <span>${item.gender}</span></div>
+                    <img src="${item.img_url_big}">
+                    <p>${item.title}</p>
+                    <p>${item.price}</p>
+                    <p>${item.gender}</p>
                 </a>
             </c:forEach>
         </c:otherwise>
