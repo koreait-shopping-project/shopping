@@ -79,12 +79,6 @@ public class BoardController {
         return "board/productdetail";
     }
 
-    @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model){
-        model.addAttribute(Const.I_CATEGORY, icategory);
-        return "board/list";
-    }
-
     @GetMapping("/product/{isubcategory}")
     public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto){
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);

@@ -8,7 +8,7 @@
     <div>가격 : ${requestScope.detail.price}</div>
     <div>카테고리 : ${requestScope.detail.category_num}</div>
     <div>성별 :  ${requestScope.detail.gender}</div>
-    <img src="${requestScope.detail.img_url}">
+    <img src="${requestScope.detail.img_url_big}">
 
 </div>
 <div id="data" data-iboard="${requestScope.detail.iboard}">
