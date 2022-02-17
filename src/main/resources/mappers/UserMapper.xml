@@ -38,15 +38,13 @@
         WHERE email = #{email}
     </select>
 
-    <update id="updUser">
+    <update id="updUserPw">
         UPDATE t_user
         SET
         <if test=" upw != null and upw != '' ">
             upw = #{upw}
         </if>
-        firsthnum = ${firsthnum}
-        secondhnum = ${secondhnum}
-        thirdhnum = ${thirdhnum}
         WHERE iuser = ${iuser}
     </update>
+
 </mapper>
