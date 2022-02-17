@@ -38,7 +38,7 @@
         WHERE email = #{email}
     </select>
 
-    <update id="updUser">
+    <update id="updUserPw">
         UPDATE t_user
         SET
         <if test=" upw != null and upw != '' ">
@@ -46,4 +46,5 @@
         </if>
         WHERE iuser = ${iuser}
     </update>
+
 </mapper>

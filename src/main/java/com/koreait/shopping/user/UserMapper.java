@@ -10,7 +10,7 @@ public interface UserMapper {
     int insUser(UserEntity entity);
     UserEntity selUser(UserEntity entity);
     UserEntity selMdUser(UserDto dto);
-    int updUser(UserEntity entity);
+    int updUserPw(UserEntity entity);
     UserEntity selSocial(UserEntity entity);
 
 }
