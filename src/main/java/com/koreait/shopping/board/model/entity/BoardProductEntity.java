@@ -10,6 +10,7 @@ public class BoardProductEntity {
     private String title;
     private String brand;
     private String img_url;
+    private String img_url_big;
     private int price;
     private int category_num;
     private int gender;
