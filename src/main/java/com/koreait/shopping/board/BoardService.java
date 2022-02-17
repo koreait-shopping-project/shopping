@@ -65,4 +65,9 @@ public class BoardService {
     }
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
+
+    public int selSize(BoardProductVo vo) {
+        BoardProductEntity result = mapper.selSize(vo);
+        return result == null? 0 : 1;
+    }
 }
