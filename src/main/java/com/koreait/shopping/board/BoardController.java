@@ -100,4 +100,12 @@ public class BoardController {
         System.out.println(service.selSize(vo).getIboard());
         return res;
     }
+
+    @GetMapping("/size")
+    @ResponseBody
+    public Map<String, Integer> selSize(BoardProductVo vo) {
+        HashMap<String, Integer> res = new HashMap<>();
+        res.put(Const.SIZE, service.selSize(vo));
+        return res;
+    }
 }

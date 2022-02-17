@@ -8,8 +8,8 @@
         const color = event.target.value;
         // console.log(color);
         const param = {
-            'iboard' : iboard,
-            'color' : color
+            'iboard': iboard,
+            'color': color
         }
 
         myFetch.get('/board/size', data => {
