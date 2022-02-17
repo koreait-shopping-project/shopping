@@ -13,4 +13,55 @@
         FROM product_list
         WHERE iboard = ${iboard}
     </select>
+
+    <select id="selDetailList" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list A
+        INNER JOIN product_detail B
+        ON A.iboard = B.iboard
+        WHERE A.iboard = ${iboard}
+    </select>
+
+    <insert id="insBoard">
+        INSERT INTO t_board_list
+        (icategory, iuser, title, ctnt)
+        VALUES
+        (${icategory}, ${iuser}, #{title}, #{ctnt})
+    </insert>
+
+    <select id="selBoardList" resultType="BoardListVo">
+        SELECT A.iboard, A.title, B.nm AS writerNm
+        FROM t_board_list A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.icategory = ${icategory}
+        ORDER BY iboard DESC
+    </select>
+
+    <select id="selBoard" resultType="BoardListVo">
+        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt, A.lastip
+             , B.nm AS writerNm
+        FROM t_board_list A
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
+    </select>
+
+    <update id="updBoard">
+        UPDATE t_board_list
+        <set>
+            <if test=" title != null and title != '' ">
+                title = #{title},
+            </if>
+            <if test=" ctnt != null and ctnt != '' ">
+                ctnt = #{ctnt},
+            </if>
+        </set>
+        WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
+    </update>
+
+    <delete id="delBoard">
+        DELETE FROM t_board_list
+        WHERE iboard = ${iboard}
+    </delete>
 </mapper>
