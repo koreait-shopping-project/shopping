@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    List<BoardProductVo> selProductList(BoardSubcategoryEntity entity);
+    List<BoardProductVo> selProductList(BoardProductDto dto);
     BoardProductEntity selProductDetail(BoardProductVo vo);
     List<BoardProductVo> selDetailList(BoardProductVo vo);
 }

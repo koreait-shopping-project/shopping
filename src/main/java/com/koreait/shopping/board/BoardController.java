@@ -37,10 +37,10 @@ public class BoardController {
     }
 
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model, BoardSubcategoryEntity entity){
+    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto){
         model.addAttribute(Const.ISUBCATEGORY, isubcategory);
-        entity.setIsubcategory(isubcategory);
-        model.addAttribute(Const.LIST, service.selProductList(entity));
+        dto.setIsubcategory(isubcategory);
+        model.addAttribute(Const.LIST, service.selProductList(dto));
         return "board/product";
     }
 }

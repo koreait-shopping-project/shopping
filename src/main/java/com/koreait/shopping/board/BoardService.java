@@ -15,8 +15,8 @@ public class BoardService {
     @Autowired
     private BoardMapper mapper;
 
-    public List<BoardProductVo> selProductList(BoardSubcategoryEntity entity) {
-        return mapper.selProductList(entity);
+    public List<BoardProductVo> selProductList(BoardProductDto dto) {
+        return mapper.selProductList(dto);
     }
 
     public BoardProductEntity selProductDetail(BoardProductVo vo) {

@@ -14,13 +14,40 @@
 <div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 
-<c:forEach items="${requestScope.color}" var="item">
-    <div>색상 : ${item.color}</div>
-    <div>스몰 : ${item.sm}</div>
-    <div>미디움 : ${item.md}</div>
-    <div>라지 : ${item.lg}</div>
-    <div>엑스라지 : ${item.xl}</div>
-</c:forEach>
+<%--<c:forEach items="${requestScope.color}" var="item">--%>
+<%--    <div>색상 : ${item.color}</div>--%>
+<%--    <div>스몰 : ${item.sm}</div>--%>
+<%--    <div>미디움 : ${item.md}</div>--%>
+<%--    <div>라지 : ${item.lg}</div>--%>
+<%--    <div>엑스라지 : ${item.xl}</div>--%>
+<%--</c:forEach>--%>
+
+    <select name="colorbox" id="colorbox">
+        <option>컬러선택</option>
+        <c:forEach var="item" items="${requestScope.color}">
+            <option value="${item.color}">
+                    <c:if test="${item.color == 1}">
+                        흰색
+                    </c:if>
+                    <c:if test="${item.color == 2}">
+                        검정색
+                    </c:if>
+                    <c:if test="${item.color == 3}">
+                        회색
+                    </c:if>
+            </option>
+        </c:forEach>
+    </select>
+    <select name="size" id="selecbox">
+
+    </select>
+
+<%--    <select name="size">--%>
+<%--        <option>사이즈선택</option>--%>
+<%--        <option value="1">${item.color}</option>--%>
+<%--        <option value="2">검정색</option>--%>
+<%--        <option value="3">회색</option>--%>
+<%--    </select>--%>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
