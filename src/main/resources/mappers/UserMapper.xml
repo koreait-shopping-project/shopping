@@ -44,9 +44,6 @@
         <if test=" upw != null and upw != '' ">
             upw = #{upw}
         </if>
-        firsthnum = ${firsthnum}
-        secondhnum = ${secondhnum}
-        thirdhnum = ${thirdhnum}
         WHERE iuser = ${iuser}
     </update>
 </mapper>

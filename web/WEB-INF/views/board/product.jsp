@@ -14,7 +14,7 @@
                 <div>가격 : ${item.price}</div>
                 <div>카테고리 : ${item.category_num}</div>
                 <div>성별 : ${item.gender}</div>
-                <a href="/board/detail/${item.iboard}"><img src="${item.img_url}"></a>
+                <a href="/board/productdetail/${item.iboard}"><img src="${item.img_url}"></a>
             </c:forEach>
         </c:otherwise>
     </c:choose>

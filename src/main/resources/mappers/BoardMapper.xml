@@ -13,4 +13,12 @@
         FROM product_list
         WHERE iboard = ${iboard}
     </select>
+
+    <select id="selDetailList" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list A
+        INNER JOIN product_detail B
+        ON A.iboard = B.iboard
+        WHERE A.iboard = ${iboard}
+    </select>
 </mapper>

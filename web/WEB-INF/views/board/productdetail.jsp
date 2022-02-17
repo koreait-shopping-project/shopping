@@ -9,7 +9,18 @@
     <div>카테고리 : ${requestScope.detail.category_num}</div>
     <div>성별 :  ${requestScope.detail.gender}</div>
     <img src="${requestScope.detail.img_url}">
+
 </div>
+<div id="data" data-iboard="${requestScope.detail.iboard}">
+</div>
+
+<c:forEach items="${requestScope.color}" var="item">
+    <div>색상 : ${item.color}</div>
+    <div>스몰 : ${item.sm}</div>
+    <div>미디움 : ${item.md}</div>
+    <div>라지 : ${item.lg}</div>
+    <div>엑스라지 : ${item.xl}</div>
+</c:forEach>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
@@ -32,5 +43,4 @@
             </form>
         </div>
     </c:if>
-    <div class="m-t-20" id="cmt_list"></div>
 </div>
