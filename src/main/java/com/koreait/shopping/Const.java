@@ -15,6 +15,8 @@ public class Const {
     public static final String DATA = "data";
     public static final String DETAIL = "detail";
     public static final String COLOR = "color";
+    public static final String ISUBCATEGORY = "isubcategory";
+    public static final String IBOARD = "iboard";
 
     public static final String ERR_1 = "아이디를 입력하세요.";
     public static final String ERR_2 = "아이디가 없습니다.";

@@ -22,8 +22,8 @@ public class BoardController {
 
     @GetMapping("/detail/{iboard}")
     public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
-        model.addAttribute("iboard", iboard);
         vo.setIboard(iboard);
+        model.addAttribute(Const.IBOARD, iboard);
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);
         model.addAttribute(Const.COLOR ,service.selDetailList(vo));
@@ -38,7 +38,7 @@ public class BoardController {
 
     @GetMapping("/product/{isubcategory}")
     public String subList(@PathVariable int isubcategory, Model model, BoardSubcategoryEntity entity){
-        model.addAttribute("isubcategory", isubcategory);
+        model.addAttribute(Const.ISUBCATEGORY, isubcategory);
         entity.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(entity));
         return "board/product";
