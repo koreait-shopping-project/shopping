@@ -14,7 +14,7 @@
         <c:set var="notIn" value="장바구니가 비어있습니다."/>
     </c:when>
 </c:choose>
-<div>${titleVal}</div>
+<div class="tx-a-center m-b-30">${titleVal}</div>
 <div>
     <c:choose>
         <c:when test="${requestScope.icategory != 3}">
@@ -24,16 +24,28 @@
                 </c:when>
                 <c:otherwise>
                     <table>
-                        <tr>
-                            <th>No</th>
-                            <th>Title</th>
-                            <th>Writer</th>
-                        </tr>
+                        <c:choose>
+                            <c:when test="${requestScope.icategory == 1}">
+                                <tr class="tx-a-center">
+                                    <th width="10%">No</th>
+                                    <th width="75%">Title</th>
+                                    <th width="15%">Writer</th>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <tr class="tx-a-center">
+                                    <th>Products</th>
+                                    <th>Title</th>
+                                    <th>Writer</th>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
+
                         <c:forEach items="${requestScope.list}" var="item">
                             <tr class="record" data-iboard="${item.iboard}">
-                                <td>${item.iboard}</td>
+                                <td class="tx-a-center">${item.iboard}</td>
                                 <td><c:out value="${item.title}"/></td>
-                                <td>${item.writerNm}</td>
+                                <td class="tx-a-center">${item.writerNm}</td>
                             </tr>
                         </c:forEach>
                     </table>
@@ -44,6 +56,9 @@
                     <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
                 </c:if>
             </div>
+
+            <div>페이징이다</div>
+            <div>검색이다</div>
         </c:when>
         <c:otherwise>
             <c:if test="">
