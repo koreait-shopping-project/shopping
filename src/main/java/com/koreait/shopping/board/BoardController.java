@@ -10,10 +10,10 @@ import com.koreait.shopping.board.model.vo.BoardProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
@@ -73,9 +73,12 @@ public class BoardController {
     public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
+        //productdetail 제품 불러오기
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);
-        model.addAttribute(Const.COLOR ,service.selDetailList(vo));
+
+        //컬러, 사이즈 리스트 가져오기
+        model.addAttribute(Const.DATA ,service.selDetailList(vo));
         return "board/productdetail";
     }
 
@@ -85,5 +88,13 @@ public class BoardController {
         dto.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(dto));
         return "board/product";
+    }
+
+    @GetMapping("/size")
+    @ResponseBody
+    public Map<String, Integer> selSize(BoardProductVo vo) {
+        HashMap<String, Integer> res = new HashMap<>();
+        res.put(Const.SIZE, service.selSize(vo));
+        return res;
     }
 }
