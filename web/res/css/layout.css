@@ -37,8 +37,8 @@
 
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }
-#container { margin: 0 auto; }
-#contents { width: 60%; margin: 0 auto; min-height: calc(100vh - 300px); }
+#container { max-width: 100%; }
+#contents { width: 80%; margin: 0 auto; min-height: calc(100vh - 300px); }
 
 /* footer */
 #footer_wrap {

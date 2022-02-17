@@ -118,12 +118,11 @@ public class UserController {
         return "redirect:/user/modify";
     }
 
-
-
     //비밀번호 확인(회원 정보 수정 진입)
     @GetMapping("/checkpw")
     public void checkpw() {}
 
+    //비밀번호 변경
     @PostMapping("/checkpw")
     public String checkpwProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.checkpw(entity);

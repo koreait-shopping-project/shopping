@@ -99,6 +99,6 @@ public class UserService {
         }
         String hashedPw = BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt());
         dto.setUpw(hashedPw);
-        return mapper.updUser(dto);
+        return mapper.updUserPw(dto);
     }
 }
