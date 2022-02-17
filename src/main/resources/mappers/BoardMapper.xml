@@ -15,7 +15,7 @@
     </select>
 
     <select id="selDetailList" resultType="BoardProductVo">
-        SELECT A.iboard, B.color
+        SELECT *
         FROM product_list A
         INNER JOIN product_detail B
         ON A.iboard = B.iboard

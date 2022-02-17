@@ -9,28 +9,18 @@
     <div>카테고리 : ${requestScope.detail.category_num}</div>
     <div>성별 :  ${requestScope.detail.gender}</div>
     <img src="${requestScope.detail.img_url}">
+
 </div>
 <div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 
-<%--  iboard와 선택한 컬러 값 같이 가게   --%>
-<div>
-    <select name="color" id="color" onchange="selColor(this)">
-        <option>컬러선택</option>
-        <option value="1">흰색</option>
-        <option value="2">검정색</option>
-        <option value="3">회색</option>
-    </select>
-</div>
-
-<div id="color_list"></div>
-<div>
-    <div>선택한 색 : ${requestScope.color.color}</div>
-    <div>스몰 : ${requestScope.color.sm}</div>
-    <div>미디움 : ${requestScope.color.md}</div>
-    <div>라지 : ${requestScope.color.lg}</div>
-    <div>엑스라지 : ${requestScope.color.xl}</div>
-</div>
+<c:forEach items="${requestScope.color}" var="item">
+    <div>색상 : ${item.color}</div>
+    <div>스몰 : ${item.sm}</div>
+    <div>미디움 : ${item.md}</div>
+    <div>라지 : ${item.lg}</div>
+    <div>엑스라지 : ${item.xl}</div>
+</c:forEach>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
@@ -53,5 +43,4 @@
             </form>
         </div>
     </c:if>
-    <div class="m-t-20" id="select_color"></div>
 </div>

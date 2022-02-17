@@ -26,12 +26,6 @@ public class BoardController {
         vo.setIboard(iboard);
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);
-        return "board/detail";
-    }
-
-    @GetMapping("color/{iboard}")
-    public String color(BoardProductVo vo,@PathVariable int iboard, Model model) {
-        vo.setIboard(iboard);
         model.addAttribute(Const.COLOR ,service.selDetailList(vo));
         return "board/detail";
     }

@@ -10,4 +10,9 @@ public class BoardProductVo extends BoardProductEntity {
     private int isubcategory;
     private String subcategorynm;
     private int color;
+    private int sm;
+    private int md;
+    private int lg;
+    private int xl;
+
 }
