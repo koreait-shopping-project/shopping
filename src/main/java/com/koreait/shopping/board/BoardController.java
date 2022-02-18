@@ -97,12 +97,4 @@ public class BoardController {
         res.put(Const.RESULT, service.selSize(vo));
         return res;
     }
-
-    @GetMapping("/size")
-    @ResponseBody
-    public Map<String, Integer> selSize(BoardProductVo vo) {
-        HashMap<String, Integer> res = new HashMap<>();
-        res.put(Const.SIZE, service.selSize(vo));
-        return res;
-    }
 }
