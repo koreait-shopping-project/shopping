@@ -18,7 +18,7 @@
         ORDER BY iboard DESC
     </select>
 
-    <select id="selBoard" resultType="BoardListVo">
+    <select id="selBoardDetail" resultType="BoardListVo">
         SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt
              , B.nm AS writerNm
         FROM t_board_list A

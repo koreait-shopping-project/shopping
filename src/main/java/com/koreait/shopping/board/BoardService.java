@@ -39,7 +39,7 @@ public class BoardService {
         System.out.println(vo.getIboard());
         System.out.println(userUtils.getLoginUserPk());
 
-        return mapper.selBoard(vo);
+        return mapper.selBoardDetail(vo);
     }
 
     public int updBoard(BoardListEntity entity) {
