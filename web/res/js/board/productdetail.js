@@ -28,11 +28,10 @@
         const size = e.target.value;
         const color = colorBox.options[colorBox.selectedIndex].value;
         const ul = document.querySelector('#selecteditem');
-        const li = document.createElement("li");
-        // li.setAttribute('id', addValue);
-        ul.append(li);
+        const createLi = document.createElement("li");
+        ul.append(createLi);
 
-        li.innerHTML= `
+        createLi.innerHTML= `
             사이즈 : 
             <span>${size}</span>
             컬러 : 
@@ -42,11 +41,9 @@
     const btnDel = document.querySelector('#btnDel');
 
     btnDel.addEventListener('click', () => {
-        console.log();
-        li[li.length].remove();
+        // ul.parentNode.removeChild();
     })
-
-        //    색상, 사이즈 추가
+    //    색상, 사이즈 추가
     //    수량 default 1 주고 증감버튼 생성, 최대수량보다 적으면 더 안올라가게 처리
     //    색생 선택, 사이즈 선택 default값으로 변경
     //     .colorBox.options[0].text;
