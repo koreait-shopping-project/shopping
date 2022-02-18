@@ -3,6 +3,7 @@ package com.koreait.shopping.board;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
+import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.entity.BoardSubcategoryEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
@@ -22,4 +23,5 @@ public interface BoardMapper {
     BoardListVo selBoard(BoardListVo vo);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
+    BoardPrevNextVo selPrevNext(BoardListVo vo);
 }

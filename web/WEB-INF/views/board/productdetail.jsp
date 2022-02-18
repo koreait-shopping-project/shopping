@@ -15,7 +15,7 @@
 </div>
 
     <select id="colorbox">
-        <option>컬러선택</option>
+        <option value="" selected disabled>컬러선택</option>
         <c:forEach var="item" items="${requestScope.data}">
             <option value="${item.color}">
                     <c:if test="${item.color == 1}">
@@ -33,8 +33,23 @@
 <%--  색깔 해당하는 사이즈만 뜨도록 --%>
 <%-- 위에서 색상 선택하면 그 값으로 select 날리게 --%>
     <select id="sizebox">
-        <option>사이즈선택</option>
+        <option value="" selected disabled>사이즈선택</option>
     </select>
+
+<form action="/board/purchase" method="post">
+<div id="purchase">
+    <ul id="selecteditem">
+<%--   선택한 아이템 뜨게 --%>
+    </ul>
+
+<%-- 바로구매 --%>
+</div>
+    <div>
+        <a href="/board/purchase" type="submit">
+            바로구매
+        </a>
+    </div>
+</form>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
