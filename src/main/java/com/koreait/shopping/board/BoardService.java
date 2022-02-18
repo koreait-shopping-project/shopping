@@ -36,6 +36,9 @@ public class BoardService {
     }
 
     public BoardListVo selBoard(BoardListVo vo) {
+        System.out.println(vo.getIboard());
+        System.out.println(userUtils.getLoginUserPk());
+
         return mapper.selBoard(vo);
     }
 
