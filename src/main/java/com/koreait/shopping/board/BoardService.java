@@ -4,6 +4,7 @@ import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
+import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
@@ -49,6 +50,10 @@ public class BoardService {
             e.printStackTrace();
             return 0;
         }
+    }
+
+    public BoardPrevNextVo BoardPrevNext(BoardListVo vo) {
+        return mapper.selPrevNext(vo);
     }
 
     public int delBoard(BoardListEntity entity) {
