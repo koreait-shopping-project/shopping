@@ -14,17 +14,9 @@
 <div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 
-<%--<c:forEach items="${requestScope.color}" var="item">--%>
-<%--    <div>색상 : ${item.color}</div>--%>
-<%--    <div>스몰 : ${item.sm}</div>--%>
-<%--    <div>미디움 : ${item.md}</div>--%>
-<%--    <div>라지 : ${item.lg}</div>--%>
-<%--    <div>엑스라지 : ${item.xl}</div>--%>
-<%--</c:forEach>--%>
-
-    <select name="colorbox" id="colorbox">
+    <select id="colorbox">
         <option>컬러선택</option>
-        <c:forEach var="item" items="${requestScope.color}">
+        <c:forEach var="item" items="${requestScope.data}">
             <option value="${item.color}">
                     <c:if test="${item.color == 1}">
                         흰색
@@ -38,16 +30,12 @@
             </option>
         </c:forEach>
     </select>
-    <select name="size" id="selecbox">
-
+<%--  색깔 해당하는 사이즈만 뜨도록 --%>
+<%-- 위에서 색상 선택하면 그 값으로 select 날리게 --%>
+    <select name="size" id="sizebox">
+        <option>사이즈선택</option>
+        <option value="sm">스몰 :${requestScope.size.sm}</option>
     </select>
-
-<%--    <select name="size">--%>
-<%--        <option>사이즈선택</option>--%>
-<%--        <option value="1">${item.color}</option>--%>
-<%--        <option value="2">검정색</option>--%>
-<%--        <option value="3">회색</option>--%>
-<%--    </select>--%>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
