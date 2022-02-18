@@ -11,5 +11,6 @@ public class BoardListEntity {
     private int iuser;
     private String title;
     private String ctnt;
+    private String notice;
     private String rdt;
 }
