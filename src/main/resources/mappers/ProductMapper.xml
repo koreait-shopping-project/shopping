@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.shopping.board.BoardMapper">
+    <select id="selProductList" resultType="BoardProductDto">
+        SELECT *
+        FROM product_list
+        WHERE category_num = ${isubcategory}
+    </select>
+
+    <select id="selProductDetail" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list
+        WHERE iboard = ${iboard}
+    </select>
+
+    <select id="selDetailList" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list A
+                 INNER JOIN product_detail B
+                            ON A.iboard = B.iboard
+        WHERE A.iboard = ${iboard}
+    </select>
+
+    <select id="selSize" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list A
+                 INNER JOIN product_detail B
+                            ON A.iboard = B.iboard
+        WHERE A.iboard = ${iboard} AND B.color = ${color}
+    </select>
+</mapper>
