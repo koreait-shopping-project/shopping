@@ -27,7 +27,7 @@
                         <c:choose>
                             <c:when test="${requestScope.icategory == 1}">
                                 <tr class="tx-a-center">
-                                    <th width="10%">No</th>
+                                    <th width="10%"></th>
                                     <th width="75%">Title</th>
                                     <th width="15%">Writer</th>
                                 </tr>
@@ -43,7 +43,7 @@
 
                         <c:forEach items="${requestScope.list}" var="item">
                             <tr class="record" data-iboard="${item.iboard}">
-                                <td class="tx-a-center">${item.iboard}</td>
+                                <td class="tx-a-center">${item.notice}</td>
                                 <td><c:out value="${item.title}"/></td>
                                 <td class="tx-a-center">${item.writerNm}</td>
                             </tr>

@@ -38,7 +38,12 @@
     </insert>
 
     <select id="selBoardList" resultType="BoardListVo">
+        <if test=" icategory == 1 ">
+        SELECT A.notice, A.title, B.nm AS writerNm
+        </if>
+        <if test=" icategory == 2 ">
         SELECT A.iboard, A.title, B.nm AS writerNm
+        </if>
         FROM t_board_list A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
