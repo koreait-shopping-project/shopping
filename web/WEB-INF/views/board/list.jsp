@@ -34,9 +34,9 @@
                             </c:when>
                             <c:otherwise>
                                 <tr class="tx-a-center">
-                                    <th>Products</th>
-                                    <th>Title</th>
-                                    <th>Writer</th>
+                                    <th width="10%">Products</th>
+                                    <th width="75%">Title</th>
+                                    <th width="15%">Writer</th>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
