@@ -11,6 +11,7 @@
     <img src="${requestScope.detail.img_url_big}">
 
 </div>
+
 <div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 
@@ -32,9 +33,8 @@
     </select>
 <%--  색깔 해당하는 사이즈만 뜨도록 --%>
 <%-- 위에서 색상 선택하면 그 값으로 select 날리게 --%>
-    <select name="size" id="sizebox">
+    <select id="sizebox">
         <option>사이즈선택</option>
-        <option value="sm">스몰 :${requestScope.size.sm}</option>
     </select>
 
 <div>
