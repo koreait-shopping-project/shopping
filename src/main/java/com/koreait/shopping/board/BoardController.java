@@ -44,9 +44,14 @@ public class BoardController {
         int result = service.insBoard(entity);
         switch (result) {
             case 0:
-                break;
+                System.out.println("글쓰기 실패");
+
+                return "board/write";
+
             case 1:
-                break;
+                System.out.println("글쓰기 성공");
+
+                return "board/list";
         }
         return "redirect:/board/list/" + entity.getIcategory();
     }
@@ -92,12 +97,9 @@ public class BoardController {
 
     @GetMapping("/size")
     @ResponseBody
-    public Map<String, Integer> selSize(Model model, BoardProductVo vo) {
-        model.addAttribute(Const.SIZE, service.selSize(vo));
-        HashMap<String, Integer> res = new HashMap<>();
-        res.put("result", service.selSizeResult(vo));
-        System.out.println(service.selSize(vo).getColor());
-        System.out.println(service.selSize(vo).getIboard());
+    public Map<String, BoardProductVo> selSize(BoardProductVo vo) {
+        HashMap<String, BoardProductVo> res = new HashMap<>();
+        res.put(Const.RESULT, service.selSize(vo));
         return res;
     }
 }
