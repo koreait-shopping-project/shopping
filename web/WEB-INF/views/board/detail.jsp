@@ -11,6 +11,10 @@
 </div>
 <table>
     <tr>
+        <th scope="row">글 번호</th>
+        <td>${requestScope.data.iboard}</td>
+    </tr>
+    <tr>
         <th scope="row">제목</th>
         <td>${requestScope.data.title}</td>
     </tr>

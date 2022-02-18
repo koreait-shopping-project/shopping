@@ -20,6 +20,13 @@
         <c:when test="${requestScope.icategory != 3}">
             <c:choose>
                 <c:when test="${fn:length(requestScope.list) == 0}">
+                    <table>
+                        <tr class="tx-a-center">
+                            <th width="10%">Products</th>
+                            <th width="75%">Title</th>
+                            <th width="15%">Writer</th>
+                        </tr>
+                    </table>
                     ${notIn}
                 </c:when>
                 <c:otherwise>
@@ -40,21 +47,39 @@
                                 </tr>
                             </c:otherwise>
                         </c:choose>
+                        <c:choose>
+                            <c:when test="${requestScope.icategory == 1}">
+                                <c:forEach items="${requestScope.list}" var="item">
+                                    <tr class="record" data-iboard="${item.iboard}">
+                                        <td class="tx-a-center">${item.notice}</td>
+                                        <td><c:out value="${item.title}"/></td>
+                                        <td class="tx-a-center">${item.writerNm}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${requestScope.list}" var="item">
+                                    <tr class="record" data-iboard="${item.iboard}">
+                                        <td class="tx-a-center">${item.iboard}</td>
+                                        <td><c:out value="${item.title}"/></td>
+                                        <td class="tx-a-center">${item.writerNm}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
 
-                        <c:forEach items="${requestScope.list}" var="item">
-                            <tr class="record" data-iboard="${item.iboard}">
-                                <td class="tx-a-center">${item.notice}</td>
-                                <td><c:out value="${item.title}"/></td>
-                                <td class="tx-a-center">${item.writerNm}</td>
-                            </tr>
-                        </c:forEach>
                     </table>
                 </c:otherwise>
             </c:choose>
             <div>
-                <c:if test="${sessionScope.loginUser != null}">
-                    <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-                </c:if>
+                <c:choose>
+                    <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
+                        <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
+                    </c:when>
+                    <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
+                        <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
+                    </c:when>
+                </c:choose>
             </div>
 
             <div>페이징이다</div>
