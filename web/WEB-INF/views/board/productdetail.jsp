@@ -11,7 +11,6 @@
     <img src="${requestScope.detail.img_url_big}">
 
 </div>
-
 <div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 

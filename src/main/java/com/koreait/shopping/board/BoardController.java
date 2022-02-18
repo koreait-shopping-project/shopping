@@ -44,14 +44,9 @@ public class BoardController {
         int result = service.insBoard(entity);
         switch (result) {
             case 0:
-                System.out.println("글쓰기 실패");
-
-                return "board/write";
-
+                break;
             case 1:
-                System.out.println("글쓰기 성공");
-
-                return "board/list";
+                break;
         }
         return "redirect:/board/list/" + entity.getIcategory();
     }
