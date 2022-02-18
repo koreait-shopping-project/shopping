@@ -8,8 +8,8 @@
     colorBox.addEventListener('change', (e) => {
         const color = e.target.value;
         const param = {
-            'iboard': iboard,
-            'color': color
+            'iboard' : iboard,
+            'color' : color
         }
 
         myFetch.get('/board/size', data => {
