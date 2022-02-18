@@ -12,7 +12,7 @@
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
                     <p>${item.title}</p>
-                    <p>${item.price}원</p>
+                    <p class="bold">${item.price}원</p>
                     <c:if test="${item.gender == 1}"><p>남성용</p></c:if>
                     <c:if test="${item.gender == 2}"><p>여성용</p></c:if>
                     <c:if test="${item.gender == 3}"><p>공용</p></c:if>
