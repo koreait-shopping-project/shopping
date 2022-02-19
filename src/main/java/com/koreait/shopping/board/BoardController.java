@@ -40,13 +40,11 @@ public class BoardController {
     public void write() {}
 
     @PostMapping("/write")
-    public String writeProc(BoardListEntity entity) {
+    public String writeProc(Model model , BoardListEntity entity) {
         int result = service.insBoard(entity);
-        switch (result) {
-            case 0:
-                break;
-            case 1:
-                break;
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_5);
+            return "redirect:/board/write" + entity.getIcategory();
         }
         return "redirect:/board/list/" + entity.getIcategory();
     }
@@ -58,14 +56,22 @@ public class BoardController {
     }
 
     @PostMapping("/mod")
-    public String modProc(BoardListEntity entity) {
+    public String modProc(Model model, BoardListEntity entity) {
         int result = service.updBoard(entity);
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_6);
+            return "redirect:/board/detail?iboard=" + entity.getIboard();
+        }
         return "redirect:/board/detail?iboard=" + entity.getIboard();
     }
 
     @GetMapping("/del")
-    public String delProc(BoardListEntity entity) {
+    public String delProc(Model model, BoardListEntity entity) {
         int result = service.delBoard(entity);
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_7);
+            return "redirect:/board/detail?iboard=" + entity.getIboard();
+        }
         return "redirect:/board/list/" + entity.getIcategory();
     }
 
