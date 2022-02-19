@@ -36,13 +36,49 @@
             컬러 : 
             <span>${color}</span>
         `;
+
+        // num(수량) +, - 버튼
+        let i = 1;
+        const numMinusBtn = document.createElement('button');
+        numMinusBtn.innerHTML = `-`
+        const num = document.createElement('span');
+        num.innerHTML = `${i}`
+        const numPlusBtn = document.createElement('button');
+        numPlusBtn.innerHTML = `+`
+        numMinusBtn.addEventListener('click', function(e) {
+            if (i === 1) {
+                numMinusBtn.disabled = true;
+                alert('더 이상 줄일 수 없습니다.');
+            } else {
+                i--;
+                num.innerHTML = `${i}`
+                e.preventDefault();
+            }
+        });
+        numPlusBtn.addEventListener('click', function(e) {
+            if (i === 1) {
+                numMinusBtn.disabled = false;
+                i++;
+                num.innerHTML = `${i}`
+                e.preventDefault();
+            } else {
+                i++;
+                num.innerHTML = `${i}`
+                e.preventDefault();
+            }
+        });
+        li.appendChild(numMinusBtn);
+        li.appendChild(num);
+        li.appendChild(numPlusBtn);
+
+        //li 삭제
         const removeBtn = document.createElement('button');
         removeBtn.innerHTML = `X`;
-        li.appendChild(removeBtn);
         removeBtn.addEventListener('click', function() {
             removeBtn.parentNode.removeChild(removeBtn);
             li.parentNode.removeChild(li);
         });
+        li.appendChild(removeBtn);
 
         //    색상, 사이즈 추가
     //    수량 default 1 주고 증감버튼 생성, 최대수량보다 적으면 더 안올라가게 처리
