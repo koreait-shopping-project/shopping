@@ -25,8 +25,8 @@
     });
 
     sizeBox.addEventListener('change', (e) => {
-        const size = e.target.value;
         const color = colorBox.options[colorBox.selectedIndex].value;
+        const size = e.target.value;
         const ul = document.querySelector('#selecteditem');
         const li = document.createElement("li");
         ul.append(li);
@@ -80,12 +80,17 @@
         });
         li.appendChild(removeBtn);
 
-        //    색상, 사이즈 추가
-    //    수량 default 1 주고 증감버튼 생성, 최대수량보다 적으면 더 안올라가게 처리
-    //    색생 선택, 사이즈 선택 default값으로 변경
-    //     .colorBox.options[0].text;
-    //     sizeBox.options[0].text;
+        sizeBox.options.length = 1;
+
+        reAllBox(color, size);
     });
 
 
+    function reAllBox(color, size) {
+        console.log(color);
+        console.log(size);
+
+        colorBox.value='';
+        sizeBox.value='';
+    }
 }
