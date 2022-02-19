@@ -29,22 +29,20 @@
         const color = colorBox.options[colorBox.selectedIndex].value;
         const ul = document.querySelector('#selecteditem');
         const li = document.createElement("li");
-        // li.setAttribute('id', addValue);
         ul.append(li);
-
         li.innerHTML= `
             사이즈 : 
             <span>${size}</span>
             컬러 : 
             <span>${color}</span>
-            <input type="button" id="btnDel" value="삭제">
         `;
-    const btnDel = document.querySelector('#btnDel');
-
-    btnDel.addEventListener('click', () => {
-        console.log();
-        li[li.length].remove();
-    })
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = `X`;
+        li.appendChild(removeBtn);
+        removeBtn.addEventListener('click', function() {
+            removeBtn.parentNode.removeChild(removeBtn);
+            li.parentNode.removeChild(li);
+        });
 
         //    색상, 사이즈 추가
     //    수량 default 1 주고 증감버튼 생성, 최대수량보다 적으면 더 안올라가게 처리
@@ -52,5 +50,6 @@
     //     .colorBox.options[0].text;
     //     sizeBox.options[0].text;
     });
+
 
 }
