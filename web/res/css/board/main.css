@@ -1,0 +1,130 @@
+@charset "UTF-8";
+
+/*#main_container {  }*/
+/*#slider { position: relative;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 300px; }*/
+/*#slider_item { float: left;*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%; }*/
+/*#slider_item:nth-child(1){ background-color: #d9d; }*/
+/*#slider_item:nth-child(2){ background-color: #aaa; }*/
+/*#slider_item:nth-child(3){ background-color: #666; }*/
+/*#slider_item:nth-child(4){ background-color: #333; }*/
+/*#slider_item:nth-child(5){ background-color: #a22; }*/
+
+/* all */
+#main_wrap{
+    width: 100%;
+}
+
+/* slide show */
+#slider_wrap{
+    color: #fff;
+    margin: 0 auto;
+    width: 800px;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    text-shadow: rgba(0,0,0,0.7) 2px 2px 2px;
+    border-radius: 2%;
+}
+
+#slider_wrap > ul#slider{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#slider_wrap > ul#slider > .slider_item{
+    float: left;
+    position: relative;
+    width: 800px;
+    height: 500px;
+}
+#slider_wrap > ul#slider > .slider_item > div{
+    margin: 30px;
+}
+.slider_item:nth-child(1){ background-color: #d9d;}
+.slider_item:nth-child(2){ background-color: #aaa;}
+.slider_item:nth-child(3){ background-color: #666;}
+.slider_item:nth-child(4){ background-color: #333;}
+.slider_item:nth-child(5){ background-color: #a22;}
+
+
+/* 컨트롤 버튼 */
+.btns{
+    position: absolute;
+    width: 50px;
+    height: 60px;
+    top: 50%;
+    margin-top: -25px;
+    line-height: 57px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(0,0,0,0.1);
+    z-index: 100;
+    transition: all 0.1s ease;
+}
+
+.btns:hover{
+    background-color:rgba(0,0,0,0.3);
+}
+
+#next{right:-50px; border-radius:7px 0px 0px 7px;}
+#prev{left:-50px; border-radius:0px 7px 7px 7px;}
+
+#counter{
+    top: 30px;
+    right:35px;
+    width:auto;
+    position:absolute;
+}
+#slider_wrap.active #next{right:0;}
+#slider_wrap.active #prev{left:0;}
+
+
+/* 컨트롤 바 */
+#pagination_wrap{
+    min-width:20px;
+    margin-top:450px;
+    margin-left: auto;
+    margin-right: auto;
+    height:15px;
+    position:relative;
+    text-align:center;
+}
+
+#pagination_wrap ul {
+    width: 100%;
+}
+
+#pagination_wrap ul li{
+    margin: 0 4px;
+    display: inline-block;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#fff;
+    opacity:0.5;
+    position:relative;
+    top:0;
+}
+
+#pagination_wrap ul li.active{
+    width:12px;
+    height:12px;
+    top:3px;
+    opacity:1;
+    box-shadow:rgba(0,0,0,0.1) 1px 1px 0px;
+}
+
+/* 슬라이드 애니메이션 */
+#slider_wrap ul, #pagination_wrap ul li{
+    transition: all 0.3s;
+}
