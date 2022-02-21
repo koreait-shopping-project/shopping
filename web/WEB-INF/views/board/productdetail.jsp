@@ -9,9 +9,6 @@
     <div>카테고리 : ${requestScope.detail.category_num}</div>
     <div>성별 :  ${requestScope.detail.gender}</div>
     <img src="${requestScope.detail.img_url_big}">
-
-</div>
-<div id="data" data-iboard="${requestScope.detail.iboard}">
 </div>
 
     <select id="colorbox">
@@ -32,23 +29,35 @@
     </select>
 <%--  색깔 해당하는 사이즈만 뜨도록 --%>
 <%-- 위에서 색상 선택하면 그 값으로 select 날리게 --%>
+
     <select id="sizebox">
         <option value="" selected disabled>사이즈선택</option>
     </select>
 
 <form action="/board/purchase" method="post">
-<div id="purchase">
-    <ul id="selecteditem">
-<%--   선택한 아이템 뜨게 --%>
-    </ul>
-
-<%-- 바로구매 --%>
-</div>
     <div>
-        <a href="/board/purchase" type="submit">
-            바로구매
-        </a>
+        <%--   선택한 아이템 뜨게 --%>
+        <ul id="selecteditem">
+            <c:set var="color" value="${color}"/>
+            <c:choose>
+                <c:when test="${color == 1}">
+                    흰색
+                </c:when>
+                <c:when test="${color == 2}">
+                    검정색
+                </c:when>
+                <c:when test="${color == 3}">
+                    회색
+                </c:when>
+            </c:choose>
+        </ul>
+        <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
     </div>
+
+    <%-- 장바구니 담기 --%>
+    <button href="/board/purchase" type="submit">
+        장바구니에 담기
+    </button>
 </form>
 
 <div>

@@ -29,6 +29,23 @@
         WHERE A.iboard = ${iboard} AND B.color = ${color}
     </select>
 
+    <update id="updProductDetail">
+        UPDATE product_detail
+        <if test=" sm != null and sm !=0 ">
+            SET sm = sm - ${sm}
+        </if>
+        <if test=" md != null and sm !=0 ">
+            SET md = md - ${md}
+        </if>
+        <if test=" lg != null and sm !=0 ">
+            SET lg = lg - ${lg}
+        </if>
+        <if test=" xl != null and sm !=0 ">
+            SET xl = xl - ${xl}
+        </if>
+        WHERE iboard = ${iboard} AND color = ${color}
+    </update>
+
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'

@@ -24,72 +24,92 @@
         }, param);
     });
 
+    const colorSizeObj = {};
+
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
-        const size = e.target.value;
+        const colorTxt = colorBox.options[colorBox.selectedIndex].text;
+        const size = sizeBox.options[sizeBox.selectedIndex].text;
         const ul = document.querySelector('#selecteditem');
         const li = document.createElement("li");
         ul.append(li);
+        const colorSize = colorTxt.concat(size);
+
+        if (isKeyExits(colorSizeObj, colorSize)) {
+            alert(`이미 선택한 옵션입니다.`);
+            reAllBox();
+            return;
+        } else {
+            colorSizeObj[colorSize] = colorSize;
+        }
+
+        let i = 1;
+
         li.innerHTML= `
-            사이즈 : 
-            <span>${size}</span>
-            컬러 : 
-            <span>${color}</span>
+            <span>사이즈 : ${size}</span>
+            <span>컬러 : ${colorTxt}</span>
+            <input id="size" name="size" value="${size}" type="hidden"/>
+            <input id="color" name="color" value="${color}" type="hidden"/>
+            <input id="itemNum" name="itemNum" value="${i}" type="hidden"/>
         `;
 
         // num(수량) +, - 버튼
-        let i = 1;
         const numMinusBtn = document.createElement('button');
         numMinusBtn.innerHTML = `-`
         const num = document.createElement('span');
-        num.innerHTML = `${i}`
+        num.innerText = `${i}`;
         const numPlusBtn = document.createElement('button');
         numPlusBtn.innerHTML = `+`
+
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
                 numMinusBtn.disabled = true;
                 alert('더 이상 줄일 수 없습니다.');
             } else {
-                i--;
-                num.innerHTML = `${i}`
                 e.preventDefault();
+                i--;
+                num.innerHTML = `${i}`;
+                li.querySelector('#itemNum').value = `${i}`;
             }
         });
+
         numPlusBtn.addEventListener('click', function(e) {
             if (i === 1) {
+                e.preventDefault();
                 numMinusBtn.disabled = false;
                 i++;
-                num.innerHTML = `${i}`
-                e.preventDefault();
+                num.innerHTML = `${i}`;
+                li.querySelector('#itemNum').value = `${i}`;
             } else {
-                i++;
-                num.innerHTML = `${i}`
                 e.preventDefault();
+                i++;
+                num.innerHTML = `${i}`;
+                li.querySelector('#itemNum').value = `${i}`;
             }
         });
         li.appendChild(numMinusBtn);
         li.appendChild(num);
         li.appendChild(numPlusBtn);
+        ul.appendChild(li);
 
         //li 삭제
         const removeBtn = document.createElement('button');
         removeBtn.innerHTML = `X`;
         removeBtn.addEventListener('click', function() {
-            removeBtn.parentNode.removeChild(removeBtn);
             li.parentNode.removeChild(li);
         });
         li.appendChild(removeBtn);
 
         sizeBox.options.length = 1;
 
-        reAllBox(color, size);
+        reAllBox();
     });
 
+    function isKeyExits(colorSizeObj, colorSize) {
+        return colorSizeObj[colorSize] !== undefined;
+    }
 
-    function reAllBox(color, size) {
-        console.log(color);
-        console.log(size);
-
+    function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
     }

@@ -111,4 +111,32 @@ public class BoardController {
         res.put(Const.RESULT, service.selSize(vo));
         return res;
     }
+
+    @GetMapping("/purchase")
+    public void purchase(){}
+
+    @PostMapping("/purchase")
+    public String purchaseProc(BoardProductVo vo) {
+        //날아오는 값 3개 전부 0으로 출력 뭐로 지정해줘야할까?
+        System.out.println(vo.getIboard());
+        System.out.println(vo.getColor());
+        System.out.println(vo.getSize());
+        System.out.println(vo.getItemNum());
+
+        switch (vo.getSize()) {
+            case "sm" :
+                vo.setSm(vo.getItemNum());
+            case "md" :
+                vo.setMd(vo.getItemNum());
+            case "lg" :
+                vo.setLg(vo.getItemNum());
+            case "xl" :
+                vo.setXl(vo.getItemNum());
+        }
+        service.updProductDetail(vo);
+
+        //해결해야할 문제 List로 받아야한다.
+        //그 다음 ItemNum으로 날아온 수만큼 빼주는 update문을 List 수만큼 실행
+        return "board/purchase";
+    }
 }
