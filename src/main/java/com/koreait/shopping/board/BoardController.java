@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -35,6 +36,13 @@ public class BoardController {
     public void detail(Model model, BoardListVo vo) {
         model.addAttribute(Const.DATA, service.selBoard(vo));
     }
+
+    @GetMapping("/search")
+    public List<BoardProductVo> searchProc(Model model, BoardProductDto dto) {
+        model.addAttribute(Const.LIST, service.searchProductList(dto));
+        return service.searchProductList(dto);
+    }
+
 
     @GetMapping("write")
     public void write() {}

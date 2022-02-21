@@ -74,4 +74,9 @@ public class BoardService {
     public BoardProductVo selSize(BoardProductVo vo) {
         return mapper.selSize(vo);
     }
+
+    public List<BoardProductVo> searchProductList (BoardProductEntity entity) {
+        System.out.println(entity.getTitle());
+        return mapper.searchProductList(entity);
+    }
 }

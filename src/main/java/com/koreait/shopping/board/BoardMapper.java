@@ -24,4 +24,5 @@ public interface BoardMapper {
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
+    List<BoardProductVo> searchProductList(BoardProductEntity entity);
 }

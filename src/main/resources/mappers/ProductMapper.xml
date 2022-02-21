@@ -28,4 +28,10 @@
                             ON A.iboard = B.iboard
         WHERE A.iboard = ${iboard} AND B.color = ${color}
     </select>
+
+    <select id="searchProductList" resultType="BoardProductEntity">
+        SELECT * FROM product_list
+        WHERE title LIKE '%${title}%'
+        ORDER BY iboard DESC
+    </select>
 </mapper>
