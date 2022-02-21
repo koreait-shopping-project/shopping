@@ -18,12 +18,19 @@
         <input type="hidden" name="iboard" value="${iboardVal}">
         <input type="hidden" name="icategory" value="${icategoryVal}">
         <table>
-            <th scope="row">제목</th>
-            <td><input type="text" name="title" value="<c:out value='${requestScope.data.title}'/>"></td>
+            <tr>
+                <th scope="row">제목</th>
+                <td><input class="w-all" type="text" name="title" value="<c:out value='${requestScope.data.title}'/>"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <textarea class="w-all h-200 font-size-16" name="ctnt"><c:out value="${requestScope.data.ctnt}" /></textarea>
+                </td>
+            </tr>
         </table>
-        <div>
-            <textarea name="ctnt"><c:out value="${requestScope.data.ctnt}" /></textarea>
+        <div class="tx-a-center">
+            <span><input class="bolder-p b-radius bc-black color-white m-10" type="submit" value="${submitVal}"></span>
+            <span><input class="bolder-p b-radius bc-black color-white m-10" type="submit" value="취소"></span>
         </div>
-        <div><input type="submit" value="${submitVal}"></div>
     </form>
 </div>
