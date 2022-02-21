@@ -34,7 +34,8 @@
         //번호에 따라 해당 컬러 문자로 나타나게
         li.innerHTML= `
             <span>사이즈 : </span>
-            <span name="size">${sizeBox.options[sizeBox.selectedIndex].text}</span>
+            <span name="${sizeBox.options[sizeBox.selectedIndex].text}">
+                ${sizeBox.options[sizeBox.selectedIndex].text}</span>
             
             <span>///////////</span>
             
@@ -50,6 +51,7 @@
         const num = document.createElement('span');
         num.innerHTML = `${i}`
         num.setAttribute('name', 'itemNum');
+        num.setAttribute('value', `${i}`);
         const numPlusBtn = document.createElement('button');
         numPlusBtn.innerHTML = `+`
         numMinusBtn.addEventListener('click', function(e) {
