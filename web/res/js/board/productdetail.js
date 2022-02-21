@@ -30,11 +30,18 @@
         const ul = document.querySelector('#selecteditem');
         const li = document.createElement("li");
         ul.append(li);
+
+        //번호에 따라 해당 컬러 문자로 나타나게
         li.innerHTML= `
-            사이즈 : 
-            <span>${size}</span>
-            컬러 : 
-            <span>${color}</span>
+            <span>사이즈 : </span>
+            <span name="${sizeBox.options[sizeBox.selectedIndex].text}">
+                ${sizeBox.options[sizeBox.selectedIndex].text}</span>
+            
+            <span>///////////</span>
+            
+            <span>컬러 : </span>
+            <span>${colorBox.options[colorBox.selectedIndex].text}</span>
+            <span name="color" hidden>${colorBox.options[colorBox.selectedIndex].value}</span>
         `;
 
         // num(수량) +, - 버튼
@@ -43,6 +50,8 @@
         numMinusBtn.innerHTML = `-`
         const num = document.createElement('span');
         num.innerHTML = `${i}`
+        num.setAttribute('name', 'itemNum');
+        num.setAttribute('value', `${i}`);
         const numPlusBtn = document.createElement('button');
         numPlusBtn.innerHTML = `+`
         numMinusBtn.addEventListener('click', function(e) {
