@@ -112,6 +112,7 @@ public class BoardController {
         //날아오는 값 3개 전부 0으로 출력 뭐로 지정해줘야할까?
         System.out.println(vo.getIboard());
         System.out.println(vo.getColor());
+        System.out.println(vo.getSize());
         System.out.println(vo.getItemNum());
 
         switch (vo.getSize()) {

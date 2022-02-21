@@ -26,24 +26,18 @@
 
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
-        const size = e.target.value;
+        const colorTxt = colorBox.options[colorBox.selectedIndex].text;
+        const size = sizeBox.options[sizeBox.selectedIndex].text;
         const ul = document.querySelector('#selecteditem');
         const li = document.createElement("li");
         ul.append(li);
-
         //번호에 따라 해당 컬러 문자로 나타나게
         li.innerHTML= `
-            <span>사이즈 : </span>
-            <span name="${sizeBox.options[sizeBox.selectedIndex].text}">
-                ${sizeBox.options[sizeBox.selectedIndex].text}</span>
-            
-            <span>///////////</span>
-            
-            <span>컬러 : </span>
-            <span>${colorBox.options[colorBox.selectedIndex].text}</span>
-            <span name="color" hidden>${colorBox.options[colorBox.selectedIndex].value}</span>
+            <span>사이즈 : ${size}</span>
+            <input name="size" value="${size}" type="hidden"/>
+            <span>컬러 : ${colorTxt}</span>
+            <input name="color" value="${color}" type="hidden"/>
         `;
-
         // num(수량) +, - 버튼
         let i = 1;
         const numMinusBtn = document.createElement('button');
@@ -91,14 +85,11 @@
 
         sizeBox.options.length = 1;
 
-        reAllBox(color, size);
+        reAllBox();
     });
 
 
-    function reAllBox(color, size) {
-        console.log(color);
-        console.log(size);
-
+    function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
     }
