@@ -1,23 +1,5 @@
 @charset "UTF-8";
 
-/*#main_container {  }*/
-/*#slider { position: relative;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 300px; }*/
-/*#slider_item { float: left;*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    width: 100%;*/
-/*    height: 100%; }*/
-/*#slider_item:nth-child(1){ background-color: #d9d; }*/
-/*#slider_item:nth-child(2){ background-color: #aaa; }*/
-/*#slider_item:nth-child(3){ background-color: #666; }*/
-/*#slider_item:nth-child(4){ background-color: #333; }*/
-/*#slider_item:nth-child(5){ background-color: #a22; }*/
-
 /* all */
 #main_wrap{
     width: 100%;
@@ -27,12 +9,12 @@
 #slider_wrap{
     color: #fff;
     margin: 0 auto;
-    width: 800px;
+    width: 500px;
     height: 500px;
     position: relative;
     overflow: hidden;
     text-shadow: rgba(0,0,0,0.7) 2px 2px 2px;
-    border-radius: 2%;
+    border-radius: 5px;
 }
 
 #slider_wrap > ul#slider{
@@ -44,17 +26,26 @@
 #slider_wrap > ul#slider > .slider_item{
     float: left;
     position: relative;
-    width: 800px;
+    width: 500px;
     height: 500px;
 }
-#slider_wrap > ul#slider > .slider_item > div{
-    margin: 30px;
+#slider_wrap > ul#slider > .slider_item div{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
 }
-.slider_item:nth-child(1){ background-color: #d9d;}
-.slider_item:nth-child(2){ background-color: #aaa;}
-.slider_item:nth-child(3){ background-color: #666;}
-.slider_item:nth-child(4){ background-color: #333;}
-.slider_item:nth-child(5){ background-color: #a22;}
+.slider_item:nth-child(1){ background: url("https://image.msscdn.net/images/goods_img/20190319/987149/987149_3_500.jpg") center no-repeat; }
+.slider_item:nth-child(2){ background: url("https://image.msscdn.net/images/goods_img/20181025/890749/890749_2_500.jpg") center no-repeat; }
+.slider_item:nth-child(3){ background: url("https://image.msscdn.net/images/goods_img/20180911/855195/855195_2_500.jpg") center no-repeat; }
+.slider_item:nth-child(4){ background: url("https://image.msscdn.net/images/goods_img/20200904/1584097/1584097_3_500.jpg") center no-repeat; }
+.slider_item:nth-child(5){ background: url("https://image.msscdn.net/images/goods_img/20200814/1549284/1549284_1_500.jpg") center no-repeat; }
+.slider_item:nth-child(6){ background: url("https://image.msscdn.net/images/goods_img/20211111/2227529/2227529_1_500.jpg") center no-repeat; }
+.slider_item:nth-child(7){ background: url("https://image.msscdn.net/images/goods_img/20220119/2315076/2315076_6_500.jpg") center no-repeat; }
+.slider_item:nth-child(8){ background: url("https://image.msscdn.net/images/goods_img/20161024/434861/434861_6_500.jpg") center no-repeat; }
+.slider_item:nth-child(9){ background: url("https://image.msscdn.net/images/goods_img/20220113/2306094/2306094_1_500.jpg") center no-repeat; }
 
 
 /* 컨트롤 버튼 */
@@ -126,5 +117,5 @@
 
 /* 슬라이드 애니메이션 */
 #slider_wrap ul, #pagination_wrap ul li{
-    transition: all 0.3s;
+    transition: all 0.7s;
 }
