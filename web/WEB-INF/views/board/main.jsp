@@ -6,15 +6,9 @@
 <article id="main_wrap">
     <section id="slider_wrap">
         <ul id="slider">
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
-            <li class="slider_item"><div></div></li>
+            <c:forEach var="i" begin="1" end="9">
+                <li class="slider_item"><div></div></li>
+            </c:forEach>
         </ul>
         <div class="btns" id="next">
             <i class="fa fa-arrow-right"></i>
