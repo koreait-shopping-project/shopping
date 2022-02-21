@@ -47,7 +47,7 @@
 }
 #footer { display: flex; align-items: center; justify-content: center; }
 #footer div { width: 100%; }
-#footer div ul { padding: 0; display: flex; align-items: center; justify-content: center; }
+#footer div ul { margin: 10px 0; padding: 0; display: flex; align-items: center; justify-content: center; }
 #footer div ul li { float: left; margin: 0 10px; }
 
 #footer div #sns li a { display: block; }
