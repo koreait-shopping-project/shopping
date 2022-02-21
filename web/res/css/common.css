@@ -130,6 +130,8 @@ textarea { resize: none; }
 .tx-a-left { text-align: left; }
 .tx-a-right { text-align: right; }
 
+.uppercase { text-transform: uppercase; }
+
 .w-10 { width: 10px; }
 .w-16 { width: 16px; }
 .w-20 { width: 20px; }

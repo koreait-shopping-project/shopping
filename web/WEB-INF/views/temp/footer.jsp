@@ -29,7 +29,7 @@
             <li><a href="#">guide</a></li>
         </ul>
         <p>
-            <span style="text-transform: uppercase;">etoile</span>
+            <span class="uppercase">etoile</span>
             <span>CEO.KIM GUNMYUNG</span>
             <span>Business Licese. [410-29-99322]</span><br>
             <span>6 PUNGAMSINHEUNG-RO 39BEON-GIL, PUNGAM-DONG, SEO-GU, GWANGJU, KOREA</span><br>
