@@ -54,8 +54,8 @@
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body" id="offcanvas_search_body">
-                <form action="" method="post" id="search_frm">
-                    <input class="form-control" id="search_input" type="search">
+                <form action="/board/search" method="get" id="search_frm">
+                    <input class="form-control" id="search_input" type="search" name="title">
                     <input id="search_submit" type="submit" value="검색">
                 </form>
                 <p class="search_press">Press Enter to Search</p>

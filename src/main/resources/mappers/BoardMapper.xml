@@ -32,7 +32,7 @@
         SELECT
             IFNULL(
                     (SELECT iboard
-                     FROM t_board
+                     FROM t_board_list
                      WHERE icategory = ${icategory}
                        AND iboard > ${iboard}
                      ORDER BY iboard
@@ -40,7 +40,7 @@
         ) AS previboard,
 
             IFNULL(
-                    (SELECT iboard FROM t_board
+                    (SELECT iboard FROM t_board_list
                      WHERE icategory = ${icategory}
                        AND iboard < ${iboard}
                      ORDER BY iboard DESC

@@ -45,4 +45,10 @@
         </if>
         WHERE iboard = ${iboard} AND color = ${color}
     </update>
+
+    <select id="searchProductList" resultType="BoardProductEntity">
+        SELECT * FROM product_list
+        WHERE title LIKE '%${title}%'
+        ORDER BY iboard DESC
+    </select>
 </mapper>
