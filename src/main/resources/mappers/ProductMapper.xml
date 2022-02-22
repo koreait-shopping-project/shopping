@@ -34,13 +34,13 @@
         <if test=" sm != null and sm !=0 ">
             SET sm = sm - ${sm}
         </if>
-        <if test=" md != null and sm !=0 ">
+        <if test=" md != null and md !=0 ">
             SET md = md - ${md}
         </if>
-        <if test=" lg != null and sm !=0 ">
+        <if test=" lg != null and lg !=0 ">
             SET lg = lg - ${lg}
         </if>
-        <if test=" xl != null and sm !=0 ">
+        <if test=" xl != null and xl !=0 ">
             SET xl = xl - ${xl}
         </if>
         WHERE iboard = ${iboard} AND color = ${color}

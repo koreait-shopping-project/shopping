@@ -117,7 +117,6 @@ public class BoardController {
 
     @PostMapping("/purchase")
     public String purchaseProc(BoardProductVo vo) {
-        //날아오는 값 3개 전부 0으로 출력 뭐로 지정해줘야할까?
         System.out.println(vo.getIboard());
         System.out.println(vo.getColor());
         System.out.println(vo.getSize());
@@ -126,12 +125,16 @@ public class BoardController {
         switch (vo.getSize()) {
             case "sm" :
                 vo.setSm(vo.getItemNum());
+                break;
             case "md" :
                 vo.setMd(vo.getItemNum());
+                break;
             case "lg" :
                 vo.setLg(vo.getItemNum());
+                break;
             case "xl" :
                 vo.setXl(vo.getItemNum());
+                break;
         }
         service.updProductDetail(vo);
 

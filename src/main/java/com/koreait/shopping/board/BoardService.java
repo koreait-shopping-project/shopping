@@ -71,7 +71,7 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 
-    public BoardProductVo updProductDetail(BoardProductVo vo) {
+    public int updProductDetail(BoardProductVo vo) {
         return mapper.updProductDetail(vo);
     }
 
