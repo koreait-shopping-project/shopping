@@ -8,7 +8,7 @@
 <c:if test="${requestScope.data != null && requestScope.data.iboard > 0}">
     <c:set var="titleVal" value="수정" />
     <c:set var="actionVal" value="/board/mod" />
-    <c:set var="submitVal" value="MOD" />
+    <c:set var="submitVal" value="수정" />
     <c:set var="iboardVal" value="${requestScope.data.iboard}" />
     <c:set var="icategoryVal" value="0" />
 </c:if>
