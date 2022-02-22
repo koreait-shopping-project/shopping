@@ -10,7 +10,7 @@
 <c:set var="lastPath" value="${splitURI[fn:length(splitURI) - 1]}"/>
 <header id="header">
     <meta name ="google-signin-client_id" content="883718995298-74pl9d4vsao303ogt1dhiv9mki93nffc.apps.googleusercontent.com">
-    <a href="/"><b class="pointer">grandetoile</b></a>
+    <a href="/"><b class="pointer font-family-serif">grandetoile</b></a>
     <div id="submenu_wrap">
         <div><a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             shop
