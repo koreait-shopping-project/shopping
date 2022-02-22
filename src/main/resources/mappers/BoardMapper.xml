@@ -2,26 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.koreait.shopping.board.BoardMapper">
 
-    <select id="selProductList" resultType="BoardProductDto">
-        SELECT *
-        FROM product_list
-        WHERE category_num = ${isubcategory}
-    </select>
-
-    <select id="selProductDetail" resultType="BoardProductVo">
-        SELECT *
-        FROM product_list
-        WHERE iboard = ${iboard}
-    </select>
-
-    <select id="selDetailList" resultType="BoardProductVo">
-        SELECT *
-        FROM product_list A
-        INNER JOIN product_detail B
-        ON A.iboard = B.iboard
-        WHERE A.iboard = ${iboard}
-    </select>
-
     <insert id="insBoard">
         INSERT INTO t_board_list
         (icategory, iuser, title, ctnt)
@@ -30,7 +10,7 @@
     </insert>
 
     <select id="selBoardList" resultType="BoardListVo">
-        SELECT A.iboard, A.title, B.nm AS writerNm
+        SELECT A.iboard, A.notice, A.title, B.nm AS writerNm
         FROM t_board_list A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
@@ -38,13 +18,42 @@
         ORDER BY iboard DESC
     </select>
 
-    <select id="selBoard" resultType="BoardListVo">
-        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt, A.lastip
+    <select id="selBoardDetail" resultType="BoardListVo">
+        SELECT A.iboard, A.icategory, A.title, A.ctnt, A.iuser, A.rdt
              , B.nm AS writerNm
         FROM t_board_list A
         LEFT JOIN t_user B
         ON A.iuser = B.iuser
+        WHERE iboard = ${iboard}
     </select>
+
+    <select id="selPrevNext" resultType="BoardPrevNextVo">
+        <![CDATA[
+        SELECT
+            IFNULL(
+                    (SELECT iboard
+                     FROM t_board_list
+                     WHERE icategory = ${icategory}
+                       AND iboard > ${iboard}
+                     ORDER BY iboard
+                        LIMIT 1), 0
+        ) AS previboard,
+
+            IFNULL(
+                    (SELECT iboard FROM t_board_list
+                     WHERE icategory = ${icategory}
+                       AND iboard < ${iboard}
+                     ORDER BY iboard DESC
+                        LIMIT 1), 0
+        )AS nextiboard
+        ]]>
+    </select>
+
+<!--    <select id="selMaxPageVal" resultType="ResultVo">-->
+<!--        SELECT CEIL(COUNT(iboard)) AS result-->
+<!--        FROM t_board_list-->
+<!--        WHERE icategory = ${icategory}-->
+<!--    </select>-->
 
     <update id="updBoard">
         UPDATE t_board_list
@@ -63,5 +72,6 @@
     <delete id="delBoard">
         DELETE FROM t_board_list
         WHERE iboard = ${iboard}
+        AND iuser = ${iuser}
     </delete>
 </mapper>

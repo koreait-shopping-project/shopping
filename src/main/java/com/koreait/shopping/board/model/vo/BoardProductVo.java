@@ -14,5 +14,6 @@ public class BoardProductVo extends BoardProductEntity {
     private int md;
     private int lg;
     private int xl;
-
+    private String size;
+    private int itemNum;
 }

@@ -1,6 +1,7 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
@@ -10,10 +11,11 @@ import com.koreait.shopping.board.model.vo.BoardProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/board")
@@ -36,17 +38,22 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selBoard(vo));
     }
 
+    @GetMapping("/search")
+    public List<BoardProductVo> searchProc(Model model, BoardProductDto dto) {
+        model.addAttribute(Const.LIST, service.searchProductList(dto));
+        return service.searchProductList(dto);
+    }
+
+
     @GetMapping("write")
     public void write() {}
 
     @PostMapping("/write")
-    public String writeProc(BoardListEntity entity) {
+    public String writeProc(Model model , BoardListEntity entity) {
         int result = service.insBoard(entity);
-        switch (result) {
-            case 1:
-                break;
-            case 2:
-                break;
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_5);
+            return "redirect:/board/write" + entity.getIcategory();
         }
         return "redirect:/board/list/" + entity.getIcategory();
     }
@@ -58,14 +65,22 @@ public class BoardController {
     }
 
     @PostMapping("/mod")
-    public String modProc(BoardListEntity entity) {
+    public String modProc(Model model, BoardListEntity entity) {
         int result = service.updBoard(entity);
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_6);
+            return "redirect:/board/detail?iboard=" + entity.getIboard();
+        }
         return "redirect:/board/detail?iboard=" + entity.getIboard();
     }
 
     @GetMapping("/del")
-    public String delProc(BoardListEntity entity) { // icategory, iboard
+    public String delProc(Model model, BoardListEntity entity) {
         int result = service.delBoard(entity);
+        if (result != 1) {
+            model.addAttribute(Const.MSG, Const.ERR_7);
+            return "redirect:/board/detail?iboard=" + entity.getIboard();
+        }
         return "redirect:/board/list/" + entity.getIcategory();
     }
 
@@ -73,9 +88,12 @@ public class BoardController {
     public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
+        //productdetail 제품 불러오기
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);
-        model.addAttribute(Const.COLOR ,service.selDetailList(vo));
+
+        //컬러, 사이즈 리스트 가져오기
+        model.addAttribute(Const.DATA ,service.selDetailList(vo));
         return "board/productdetail";
     }
 
@@ -86,4 +104,41 @@ public class BoardController {
         model.addAttribute(Const.LIST, service.selProductList(dto));
         return "board/product";
     }
+
+    @GetMapping("/size")
+    @ResponseBody
+    public Map<String, BoardProductVo> selSize(BoardProductVo vo) {
+        HashMap<String, BoardProductVo> res = new HashMap<>();
+        res.put(Const.RESULT, service.selSize(vo));
+        return res;
+    }
+
+    @GetMapping("/purchase")
+    public void purchase(){}
+
+    @PostMapping("/purchase")
+    public String purchaseProc(BoardProductVo vo) {
+        //날아오는 값 3개 전부 0으로 출력 뭐로 지정해줘야할까?
+        System.out.println(vo.getIboard());
+        System.out.println(vo.getColor());
+        System.out.println(vo.getSize());
+        System.out.println(vo.getItemNum());
+
+        switch (vo.getSize()) {
+            case "sm" :
+                vo.setSm(vo.getItemNum());
+            case "md" :
+                vo.setMd(vo.getItemNum());
+            case "lg" :
+                vo.setLg(vo.getItemNum());
+            case "xl" :
+                vo.setXl(vo.getItemNum());
+        }
+        service.updProductDetail(vo);
+
+        //해결해야할 문제 List로 받아야한다.
+        //그 다음 ItemNum으로 날아온 수만큼 빼주는 update문을 List 수만큼 실행
+        return "board/purchase";
+    }
+
 }

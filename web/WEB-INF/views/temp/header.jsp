@@ -10,7 +10,7 @@
 <c:set var="lastPath" value="${splitURI[fn:length(splitURI) - 1]}"/>
 <header id="header">
     <meta name ="google-signin-client_id" content="883718995298-74pl9d4vsao303ogt1dhiv9mki93nffc.apps.googleusercontent.com">
-    <a href="/"><b class="pointer">grandetoile</b></a>
+    <a href="/"><b class="pointer font-family-serif">grandetoile</b></a>
     <div id="submenu_wrap">
         <div><a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
             shop
@@ -23,7 +23,7 @@
             <hr>
             <div class="offcanvas-body" id="offcanvas_submenu_body">
                 <c:forEach items="${subMenuList}" var="item">
-                    <div class="${lastPath == ''.concat(item.isubcategory) ? 'menu_selected' : ''}">
+                    <div>
                         <a href="/board/product/${item.isubcategory}">${item.subcategorynm}</a>
                     </div>
                 </c:forEach>
@@ -46,21 +46,23 @@
                 <div><a href="/user/logout">logout</a></div>
             </c:otherwise>
         </c:choose>
-        <div><a class="pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">search</a></div>
+        <div id="search_tab">
+            <a class="pointer" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop">search</a>
+        </div>
         <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
             <div class="offcanvas-header" id="offcanvas_search_header">
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body" id="offcanvas_search_body">
-                <form action="" method="post" id="search_frm">
-                    <input class="form-control" id="search_input" type="search">
+                <form action="/board/search" method="get" id="search_frm">
+                    <input class="form-control" id="search_input" type="search" name="title">
                     <input id="search_submit" type="submit" value="검색">
                 </form>
                 <p class="search_press">Press Enter to Search</p>
             </div>
         </div>
         <c:forEach items="${menuList}" var="item">
-            <div class="${lastPath == ''.concat(item.icategory) ? 'menu_selected' : ''}">
+            <div>
                 <a href="/board/list/${item.icategory}">${item.categorynm}</a>
             </div>
         </c:forEach>

@@ -8,19 +8,57 @@
     <div>가격 : ${requestScope.detail.price}</div>
     <div>카테고리 : ${requestScope.detail.category_num}</div>
     <div>성별 :  ${requestScope.detail.gender}</div>
-    <img src="${requestScope.detail.img_url}">
-
-</div>
-<div id="data" data-iboard="${requestScope.detail.iboard}">
+    <img src="${requestScope.detail.img_url_big}">
 </div>
 
-<c:forEach items="${requestScope.color}" var="item">
-    <div>색상 : ${item.color}</div>
-    <div>스몰 : ${item.sm}</div>
-    <div>미디움 : ${item.md}</div>
-    <div>라지 : ${item.lg}</div>
-    <div>엑스라지 : ${item.xl}</div>
-</c:forEach>
+    <select id="colorbox">
+        <option value="" selected disabled>컬러선택</option>
+        <c:forEach var="item" items="${requestScope.data}">
+            <option value="${item.color}">
+                    <c:if test="${item.color == 1}">
+                        흰색
+                    </c:if>
+                    <c:if test="${item.color == 2}">
+                        검정색
+                    </c:if>
+                    <c:if test="${item.color == 3}">
+                        회색
+                    </c:if>
+            </option>
+        </c:forEach>
+    </select>
+<%--  색깔 해당하는 사이즈만 뜨도록 --%>
+<%-- 위에서 색상 선택하면 그 값으로 select 날리게 --%>
+
+    <select id="sizebox">
+        <option value="" selected disabled>사이즈선택</option>
+    </select>
+
+<form action="/board/purchase" method="post">
+    <div>
+        <%--   선택한 아이템 뜨게 --%>
+        <ul id="selecteditem">
+            <c:set var="color" value="${color}"/>
+            <c:choose>
+                <c:when test="${color == 1}">
+                    흰색
+                </c:when>
+                <c:when test="${color == 2}">
+                    검정색
+                </c:when>
+                <c:when test="${color == 3}">
+                    회색
+                </c:when>
+            </c:choose>
+        </ul>
+        <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
+    </div>
+
+    <%-- 장바구니 담기 --%>
+    <button href="/board/purchase" type="submit">
+        장바구니에 담기
+    </button>
+</form>
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
