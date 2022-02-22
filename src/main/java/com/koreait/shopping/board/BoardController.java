@@ -1,6 +1,7 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
@@ -143,4 +144,5 @@ public class BoardController {
         //그 다음 ItemNum으로 날아온 수만큼 빼주는 update문을 List 수만큼 실행
         return "board/purchase";
     }
+
 }

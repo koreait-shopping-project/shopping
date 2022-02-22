@@ -34,16 +34,29 @@
                 <c:if test="${param.social == null}">
                     <tr>
                         <th class="display-b-f-l font-size-12">아이디*</th>
-                        <td class="w-400"><input class="display-b-f-l bolder" type="text" name="uid" id="uid" ><div><input class="h-25 m-l-5 font-size-12 bolder-c b-radius" type="button" value="CHECK" id="id-btn-chk"><span id="id-chk-msg"></span></div></td>
+                        <td class="w-600">
+                            <input class="display-b-f-l bolder" type="text" name="uid" id="uid">
+                            <div>
+                                <input class="h-25 m-l-5 font-size-12 bolder-c b-radius" type="button" value="CHECK" id="id-btn-chk">
+                                <span id="id-chk-msg"></span>
+                                <span class="font-size-10">(영소문자/숫자 4~15자)</span>
+                            </div>
+                        </td>
                     </tr>
 
                     <tr>
                         <th class="display-b-f-l font-size-12">비밀번호*</th>
-                        <td><input class="display-b-f-l bolder" type="password" name="upw" id="upw" ></td>
+                        <td>
+                            <input class="display-b-f-l bolder" type="password" name="upw" id="upw">
+                            <span class="font-size-10">(영문 대소문자/숫자 4~15자)</span>
+                        </td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">비밀번호 확인*</th>
-                        <td><input class="display-b-f-l bolder" type="password" id="upw_check" ></td>
+                        <td>
+                            <input class="display-b-f-l bolder" type="password" id="upw_check" >
+                            <span class="font-size-10">(영문 대소문자/숫자 4~15자)</span>
+                        </td>
                     </tr>
                 </c:if>
                 <tr>
@@ -151,7 +164,7 @@
                     <tbody>
                     <tr>
                         <th class="display-b-f-l font-size-12">생년월일*</th>
-                        <td><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth" ></td>
+                        <td class="w-600"><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth" ></td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">지역</th>
