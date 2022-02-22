@@ -1,6 +1,5 @@
 package com.koreait.shopping.board;
 
-import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -9,8 +8,6 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
-import com.koreait.shopping.model.dto.ProductDto;
-import com.koreait.shopping.model.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -85,14 +82,5 @@ public class BoardService {
     public List<BoardProductVo> searchProductList (BoardProductEntity entity) {
         System.out.println(entity.getTitle());
         return mapper.searchProductList(entity);
-    }
-
-    public List<ProductVo> selProductListRecord(ProductDto dto){
-        int startIdx = (dto.getCurrentPage() - 1) * dto.getRecordCount();
-        if(startIdx < 0){
-            startIdx = 0;
-        }
-        dto.setStartIdx(startIdx);
-        return mapper.selProductListRecord(dto);
     }
 }
