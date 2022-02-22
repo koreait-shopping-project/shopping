@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -83,4 +84,5 @@ public class BoardService {
         System.out.println(entity.getTitle());
         return mapper.searchProductList(entity);
     }
+
 }
