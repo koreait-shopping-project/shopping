@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c613df-cefd-4739-b54f-69133787e94d" name="Changes" comment="detail upd완성">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/koreait/shopping/board/model/dto/BoardProductListDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/res/js/board/productdetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/web/res/js/board/productdetail.js" afterDir="false" />
+    <list default="true" id="60c613df-cefd-4739-b54f-69133787e94d" name="Changes" comment="detail List로 받을 수 있게 작업 중(1)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/koreait/shopping/board/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/koreait/shopping/board/BoardController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +180,7 @@
       <workItem from="1645402419580" duration="359000" />
       <workItem from="1645402798950" duration="4246000" />
       <workItem from="1645487298925" duration="3146000" />
-      <workItem from="1645490549361" duration="2830000" />
+      <workItem from="1645490549361" duration="3890000" />
     </task>
     <task id="LOCAL-00001" summary="list 작업(1)">
       <created>1644990616418</created>
@@ -295,7 +294,21 @@
       <option name="project" value="LOCAL" />
       <updated>1645490372146</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="detail List로 받을 수 있게 작업 중(1)">
+      <created>1645493436893</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1645493436893</updated>
+    </task>
+    <task id="LOCAL-00018" summary="detail List로 받을 수 있게 작업 중(1)">
+      <created>1645493456659</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1645493456659</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +342,7 @@
     <MESSAGE value="purchase 작업(1)" />
     <MESSAGE value="purchase 작업(2)" />
     <MESSAGE value="detail upd완성" />
-    <option name="LAST_COMMIT_MESSAGE" value="detail upd완성" />
+    <MESSAGE value="detail List로 받을 수 있게 작업 중(1)" />
+    <option name="LAST_COMMIT_MESSAGE" value="detail List로 받을 수 있게 작업 중(1)" />
   </component>
 </project>
