@@ -51,7 +51,7 @@
                 </c:when>
             </c:choose>
         </ul>
-        <span hidden id="data" data-iboard="${requestScope.detail.iboard}"></span>
+        <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
     </div>
 
     <%-- 장바구니 담기 --%>

@@ -76,7 +76,7 @@ textarea { resize: none; }
 
 .hidden { display: none; }
 
-.m-w {min-width: 500px;}
+.m-w {min-width: 600px;}
 
 .m-10 { margin: 10px; }
 .m-20 { margin: 20px; }
@@ -88,6 +88,7 @@ textarea { resize: none; }
 .m-r-20 { margin-right: 20px; }
 .m-r-30 { margin-right: 30px; }
 .m-b-10 { margin-bottom: 10px; }
+.m-b-15 { margin-bottom: 15px; }
 .m-b-20 { margin-bottom: 20px; }
 .m-b-30 { margin-bottom: 30px; }
 .m-l-5 { margin-left: 5px; }
