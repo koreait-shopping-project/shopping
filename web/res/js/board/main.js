@@ -1,14 +1,15 @@
 // position
 var pos = 0;
 // 슬라이드 총 길이
-var totalSlides = $('.slider_item').length;
+var totalSlides = $('#slider li').length;
 // 각 슬라이드 width
 var sliderWidth = $('#slider_wrap').width();
 
-// jQuery 시작 부분
-jQuery(document).ready(function(){
 
-    $('#slider_wrap ul#slider').width(sliderWidth * totalSlides);
+// jQuery 시작 부분
+$(document).ready(function(){
+
+    $('#slider').width(sliderWidth * totalSlides);
 
     //next slide button 클릭 이벤트
     $('#next').click(function(){
@@ -19,7 +20,6 @@ jQuery(document).ready(function(){
     $('#prev').click(function(){
         slideLeft(); // slideLeft 함수 호출
     });
-
 
 
     $.each($('#slider_wrap ul li'), function() {
@@ -62,7 +62,7 @@ jQuery(document).ready(function(){
 function slideLeft(){
     pos--; // position 증감식(감소)
     if(pos == -1){ pos = totalSlides - 1; }
-    $('#slider_wrap ul#slider').css('left', -(sliderWidth * pos));
+    $('#slider').css('left', -(sliderWidth * pos));
 
     countSlides();
     pagination();
@@ -72,7 +72,7 @@ function slideLeft(){
 function slideRight(){
     pos++; // position 증감식(증가)
     if(pos == totalSlides){ pos = 0; }
-    $('#slider_wrap ul#slider').css('left', -(sliderWidth * pos));
+    $('#slider').css('left', -(sliderWidth * pos));
 
     countSlides();
     pagination();

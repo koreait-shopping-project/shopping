@@ -8,6 +8,9 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.model.dto.ProductDto;
+import com.koreait.shopping.model.entity.ProductEntity;
+import com.koreait.shopping.model.vo.ProductVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,5 +29,5 @@ public interface BoardMapper {
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
     List<BoardProductVo> searchProductList(BoardProductEntity entity);
-
+    List<ProductVo> selProductListRecord(ProductDto dto);
 }

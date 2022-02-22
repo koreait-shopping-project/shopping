@@ -7,6 +7,18 @@
         WHERE category_num = ${isubcategory}
     </select>
 
+    <select id="selProductListRecord" resultType="ProductVo">
+        SELECT A.iboard, A.title, A.iuser, A.isubcategory, A.hits, A.rdt
+            , B.nm AS username
+        FROM product_list A
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
+        WHERE A.isdel = 0
+        AND A.icategory = ${icategory}
+        ORDER BY A.iboard DESC
+        LIMIT ${startIdx}, ${recordCount}
+    </select>
+
     <select id="selProductDetail" resultType="BoardProductVo">
         SELECT *
         FROM product_list
