@@ -25,7 +25,7 @@
     });
 
     const colorSizeObj = {};
-
+    let listNum = 0;
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
@@ -44,15 +44,14 @@
         }
 
         let i = 1;
-
         li.innerHTML= `
             <span>사이즈 : ${size}</span>
             <span>컬러 : ${colorTxt}</span>
-            <input id="size" name="size" value="${size}" type="hidden"/>
-            <input id="color" name="color" value="${color}" type="hidden"/>
-            <input id="itemNum" name="itemNum" value="${i}" type="hidden"/>
+            <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
+            <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
+            <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
         `;
-
+        listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
         numMinusBtn.innerHTML = `-`
