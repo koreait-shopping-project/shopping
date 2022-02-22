@@ -1,0 +1,212 @@
+Index: web/WEB-INF/views/board/detail.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib prefix=\"c\" uri=\"http://java.sun.com/jsp/jstl/core\" %>\r\n<%@ taglib prefix=\"fn\" uri=\"http://java.sun.com/jsp/jstl/functions\" %>\r\n\r\n<div>\r\n    <div>브랜드 : ${requestScope.detail.brand}</div>\r\n    <div>제품명 : ${requestScope.detail.title}</div>\r\n    <div>가격 : ${requestScope.detail.price}</div>\r\n    <div>카테고리 : ${requestScope.detail.category_num}</div>\r\n    <div>성별 :  ${requestScope.detail.gender}</div>\r\n    <img src=\"${requestScope.detail.img_url}\">\r\n</div>\r\n\r\n<div>\r\n    <c:if test=\"${sessionScope.loginUser != null}\">\r\n        <div class=\"m-t-20\">\r\n            <form id=\"cmtFrm\">\r\n                <div class=\"star-rating space-x-4 mx-auto\">\r\n                    <input type=\"radio\" id=\"5-stars\" name=\"rating\" value=\"5\" v-model=\"ratings\"/>\r\n                    <label for=\"5-stars\" class=\"star pr-4\">★</label>\r\n                    <input type=\"radio\" id=\"4-stars\" name=\"rating\" value=\"4\" v-model=\"ratings\"/>\r\n                    <label for=\"4-stars\" class=\"star\">★</label>\r\n                    <input type=\"radio\" id=\"3-stars\" name=\"rating\" value=\"3\" v-model=\"ratings\"/>\r\n                    <label for=\"3-stars\" class=\"star\">★</label>\r\n                    <input type=\"radio\" id=\"2-stars\" name=\"rating\" value=\"2\" v-model=\"ratings\"/>\r\n                    <label for=\"2-stars\" class=\"star\">★</label>\r\n                    <input type=\"radio\" id=\"1-star\" name=\"rating\" value=\"1\" v-model=\"ratings\" />\r\n                    <label for=\"1-star\" class=\"star\">★</label>\r\n                </div>\r\n                <input type=\"text\" name=\"ctnt\">\r\n                <input type=\"button\" id=\"btn_submit\" value=\"댓글달기\">\r\n            </form>\r\n        </div>\r\n    </c:if>\r\n    <div class=\"m-t-20\" id=\"cmt_list\"></div>\r\n</div>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/web/WEB-INF/views/board/detail.jsp b/web/WEB-INF/views/board/detail.jsp
+--- a/web/WEB-INF/views/board/detail.jsp	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/web/WEB-INF/views/board/detail.jsp	(date 1644996044370)
+@@ -11,6 +11,19 @@
+     <img src="${requestScope.detail.img_url}">
+ </div>
+ 
++<form action="/color" method="post">
++<%--    <div>"${requestScope.detail.iboard}"></div>--%>
++<%--  iboard와 선택한 컬러 값 같이 가게   --%>
++    <div>
++        <select name="color" id="selectColor" onchange="chageColorSelect()">
++            <option value="">컬러선택</option>
++            <option value="1">흰색</option>
++            <option value="2">검정색</option>
++            <option value="3">회색</option>
++        </select>
++    </div>
++</form>
++
+ <div>
+     <c:if test="${sessionScope.loginUser != null}">
+         <div class="m-t-20">
+Index: src/main/java/com/koreait/shopping/board/BoardMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.koreait.shopping.board;\r\n\r\nimport com.koreait.shopping.board.model.dto.BoardProductDto;\r\nimport com.koreait.shopping.board.model.vo.BoardProductVo;\r\nimport org.apache.ibatis.annotations.Mapper;\r\n\r\nimport java.util.List;\r\n\r\n\r\n@Mapper\r\npublic interface BoardMapper {\r\n    List<BoardProductVo> selProductList(BoardProductDto dto);\r\n    BoardProductVo selProductDetail(BoardProductDto dto);\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/koreait/shopping/board/BoardMapper.java b/src/main/java/com/koreait/shopping/board/BoardMapper.java
+--- a/src/main/java/com/koreait/shopping/board/BoardMapper.java	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/java/com/koreait/shopping/board/BoardMapper.java	(date 1644992462887)
+@@ -11,4 +11,5 @@
+ public interface BoardMapper {
+     List<BoardProductVo> selProductList(BoardProductDto dto);
+     BoardProductVo selProductDetail(BoardProductDto dto);
++    BoardProductVo selColor(BoardProductDto dto);
+ }
+\ No newline at end of file
+Index: src/main/java/com/koreait/shopping/board/BoardController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.koreait.shopping.board;\r\n\r\nimport com.koreait.shopping.Const;\r\nimport com.koreait.shopping.board.model.dto.BoardProductDto;\r\nimport com.koreait.shopping.board.model.vo.BoardProductVo;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.PathVariable;\r\nimport org.springframework.web.bind.annotation.RequestMapping;\r\n\r\n@Controller\r\n@RequestMapping(\"/board\")\r\npublic class BoardController {\r\n    @Autowired private BoardService service;\r\n\r\n    @GetMapping(\"/main\")\r\n    public void main(){}\r\n\r\n    @GetMapping(\"/detail/{iboard}\")\r\n    public String detail(@PathVariable int iboard, Model model, BoardProductDto dto) {\r\n        model.addAttribute(\"iboard\", iboard);\r\n        dto.setIboard(iboard);\r\n        BoardProductVo vo = service.selProductDetail(dto);\r\n        model.addAttribute(Const.DETAIL, vo);\r\n        return \"board/detail\";\r\n    }\r\n\r\n    @GetMapping(\"/list/{icategory}\")\r\n    public String list(@PathVariable int icategory, Model model, BoardProductDto dto){\r\n        model.addAttribute(Const.I_CATEGORY, icategory);\r\n        return \"board/list\";\r\n    }\r\n\r\n    @GetMapping(\"/product/{isubcategory}\")\r\n    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto){\r\n        model.addAttribute(\"isubcategory\", isubcategory);\r\n        dto.setIsubcategory(isubcategory);\r\n        model.addAttribute(Const.LIST, service.selProductList(dto));\r\n        return \"board/product\";\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/koreait/shopping/board/BoardController.java b/src/main/java/com/koreait/shopping/board/BoardController.java
+--- a/src/main/java/com/koreait/shopping/board/BoardController.java	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/java/com/koreait/shopping/board/BoardController.java	(date 1644993530880)
+@@ -8,6 +8,7 @@
+ import org.springframework.ui.Model;
+ import org.springframework.web.bind.annotation.GetMapping;
+ import org.springframework.web.bind.annotation.PathVariable;
++import org.springframework.web.bind.annotation.PostMapping;
+ import org.springframework.web.bind.annotation.RequestMapping;
+ 
+ @Controller
+@@ -26,6 +27,18 @@
+         model.addAttribute(Const.DETAIL, vo);
+         return "board/detail";
+     }
++
++    @GetMapping("/color")
++    public String color(BoardProductDto dto, Model model) {
++        model.addAttribute(Const.COLOR, service.selColor(dto));
++        return "board/detail";
++    }
++
++    @PostMapping("/color")
++    public String colorProc(BoardProductDto dto) {
++
++        return "board/detail";
++    }
+ 
+     @GetMapping("/list/{icategory}")
+     public String list(@PathVariable int icategory, Model model, BoardProductDto dto){
+Index: src/main/java/com/koreait/shopping/Const.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.koreait.shopping;\r\n\r\npublic class Const {\r\n    public static final String UPLOAD_IMG_PATH = \"C:/upload/images\";\r\n\r\n    public static final String RESULT = \"result\";\r\n    public static final String LOGIN_USER = \"loginUser\";\r\n    public static final String TRY_LOGIN = \"tryLogin\";\r\n    public static final String TRY_CHECK = \"tryCheck\";\r\n    public static final String MSG = \"msg\";\r\n    public static final String MENU_LIST = \"menuList\";\r\n    public static final String SUB_MENU_LIST = \"subMenuList\";\r\n    public static final String LIST = \"list\";\r\n    public static final String I_CATEGORY = \"icategory\";\r\n    public static final String DATA = \"data\";\r\n    public static final String DETAIL = \"detail\";\r\n\r\n    public static final String ERR_1 = \"아이디를 입력하세요.\";\r\n    public static final String ERR_2 = \"아이디가 없습니다.\";\r\n    public static final String ERR_3 = \"비밀번호를 확인하십시오.\";\r\n    public static final String ERR_4 = \"회원가입을 실패하였습니다.\";\r\n    public static final String ERR_5 = \"글 등록을 실패하였습니다.\";\r\n    public static final String ERR_6 = \"글 수정을 실패하였습니다.\";\r\n\r\n    public static final String ERR_A = \"알 수 없는 에러가 발생했습니다.\";\r\n    public static final String ERR_ID = \"Error!! 아이디를 확인해주세요.\";\r\n    public static final String ERR_PW = \"Error!! 비밀번호를 확인해주세요.\";\r\n    public static final String ERR_JOIN = \"회원가입에 실패하였습니다.\";\r\n    public static final String ERR_LOGIN = \"로그인에 실패하였습니다.\";\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/koreait/shopping/Const.java b/src/main/java/com/koreait/shopping/Const.java
+--- a/src/main/java/com/koreait/shopping/Const.java	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/java/com/koreait/shopping/Const.java	(date 1644992961936)
+@@ -14,6 +14,7 @@
+     public static final String I_CATEGORY = "icategory";
+     public static final String DATA = "data";
+     public static final String DETAIL = "detail";
++    public static final String COLOR = "color";
+ 
+     public static final String ERR_1 = "아이디를 입력하세요.";
+     public static final String ERR_2 = "아이디가 없습니다.";
+Index: src/main/java/com/koreait/shopping/board/BoardService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.koreait.shopping.board;\r\n\r\nimport com.koreait.shopping.board.model.dto.BoardProductDto;\r\nimport com.koreait.shopping.board.model.vo.BoardProductVo;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\n\r\nimport java.util.List;\r\n\r\n\r\n@Service\r\npublic class BoardService {\r\n    @Autowired\r\n    private BoardMapper mapper;\r\n\r\n    public List<BoardProductVo> selProductList(BoardProductDto dto) {\r\n        return mapper.selProductList(dto);\r\n    }\r\n\r\n    public BoardProductVo selProductDetail(BoardProductDto dto) {\r\n        return mapper.selProductDetail(dto);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/koreait/shopping/board/BoardService.java b/src/main/java/com/koreait/shopping/board/BoardService.java
+--- a/src/main/java/com/koreait/shopping/board/BoardService.java	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/java/com/koreait/shopping/board/BoardService.java	(date 1644992784962)
+@@ -20,4 +20,6 @@
+     public BoardProductVo selProductDetail(BoardProductDto dto) {
+         return mapper.selProductDetail(dto);
+     }
++
++    public BoardProductVo selColor(BoardProductDto dto) { return mapper.selColor(dto); }
+ }
+\ No newline at end of file
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\r\n# Created by https://www.toptal.com/developers/gitignore/api/intellij\r\n# Edit at https://www.toptal.com/developers/gitignore?templates=intellij\r\n\r\n### Intellij ###\r\n# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider\r\n# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839\r\n\r\n# User-specific stuff\r\n.idea/**/workspace.xml\r\n.idea/**/tasks.xml\r\n.idea/**/usage.statistics.xml\r\n.idea/**/dictionaries\r\n.idea/**/shelf\r\n\r\n# AWS User-specific\r\n.idea/**/aws.xml\r\n\r\n# Generated files\r\n.idea/**/contentModel.xml\r\n\r\n# Sensitive or high-churn files\r\n.idea/**/dataSources/\r\n.idea/**/dataSources.ids\r\n.idea/**/dataSources.local.xml\r\n.idea/**/sqlDataSources.xml\r\n.idea/**/dynamic.xml\r\n.idea/**/uiDesigner.xml\r\n.idea/**/dbnavigator.xml\r\n\r\n# Gradle\r\n.idea/**/gradle.xml\r\n.idea/**/libraries\r\n\r\n# Gradle and Maven with auto-import\r\n# When using Gradle or Maven with auto-import, you should exclude module files,\r\n# since they will be recreated, and may cause churn.  Uncomment if using\r\n# auto-import.\r\n# .idea/artifacts\r\n# .idea/compiler.xml\r\n# .idea/jarRepositories.xml\r\n# .idea/modules.xml\r\n# .idea/*.iml\r\n# .idea/modules\r\n *.iml\r\n# *.ipr\r\n\r\n# CMake\r\ncmake-build-*/\r\n\r\n# Mongo Explorer plugin\r\n.idea/**/mongoSettings.xml\r\n\r\n# File-based project format\r\n*.iws\r\n\r\n# IntelliJ\r\nout/\r\n\r\n# mpeltonen/sbt-idea plugin\r\n.idea_modules/\r\n\r\n# JIRA plugin\r\natlassian-ide-plugin.xml\r\n\r\n# Cursive Clojure plugin\r\n.idea/replstate.xml\r\n\r\n# SonarLint plugin\r\n.idea/sonarlint/\r\n\r\n# Crashlytics plugin (for Android Studio and IntelliJ)\r\ncom_crashlytics_export_strings.xml\r\ncrashlytics.properties\r\ncrashlytics-build.properties\r\nfabric.properties\r\n\r\n# Editor-based Rest Client\r\n.idea/httpRequests\r\n\r\n# Android studio 3.1+ serialized cache file\r\n.idea/caches/build_file_checksums.ser\r\n\r\n### Intellij Patch ###\r\n# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721\r\n\r\n# *.iml\r\n# modules.xml\r\n# .idea/misc.xml\r\n# *.ipr\r\n\r\n# Sonarlint plugin\r\n# https://plugins.jetbrains.com/plugin/7973-sonarlint\r\n.idea/**/sonarlint/\r\n\r\n# SonarQube Plugin\r\n# https://plugins.jetbrains.com/plugin/7238-sonarqube-community-plugin\r\n.idea/**/sonarIssues.xml\r\n\r\n# Markdown Navigator plugin\r\n# https://plugins.jetbrains.com/plugin/7896-markdown-navigator-enhanced\r\n.idea/**/markdown-navigator.xml\r\n.idea/**/markdown-navigator-enh.xml\r\n.idea/**/markdown-navigator/\r\n\r\n# Cache file creation bug\r\n# See https://youtrack.jetbrains.com/issue/JBR-2257\r\n.idea/$CACHE_FILE$\r\n\r\n# CodeStream plugin\r\n# https://plugins.jetbrains.com/plugin/12206-codestream\r\n.idea/codestream.xml\r\n\r\n# End of https://www.toptal.com/developers/gitignore/api/intellij
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/.gitignore	(date 1644991264811)
+@@ -42,7 +42,7 @@
+ # .idea/modules.xml
+ # .idea/*.iml
+ # .idea/modules
+- *.iml
++*.iml
+ # *.ipr
+ 
+ # CMake
+Index: web/res/js/board/detail.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/web/res/js/board/detail.js b/web/res/js/board/detail.js
+new file mode 100644
+--- /dev/null	(date 1644996191122)
++++ b/web/res/js/board/detail.js	(date 1644996191122)
+@@ -0,0 +1,7 @@
++{
++    var selectColorElem = document.getElementById("selectbox");
++
++    function chageColorSelect() {
++        var selectValue = selectColorElem.options[selectColorElem.selectedIndex].value;
++    }
++}
+\ No newline at end of file
+Index: src/main/resources/mappers/BoardMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">\r\n<mapper namespace=\"com.koreait.shopping.board.BoardMapper\">\r\n\r\n    <select id=\"selProductList\" resultType=\"ProductDto\">\r\n        SELECT *\r\n        FROM product_list\r\n        WHERE category_num = ${isubcategory}\r\n    </select>\r\n\r\n    <select id=\"selProductDetail\" resultType=\"ProductVo\">\r\n        SELECT *\r\n        FROM product_list\r\n        WHERE iboard = ${iboard}\r\n    </select>\r\n</mapper>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/mappers/BoardMapper.xml b/src/main/resources/mappers/BoardMapper.xml
+--- a/src/main/resources/mappers/BoardMapper.xml	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/resources/mappers/BoardMapper.xml	(date 1644992283942)
+@@ -2,15 +2,24 @@
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.koreait.shopping.board.BoardMapper">
+ 
+-    <select id="selProductList" resultType="ProductDto">
++    <select id="selProductList" resultType="BoardProductDto">
+         SELECT *
+         FROM product_list
+         WHERE category_num = ${isubcategory}
+     </select>
+ 
+-    <select id="selProductDetail" resultType="ProductVo">
++    <select id="selProductDetail" resultType="BoardProductVo">
+         SELECT *
+         FROM product_list
+         WHERE iboard = ${iboard}
+     </select>
++
++    <select id="selColor" resultType="BoardProductVo">
++        SELECT A.iboard, B.color
++        FROM product_list A
++        INNER JOIN product_detail B
++        ON A.iboard = B.iboard
++        WHERE A.iboard = ${iboard}
++        AND B.color = ${color}
++    </select>
+ </mapper>
+\ No newline at end of file
+Index: src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.koreait.shopping.board.model.dto;\r\n\r\nimport com.koreait.shopping.board.model.entity.BoardProductEntity;\r\nimport lombok.Getter;\r\nimport lombok.Setter;\r\n\r\n@Getter\r\n@Setter\r\npublic class BoardProductDto extends BoardProductEntity {\r\n    private int isubcategory;\r\n    private String subcategorynm;\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java b/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java
+--- a/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java	(revision 7eba7d1eca61de265c43762417093bc087e628fc)
++++ b/src/main/java/com/koreait/shopping/board/model/dto/BoardProductDto.java	(date 1644992522591)
+@@ -9,4 +9,5 @@
+ public class BoardProductDto extends BoardProductEntity {
+     private int isubcategory;
+     private String subcategorynm;
++    private int color;
+ }
+\ No newline at end of file
