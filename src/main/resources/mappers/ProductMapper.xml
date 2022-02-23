@@ -58,6 +58,12 @@
         WHERE iboard = ${iboard} AND color = ${color}
     </update>
 
+    <insert id="insCart">
+        insert into cart()
+        VALUES ()
+        WHERE iuser = ${iuser}
+    </insert>
+
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'
