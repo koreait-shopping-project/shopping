@@ -42,7 +42,7 @@
 /* main body */
 #wrap{ position: relative; padding: 130px 0; clear: both; }
 #container { max-width: 100%; }
-#contents { width: 80%; margin: 0 auto; min-height: calc(100vh - 300px); }
+#contents { width: 85%; margin: 0 auto; min-height: calc(100vh - 300px); }
 
 /* footer */
 #footer_wrap {

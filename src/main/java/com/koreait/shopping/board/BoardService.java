@@ -9,8 +9,6 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
-import com.koreait.shopping.model.dto.ProductDto;
-import com.koreait.shopping.model.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -83,7 +81,6 @@ public class BoardService {
     }
 
     public List<BoardProductVo> searchProductList (BoardProductEntity entity) {
-        System.out.println(entity.getTitle());
         return mapper.searchProductList(entity);
     }
 

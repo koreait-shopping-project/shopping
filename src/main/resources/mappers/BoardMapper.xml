@@ -49,6 +49,7 @@
         ]]>
     </select>
 
+
     <select id="searchBoardList" resultType="BoardListDto">
         SELECT A.*, B.nm AS writerNm
         FROM t_board_list A
@@ -67,12 +68,6 @@
         ORDER BY iboard DESC
 
     </select>
-
-<!--    <select id="selMaxPageVal" resultType="ResultVo">-->
-<!--        SELECT CEIL(COUNT(iboard)) AS result-->
-<!--        FROM t_board_list-->
-<!--        WHERE icategory = ${icategory}-->
-<!--    </select>-->
 
     <update id="updBoard">
         UPDATE t_board_list
