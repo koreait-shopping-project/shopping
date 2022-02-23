@@ -76,11 +76,9 @@
                     <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
                     <label for="1-star" class="star">★</label>
                 </div>
-
                 <input type="text" name="ctnt">
                 <input type="button" id="btn_submit" value="댓글달기">
             </form>
         </div>
     </c:if>
-    <div class="m-t-20" id="cmt_list"></div>
 </div>
