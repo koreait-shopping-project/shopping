@@ -49,6 +49,25 @@
         ]]>
     </select>
 
+    <select id="searchBoardList" resultType="BoardListDto">
+        SELECT A.*, B.nm AS writerNm
+        FROM t_board_list A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+            <if test=" searchType == 1">
+                WHERE A.title LIKE '%${searchText}%'
+            </if>
+            <if test=" searchType == 2">
+                WHERE A.ctnt LIKE '%${searchText}%'
+            </if>
+            <if test=" searchType == 3">
+                WHERE B.nm LIKE '%${searchText}%'
+            </if>
+        AND icategory = ${icategory}
+        ORDER BY iboard DESC
+
+    </select>
+
 <!--    <select id="selMaxPageVal" resultType="ResultVo">-->
 <!--        SELECT CEIL(COUNT(iboard)) AS result-->
 <!--        FROM t_board_list-->

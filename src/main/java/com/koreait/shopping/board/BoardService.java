@@ -87,12 +87,8 @@ public class BoardService {
         return mapper.searchProductList(entity);
     }
 
-    public List<ProductVo> selProductListRecord(ProductDto dto){
-        int startIdx = (dto.getCurrentPage() - 1) * dto.getRecordCount();
-        if(startIdx < 0){
-            startIdx = 0;
-        }
-        dto.setStartIdx(startIdx);
-        return mapper.selProductListRecord(dto);
+    public List<BoardListVo> searchBoardList(BoardListDto dto) {
+        System.out.println("icategory : " + dto.getIcategory());
+        return mapper.searchBoardList(dto);
     }
 }
