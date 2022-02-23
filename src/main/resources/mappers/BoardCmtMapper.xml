@@ -7,10 +7,10 @@
     </insert>
 
     <select id="selBoardCmtList" resultType="BoardCmtVo">
-        SELECT A.*, B.nm AS writernm, B.profileimg
+        SELECT A.*, B.nm AS writernm
         FROM t_board_cmt A
-                 LEFT JOIN t_user B
-                    ON A.iuser = B.iuser
+        LEFT JOIN t_user B
+        ON A.iuser = B.iuser
         WHERE A.iboard = ${iboard}
         ORDER BY A.icmt
     </select>
