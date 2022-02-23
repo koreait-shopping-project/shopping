@@ -118,30 +118,32 @@ public class BoardController {
     public void purchase(){}
 
     @PostMapping("/purchase")
-    public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto, BoardProductDto dto) {
-//        System.out.println(vo.getIboard());
-//        System.out.println(vo.getColor());
-//        System.out.println(vo.getSize());
-//        System.out.println(vo.getItemNum());
-//
-//        switch (vo.getSize()) {
-//            case "sm" :
-//                vo.setSm(vo.getItemNum());
-//                break;
-//            case "md" :
-//                vo.setMd(vo.getItemNum());
-//                break;
-//            case "lg" :
-//                vo.setLg(vo.getItemNum());
-//                break;
-//            case "xl" :
-//                vo.setXl(vo.getItemNum());
-//                break;
-//        }
-//        service.updProductDetail(vo);
-        System.out.println();
-        //해결해야할 문제 List로 받아야한다.
-        //그 다음 ItemNum으로 날아온 수만큼 빼주는 update문을 List 수만큼 실행
+    public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+        System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
+        for(int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+        System.out.println( i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
+        System.out.println( i  + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
+        System.out.println( i  + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
+        
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm" :
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    break;
+                case "md" :
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    break;
+                case "lg" :
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    break;
+                case "xl" :
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    break;
+            }
+            service.updProductDetail(vo);
+        }
         return "board/purchase";
     }
 

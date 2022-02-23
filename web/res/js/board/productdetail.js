@@ -50,6 +50,7 @@
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
+            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
         `;
         listNum++;
         // num(수량) +, - 버튼
