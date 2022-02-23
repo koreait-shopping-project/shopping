@@ -97,6 +97,7 @@
         removeBtn.innerHTML = `X`;
         removeBtn.addEventListener('click', function() {
             li.parentNode.removeChild(li);
+            delete colorSizeObj [`${colorSize}`];
         });
         li.appendChild(removeBtn);
 

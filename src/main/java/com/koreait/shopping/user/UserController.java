@@ -145,4 +145,6 @@ public class UserController {
     @GetMapping("/mypage")
     public void mypage() {}
 
+    @GetMapping("/review")
+    public void review() {}
 }
