@@ -43,8 +43,7 @@
                             icmt: data.result,
                             iuser: parseInt(dataElem.dataset.iuser),
                             writernm: dataElem.dataset.nm,
-                            profileimg: dataElem.dataset.profileimg,
-                            ctnt: cmtFrmElem.ctnt.value,
+                            ctnt: cmtFrmElem.ctnt.value
                         }
                         const tr = makeTr(item);
                         table.appendChild(tr);
