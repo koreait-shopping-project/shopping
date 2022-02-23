@@ -83,4 +83,9 @@ public class BoardService {
     public List<BoardProductVo> searchProductList (BoardProductEntity entity) {
         return mapper.searchProductList(entity);
     }
+
+    public List<BoardListVo> searchBoardList(BoardListDto dto) {
+        System.out.println("icategory : " + dto.getIcategory());
+        return mapper.searchBoardList(dto);
+    }
 }
