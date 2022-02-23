@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -73,7 +74,7 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 
-    public int updProductDetail(BoardProductVo vo) {
+    public BoardProductVo updProductDetail(BoardProductVo vo) {
         return mapper.updProductDetail(vo);
     }
 
@@ -85,6 +86,7 @@ public class BoardService {
         System.out.println(entity.getTitle());
         return mapper.searchProductList(entity);
     }
+
     public List<ProductVo> selProductListRecord(ProductDto dto){
         int startIdx = (dto.getCurrentPage() - 1) * dto.getRecordCount();
         if(startIdx < 0){
