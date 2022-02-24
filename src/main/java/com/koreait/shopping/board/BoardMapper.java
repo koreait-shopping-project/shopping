@@ -17,18 +17,20 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+    //subcategory
     List<BoardProductVo> selProductList(BoardProductDto dto);
     BoardProductVo selProductDetail(BoardProductVo vo);
+    BoardProductVo selSize(BoardProductVo vo);
+    //category
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
-    BoardProductVo selSize(BoardProductVo vo);
+    BoardListVo selBoardDetail(BoardListVo vo);
     int updProductDetail(BoardProductVo vo);
     int insCart(BoardProductVo vo);
     int insBoard(BoardListEntity entity);
-    BoardListVo selBoardDetail(BoardListVo vo);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
     List<BoardProductVo> searchProductList(BoardProductEntity entity);
-    List<ProductVo> selProductListRecord(ProductDto dto);
+    List<BoardListVo> searchBoardList(BoardListDto dto);
 }

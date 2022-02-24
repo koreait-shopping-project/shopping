@@ -35,4 +35,7 @@
             </div>
         </c:otherwise>
     </c:choose>
+    <c:forEach var="i" begin="1" end="${requestScope.maxPage}">
+        <span><a href="/board/list?page=i">i</a></span>&nbsp;
+    </c:forEach>
 </div>

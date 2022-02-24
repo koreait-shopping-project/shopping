@@ -16,5 +16,12 @@ public class BoardProductDto extends BoardProductEntity implements Serializable 
     private int color;
     private String size;
     private int itemNum;
-    private String uid;
+    private int recordCnt;
+    private int page;
+    private int sIdx;
+
+    public void setPage(int page) {
+        this.page = page;
+        this.sIdx = (page - 1) * recordCnt;
+    }
 }

@@ -1,6 +1,7 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
@@ -32,6 +33,13 @@ public class BoardController {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
+        if (dto.getSearchType() != 0) {
+            model.addAttribute(Const.LIST, service.searchBoardList(dto));
+            model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
+            System.out.println("writerNm : " + dto.getWriterNm());
+        } else {
+            model.addAttribute(Const.LIST, service.selBoardList(dto));
+        }
         return "board/list";
     }
 
@@ -40,7 +48,7 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selBoard(vo));
     }
 
-    @GetMapping("/search")
+    @GetMapping("/prsearch")
     public List<BoardProductVo> searchProc(Model model, BoardProductDto dto) {
         model.addAttribute(Const.LIST, service.searchProductList(dto));
         return service.searchProductList(dto);
@@ -118,7 +126,6 @@ public class BoardController {
     @GetMapping("/purchase")
     public void purchase(){}
 
-    //pathvariable 사용해서 iboard값 받기?
     @PostMapping("/purchase")
     public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
         System.out.println("바로구매로 이동했습니다");

@@ -65,3 +65,17 @@ const myFetch = {
 }
 
 //Restful API > POST, GET, PUT, DELETE
+
+
+//검색 빈칸 방지
+const search_frmElem = document.querySelector('#search_frm')
+
+if (search_frmElem) {
+    search_frmElem.addEventListener('submit', (e) => {
+        const search_input = search_frmElem.search_input.value;
+        if (search_input === '' || search_input === ' ' || search_input === '  ') {
+            e.preventDefault();
+            alert('검색어를 입력해주세요');
+        }
+    })
+}
