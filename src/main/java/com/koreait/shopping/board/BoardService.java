@@ -1,6 +1,5 @@
 package com.koreait.shopping.board;
 
-import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -9,8 +8,6 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
-import com.koreait.shopping.model.dto.ProductDto;
-import com.koreait.shopping.model.vo.ProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
