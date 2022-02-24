@@ -28,8 +28,14 @@ public class BoardController {
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardListDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
-        model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
+        if (dto.getSearchType() != 0) {
+            model.addAttribute(Const.LIST, service.searchBoardList(dto));
+            model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
+            System.out.println("writerNm : " + dto.getWriterNm());
+        } else {
+            model.addAttribute(Const.LIST, service.selBoardList(dto));
+        }
         return "board/list";
     }
 
@@ -38,7 +44,7 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selBoard(vo));
     }
 
-    @GetMapping("/search")
+    @GetMapping("/prsearch")
     public List<BoardProductVo> searchProc(Model model, BoardProductDto dto) {
         model.addAttribute(Const.LIST, service.searchProductList(dto));
         return service.searchProductList(dto);

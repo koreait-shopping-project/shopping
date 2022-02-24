@@ -84,7 +84,18 @@
                 </div>
 
                 <div>페이징이다</div>
-                <div>검색이다</div>
+                <div class="m-20 font-size-14">
+                    <form action="/board/list/${requestScope.icategory}" method="get" >
+                        <span>검색어</span>
+                        <select name="searchType">
+                            <option value="1" ${requestScope.searchType == 1 ? 'selected' : ''}>제목</option>
+                            <option value="2" ${requestScope.searchType == 2 ? 'selected' : ''}>내용</option>
+                            <option value="3" ${requestScope.searchType == 3 ? 'selected' : ''}>글쓴이</option>
+                        </select>
+                        <input class="w-200" type="search" name="searchText">
+                        <input class="bolder-p b-radius bc-black color-white m-10" type="submit" value="찾기">
+                    </form>
+                </div>
             </c:when>
             <c:otherwise>
                 <c:if test="">
