@@ -8,13 +8,30 @@
         <img src="${requestScope.detail.img_url_big}">
     </section>
     <section id="detail_wrap">
-        <p>브랜드 : ${requestScope.detail.brand}</p>
-        <p>제품명 : ${requestScope.detail.title}</p>
-        <p>분류 : ${requestScope.detail.category_num}</p>
-        <p class="bold"><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</p>
-        <c:if test="${requestScope.detail.gender == 1}"><p>남성용</p></c:if>
-        <c:if test="${requestScope.detail.gender == 2}"><p>여성용</p></c:if>
-        <c:if test="${requestScope.detail.gender == 3}"><p>공용</p></c:if>
+        <table>
+            <tr>
+                <th>브랜드</th>
+                <td>${requestScope.detail.brand}</td>
+            </tr>
+            <tr>
+                <th>제품명</th>
+                <td>${requestScope.detail.title}</td>
+            </tr>
+            <tr>
+                <th>분류</th>
+                <td>${requestScope.detail.subcategorynm}</td>
+            </tr>
+            <tr>
+                <th><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</th>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <c:if test="${requestScope.detail.gender == 1}">남성용</c:if>
+                    <c:if test="${requestScope.detail.gender == 2}">여성용</c:if>
+                    <c:if test="${requestScope.detail.gender == 3}">공용</c:if>
+                </td>
+            </tr>
+        </table>
         <div id="detail_colorbox_wrap">
             <select id="colorbox">
                 <option value="" selected disabled>컬러선택</option>
