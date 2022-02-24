@@ -52,11 +52,6 @@
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
             <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
         `;
-            // <span>사이즈 : ${size}</span>
-            // <span>컬러 : ${colorTxt}</span>
-            // <input id="size" name="size" value="${size}" type="hidden"/>
-            // <input id="color" name="color" value="${color}" type="hidden"/>
-            // <input id="itemNum" name="itemNum" value="${i}" type="hidden"/>
         listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
@@ -117,6 +112,14 @@
     function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
+    }
+    
+    //버튼 변경
+    function submitBtn(addr) {
+        const form = document.querySelector(`#frmSubmit`);
+        if(addr == 'cart') {
+            form.action = "/board/cart"
+        }
     }
 
     //////////////////////////////댓글///////////////////////////////////

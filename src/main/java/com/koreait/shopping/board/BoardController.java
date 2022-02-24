@@ -122,6 +122,7 @@ public class BoardController {
 
     @PostMapping("/purchase")
     public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+        System.out.println("바로구매로 이동했습니다");
         System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
         for(int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
@@ -164,12 +165,14 @@ public class BoardController {
 
     @PostMapping("/cart")
     public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+        System.out.println("카트로 이동했습니다");
         for(int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-
+            vo.setIuser(listDto.getProductList().get(i).getIuser());
+            System.out.println( i  + "번째 iuser값 " + listDto.getProductList().get(i).getIuser());
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm" :
                     vo.setSm(listDto.getProductList().get(i).getItemNum());

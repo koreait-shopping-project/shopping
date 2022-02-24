@@ -59,8 +59,32 @@
     </update>
 
     <insert id="insCart">
-        insert into cart()
-        VALUES ()
+        insert into cart(iboard, iuser, color,
+        <if test=" sm != null and sm !=0 ">
+            sm
+        </if>
+        <if test=" md != null and md !=0 ">
+            md
+        </if>
+        <if test=" lg != null and lg !=0 ">
+            lg
+        </if>
+        <if test=" xl != null and xl !=0 ">
+            xl
+        </if> )
+        VALUES (${iboard}, ${iuser}, ${color},
+        <if test=" sm != null and sm !=0 ">
+        ${sm}
+        </if>
+        <if test=" md != null and md !=0 ">
+        ${md}
+        </if>
+        <if test=" lg != null and lg !=0 ">
+        ${lg}
+        </if>
+        <if test=" xl != null and xl !=0 ">
+        ${xl}
+        </if> )
         WHERE iuser = ${iuser}
     </insert>
 
