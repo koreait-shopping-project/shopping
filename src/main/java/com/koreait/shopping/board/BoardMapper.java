@@ -1,6 +1,5 @@
 package com.koreait.shopping.board;
 
-import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
@@ -22,7 +21,8 @@ public interface BoardMapper {
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
     BoardListVo selBoardDetail(BoardListVo vo);
-    BoardProductVo updProductDetail(BoardProductVo vo);
+    int updProductDetail(BoardProductVo vo);
+    int insCart(BoardProductVo vo);
     int insBoard(BoardListEntity entity);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
