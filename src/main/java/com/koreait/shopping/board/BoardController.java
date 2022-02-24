@@ -1,7 +1,6 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
-import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
@@ -14,9 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,6 +118,7 @@ public class BoardController {
     @GetMapping("/purchase")
     public void purchase(){}
 
+    //pathvariable 사용해서 iboard값 받기?
     @PostMapping("/purchase")
     public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
         System.out.println("바로구매로 이동했습니다");
@@ -163,16 +162,25 @@ public class BoardController {
         return "board/purchase";
     }
 
+    @GetMapping("/cart")
+    public void cart(){}
+
     @PostMapping("/cart")
-    public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+    public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request){
         System.out.println("카트로 이동했습니다");
         for(int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-            vo.setIuser(listDto.getProductList().get(i).getIuser());
-            System.out.println( i  + "번째 iuser값 " + listDto.getProductList().get(i).getIuser());
+            vo.setUid(request.getParameter("uid"));
+
+            System.out.println("담긴 컬러값 : " + vo.getColor());
+            System.out.println("담긴 컬러값" + vo.getItemNum());
+            System.out.println("담긴 iboard값 : " + vo.getIboard());
+            System.out.println( "id값 : " + vo.getUid());
+
+
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm" :
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
@@ -196,6 +204,6 @@ public class BoardController {
                     break;
             }
         }
-        return "board/list/4";
+        return "board/cart";
     }
 }

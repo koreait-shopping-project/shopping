@@ -16,5 +16,5 @@ public class BoardProductDto extends BoardProductEntity implements Serializable 
     private int color;
     private String size;
     private int itemNum;
-    private int iuser;
+    private String uid;
 }

@@ -59,7 +59,7 @@
     </update>
 
     <insert id="insCart">
-        insert into cart(iboard, iuser, color,
+        insert into cart(iboard, uid, color,
         <if test=" sm != null and sm !=0 ">
             sm
         </if>
@@ -72,7 +72,7 @@
         <if test=" xl != null and xl !=0 ">
             xl
         </if> )
-        VALUES (${iboard}, ${iuser}, ${color},
+        VALUES (${iboard}, #{uid}, ${color},
         <if test=" sm != null and sm !=0 ">
         ${sm}
         </if>
@@ -85,7 +85,6 @@
         <if test=" xl != null and xl !=0 ">
         ${xl}
         </if> )
-        WHERE iuser = ${iuser}
     </insert>
 
     <select id="searchProductList" resultType="BoardProductEntity">

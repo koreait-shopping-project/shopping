@@ -34,7 +34,7 @@
         <option value="" selected disabled>사이즈선택</option>
     </select>
 
-<form action="/board/purchase" method="post" id="frmSubmit">
+<form method="post" id="frmSubmit">
     <div>
         <%--   선택한 아이템 뜨게 --%>
         <ul id="selecteditem">
@@ -52,15 +52,15 @@
             </c:choose>
         </ul>
         <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
-        <input id="data" name="iuser" type="hidden" value="${sessionScope.loginUser.iuser}" data-iuser="${sessionScope.loginUser.iuser}">
+        <input type="hidden" name="uid" value="${sessionScope.loginUser.uid}">
 <%--   loginUser안들어감 이유 찾기     --%>
     </div>
 
     <%-- 장바구니 담기 --%>
 <%--    <button href="/board/purchase" type="submit">--%>
 <%--    </button>--%>
-    <input type="submit" value="바로구매" href="/board/purchase">
-    <input type="submit" value="장바구니" href="/board/list/4" onclick="submitBtn('cart')">
+    <input type="submit" value="바로구매" href="/board/purchase" onclick="submitBtn('purchase')">
+    <input type="submit" value="장바구니" href="/board/cart" onclick="submitBtn('cart')">
 </form>
 
 <div>
