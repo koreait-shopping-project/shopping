@@ -212,6 +212,6 @@ public class BoardController {
                     break;
             }
         }
-        return "board/cart";
+        return "board/main";
     }
 }

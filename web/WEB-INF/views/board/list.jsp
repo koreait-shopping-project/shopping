@@ -14,14 +14,24 @@
             <c:set var="titleVal" value="Cart" />
 
             <c:forEach var="item" items="${requestScope.cart}">
-                <p>제품 : <c:out value="${item.iboard}"/></p>
+                <p><img src="${item.img_url_big}"></p>
+                <p>상품명 : <c:out value="${item.title}"/></p>
+                <p>가격 : <c:out value="${item.price}"/></p>
                 <p>컬러 : <c:out value="${item.color}"/></p>
-                <p>sm : <c:out value="${item.sm}"/></p>
-                <p>md : <c:out value="${item.md}"/></p>
-                <p>lg : <c:out value="${item.lg}"/></p>
-                <p>xl : <c:out value="${item.xl}"/></p>
-                <p>uid : <c:out value="${item.uid}"/></p>
-                <p>iuser : <c:out value="${item.iuser}"/></p>
+                <p>사이즈 :
+                    <c:if test="${item.sm !=0 && item.sm != null}">
+                        sm : <c:out value="${item.sm}"/>개
+                    </c:if>
+                    <c:if test="${item.md !=0 && item.md != null}">
+                        md : <c:out value="${item.md}"/>개
+                    </c:if>
+                    <c:if test="${item.lg !=0 && item.xl != null}">
+                        lg : <c:out value="${item.lg}"/>개
+                    </c:if>
+                    <c:if test="${item.xl !=0 && item.xl != null}">
+                        xl : <c:out value="${item.xl}"/>개
+                    </c:if>
+                </p>
             </c:forEach>
 
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
