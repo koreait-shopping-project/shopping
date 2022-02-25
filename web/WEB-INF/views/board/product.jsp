@@ -19,7 +19,7 @@
         </c:when>
         <c:otherwise>
             <div id="product_list">
-            <c:forEach items="${requestScope.list}" var="item" begin="1" end="15">
+            <c:forEach items="${requestScope.list}" var="item">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
                     <p>${item.title}</p>
