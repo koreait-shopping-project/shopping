@@ -18,7 +18,7 @@ td { border-bottom: 1px solid #cecece; }
 #detail_box_wrap { font-size: 16px; margin-top: 10px; }
 #detail_box_wrap select{ width: 150px; height: 30px; cursor: pointer;
     background-color: #353535; color: #fff; border-radius: 3px; margin: 20px 0; }
-#detail_box_wrap button[type=submit]{ border: 0; border-radius: 3px; padding: 10px; background-color: #353535;
+#frmSubmit input[type=submit]{ border: 0; border-radius: 3px; padding: 10px; background-color: #353535;
     color: #fff; }
 
 .selected_item { height: 3rem; font-size: 16px; display: flex; align-items: flex-start; position: relative; }
