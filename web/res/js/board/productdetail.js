@@ -26,7 +26,7 @@
     });
 
     const colorSizeObj = {};
-
+    let listNum = 0;
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
@@ -48,13 +48,14 @@
         let i = 1;
 
         li.innerHTML= `
-            <span class="inner_color">컬러 : ${colorTxt}</span>
-            <span class="inner_size">사이즈 : ${size}</span>
-            <input id="size" name="size" value="${size}" type="hidden"/>
-            <input id="color" name="color" value="${color}" type="hidden"/>
-            <input id="itemNum" name="itemNum" value="${i}" type="hidden"/>
+            <span>사이즈 : ${size}</span>
+            <span>컬러 : ${colorTxt}</span>
+            <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
+            <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
+            <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
+            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
         `;
-
+        listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
         numMinusBtn.innerHTML = `-`;
@@ -118,5 +119,16 @@
     function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
+    }
+
+    //버튼 변경
+    function submitBtn(addr) {
+        const form = document.querySelector(`#frmSubmit`);
+        if(addr == 'cart') {
+            form.action = "/board/cart"
+        }
+        else if (addr == 'purchase') {
+            form.action = "/board/purchase"
+        }
     }
 }

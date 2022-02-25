@@ -4,6 +4,7 @@ import com.koreait.shopping.Const;
 import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
+import com.koreait.shopping.board.model.dto.BoardProductListDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
@@ -13,6 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +31,7 @@ public class BoardController {
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardListDto dto){
         model.addAttribute(Const.I_CATEGORY, icategory);
+        model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
         if (dto.getSearchType() != 0) {
             model.addAttribute(Const.LIST, service.searchBoardList(dto));
@@ -123,28 +127,90 @@ public class BoardController {
     public void purchase(){}
 
     @PostMapping("/purchase")
-    public String purchaseProc(BoardProductVo vo) {
-        //날아오는 값 3개 전부 0으로 출력 뭐로 지정해줘야할까?
-        System.out.println(vo.getIboard());
-        System.out.println(vo.getColor());
-        System.out.println(vo.getSize());
-        System.out.println(vo.getItemNum());
+    public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+        System.out.println("바로구매로 이동했습니다");
+        System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
+        for(int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+            vo.setIboard(listDto.getProductList().get(i).getIboard());
+        System.out.println( i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
+        System.out.println( i  + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
+        System.out.println( i  + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
+        System.out.println( i  + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
 
-        switch (vo.getSize()) {
-            case "sm" :
-                vo.setSm(vo.getItemNum());
-            case "md" :
-                vo.setMd(vo.getItemNum());
-            case "lg" :
-                vo.setLg(vo.getItemNum());
-            case "xl" :
-                vo.setXl(vo.getItemNum());
+            System.out.println("담긴 컬러값 : " + vo.getColor());
+            System.out.println("담긴 iboard값 : " + vo.getIboard());
+
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm" :
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 sm : " + vo.getSm());
+                    service.updProductDetail(vo);
+                    break;
+                case "md" :
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    service.updProductDetail(vo);
+                    System.out.println("담긴 md : " + vo.getMd());
+                    break;
+                case "lg" :
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 lg : " + vo.getLg());
+                    service.updProductDetail(vo);
+                    break;
+                case "xl" :
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 xl : " + vo.getXl());
+                    service.updProductDetail(vo);
+                    break;
+            }
         }
-        service.updProductDetail(vo);
-
-        //해결해야할 문제 List로 받아야한다.
-        //그 다음 ItemNum으로 날아온 수만큼 빼주는 update문을 List 수만큼 실행
         return "board/purchase";
     }
 
+    @GetMapping("/cart")
+    public void cart(){}
+
+    @PostMapping("/cart")
+    public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request){
+        System.out.println("카트로 이동했습니다");
+        for(int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+            vo.setIboard(listDto.getProductList().get(i).getIboard());
+            vo.setUid(request.getParameter("uid"));
+
+            System.out.println("담긴 컬러값 : " + vo.getColor());
+            System.out.println("담긴 컬러값" + vo.getItemNum());
+            System.out.println("담긴 iboard값 : " + vo.getIboard());
+            System.out.println( "id값 : " + vo.getUid());
+
+
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm" :
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 sm : " + vo.getSm());
+                    service.insCart(vo);
+                    break;
+                case "md" :
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    service.insCart(vo);
+                    System.out.println("담긴 md : " + vo.getMd());
+                    break;
+                case "lg" :
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 lg : " + vo.getLg());
+                    service.insCart(vo);
+                    break;
+                case "xl" :
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    System.out.println("담긴 xl : " + vo.getXl());
+                    service.insCart(vo);
+                    break;
+            }
+        }
+        return "board/cart";
+    }
 }

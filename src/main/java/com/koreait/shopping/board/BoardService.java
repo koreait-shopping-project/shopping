@@ -1,6 +1,5 @@
 package com.koreait.shopping.board;
 
-import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -72,9 +71,9 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 
-    public BoardProductVo updProductDetail(BoardProductVo vo) {
-        return mapper.updProductDetail(vo);
-    }
+    public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
+
+    public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
 
     public BoardProductVo selSize(BoardProductVo vo) {
         return mapper.selSize(vo);
