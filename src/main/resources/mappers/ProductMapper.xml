@@ -84,6 +84,16 @@
         </if> )
     </insert>
 
+    <select id="selCart" resultType="BoardProductVo">
+        SELECT A.uid, A.sm, A.md, A.lg, A.xl, A.color, A.iboard, B.iuser, C.img_url_big, C.title, C.price
+        FROM cart A
+        INNER JOIN t_user B
+        ON A.uid = B.uid
+        INNER JOIN product_list C
+        ON A.iboard = C.iboard
+        WHERE B.iuser = ${iuser}
+    </select>
+
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'

@@ -2,6 +2,7 @@ package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
 import com.koreait.shopping.ResultVo;
+import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
@@ -9,13 +10,13 @@ import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.user.model.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,11 +26,13 @@ import java.util.Map;
 public class BoardController {
     @Autowired private BoardService service;
 
+    @Autowired private UserUtils utils;
+
     @GetMapping("/main")
     public void main(){}
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto){
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, HttpServletRequest request, UserEntity entity){
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
@@ -40,6 +43,13 @@ public class BoardController {
         } else {
             model.addAttribute(Const.LIST, service.selBoardList(dto));
         }
+
+        if(icategory == 3) {
+            entity.setIuser(utils.getLoginUserPk());
+            System.out.println(utils.getLoginUserPk());
+            model.addAttribute(Const.CART, service.selCart(entity));
+        }
+
         return "board/list";
     }
 
@@ -170,7 +180,8 @@ public class BoardController {
     }
 
     @GetMapping("/cart")
-    public void cart(){}
+    public void cart(){
+    }
 
     @PostMapping("/cart")
     public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request){
@@ -182,35 +193,25 @@ public class BoardController {
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setUid(request.getParameter("uid"));
 
-            System.out.println("담긴 컬러값 : " + vo.getColor());
-            System.out.println("담긴 컬러값" + vo.getItemNum());
-            System.out.println("담긴 iboard값 : " + vo.getIboard());
-            System.out.println( "id값 : " + vo.getUid());
-
-
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm" :
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 sm : " + vo.getSm());
                     service.insCart(vo);
                     break;
                 case "md" :
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.insCart(vo);
-                    System.out.println("담긴 md : " + vo.getMd());
                     break;
                 case "lg" :
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 lg : " + vo.getLg());
                     service.insCart(vo);
                     break;
                 case "xl" :
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 xl : " + vo.getXl());
                     service.insCart(vo);
                     break;
             }
         }
-        return "board/cart";
+        return "board/main";
     }
 }

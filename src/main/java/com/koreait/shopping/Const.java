@@ -21,6 +21,7 @@ public class Const {
     public static final String MAX_PAGE = "maxPage";
     public static final String SIZE = "size";
     public static final String SEARCH_TYPE = "searchType";
+    public static final String CART = "cart";
 
 
     public static final String ERR_1 = "아이디를 입력하세요.";
