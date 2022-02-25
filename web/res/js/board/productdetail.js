@@ -13,26 +13,28 @@
         }
 
         myFetch.get('/board/size', data => {
-            switch (data.result) {
-                case data.result:
-                    sizeBox.options[1] = new Option('sm', `${data.result.sm}`);
-                    sizeBox.options[2] = new Option('md', `${data.result.md}`);
-                    sizeBox.options[3] = new Option('lg', `${data.result.lg}`);
-                    sizeBox.options[4] = new Option('xl', `${data.result.xl}`);
+            const dataResult = data.result;
+            switch (dataResult) {
+                case dataResult:
+                    sizeBox.options[1] = new Option('sm', `${dataResult.sm}`);
+                    sizeBox.options[2] = new Option('md', `${dataResult.md}`);
+                    sizeBox.options[3] = new Option('lg', `${dataResult.lg}`);
+                    sizeBox.options[4] = new Option('xl', `${dataResult.xl}`);
                     break;
             }
         }, param);
     });
 
     const colorSizeObj = {};
-
+    let listNum = 0;
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
         const size = sizeBox.options[sizeBox.selectedIndex].text;
-        const ul = document.querySelector('#selecteditem');
+        const ul = document.querySelector('#selected_items');
         const li = document.createElement("li");
         ul.append(li);
+        li.className = 'selected_item';
         const colorSize = colorTxt.concat(size);
 
         if (isKeyExits(colorSizeObj, colorSize)) {
@@ -48,18 +50,21 @@
         li.innerHTML= `
             <span>사이즈 : ${size}</span>
             <span>컬러 : ${colorTxt}</span>
-            <input id="size" name="size" value="${size}" type="hidden"/>
-            <input id="color" name="color" value="${color}" type="hidden"/>
-            <input id="itemNum" name="itemNum" value="${i}" type="hidden"/>
+            <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
+            <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
+            <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
+            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
         `;
-
+        listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
-        numMinusBtn.innerHTML = `-`
+        numMinusBtn.innerHTML = `-`;
+        numMinusBtn.className = 'increase_btn';
         const num = document.createElement('span');
         num.innerText = `${i}`;
         const numPlusBtn = document.createElement('button');
-        numPlusBtn.innerHTML = `+`
+        numPlusBtn.innerHTML = `+`;
+        numPlusBtn.className = 'increase_btn';
 
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
@@ -94,9 +99,11 @@
 
         //li 삭제
         const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = `X`;
+        removeBtn.innerHTML = 'X';
+        removeBtn.className = 'remove_btn';
         removeBtn.addEventListener('click', function() {
             li.parentNode.removeChild(li);
+            delete colorSizeObj [`${colorSize}`];
         });
         li.appendChild(removeBtn);
 
@@ -112,5 +119,16 @@
     function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
+    }
+
+    //버튼 변경
+    function submitBtn(addr) {
+        const form = document.querySelector(`#frmSubmit`);
+        if(addr == 'cart') {
+            form.action = "/board/cart"
+        }
+        else if (addr == 'purchase') {
+            form.action = "/board/purchase"
+        }
     }
 }

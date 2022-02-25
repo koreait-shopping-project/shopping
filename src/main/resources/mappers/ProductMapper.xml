@@ -7,37 +7,34 @@
         WHERE category_num = ${isubcategory}
     </select>
 
-    <select id="selProductListRecord" resultType="ProductVo">
-        SELECT A.iboard, A.title, A.iuser, A.isubcategory, A.hits, A.rdt
-            , B.nm AS username
-        FROM product_list A
-        LEFT JOIN t_user B
-        ON A.iuser = B.iuser
-        WHERE A.isdel = 0
-        AND A.icategory = ${icategory}
-        ORDER BY A.iboard DESC
-        LIMIT ${startIdx}, ${recordCount}
+    <select id="selProductListRecord" resultType="BoardProductVo">
+        SELECT *
+        FROM product_list
+        WHERE iboard = ${iboard}
+        ORDER BY iboard DESC
     </select>
 
     <select id="selProductDetail" resultType="BoardProductVo">
         SELECT *
-        FROM product_list
+        FROM product_list A
+        INNER JOIN t_board_sub_category B
+        ON A.category_num = B.isubcategory
         WHERE iboard = ${iboard}
     </select>
 
     <select id="selDetailList" resultType="BoardProductVo">
         SELECT *
         FROM product_list A
-                 INNER JOIN product_detail B
-                            ON A.iboard = B.iboard
+        INNER JOIN product_detail B
+        ON A.iboard = B.iboard
         WHERE A.iboard = ${iboard}
     </select>
 
     <select id="selSize" resultType="BoardProductVo">
         SELECT *
         FROM product_list A
-                 INNER JOIN product_detail B
-                            ON A.iboard = B.iboard
+        INNER JOIN product_detail B
+        ON A.iboard = B.iboard
         WHERE A.iboard = ${iboard} AND B.color = ${color}
     </select>
 
@@ -46,17 +43,46 @@
         <if test=" sm != null and sm !=0 ">
             SET sm = sm - ${sm}
         </if>
-        <if test=" md != null and sm !=0 ">
+        <if test=" md != null and md !=0 ">
             SET md = md - ${md}
         </if>
-        <if test=" lg != null and sm !=0 ">
+        <if test=" lg != null and lg !=0 ">
             SET lg = lg - ${lg}
         </if>
-        <if test=" xl != null and sm !=0 ">
+        <if test=" xl != null and xl !=0 ">
             SET xl = xl - ${xl}
         </if>
         WHERE iboard = ${iboard} AND color = ${color}
     </update>
+
+    <insert id="insCart">
+        insert into cart(iboard, uid, color,
+        <if test=" sm != null and sm !=0 ">
+            sm
+        </if>
+        <if test=" md != null and md !=0 ">
+            md
+        </if>
+        <if test=" lg != null and lg !=0 ">
+            lg
+        </if>
+        <if test=" xl != null and xl !=0 ">
+            xl
+        </if> )
+        VALUES (${iboard}, #{uid}, ${color},
+        <if test=" sm != null and sm !=0 ">
+        ${sm}
+        </if>
+        <if test=" md != null and md !=0 ">
+        ${md}
+        </if>
+        <if test=" lg != null and lg !=0 ">
+        ${lg}
+        </if>
+        <if test=" xl != null and xl !=0 ">
+        ${xl}
+        </if> )
+    </insert>
 
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list

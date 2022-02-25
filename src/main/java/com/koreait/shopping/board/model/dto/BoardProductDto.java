@@ -3,11 +3,25 @@ package com.koreait.shopping.board.model.dto;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Getter
 @Setter
-public class BoardProductDto extends BoardProductEntity {
+@ToString
+public class BoardProductDto extends BoardProductEntity implements Serializable {
     private int isubcategory;
+    private int iboard;
+    private int color;
     private String size;
     private int itemNum;
+    private int recordCnt;
+    private int page;
+    private int sIdx;
+
+    public void setPage(int page) {
+        this.page = page;
+        this.sIdx = (page - 1) * recordCnt;
+    }
 }

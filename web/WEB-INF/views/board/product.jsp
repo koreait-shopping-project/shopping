@@ -19,7 +19,7 @@
         </c:when>
         <c:otherwise>
             <div id="product_list">
-            <c:forEach items="${requestScope.list}" var="item" begin="1" end="15">
+            <c:forEach items="${requestScope.list}" var="item">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
                     <p>${item.title}</p>
@@ -35,4 +35,7 @@
             </div>
         </c:otherwise>
     </c:choose>
+    <c:forEach var="i" begin="1" end="${requestScope.maxPage}">
+        <span><a href="/board/list?page=i">i</a></span>&nbsp;
+    </c:forEach>
 </div>
