@@ -16,7 +16,9 @@
 
     <select id="selProductDetail" resultType="BoardProductVo">
         SELECT *
-        FROM product_list
+        FROM product_list A
+        INNER JOIN t_board_sub_category B
+        ON A.category_num = B.isubcategory
         WHERE iboard = ${iboard}
     </select>
 

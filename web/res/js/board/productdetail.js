@@ -31,9 +31,10 @@
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
         const size = sizeBox.options[sizeBox.selectedIndex].text;
-        const ul = document.querySelector('#selecteditem');
+        const ul = document.querySelector('#selected_items');
         const li = document.createElement("li");
         ul.append(li);
+        li.className = 'selected_item';
         const colorSize = colorTxt.concat(size);
 
         if (isKeyExits(colorSizeObj, colorSize)) {
@@ -57,11 +58,13 @@
         listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
-        numMinusBtn.innerHTML = `-`
+        numMinusBtn.innerHTML = `-`;
+        numMinusBtn.className = 'increase_btn';
         const num = document.createElement('span');
         num.innerText = `${i}`;
         const numPlusBtn = document.createElement('button');
-        numPlusBtn.innerHTML = `+`
+        numPlusBtn.innerHTML = `+`;
+        numPlusBtn.className = 'increase_btn';
 
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
@@ -96,7 +99,8 @@
 
         //li 삭제
         const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = `X`;
+        removeBtn.innerHTML = 'X';
+        removeBtn.className = 'remove_btn';
         removeBtn.addEventListener('click', function() {
             li.parentNode.removeChild(li);
             delete colorSizeObj [`${colorSize}`];
