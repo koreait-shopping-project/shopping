@@ -77,6 +77,8 @@ textarea { resize: none; }
 
 .hidden { display: none; }
 
+.letter-spacing-0125rem { letter-spacing: 0.125rem; }
+
 .m-w {min-width: 600px;}
 
 .m-10 { margin: 10px; }
