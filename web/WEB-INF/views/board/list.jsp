@@ -12,6 +12,18 @@
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <c:set var="titleVal" value="Cart" />
+
+            <c:forEach var="item" items="${requestScope.cart}">
+                <p>제품 : <c:out value="${item.iboard}"/></p>
+                <p>컬러 : <c:out value="${item.color}"/></p>
+                <p>sm : <c:out value="${item.sm}"/></p>
+                <p>md : <c:out value="${item.md}"/></p>
+                <p>lg : <c:out value="${item.lg}"/></p>
+                <p>xl : <c:out value="${item.xl}"/></p>
+                <p>uid : <c:out value="${item.uid}"/></p>
+                <p>iuser : <c:out value="${item.iuser}"/></p>
+            </c:forEach>
+
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
         </c:when>
     </c:choose>
@@ -110,4 +122,3 @@
 
     </div>
 </div>
-
