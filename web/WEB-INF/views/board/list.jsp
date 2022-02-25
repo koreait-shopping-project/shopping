@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <div>
     <c:set var="titleVal" value="공지사항" />
     <c:set var="notIn" value="글이 없습니다."/>
@@ -16,22 +17,36 @@
             <c:forEach var="item" items="${requestScope.cart}">
                 <p><img src="${item.img_url_big}"></p>
                 <p>상품명 : <c:out value="${item.title}"/></p>
-                <p>가격 : <c:out value="${item.price}"/></p>
-                <p>컬러 : <c:out value="${item.color}"/></p>
-                <p>사이즈 :
+                <p>판매가 : <c:out value="${item.price}"/></p>
+                <span>컬러 : </span>
+                <c:choose>
+                    <c:when test="${item.color == 1}">
+                        흰색
+                    </c:when>
+                    <c:when test="${item.color == 2}">
+                        검정색
+                    </c:when>
+                    <c:when test="${item.color == 3}">
+                        회색
+                    </c:when>
+                </c:choose>
+                <div>사이즈 :
                     <c:if test="${item.sm !=0 && item.sm != null}">
-                        sm : <c:out value="${item.sm}"/>개
+                        <span>sm</span></div><div>수량 : <c:out value="${item.sm}"/>개</div>
+                        <div>총가격 : <fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</div>
                     </c:if>
                     <c:if test="${item.md !=0 && item.md != null}">
-                        md : <c:out value="${item.md}"/>개
+                        <span>md</span></div><div>수량 : <c:out value="${item.md}"/>개</div>
+                        <div>총가격 : <fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</div>
                     </c:if>
                     <c:if test="${item.lg !=0 && item.xl != null}">
-                        lg : <c:out value="${item.lg}"/>개
+                        <span>lg</span</div>><div>수량 : <c:out value="${item.lg}"/>개</div>
+                        <div>총가격 : <fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</div>
                     </c:if>
                     <c:if test="${item.xl !=0 && item.xl != null}">
-                        xl : <c:out value="${item.xl}"/>개
+                        <span>xl</span></div><div>수량 : <c:out value="${item.xl}"/>개</div>
+                        <div>총가격 : <fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</div>
                     </c:if>
-                </p>
             </c:forEach>
 
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
