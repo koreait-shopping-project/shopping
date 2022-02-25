@@ -8,7 +8,7 @@
         <img src="${requestScope.detail.img_url_big}">
     </section>
     <section id="detail_wrap">
-        <table>
+        <table id="detail_table">
             <tr>
                 <th>브랜드</th>
                 <td>${requestScope.detail.brand}</td>
@@ -22,17 +22,19 @@
                 <td>${requestScope.detail.subcategorynm}</td>
             </tr>
             <tr>
-                <th><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</th>
+                <th>가격</th>
+                <td class="blod"><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</td>
             </tr>
             <tr>
-                <td colspan="2">
+                <th>구분</th>
+                <td>
                     <c:if test="${requestScope.detail.gender == 1}">남성용</c:if>
                     <c:if test="${requestScope.detail.gender == 2}">여성용</c:if>
                     <c:if test="${requestScope.detail.gender == 3}">공용</c:if>
                 </td>
             </tr>
         </table>
-            <div id="detail_colorbox_wrap">
+            <div id="detail_box_wrap">
                 <select id="colorbox">
                     <option value="" selected disabled>컬러선택</option>
                     <c:forEach var="item" items="${requestScope.data}">
@@ -54,8 +56,8 @@
                 </select>
             </div>
         <form method="post" id="frmSubmit">
-            <div>
-                <ul id="selecteditem">
+            <div id="purchase_wrap">
+                <ul id="selected_items">
                     <c:set var="color" value="${color}"/>
                     <c:choose>
                         <c:when test="${color == 1}">
