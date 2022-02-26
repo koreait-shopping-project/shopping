@@ -4,8 +4,10 @@ import com.koreait.shopping.Const;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -147,4 +150,15 @@ public class UserController {
 
     @GetMapping("/review")
     public void review() {}
+
+    @PostMapping("/review")
+    public String reviewProc(UserReviewEntity entity, RedirectAttributes reAttr) {
+        int result = service.review(entity);
+        if (result == 0) {
+            reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
+            return "redirect:/user/review";
+        }
+        return "redirect:/user/mypage";
+    }
+
 }
