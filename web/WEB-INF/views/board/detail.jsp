@@ -32,7 +32,13 @@
             <td class=p-l-10 width="85%">${requestScope.data.writerNm}</td>
         </tr>
         <tr>
-            <th class="m-10" colspan="2"><c:out value="${data.ctnt}"/></th>
+
+            <th class="m-10" colspan="2">
+<%--                <textarea class="w-all h-all" style="border: none; min-height: 100px;" readonly><c:out value="${data.ctnt}"/></textarea>--%>
+                <div>
+                    <c:out value="${data.ctnt}"/>
+                </div>
+            </th>
         </tr>
     </table>
     <div ></div>

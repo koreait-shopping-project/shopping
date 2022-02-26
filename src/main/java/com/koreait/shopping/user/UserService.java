@@ -4,6 +4,7 @@ import com.koreait.shopping.UserUtils;
 
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,14 @@ public class UserService {
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
         utils.setLoginUser(entity);
         return mapper.insUser(copyEntity);
+    }
+
+    public int review(UserReviewEntity entity) {
+
+        entity.setIboard(utils.getLoginUserPk());
+        entity.setIuser(utils.getLoginUserPk());
+        System.out.println("entity : " + entity);
+        return mapper.insReview(entity);
     }
 
     //소셜 로그인시 이메일 체크
