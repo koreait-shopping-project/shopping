@@ -2,9 +2,11 @@ package com.koreait.shopping.board.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class BoardListEntity {
     private int iboard;
     private int icategory;

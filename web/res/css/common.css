@@ -3,7 +3,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font: 0.95em 'Roboto Condensed','Nanum Gothic',sans-serif,Dotum,AppleGothic,sans-serif; scroll-behavior: smooth; }
 
 body { width: 100%; padding-right: 0!important; overflow: inherit!important; }
-ul, ol, li { list-style: none; margin-bottom: 0; padding-left: 0;  }
+ul, ol, li { list-style: none; margin-bottom: 0; padding-left: 0; }
 a { text-decoration: none; }
 label { width: 100%; }
 th, td { margin : 10px 5px 20px 0; font-size: 14px;}
@@ -79,6 +79,8 @@ textarea { resize: none; }
 .h-auto { height: auto; }
 
 .hidden { display: none; }
+
+.letter-spacing-0125rem { letter-spacing: 0.125rem; }
 
 .m-w {min-width: 600px;}
 

@@ -50,3 +50,14 @@
     </c:if>
 </div>
 
+<div>
+    <c:if test="${sessionScope.loginUser != null}">
+        <div class="m-t-20">
+            <form id="cmtFrm">
+                <input type="text" name="ctnt">
+                <input type="button" id="btn_submit" value="댓글달기">
+            </form>
+        </div>
+    </c:if>
+    <div class="m-t-20" id="cmt_list"></div>
+</div>
