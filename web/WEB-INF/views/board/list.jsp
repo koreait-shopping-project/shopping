@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <c:set var="titleVal" value="공지사항" />
     <c:set var="notIn" value="글이 없습니다."/>
@@ -13,42 +14,44 @@
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <c:set var="titleVal" value="Cart" />
-
-            <c:forEach var="item" items="${requestScope.cart}">
-                <p><img src="${item.img_url_big}"></p>
-                <p>상품명 : <c:out value="${item.title}"/></p>
-                <p>판매가 : <c:out value="${item.price}"/></p>
-                <span>컬러 : </span>
-                <c:choose>
-                    <c:when test="${item.color == 1}">
-                        흰색
-                    </c:when>
-                    <c:when test="${item.color == 2}">
-                        검정색
-                    </c:when>
-                    <c:when test="${item.color == 3}">
-                        회색
-                    </c:when>
-                </c:choose>
-                <div>사이즈 :
-                    <c:if test="${item.sm !=0 && item.sm != null}">
-                        <span>sm</span></div><div>수량 : <c:out value="${item.sm}"/>개</div>
-                        <div>총가격 : <fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</div>
-                    </c:if>
-                    <c:if test="${item.md !=0 && item.md != null}">
-                        <span>md</span></div><div>수량 : <c:out value="${item.md}"/>개</div>
-                        <div>총가격 : <fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</div>
-                    </c:if>
-                    <c:if test="${item.lg !=0 && item.xl != null}">
-                        <span>lg</span</div>><div>수량 : <c:out value="${item.lg}"/>개</div>
-                        <div>총가격 : <fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</div>
-                    </c:if>
-                    <c:if test="${item.xl !=0 && item.xl != null}">
-                        <span>xl</span></div><div>수량 : <c:out value="${item.xl}"/>개</div>
-                        <div>총가격 : <fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</div>
-                    </c:if>
-            </c:forEach>
-
+        <%--ddddddddddddddddddddddddddddddddddddddd추가한 부분dddddddddddddddddddddddddddddddddddddd--%>
+            <form id="cartForm">
+            <table>
+                <thead>
+                    <tr>
+                        <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
+                        <th>상품 이미지</th>
+                        <th>상품명</th>
+                        <th>판매가</th>
+                        <th>컬러</th>
+                        <th>사이즈</th>
+                        <th>수량</th>
+                        <th>주문금액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="item" items="${requestScope.cart}">
+                    <tr>
+                        <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
+                        <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
+                        <td><c:out value="${item.title}"/></td>
+                        <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
+                        <td><c:choose>
+                            <c:when test="${item.color == 1}">흰색</c:when>
+                            <c:when test="${item.color == 2}">검정색</c:when>
+                            <c:when test="${item.color == 3}">회색</c:when></c:choose>
+                        </td>
+                        <c:if test="${item.sm !=0 && item.sm != null}"><td><span>sm</span></td><td><c:out value="${item.sm}"/></td><td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.md !=0 && item.md != null}"><td><span>md</span></td><td><c:out value="${item.md}"/></td><td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.lg !=0 && item.xl != null}"><td><span>lg</span></td><td><c:out value="${item.lg}"/></td><td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.xl !=0 && item.xl != null}"><td><span>xl</span></td><td><c:out value="${item.xl}"/></td><td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td></c:if>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+            </form>
+                <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
+            <%--ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--%>
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
         </c:when>
     </c:choose>
@@ -141,6 +144,7 @@
                 <div>
                     <a href="">전체상품주문</a>
                     <a href="">선택상품주문</a>
+                    <div>총합계 가격</div>
                 </div>
             </c:otherwise>
         </c:choose>

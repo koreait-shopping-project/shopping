@@ -24,15 +24,18 @@ import java.util.Map;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-    @Autowired private BoardService service;
+    @Autowired
+    private BoardService service;
 
-    @Autowired private UserUtils utils;
+    @Autowired
+    private UserUtils utils;
 
     @GetMapping("/main")
-    public void main(){}
+    public void main() {
+    }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, HttpServletRequest request, UserEntity entity){
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, HttpServletRequest request, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
@@ -44,7 +47,7 @@ public class BoardController {
             model.addAttribute(Const.LIST, service.selBoardList(dto));
         }
 
-        if(icategory == 3) {
+        if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
             System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
@@ -66,10 +69,11 @@ public class BoardController {
 
 
     @GetMapping("write")
-    public void write() {}
+    public void write() {
+    }
 
     @PostMapping("/write")
-    public String writeProc(Model model , BoardListEntity entity) {
+    public String writeProc(Model model, BoardListEntity entity) {
         int result = service.insBoard(entity);
         if (result != 1) {
             model.addAttribute(Const.MSG, Const.ERR_5);
@@ -113,12 +117,12 @@ public class BoardController {
         model.addAttribute(Const.DETAIL, entity);
 
         //컬러, 사이즈 리스트 가져오기
-        model.addAttribute(Const.DATA ,service.selDetailList(vo));
+        model.addAttribute(Const.DATA, service.selDetailList(vo));
         return "board/productdetail";
     }
 
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto){
+    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto) {
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);
         dto.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(dto));
@@ -134,42 +138,43 @@ public class BoardController {
     }
 
     @GetMapping("/purchase")
-    public void purchase(){}
+    public void purchase() {
+    }
 
     @PostMapping("/purchase")
-    public String purchaseProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+    public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
         System.out.println("바로구매로 이동했습니다");
         System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
-        for(int i = 0; i < listDto.getProductList().size(); i++) {
+        for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-        System.out.println( i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
-        System.out.println( i  + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
-        System.out.println( i  + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
-        System.out.println( i  + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
+            System.out.println(i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
+            System.out.println(i + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
+            System.out.println(i + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
+            System.out.println(i + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
 
             System.out.println("담긴 컬러값 : " + vo.getColor());
             System.out.println("담긴 iboard값 : " + vo.getIboard());
 
             switch (listDto.getProductList().get(i).getSize()) {
-                case "sm" :
+                case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
                     System.out.println("담긴 sm : " + vo.getSm());
                     service.updProductDetail(vo);
                     break;
-                case "md" :
+                case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.updProductDetail(vo);
                     System.out.println("담긴 md : " + vo.getMd());
                     break;
-                case "lg" :
+                case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
                     System.out.println("담긴 lg : " + vo.getLg());
                     service.updProductDetail(vo);
                     break;
-                case "xl" :
+                case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
                     System.out.println("담긴 xl : " + vo.getXl());
                     service.updProductDetail(vo);
@@ -180,13 +185,13 @@ public class BoardController {
     }
 
     @GetMapping("/cart")
-    public void cart(){
+    public void cart() {
     }
 
     @PostMapping("/cart")
-    public String cartProc(Model model, @ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request){
+    public String cartProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
         System.out.println("카트로 이동했습니다");
-        for(int i = 0; i < listDto.getProductList().size(); i++) {
+        for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
@@ -194,24 +199,36 @@ public class BoardController {
             vo.setUid(request.getParameter("uid"));
 
             switch (listDto.getProductList().get(i).getSize()) {
-                case "sm" :
+                case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
                     service.insCart(vo);
                     break;
-                case "md" :
+                case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.insCart(vo);
                     break;
-                case "lg" :
+                case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
                     service.insCart(vo);
                     break;
-                case "xl" :
+                case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
                     service.insCart(vo);
                     break;
             }
         }
         return "board/main";
+    }
+
+    @DeleteMapping("/cart/{icart}")
+    public Map<String, Integer> delCart(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] userArr = icart.split("_");
+        if(userArr != null && userArr.length>0){
+            for(int i=0 ; i<userArr.length ; i++){
+                result.put(Const.DELCART, service.delCart(Integer.parseInt(userArr[i])));
+            }
+        }
+        return result;
     }
 }

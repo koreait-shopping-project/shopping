@@ -18,4 +18,5 @@ public class BoardProductVo extends BoardProductEntity {
     private int itemNum;
     private String uid;
     private int iuser;
+    private int icart;
 }
