@@ -27,6 +27,10 @@
 
     const colorSizeObj = {};
     let listNum = 0;
+
+    const price = document.querySelector('.price_total').dataset.price;
+    let totalPrice = price;
+
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
@@ -46,9 +50,11 @@
         }
 
         let i = 1;
+
         li.innerHTML= `
             <span>컬러 : ${colorTxt}</span>
             <span>사이즈 : ${size}</span>
+            <span>price : ${totalPrice} </span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
@@ -57,13 +63,19 @@
         listNum++;
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
-        numMinusBtn.innerHTML = `-`;
-        numMinusBtn.className = 'increase_btn';
         const num = document.createElement('span');
-        num.innerText = `${i}`;
         const numPlusBtn = document.createElement('button');
+
+        numMinusBtn.innerHTML = `-`;
+        numMinusBtn.className = 'increase_minus';
+
+        num.innerHTML = `${i}`;
+        num.className = 'increase_num';
+
         numPlusBtn.innerHTML = `+`;
-        numPlusBtn.className = 'increase_btn';
+        numPlusBtn.className = 'increase_plus';
+
+        let itemNum = li.querySelector('#itemNum').value;
 
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
@@ -73,7 +85,9 @@
                 e.preventDefault();
                 i--;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = `${i}`;
+                totalPrice = `${price}` * `${i}`;
+                console.log(totalPrice);
             }
         });
 
@@ -83,12 +97,14 @@
                 numMinusBtn.disabled = false;
                 i++;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = `${i}`;
+                totalPrice = `${price}` * `${i}`;
             } else {
                 e.preventDefault();
                 i++;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = `${i}`;
+                totalPrice = `${price}` * `${i}`;
             }
         });
         li.appendChild(numMinusBtn);
@@ -120,13 +136,17 @@
         sizeBox.value='';
     }
 
+    function getTotal(){
+
+    }
+
     //버튼 변경
     function submitBtn(addr) {
         const form = document.querySelector(`#frmSubmit`);
-        if(addr == 'cart') {
+        if(addr === 'cart') {
             form.action = "/board/cart"
         }
-        else if (addr == 'purchase') {
+        else if (addr === 'purchase') {
             form.action = "/board/purchase"
         }
     }
