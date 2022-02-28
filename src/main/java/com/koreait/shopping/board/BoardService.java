@@ -76,6 +76,11 @@ public class BoardService {
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
     public List<BoardProductVo> selCart(UserEntity entity) {return mapper.selCart(entity);}
+    public int delCart(int icart) {
+        BoardProductVo vo = new BoardProductVo();
+        vo.setIcart(icart);
+        return mapper.delCart(vo);
+    }
 
     public BoardProductVo selSize(BoardProductVo vo) {
         return mapper.selSize(vo);
