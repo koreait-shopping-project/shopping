@@ -54,17 +54,21 @@
         li.innerHTML= `
             <span>컬러 : ${colorTxt}</span>
             <span>사이즈 : ${size}</span>
-            <span>price : ${totalPrice} </span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
+            <input id="totalPrice" name="productList[${listNum}].price" value="${totalPrice}" type="hidden">
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
-            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
+            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden"/>
         `;
         listNum++;
         // num(수량) +, - 버튼
+        const totalPriceTag = document.createElement('span');
         const numMinusBtn = document.createElement('button');
         const num = document.createElement('span');
         const numPlusBtn = document.createElement('button');
+
+        totalPriceTag.innerHTML = `price : ${totalPrice}`;
+        totalPriceTag.className = 'totalPriceTag';
 
         numMinusBtn.innerHTML = `-`;
         numMinusBtn.className = 'increase_minus';
@@ -85,9 +89,11 @@
                 e.preventDefault();
                 i--;
                 num.innerHTML = `${i}`;
-                itemNum = `${i}`;
-                totalPrice = `${price}` * `${i}`;
-                console.log(totalPrice);
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             }
         });
 
@@ -97,16 +103,23 @@
                 numMinusBtn.disabled = false;
                 i++;
                 num.innerHTML = `${i}`;
-                itemNum = `${i}`;
-                totalPrice = `${price}` * `${i}`;
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             } else {
                 e.preventDefault();
                 i++;
                 num.innerHTML = `${i}`;
-                itemNum = `${i}`;
-                totalPrice = `${price}` * `${i}`;
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             }
         });
+        li.appendChild(totalPriceTag);
         li.appendChild(numMinusBtn);
         li.appendChild(num);
         li.appendChild(numPlusBtn);
@@ -127,6 +140,22 @@
         reAllBox();
     });
 
+    const price_total = document.querySelector('.price_total');
+    const allPrice = document.createElement('div');
+    price_total.appendChild(allPrice);
+
+    function getAllPrice() {
+        let choices = document.getElementsByClassName('totalPriceTag');
+        console.log(choices);
+        let price = 0;
+        console.log(choices.length);
+        for (let i=0;choices.length;i++) {
+            console.log(choices[i].innerHTML.trim().split(':')[1]);
+            price = price + Number();
+        }
+        allPrice.innerHTML = `total : ${price}`
+    }
+
     function isKeyExits(colorSizeObj, colorSize) {
         return colorSizeObj[colorSize] !== undefined;
     }
@@ -134,10 +163,6 @@
     function reAllBox() {
         colorBox.value='';
         sizeBox.value='';
-    }
-
-    function getTotal(){
-
     }
 
     //버튼 변경

@@ -35,7 +35,45 @@
             </div>
         </c:otherwise>
     </c:choose>
-    <c:forEach var="i" begin="1" end="${requestScope.maxPage}">
-        <span><a href="/board/list?page=i">i</a></span>&nbsp;
-    </c:forEach>
+    <div align="center">
+        <!-- pagination -->
+        <ul class="pagination">
+            <!-- 이전 -->
+            <c:choose>
+                <c:when test="${pageMaker.prev} ">
+                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.startPage-1)}" class="paginate_button previous">
+                        이전
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.startPage-1) }" class="paginate_button previous">
+                        이전
+                    </a>
+                </c:otherwise>
+            </c:choose>
+
+            <!-- 페이지 번호 -->
+            <c:forEach var="idx" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                <a href="/notice/noticeList.do${pageMaker.makeSearch(idx)}">
+
+                        ${idx}
+
+                </a>
+            </c:forEach>
+
+            <!-- 이후 -->
+            <c:choose>
+                <c:when test="${pageMaker.next}">
+                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.endPage+1)}" class="paginate_button next">
+                        다음
+                    </a>
+                </c:when>
+                <c:otherwise>
+                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.endPage+1)}" class="paginate_button next disabled">
+                        다음
+                    </a>
+                </c:otherwise>
+            </c:choose>
+            <span class="current">22/33</span></ul>
+    </div>
 </div>
