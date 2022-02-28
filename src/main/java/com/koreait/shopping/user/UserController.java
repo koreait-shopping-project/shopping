@@ -161,4 +161,12 @@ public class UserController {
         return "redirect:/user/mypage";
     }
 
+    @GetMapping("/order")
+    public void order() {
+    }
+
+    @PostMapping("/order")
+    public String orderProc() {
+        return "redirect:/user/order";
+    }
 }
