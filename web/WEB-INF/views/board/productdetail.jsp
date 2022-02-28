@@ -56,7 +56,7 @@
                 </select>
             </div>
         <form method="post" id="frmSubmit">
-            <div id="purchase_wrap">
+            <div id="purchase_wrap" style="position: relative;">
                 <ul id="selected_items">
                     <c:set var="color" value="${color}"/>
                     <c:choose>
@@ -73,6 +73,7 @@
                 </ul>
                 <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
                 <input type="hidden" name="uid" value="${sessionScope.loginUser.uid}">
+                <div class="price_total" data-price="${requestScope.detail.price}">Total : <fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</div>
             </div>
             <input type="submit" value="바로구매" href="/board/purchase" onclick="submitBtn('purchase')">
             <input type="submit" value="장바구니" href="/board/cart" onclick="submitBtn('cart')">
