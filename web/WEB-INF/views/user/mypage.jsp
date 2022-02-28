@@ -8,6 +8,8 @@
     <c:choose>
         <c:when test="${sessionScope.loginUser != null}">
             <a href="/user/checkpw">회원 정보 수정</a>
+            <a href="#">구매 목록</a>
+            <a href="/user/review">리뷰</a>
         </c:when>
     </c:choose>
 </div>

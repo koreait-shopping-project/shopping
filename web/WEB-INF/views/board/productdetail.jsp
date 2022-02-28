@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <th>가격</th>
-                <td class="blod"><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</td>
+                <td><span class="bold letter-spacing-0125rem"><fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</span></td>
             </tr>
             <tr>
                 <th>구분</th>
@@ -43,7 +43,7 @@
                                 흰색
                             </c:if>
                             <c:if test="${item.color == 2}">
-                                검정색
+                                검정
                             </c:if>
                             <c:if test="${item.color == 3}">
                                 회색
@@ -64,7 +64,7 @@
                             흰색
                         </c:when>
                         <c:when test="${color == 2}">
-                            검정색
+                            검정
                         </c:when>
                         <c:when test="${color == 3}">
                             회색

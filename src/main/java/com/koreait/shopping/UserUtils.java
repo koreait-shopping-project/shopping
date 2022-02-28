@@ -4,6 +4,7 @@ import com.koreait.shopping.user.model.entity.UserEntity;;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.security.SecureRandom;
 import java.util.Date;

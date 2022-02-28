@@ -33,7 +33,6 @@
         const size = sizeBox.options[sizeBox.selectedIndex].text;
         const ul = document.querySelector('#selected_items');
         const li = document.createElement("li");
-        ul.append(li);
         li.className = 'selected_item';
         const colorSize = colorTxt.concat(size);
 
@@ -42,14 +41,14 @@
             reAllBox();
             return;
         } else {
+            ul.append(li);
             colorSizeObj[colorSize] = colorSize;
         }
 
         let i = 1;
-
         li.innerHTML= `
-            <span>사이즈 : ${size}</span>
             <span>컬러 : ${colorTxt}</span>
+            <span>사이즈 : ${size}</span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>

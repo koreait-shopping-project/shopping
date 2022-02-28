@@ -113,6 +113,7 @@
                 }
                 e.preventDefault();
             }
+            alert('회원가입에 성공하였습니다.');
         });
 
         const uidElem = joinFrmElem.querySelector('#uid');
@@ -165,7 +166,7 @@
             });
         }
     }
-    //
+    //전체선택
     const all = document.querySelector('#all');
     function selectAll(selectAll)  {
         const checkboxes
