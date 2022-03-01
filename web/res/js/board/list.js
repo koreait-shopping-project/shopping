@@ -48,14 +48,56 @@
         }
         const agree=confirm("삭제 하시겠습니까?");
         if (agree){
+
+            document.querySelectorAll("input[name=RowCheck]:checked")
+                .forEach(function (item)
+                {item.parentElement.parentElement.remove();});
+
             myFetch.delete(`/board/cart/${icart}`, data => {
-                if(data.result) {
-                    // tr.remove();
-                    console.log('이제 지웁시다!')
+                if(data) {
+                //data 안넘어옴, 넘어왔을 때 위에 세 줄 실행되도록 옮기기
                 } else {
                     alert('장바구니가 비었습니다.');
                 }
             });
         }
     }
+
+    // num(수량) +, - 버튼
+    document.querySelectorAll('.upDown').forEach(
+        function(item, idx){
+            //수량 감소 화살표 클릭
+            item.children[0].addEventListener('click', function(){
+                console.log('다운버튼');
+                const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
+                const size = item.parentElement.querySelector("input[name=size]").value;
+
+                const param = {
+                    'icart' : icart,
+                    'size' : size
+                }
+
+                myFetch.post('/board/dCart', data => {
+                    const dataResult = data.result;
+                }, param);
+            });
+
+            //수량 증가 화살표 클릭
+            item.children[1].addEventListener('click', function(){
+                console.log('업버튼');
+                const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
+                const size = item.parentElement.querySelector("input[name=size]").value;
+                
+                const param = {
+                    'icart' : icart,
+                    'size' : size
+                }
+
+                myFetch.post('/board/pCart', data => {
+                    const dataResult = data.result;
+                }, param);
+
+            });
+        }
+    );
 }
