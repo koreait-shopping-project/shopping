@@ -16,75 +16,39 @@
             <c:set var="titleVal" value="Cart" />
         <%--ddddddddddddddddddddddddddddddddddddddd추가한 부분dddddddddddddddddddddddddddddddddddddd--%>
             <form id="cartForm">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
-                            <th>상품 이미지</th>
-                            <th>상품명</th>
-                            <th>판매가</th>
-                            <th>컬러</th>
-                            <th>사이즈</th>
-                            <th>수량</th>
-                            <th>주문금액</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="item" items="${requestScope.cart}">
-                        <tr>
-                            <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
-                            <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
-                            <td><c:out value="${item.title}"/></td>
-                            <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
-                            <td><c:choose>
-                                <c:when test="${item.color == 1}">흰색</c:when>
-                                <c:when test="${item.color == 2}">검정색</c:when>
-                                <c:when test="${item.color == 3}">회색</c:when></c:choose>
-                            </td>
-
-                            <c:if test="${item.sm !=0 && item.sm != null}">
-                            <td>sm<input hidden name="size" value="sm"></td>
-                            <td class="upDown">
-                                <input type="button" value="-" class="numMinusBtn">
-                                <c:out value="${item.sm}"/>
-                                <input type="button" value="+" class="numPlusBtn">
-                            </td>
-                            <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
-                            </c:if>
-
-                            <c:if test="${item.md !=0 && item.md != null}">
-                            <td>md<input hidden name="size" value="md"></td>
-                            <td class="upDown">
-                                <input type="button" value="-" class="numMinusBtn">
-                                <c:out value="${item.md}"/>
-                                <input type="button" value="+" class="numPlusBtn">
-                            </td>
-                            <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
-                            </c:if>
-
-                            <c:if test="${item.lg !=0 && item.xl != null}">
-                            <td>lg<input hidden name="size" value="lg"></td>
-                            <td class="upDown">
-                                <input type="button" value="-" class="numMinusBtn">
-                                <c:out value="${item.lg}"/>
-                                <input type="button" value="+" class="numPlusBtn">
-                            </td>
-                            <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
-                            </c:if>
-
-                            <c:if test="${item.xl !=0 && item.xl != null}">
-                            <td>xl<input hidden name="size" value="xl"></td>
-                            <td class="upDown">
-                                <input type="button" value="-" class="numMinusBtn">
-                                <c:out value="${item.xl}"/>
-                                <input type="button" value="+" class="numPlusBtn">
-                            </td>
-                            <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
-                            </c:if>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+            <table>
+                <thead>
+                    <tr>
+                        <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
+                        <th>상품 이미지</th>
+                        <th>상품명</th>
+                        <th>판매가</th>
+                        <th>컬러</th>
+                        <th>사이즈</th>
+                        <th>수량</th>
+                        <th>주문금액</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="item" items="${requestScope.cart}">
+                    <tr>
+                        <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
+                        <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
+                        <td><c:out value="${item.title}"/></td>
+                        <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
+                        <td><c:choose>
+                            <c:when test="${item.color == 1}">흰색</c:when>
+                            <c:when test="${item.color == 2}">검정색</c:when>
+                            <c:when test="${item.color == 3}">회색</c:when></c:choose>
+                        </td>
+                        <c:if test="${item.sm !=0 && item.sm != null}"><td><span>sm</span></td><td><c:out value="${item.sm}"/></td><td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.md !=0 && item.md != null}"><td><span>md</span></td><td><c:out value="${item.md}"/></td><td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.lg !=0 && item.xl != null}"><td><span>lg</span></td><td><c:out value="${item.lg}"/></td><td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td></c:if>
+                        <c:if test="${item.xl !=0 && item.xl != null}"><td><span>xl</span></td><td><c:out value="${item.xl}"/></td><td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td></c:if>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
             </form>
                 <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
             <%--ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--%>
@@ -148,7 +112,7 @@
                         </table>
                     </c:otherwise>
                 </c:choose>
-                <div>
+                <div id="go_write">
                     <c:choose>
                         <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
                             <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
@@ -160,16 +124,16 @@
                 </div>
 
                 <div>페이징이다</div>
-                <div class="m-20 font-size-14">
-                    <form action="/board/list/${requestScope.icategory}" method="get" >
-                        <span>검색어</span>
+                <div id="list_search_wrap">
+                    <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
+                        <span class="color-gray">검색어</span>
                         <select name="searchType">
                             <option value="1" ${requestScope.searchType == 1 ? 'selected' : ''}>제목</option>
                             <option value="2" ${requestScope.searchType == 2 ? 'selected' : ''}>내용</option>
                             <option value="3" ${requestScope.searchType == 3 ? 'selected' : ''}>글쓴이</option>
                         </select>
-                        <input class="w-200" type="search" name="searchText">
-                        <input class="bolder-p b-radius bc-black color-white m-10" type="submit" value="찾기">
+                        <input type="search" name="searchText">
+                        <input class="bc-black color-white" type="submit" value="찾기">
                     </form>
                 </div>
             </c:when>
@@ -187,3 +151,4 @@
 
     </div>
 </div>
+

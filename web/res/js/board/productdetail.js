@@ -27,6 +27,10 @@
 
     const colorSizeObj = {};
     let listNum = 0;
+
+    const price = document.querySelector('.price_total').dataset.price;
+    let totalPrice = price;
+
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
@@ -46,24 +50,36 @@
         }
 
         let i = 1;
+
         li.innerHTML= `
             <span>컬러 : ${colorTxt}</span>
             <span>사이즈 : ${size}</span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
+            <input id="totalPrice" name="productList[${listNum}].price" value="${totalPrice}" type="hidden">
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
-            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden">
+            <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden"/>
         `;
         listNum++;
         // num(수량) +, - 버튼
+        const totalPriceTag = document.createElement('span');
         const numMinusBtn = document.createElement('button');
-        numMinusBtn.innerHTML = `-`;
-        numMinusBtn.className = 'increase_btn';
         const num = document.createElement('span');
-        num.innerText = `${i}`;
         const numPlusBtn = document.createElement('button');
+
+        totalPriceTag.innerHTML = `price : ${totalPrice}`;
+        totalPriceTag.className = 'totalPriceTag';
+
+        numMinusBtn.innerHTML = `-`;
+        numMinusBtn.className = 'increase_minus';
+
+        num.innerHTML = `${i}`;
+        num.className = 'increase_num';
+
         numPlusBtn.innerHTML = `+`;
-        numPlusBtn.className = 'increase_btn';
+        numPlusBtn.className = 'increase_plus';
+
+        let itemNum = li.querySelector('#itemNum').value;
 
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
@@ -73,7 +89,11 @@
                 e.preventDefault();
                 i--;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             }
         });
 
@@ -83,14 +103,23 @@
                 numMinusBtn.disabled = false;
                 i++;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             } else {
                 e.preventDefault();
                 i++;
                 num.innerHTML = `${i}`;
-                li.querySelector('#itemNum').value = `${i}`;
+                itemNum = i;
+                totalPrice = price * i;
+                totalPriceTag.innerHTML = `price : ${totalPrice}`;
+                totalPrice = price
+                getAllPrice();
             }
         });
+        li.appendChild(totalPriceTag);
         li.appendChild(numMinusBtn);
         li.appendChild(num);
         li.appendChild(numPlusBtn);
@@ -111,6 +140,22 @@
         reAllBox();
     });
 
+    const price_total = document.querySelector('.price_total');
+    const allPrice = document.createElement('div');
+    price_total.appendChild(allPrice);
+
+    function getAllPrice() {
+        let choices = document.getElementsByClassName('totalPriceTag');
+        console.log(choices);
+        let price = 0;
+        console.log(choices.length);
+        for (let i=0;choices.length;i++) {
+            console.log(choices[i].innerHTML.trim().split(':')[1]);
+            price = price + Number();
+        }
+        allPrice.innerHTML = `total : ${price}`
+    }
+
     function isKeyExits(colorSizeObj, colorSize) {
         return colorSizeObj[colorSize] !== undefined;
     }
@@ -123,10 +168,10 @@
     //버튼 변경
     function submitBtn(addr) {
         const form = document.querySelector(`#frmSubmit`);
-        if(addr == 'cart') {
+        if(addr === 'cart') {
             form.action = "/board/cart"
         }
-        else if (addr == 'purchase') {
+        else if (addr === 'purchase') {
             form.action = "/board/purchase"
         }
     }
