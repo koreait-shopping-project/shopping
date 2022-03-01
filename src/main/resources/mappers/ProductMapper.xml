@@ -40,48 +40,24 @@
 
     <update id="updProductDetail">
         UPDATE product_detail
-        <if test=" sm != null and sm !=0 ">
-            SET sm = sm - ${sm}
-        </if>
-        <if test=" md != null and md !=0 ">
-            SET md = md - ${md}
-        </if>
-        <if test=" lg != null and lg !=0 ">
-            SET lg = lg - ${lg}
-        </if>
-        <if test=" xl != null and xl !=0 ">
-            SET xl = xl - ${xl}
-        </if>
+        <if test=" sm != null and sm !=0 ">SET sm = sm - ${sm}</if>
+        <if test=" md != null and md !=0 ">SET md = md - ${md}</if>
+        <if test=" lg != null and lg !=0 ">SET lg = lg - ${lg}</if>
+        <if test=" xl != null and xl !=0 ">SET xl = xl - ${xl}</if>
         WHERE iboard = ${iboard} AND color = ${color}
     </update>
 
     <insert id="insCart">
         insert into cart(iboard, uid, color,
-        <if test=" sm != null and sm !=0 ">
-            sm
-        </if>
-        <if test=" md != null and md !=0 ">
-            md
-        </if>
-        <if test=" lg != null and lg !=0 ">
-            lg
-        </if>
-        <if test=" xl != null and xl !=0 ">
-            xl
-        </if> )
+        <if test=" sm != null and sm !=0 ">sm</if>
+        <if test=" md != null and md !=0 ">md</if>
+        <if test=" lg != null and lg !=0 ">lg</if>
+        <if test=" xl != null and xl !=0 ">xl</if>)
         VALUES (${iboard}, #{uid}, ${color},
-        <if test=" sm != null and sm !=0 ">
-        ${sm}
-        </if>
-        <if test=" md != null and md !=0 ">
-        ${md}
-        </if>
-        <if test=" lg != null and lg !=0 ">
-        ${lg}
-        </if>
-        <if test=" xl != null and xl !=0 ">
-        ${xl}
-        </if> )
+        <if test=" sm != null and sm !=0 ">${sm}</if>
+        <if test=" md != null and md !=0 ">${md}</if>
+        <if test=" lg != null and lg !=0 ">${lg}</if>
+        <if test=" xl != null and xl !=0 ">${xl}</if>)
     </insert>
 
     <select id="selCart" resultType="BoardProductVo">
@@ -103,4 +79,21 @@
         WHERE title LIKE '%${title}%'
         ORDER BY iboard DESC
     </select>
+
+    <update id="updCartUp">
+        UPDATE cart
+        <if test=" sm != null and sm !=0 ">SET sm = sm + 1</if>
+        <if test=" md != null and md !=0 ">SET md = md + 1</if>
+        <if test=" lg != null and lg !=0 ">SET lg = lg + 1</if>
+        <if test=" xl != null and xl !=0 ">SET xl = xl + 1</if>
+        WHERE icart = ${icart}
+    </update>
+    <update id="updCartDown">
+        UPDATE cart
+        <if test=" sm != null and sm !=0 ">SET sm = sm - 1</if>
+        <if test=" md != null and md !=0 ">SET md = md - 1</if>
+        <if test=" lg != null and lg !=0 ">SET lg = lg - 1</if>
+        <if test=" xl != null and xl !=0 ">SET xl = xl - 1</if>
+        WHERE icart = ${icart}
+    </update>
 </mapper>

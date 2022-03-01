@@ -82,6 +82,14 @@ public class BoardService {
         return mapper.delCart(vo);
     }
 
+    public int updCartUp(BoardProductVo vo) {
+        return mapper.updCartUp(vo);
+    }
+
+    public int updCartDown(BoardProductVo vo) {
+        return mapper.updCartDown(vo);
+    }
+
     public BoardProductVo selSize(BoardProductVo vo) {
         return mapper.selSize(vo);
     }
