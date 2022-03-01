@@ -6,6 +6,7 @@ import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
+import com.koreait.shopping.board.model.entity.BoardCmtEntity;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
@@ -226,8 +227,57 @@ public class BoardController {
         String[] userArr = icart.split("_");
         if(userArr != null && userArr.length>0){
             for(int i=0 ; i<userArr.length ; i++){
-                result.put(Const.DELCART, service.delCart(Integer.parseInt(userArr[i])));
+                service.delCart(Integer.parseInt(userArr[i]));
             }
+            result.put(Const.RESULT, 1);
+        }
+        return result;
+    }
+
+    @PostMapping("/pCart")
+    public Map<String, Integer> updCartUp(@RequestBody BoardProductVo vo) {
+        Map<String, Integer> result = new HashMap<>();
+        switch (vo.getSize()) {
+            case "sm":
+                vo.setSm(1);
+                result.put(Const.RESULT, service.updCartUp(vo));
+                break;
+            case "md":
+                vo.setMd(1);
+                result.put(Const.RESULT, service.updCartUp(vo));
+                break;
+            case "lg":
+                vo.setLg(1);
+                result.put(Const.RESULT, service.updCartUp(vo));
+                break;
+            case "xl":
+                vo.setXl(1);
+                result.put(Const.RESULT, service.updCartUp(vo));
+                break;
+        }
+        return result;
+    }
+
+    @PostMapping("/dCart")
+    public Map<String, Integer> updCartDown(@RequestBody BoardProductVo vo) {
+        Map<String, Integer> result = new HashMap<>();
+        switch (vo.getSize()) {
+            case "sm":
+                vo.setSm(1);
+                result.put(Const.RESULT, service.updCartDown(vo));
+                break;
+            case "md":
+                vo.setMd(1);
+                result.put(Const.RESULT, service.updCartDown(vo));
+                break;
+            case "lg":
+                vo.setLg(1);
+                result.put(Const.RESULT, service.updCartDown(vo));
+                break;
+            case "xl":
+                vo.setXl(1);
+                result.put(Const.RESULT, service.updCartDown(vo));
+                break;
         }
         return result;
     }
