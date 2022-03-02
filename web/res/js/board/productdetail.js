@@ -26,15 +26,19 @@
     });
 
     const colorSizeObj = {};
-    let listNum = 0;
 
-    const price = document.querySelector('.price_total').dataset.price;
-    let totalPrice = price;
+    let totalPrice = document.querySelector('#purchase_wrap').dataset.price;
+    const allPrice = document.querySelector('#allPrice');
+
+    let listNum = 0;
+    //전체 수량
+    let totalCnt = 0;
 
     sizeBox.addEventListener('change', (e) => {
         const color = colorBox.options[colorBox.selectedIndex].value;
         const colorTxt = colorBox.options[colorBox.selectedIndex].text;
         const size = sizeBox.options[sizeBox.selectedIndex].text;
+        const price = document.querySelector('#purchase_wrap').dataset.price;
         const ul = document.querySelector('#selected_items');
         const li = document.createElement("li");
         li.className = 'selected_item';
@@ -50,36 +54,33 @@
         }
 
         let i = 1;
-
         li.innerHTML= `
             <span>컬러 : ${colorTxt}</span>
             <span>사이즈 : ${size}</span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
-            <input id="totalPrice" name="productList[${listNum}].price" value="${totalPrice}" type="hidden">
+            <input id="price" name="productList[${listNum}].price" value="${totalPrice}" type="hidden"/>
             <input id="itemNum" name="productList[${listNum}].itemNum" value="${i}" type="hidden"/>
             <input id="iboard" name="productList[${listNum}].iboard" value="${iboard}" type="hidden"/>
         `;
         listNum++;
+        totalCnt++;
+
+        //가격
+        const priceVo = document.createElement('div');
+        priceVo.innerHTML = `가격 : ${priceToString(totalPrice)}원`;
         // num(수량) +, - 버튼
-        const totalPriceTag = document.createElement('span');
         const numMinusBtn = document.createElement('button');
-        const num = document.createElement('span');
-        const numPlusBtn = document.createElement('button');
-
-        totalPriceTag.innerHTML = `price : ${totalPrice}`;
-        totalPriceTag.className = 'totalPriceTag';
-
         numMinusBtn.innerHTML = `-`;
         numMinusBtn.className = 'increase_minus';
 
+        const num = document.createElement('span');
         num.innerHTML = `${i}`;
         num.className = 'increase_num';
 
+        const numPlusBtn = document.createElement('button');
         numPlusBtn.innerHTML = `+`;
         numPlusBtn.className = 'increase_plus';
-
-        let itemNum = li.querySelector('#itemNum').value;
 
         numMinusBtn.addEventListener('click', function(e) {
             if (i === 1) {
@@ -89,11 +90,16 @@
                 e.preventDefault();
                 i--;
                 num.innerHTML = `${i}`;
-                itemNum = i;
-                totalPrice = price * i;
-                totalPriceTag.innerHTML = `price : ${totalPrice}`;
-                totalPrice = price
-                getAllPrice();
+                li.querySelector('#itemNum').value = `${i}`;
+
+                totalPrice = totalPrice * i;
+                priceVo.innerHTML = `가격 : ${priceToString(totalPrice)}원`;
+                li.querySelector('#price').value = `${totalPrice}`;
+                totalPrice = price;
+
+                totalCnt--;
+
+                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
             }
         });
 
@@ -103,23 +109,33 @@
                 numMinusBtn.disabled = false;
                 i++;
                 num.innerHTML = `${i}`;
-                itemNum = i;
-                totalPrice = price * i;
-                totalPriceTag.innerHTML = `price : ${totalPrice}`;
-                totalPrice = price
-                getAllPrice();
+                li.querySelector('#itemNum').value = `${i}`;
+
+                totalPrice = totalPrice * i;
+                priceVo.innerHTML = `가격 : ${priceToString(totalPrice)}원`;
+                li.querySelector('#price').value = `${totalPrice}`;
+                totalPrice = price;
+
+                totalCnt++;
+
+                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
             } else {
                 e.preventDefault();
                 i++;
                 num.innerHTML = `${i}`;
-                itemNum = i;
-                totalPrice = price * i;
-                totalPriceTag.innerHTML = `price : ${totalPrice}`;
-                totalPrice = price
-                getAllPrice();
+                li.querySelector('#itemNum').value = `${i}`;
+
+                totalPrice = totalPrice * i;
+                priceVo.innerHTML = `가격 : ${priceToString(totalPrice)}원`;
+                li.querySelector('#price').value = `${totalPrice}`;
+                totalPrice = price;
+
+                totalCnt++;
+
+                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
             }
         });
-        li.appendChild(totalPriceTag);
+        li.appendChild(priceVo);
         li.appendChild(numMinusBtn);
         li.appendChild(num);
         li.appendChild(numPlusBtn);
@@ -132,28 +148,25 @@
         removeBtn.addEventListener('click', function() {
             li.parentNode.removeChild(li);
             delete colorSizeObj [`${colorSize}`];
+            totalCnt = totalCnt - Number(li.querySelector('#itemNum').value);
+            allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
         });
         li.appendChild(removeBtn);
-
+        //사이즈 선택후 options 첫번째만 보이게함
         sizeBox.options.length = 1;
+
+        allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
 
         reAllBox();
     });
 
-    const price_total = document.querySelector('.price_total');
-    const allPrice = document.createElement('div');
-    price_total.appendChild(allPrice);
-
-    function getAllPrice() {
-        let choices = document.getElementsByClassName('totalPriceTag');
-        console.log(choices);
-        let price = 0;
-        console.log(choices.length);
-        for (let i=0;choices.length;i++) {
-            console.log(choices[i].innerHTML.trim().split(':')[1]);
-            price = price + Number();
-        }
-        allPrice.innerHTML = `total : ${price}`
+    //전체 가격
+    function allPlusPrice(price, totalCnt) {
+        return priceToString(price * totalCnt);
+    }
+    //천단위 콤마 정규식
+    function priceToString(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
     function isKeyExits(colorSizeObj, colorSize) {
@@ -168,10 +181,10 @@
     //버튼 변경
     function submitBtn(addr) {
         const form = document.querySelector(`#frmSubmit`);
-        if(addr === 'cart') {
+        if(addr == 'cart') {
             form.action = "/board/cart"
         }
-        else if (addr === 'purchase') {
+        else if (addr == 'purchase') {
             form.action = "/board/purchase"
         }
     }

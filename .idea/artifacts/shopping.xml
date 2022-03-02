@@ -1,8 +1,7 @@
 <component name="ArtifactManager">
-  <artifact type="exploded-war" name="shopping:Web exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/shopping_Web_exploded</output-path>
-    <root id="root">
-      <element id="javaee-facet-resources" facet="shopping/web/Web" />
+  <artifact type="war" name="shopping">
+    <output-path>$PROJECT_DIR$/out/artifacts/shopping</output-path>
+    <root id="archive" name="shopping.war">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="shopping" />
@@ -48,6 +47,7 @@
           <element id="library" level="project" name="Maven: commons-io:commons-io:2.2" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="shopping/web/Web" />
     </root>
   </artifact>
 </component>
