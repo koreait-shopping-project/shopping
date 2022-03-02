@@ -144,20 +144,20 @@ public class BoardController {
 
     @PostMapping("/purchase")
     public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
-        System.out.println("바로구매로 이동했습니다");
-        System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
+//        System.out.println("바로구매로 이동했습니다");
+//        System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-            System.out.println(i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
-            System.out.println(i + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
-            System.out.println(i + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
-            System.out.println(i + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
-
-            System.out.println("담긴 컬러값 : " + vo.getColor());
-            System.out.println("담긴 iboard값 : " + vo.getIboard());
+//            System.out.println(i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
+//            System.out.println(i + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
+//            System.out.println(i + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
+//            System.out.println(i + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
+//
+//            System.out.println("담긴 컬러값 : " + vo.getColor());
+//            System.out.println("담긴 iboard값 : " + vo.getIboard());
 
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
