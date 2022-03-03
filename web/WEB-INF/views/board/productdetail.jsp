@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <div id="detail_container">
     <section id="detail_img_wrap">
         <img src="${requestScope.detail.img_url_big}">
@@ -34,29 +33,31 @@
                 </td>
             </tr>
         </table>
-            <div id="detail_box_wrap">
-                <select id="colorbox">
-                    <option value="" selected disabled>컬러선택</option>
-                    <c:forEach var="item" items="${requestScope.data}">
-                        <option value="${item.color}">
-                            <c:if test="${item.color == 1}">
-                                흰색
-                            </c:if>
-                            <c:if test="${item.color == 2}">
-                                검정
-                            </c:if>
-                            <c:if test="${item.color == 3}">
-                                회색
-                            </c:if>
-                        </option>
-                    </c:forEach>
-                </select>
-                <select id="sizebox">
-                    <option value="" selected disabled>사이즈선택</option>
-                </select>
-            </div>
+
+        <div id="detail_box_wrap">
+            <select id="colorbox">
+                <option value="" selected disabled>컬러선택</option>
+                <c:forEach var="item" items="${requestScope.data}">
+                    <option value="${item.color}">
+                        <c:if test="${item.color == 1}">
+                            흰색
+                        </c:if>
+                        <c:if test="${item.color == 2}">
+                            검정
+                        </c:if>
+                        <c:if test="${item.color == 3}">
+                            회색
+                        </c:if>
+                    </option>
+                </c:forEach>
+            </select>
+            <select id="sizebox">
+                <option value="" selected disabled>사이즈선택</option>
+            </select>
+        </div>
+
         <form method="post" id="frmSubmit">
-            <div id="purchase_wrap" style="position: relative;">
+            <div id="purchase_wrap" style="position: relative;" data-price="${requestScope.detail.price}">
                 <ul id="selected_items">
                     <c:set var="color" value="${color}"/>
                     <c:choose>
@@ -73,10 +74,10 @@
                 </ul>
                 <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
                 <input type="hidden" name="uid" value="${sessionScope.loginUser.uid}">
-                <div class="price_total" data-price="${requestScope.detail.price}">Total : <fmt:formatNumber value="${requestScope.detail.price}" pattern="#,###"/>원</div>
             </div>
             <input type="submit" value="바로구매" href="/board/purchase" onclick="submitBtn('purchase')">
             <input type="submit" value="장바구니" href="/board/cart" onclick="submitBtn('cart')">
         </form>
+        <div id="allPrice">TOTAL : 0원</div>
     </section>
 </div>
