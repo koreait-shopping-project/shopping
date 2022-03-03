@@ -210,10 +210,10 @@ public class BoardController {
     @ResponseBody
     public Map<String, Integer> delCart(@PathVariable String icart) {
         Map<String, Integer> result = new HashMap<>();
-        String[] userArr = icart.split("_");
-        if(userArr != null && userArr.length>0){
-            for(int i=0 ; i<userArr.length ; i++){
-                service.delCart(Integer.parseInt(userArr[i]));
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.delCart(Integer.parseInt(icartArr[i]));
             }
             result.put(Const.RESULT, 1);
         }
@@ -276,5 +276,19 @@ public class BoardController {
                 return result;
         }
         return null;
+    }
+
+    @PutMapping("/selected/{icart}")
+    @ResponseBody
+    public Map<String, Integer> order(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.selectedCart(Integer.parseInt(icartArr[i]));
+            }
+            result.put(Const.RESULT, 1);
+        }
+        return result;
     }
 }

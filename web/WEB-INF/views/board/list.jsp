@@ -87,6 +87,7 @@
                 </table>
             </form>
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
+            <div><input type="button" value="선택주문" onclick="order()"></div>
             <%--ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--%>
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
         </c:when>

@@ -181,6 +181,7 @@
                 <hr>
                 <div>주문상품</div>
                 <div>TODO</div>
+                <div id="itemList">상품리스트</div>
                 <hr>
                 <div>결제수단</div>
                 <label class="w-auto">

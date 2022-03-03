@@ -27,23 +27,22 @@
             }
         }
     }
-
+    //선택 삭제
     function itemDel(){
         let icart = "";
-        const memberChk = document.getElementsByName("RowCheck");
-        let chked = false;
+        const itemChk = document.getElementsByName("RowCheck");
         let indexid = false;
-        for(let i=0; i < memberChk.length; i++){
-            if(memberChk[i].checked){
+        for(let i=0; i < itemChk.length; i++){
+            if(itemChk[i].checked){
                 if(indexid){
                     icart = icart + '_';
                 }
-                icart = icart + memberChk[i].value;
+                icart = icart + itemChk[i].value;
                 indexid = true;
             }
         }
         if(!indexid){
-            alert("삭제할 사용자를 체크해 주세요");
+            alert("삭제할 제품을 선택해주세요");
             return;
         }
         const agree=confirm("삭제 하시겠습니까?");
@@ -55,6 +54,36 @@
                         {item.parentElement.parentElement.remove();});
                 } else {
                     alert('장바구니가 비었습니다.');
+                }
+            });
+        }
+    }
+
+    //선택 주문
+    function order(){
+        let icart = "";
+        const itemChk = document.getElementsByName("RowCheck");
+        let indexid = false;
+        for(let i=0; i < itemChk.length; i++){
+            if(itemChk[i].checked){
+                if(indexid){
+                    icart = icart + '_';
+                }
+                icart = icart + itemChk[i].value;
+                indexid = true;
+            }
+        }
+        if(!indexid){
+            alert("구매할 제품을 선택해주세요");
+            return;
+        }
+        const agree=confirm("구매하시겠습니까?");
+        if (agree){
+            myFetch.put(`/board/selected/${icart}`, data => {
+                if(data) {
+                    location.href="/user/order";
+                } else {
+
                 }
             });
         }
