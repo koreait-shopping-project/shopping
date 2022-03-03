@@ -167,6 +167,8 @@ public class UserController {
 
     @PostMapping("/order")
     public String orderProc() {
+        //체크 유무 및 uid 두 개값을 order로 넘겨주면서 select
+        //결제 완료하면 purchase 해주고 만약 결제 취소하면... 체크정보 해제해야하는데... 다른 페이지로 이동 누르면 체크 해제하는 update문 시전
         return "redirect:/user/order";
     }
 }

@@ -181,7 +181,61 @@
                 <hr>
                 <div>주문상품</div>
                 <div>TODO</div>
-                <div id="itemList">상품리스트</div>
+                <%----------------------------------------추가한 부분-----------------------------------------------%>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
+                            <th>상품 이미지</th>
+                            <th>상품명</th>
+                            <th>판매가</th>
+                            <th>컬러</th>
+                            <th>사이즈</th>
+                            <th>수량</th>
+                            <th>주문금액</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="item" items="${requestScope.cart}">
+                            <tr>
+                                <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
+                                <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
+                                <td><c:out value="${item.title}"/></td>
+                                <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
+                                <td><c:choose>
+                                    <c:when test="${item.color == 1}">흰색</c:when>
+                                    <c:when test="${item.color == 2}">검정색</c:when>
+                                    <c:when test="${item.color == 3}">회색</c:when></c:choose>
+                                </td>
+
+                                <c:if test="${item.sm !=0 && item.sm != null}">
+                                    <td>sm</td>
+                                    <td><input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/></td>
+                                    <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
+                                </c:if>
+
+                                <c:if test="${item.md !=0 && item.md != null}">
+                                    <td>md</td>
+                                    <td><c:out value="${item.md}"/></td>
+                                    <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
+                                </c:if>
+
+                                <c:if test="${item.lg !=0 && item.xl != null}">
+                                    <td>lg</td>
+                                    <td><input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/></td>
+                                    <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
+                                </c:if>
+
+                                <c:if test="${item.xl !=0 && item.xl != null}">
+                                    <td>xl</td>
+                                    <td><input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/></td>
+                                    <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
+                                </c:if>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                <%----------------------------------------------------------------------------%>
                 <hr>
                 <div>결제수단</div>
                 <label class="w-auto">

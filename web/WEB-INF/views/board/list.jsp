@@ -14,7 +14,7 @@
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <c:set var="titleVal" value="Cart" />
-            <%--ddddddddddddddddddddddddddddddddddddddd추가한 부분dddddddddddddddddddddddddddddddddddddd--%>
+            <%----------------------------------------추가한 부분-----------------------------------------------%>
             <form id="cartForm">
                 <table>
                     <thead>
@@ -88,7 +88,7 @@
             </form>
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
             <div><input type="button" value="선택주문" onclick="order()"></div>
-            <%--ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--%>
+            <%----------------------------------------------------------------------------%>
             <c:set var="notIn" value="장바구니가 비어있습니다."/>
         </c:when>
     </c:choose>
