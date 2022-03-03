@@ -78,6 +78,6 @@
             <input type="submit" value="바로구매" href="/board/purchase" onclick="submitBtn('purchase')">
             <input type="submit" value="장바구니" href="/board/cart" onclick="submitBtn('cart')">
         </form>
-        <div id="allPrice">TOTAL : 0원</div>
+        <div id="allPrice">total : 0</div>
     </section>
 </div>
