@@ -48,14 +48,11 @@
         }
         const agree=confirm("삭제 하시겠습니까?");
         if (agree){
-
-            document.querySelectorAll("input[name=RowCheck]:checked")
-                .forEach(function (item)
-                {item.parentElement.parentElement.remove();});
-
             myFetch.delete(`/board/cart/${icart}`, data => {
                 if(data) {
-                //data 안넘어옴, 넘어왔을 때 위에 세 줄 실행되도록 옮기기
+                    document.querySelectorAll("input[name=RowCheck]:checked")
+                        .forEach(function (item)
+                        {item.parentElement.parentElement.remove();});
                 } else {
                     alert('장바구니가 비었습니다.');
                 }
@@ -68,7 +65,6 @@
         function(item, idx){
             //수량 감소버튼 클릭
             item.children[0].addEventListener('click', function(){
-                console.log('다운버튼');
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;
 
@@ -77,11 +73,15 @@
                     'size' : size
                 }
 
-                myFetch.post('/board/dCart', data => {
+                myFetch.put('/board/dCart', data => {
                     const dataResult = data.result;
                     switch (dataResult) {
-                        case dataResult:
-                            alert('수량이 변경되었습니다');
+                        case 0:
+                            alert('수량이 변경에 실패하였습니다');
+                            break;
+                        case 1:
+                            alert('수량을 변경했습니다.');
+                            window.location.reload();
                             break;
                     }
                 }, param);
@@ -89,7 +89,6 @@
 
             //수량 증가버튼 클릭
             item.children[1].addEventListener('click', function(){
-                console.log('업버튼');
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;
                 
@@ -98,11 +97,15 @@
                     'size' : size
                 }
 
-                myFetch.post('/board/pCart', data => {
+                myFetch.put('/board/pCart', data => {
                     const dataResult = data.result;
                     switch (dataResult) {
-                        case dataResult:
-                            alert('수량이 변경되었습니다');
+                        case 0:
+                            alert('수량이 변경에 실패하였습니다');
+                            break;
+                        case 1:
+                            alert('수량을 변경했습니다.');
+                            window.location.reload();
                             break;
                     }
                 }, param);
