@@ -46,7 +46,7 @@
                                 <td>sm<input hidden name="size" value="sm"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.sm}"/>
+                                    <input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
@@ -56,7 +56,7 @@
                                 <td>md<input hidden name="size" value="md"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.md}"/>
+                                    <input type="hidden" value="${item.md}"><c:out value="${item.md}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
@@ -66,7 +66,7 @@
                                 <td>lg<input hidden name="size" value="lg"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.lg}"/>
+                                    <input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
@@ -76,7 +76,7 @@
                                 <td>xl<input hidden name="size" value="xl"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.xl}"/>
+                                    <input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
