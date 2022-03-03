@@ -66,7 +66,7 @@
     // num(수량) +, - 버튼
     document.querySelectorAll('.upDown').forEach(
         function(item, idx){
-            //수량 감소 화살표 클릭
+            //수량 감소버튼 클릭
             item.children[0].addEventListener('click', function(){
                 console.log('다운버튼');
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
@@ -79,10 +79,15 @@
 
                 myFetch.post('/board/dCart', data => {
                     const dataResult = data.result;
+                    switch (dataResult) {
+                        case dataResult:
+                            alert('수량이 변경되었습니다');
+                            break;
+                    }
                 }, param);
             });
 
-            //수량 증가 화살표 클릭
+            //수량 증가버튼 클릭
             item.children[1].addEventListener('click', function(){
                 console.log('업버튼');
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
@@ -95,6 +100,11 @@
 
                 myFetch.post('/board/pCart', data => {
                     const dataResult = data.result;
+                    switch (dataResult) {
+                        case dataResult:
+                            alert('수량이 변경되었습니다');
+                            break;
+                    }
                 }, param);
 
             });
