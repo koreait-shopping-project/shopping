@@ -160,23 +160,28 @@
 
 {
     window.addEventListener("beforeunload", function (event) {
-    let icart = "";
-    const item = document.getElementsByName("RowCheck");
-    let indexid = false;
-    for(let i=0; i < item.length; i++){
-        if(item[i]){
-            if(indexid){
-                icart = icart + '_';
+        let icart = "";
+        const item = document.getElementsByName("RowCheck");
+        let indexid = false;
+        for(let i=0; i < item.length; i++){
+            if(item[i]){
+                if(indexid){
+                    icart = icart + '_';
+                }
+                icart = icart + item[i].value;
+                indexid = true;
             }
-            icart = icart + item[i].value;
-            indexid = true;
         }
-    }
-    myFetch.put(`/board/unselected/${icart}`, data => {
-        if(data) {
+    //새로고침해도 날아간다. 안날아가게 조정 reload 시 e.preventdefault 걸리게
 
+        if(document.readyState == "complete") {
+            event.preventDefault();
         } else {
+            myFetch.put(`/board/unselected/${icart}`, data => {
+                if(data) {
 
-        }});
+                }
+            });
+        }
     });
 }
