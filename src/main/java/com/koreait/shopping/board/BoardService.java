@@ -81,6 +81,8 @@ public class BoardService {
     public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
+    public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
+
     public List<BoardProductVo> selCart(UserEntity entity) {return mapper.selCart(entity);}
     public int delCart(int icart) {
         BoardProductVo vo = new BoardProductVo();

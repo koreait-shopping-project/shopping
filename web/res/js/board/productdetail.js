@@ -185,8 +185,11 @@
         if(addr == 'cart') {
             form.action = "/board/cart";
         }
-        else if (addr == 'purchase') {
-            form.action = "/board/purchase"
+        // else if (addr == 'purchase') {
+        //     form.action = "/board/purchase"
+        // }
+        else if (addr == 'order') {
+            form.action = "/board/order";
         }
     }
 }

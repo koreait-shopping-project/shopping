@@ -212,6 +212,37 @@ public class BoardController {
         return "board/main";
     }
 
+    @PostMapping("/order")
+    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
+        for (int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+            vo.setIboard(listDto.getProductList().get(i).getIboard());
+            vo.setUid(request.getParameter("uid"));
+
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm":
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    break;
+                case "md":
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    break;
+                case "lg":
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    break;
+                case "xl":
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    break;
+            }
+        }
+        return "user/order";
+    }
+
     @DeleteMapping("/cart/{icart}")
     @ResponseBody
     public Map<String, Integer> delCart(@PathVariable String icart) {
