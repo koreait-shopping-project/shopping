@@ -10,6 +10,7 @@ import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -162,7 +163,10 @@ public class UserController {
     }
 
     @GetMapping("/order")
-    public void order() {
+    public void order(Model model, UserEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        model.addAttribute(Const.CHECKED, service.checkedCart(entity));
+        //결제 완료하면 purchase 해주고 만약 결제 취소하면... 체크정보 해제해야하는데... 다른 페이지로 이동 누르면 체크 해제하는 update문 시전
     }
 
     @PostMapping("/order")

@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, HttpServletRequest request, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
@@ -50,7 +50,6 @@ public class BoardController {
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
-            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
 
@@ -144,40 +143,26 @@ public class BoardController {
 
     @PostMapping("/purchase")
     public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
-//        System.out.println("바로구매로 이동했습니다");
-//        System.out.println("리스트 사이즈 : " + listDto.getProductList().size());
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-//            System.out.println(i + "번째 리스트 사이즈 : " + listDto.getProductList().get(i).getColor());
-//            System.out.println(i + "번째 컬러 값 " + listDto.getProductList().get(i).getColor());
-//            System.out.println(i + "번째 iboard값 " + listDto.getProductList().get(i).getIboard());
-//            System.out.println(i + "번째 수량 " + listDto.getProductList().get(i).getItemNum());
-//
-//            System.out.println("담긴 컬러값 : " + vo.getColor());
-//            System.out.println("담긴 iboard값 : " + vo.getIboard());
-
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 sm : " + vo.getSm());
                     service.updProductDetail(vo);
                     break;
                 case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.updProductDetail(vo);
-                    System.out.println("담긴 md : " + vo.getMd());
                     break;
                 case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 lg : " + vo.getLg());
                     service.updProductDetail(vo);
                     break;
                 case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
-                    System.out.println("담긴 xl : " + vo.getXl());
                     service.updProductDetail(vo);
                     break;
             }
@@ -191,7 +176,6 @@ public class BoardController {
 
     @PostMapping("/cart")
     public String cartProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
-        System.out.println("카트로 이동했습니다");
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
@@ -222,62 +206,87 @@ public class BoardController {
     }
 
     @DeleteMapping("/cart/{icart}")
+    @ResponseBody
     public Map<String, Integer> delCart(@PathVariable String icart) {
         Map<String, Integer> result = new HashMap<>();
-        String[] userArr = icart.split("_");
-        if(userArr != null && userArr.length>0){
-            for(int i=0 ; i<userArr.length ; i++){
-                service.delCart(Integer.parseInt(userArr[i]));
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.delCart(Integer.parseInt(icartArr[i]));
             }
             result.put(Const.RESULT, 1);
         }
         return result;
     }
 
-    @PostMapping("/pCart")
+    @PutMapping("/pCart")
+    @ResponseBody
     public Map<String, Integer> updCartUp(@RequestBody BoardProductVo vo) {
         Map<String, Integer> result = new HashMap<>();
         switch (vo.getSize()) {
             case "sm":
                 vo.setSm(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "md":
                 vo.setMd(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "lg":
                 vo.setLg(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "xl":
                 vo.setXl(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                break;
+                System.out.println(result);
+                return result;
         }
-        return result;
+        return null;
     }
 
-    @PostMapping("/dCart")
+    @PutMapping("/dCart")
+    @ResponseBody
     public Map<String, Integer> updCartDown(@RequestBody BoardProductVo vo) {
         Map<String, Integer> result = new HashMap<>();
         switch (vo.getSize()) {
             case "sm":
                 vo.setSm(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "md":
                 vo.setMd(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "lg":
                 vo.setLg(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                break;
+                System.out.println(result);
+                return result;
             case "xl":
                 vo.setXl(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                break;
+                System.out.println(result);
+                return result;
+        }
+        return null;
+    }
+
+    @PutMapping("/selected/{icart}")
+    @ResponseBody
+    public Map<String, Integer> order(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.selectedCart(Integer.parseInt(icartArr[i]));
+            }
+            result.put(Const.RESULT, 1);
         }
         return result;
     }
