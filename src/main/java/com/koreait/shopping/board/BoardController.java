@@ -36,7 +36,7 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, HttpServletRequest request, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(dto));
         dto.setIcategory(icategory);
@@ -50,7 +50,6 @@ public class BoardController {
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
-            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
 

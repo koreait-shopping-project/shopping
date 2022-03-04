@@ -180,12 +180,10 @@
                 </div>
                 <hr>
                 <div>주문상품</div>
-                <div>TODO</div>
-                <%----------------------------------------추가한 부분-----------------------------------------------%>
+                <%----------------------------------------상품-----------------------------------------------%>
                     <table>
                         <thead>
                         <tr>
-                            <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
                             <th>상품 이미지</th>
                             <th>상품명</th>
                             <th>판매가</th>
@@ -196,9 +194,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="item" items="${requestScope.cart}">
+                        <c:forEach var="item" items="${requestScope.checked}">
                             <tr>
-                                <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
                                 <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
                                 <td><c:out value="${item.title}"/></td>
                                 <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>

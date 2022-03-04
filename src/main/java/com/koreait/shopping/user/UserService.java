@@ -2,6 +2,7 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -9,6 +10,8 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -109,5 +112,9 @@ public class UserService {
         String hashedPw = BCrypt.hashpw(dto.getUpw(), BCrypt.gensalt());
         dto.setUpw(hashedPw);
         return mapper.updUserPw(dto);
+    }
+
+    public List<BoardProductDto> checkedCart(UserEntity entity) {
+        return mapper.checkedCart(entity);
     }
 }

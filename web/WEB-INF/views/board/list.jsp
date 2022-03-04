@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <c:set var="titleVal" value="공지사항" />
     <c:set var="notIn" value="글이 없습니다."/>
@@ -14,6 +13,7 @@
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <c:set var="titleVal" value="Cart" />
+            <c:set var="notIn" value="장바구니가 비어있습니다."/>
             <%----------------------------------------추가한 부분-----------------------------------------------%>
             <form id="cartForm">
                 <table>
@@ -89,7 +89,6 @@
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
             <div><input type="button" value="선택주문" onclick="order()"></div>
             <%----------------------------------------------------------------------------%>
-            <c:set var="notIn" value="장바구니가 비어있습니다."/>
         </c:when>
     </c:choose>
     <div class="tx-a-center m-b-30">${titleVal}</div>
