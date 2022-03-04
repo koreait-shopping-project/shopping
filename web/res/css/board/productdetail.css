@@ -1,5 +1,5 @@
 
-#detail_container { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); }
+#detail_container { display: grid; grid-template-columns: repeat(auto-fill, minmax(700px, 1fr)); }
 #detail_img_wrap { text-align: center; width: 100%; }
 #detail_img_wrap img { width: 80%; border-radius: 3px; }
 #detail_wrap { width: 100%; margin: 20px 0 0 20px; }
@@ -24,7 +24,7 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 
 .selected_item { height: 3rem; font-size: 14px; display: flex; align-items: center; position: relative; }
 .selected_item > .selected_color, .selected_size, .selected_price { letter-spacing: 0.125rem; padding: 0 30px; }
-.increase_btn { right: 30px; }
+.selected_item > .selected_price { position: absolute; left: 350px; }
 .price_total { font-size: 16px; position: absolute; right: 0; padding-top: 20px; }
 .selected_item > .increase_plus, .increase_minus
 { border: 0; border-radius: 50%; background: #333; color: #fff;

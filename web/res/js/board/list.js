@@ -64,11 +64,22 @@
     }
 
     // num(수량) +, - 버튼
+    let num = 1;
+    const minusBtn = document.querySelector('.numMinusBtn');
+    const plusBtn = document.querySelector('.numPlusBtn');
     document.querySelectorAll('.upDown').forEach(
         function(item, idx){
             //수량 감소버튼 클릭
-            item.children[0].addEventListener('click', function(){
+            item.children[0].addEventListener('click', function(e){
                 console.log('다운버튼');
+                if(num === 1){
+                    item.children[0].disabled = true;
+                    alert('더 이상 줄일 수 없습니다.');
+                } else {
+                    e.preventDefault();
+                    num--;
+                    console.log(num);
+                }
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;
 
@@ -88,7 +99,7 @@
             });
 
             //수량 증가버튼 클릭
-            item.children[1].addEventListener('click', function(){
+            item.children[2].addEventListener('click', function(){
                 console.log('업버튼');
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;

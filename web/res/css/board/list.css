@@ -1,12 +1,18 @@
 table { width: 100%; border-top: 2px solid #a7a7a7; border-bottom: 2px solid #a7a7a7; border-collapse: collapse; }
 th, td { border-bottom: 1px solid #cecece; padding: 10px; }
+tr { text-align: center; }
 tr:first-child { border-bottom: 2px solid #a7a7a7; }
 .record { cursor: pointer; }
 .record:hover { background-color: #cdcdcd; }
 
 #list_search_wrap { margin-top: 50px; font-size: 16px; }
 #list_search_frm { display: flex; align-items: center; justify-content: left; }
-#list_search_frm > *:not(:nth-child(1)) { margin-left: 5px; }
+#list_search_frm > *:not(:first-child) { margin-left: 5px; }
 #list_search_frm > *:nth-child(2) { margin-left: 20px; border: 1px solid #cccccc; border-radius: 3px; }
 #list_search_frm input[type=search] { padding: 0 10px; border-radius: 3px; border: 1px solid #cccccc; }
 #list_search_frm input[type=submit] { padding: 0 10px; border-radius: 5px; }
+.numPlusBtn, .numMinusBtn { width: 15px; height: 15px; border: 0; border-radius: 50%;
+    background-color: #333333; color: #fff; cursor: pointer; display: inline-flex; justify-content: center;
+    align-items: flex-end;
+}
+.numPlusBtn:hover, .numMinusBtn:hover { opacity: 0.75; }
