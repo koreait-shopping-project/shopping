@@ -15,3 +15,6 @@ tr:first-child {
     border-bottom: 2px solid #a7a7a7;
 }
 
+.ck-editor__editable_inline {
+    min-height: 500px;
+}
