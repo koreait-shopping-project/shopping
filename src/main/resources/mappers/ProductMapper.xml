@@ -74,6 +74,12 @@
         DELETE FROM cart WHERE icart = ${icart}
     </delete>
 
+    <update id="selectedCart">
+        UPDATE cart
+        SET checked = 1
+        WHERE icart = ${icart}
+    </update>
+
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'

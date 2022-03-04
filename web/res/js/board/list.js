@@ -27,37 +27,63 @@
             }
         }
     }
-
+    //선택 삭제
     function itemDel(){
         let icart = "";
-        const memberChk = document.getElementsByName("RowCheck");
-        let chked = false;
+        const itemChk = document.getElementsByName("RowCheck");
         let indexid = false;
-        for(let i=0; i < memberChk.length; i++){
-            if(memberChk[i].checked){
+        for(let i=0; i < itemChk.length; i++){
+            if(itemChk[i].checked){
                 if(indexid){
                     icart = icart + '_';
                 }
-                icart = icart + memberChk[i].value;
+                icart = icart + itemChk[i].value;
                 indexid = true;
             }
         }
         if(!indexid){
-            alert("삭제할 사용자를 체크해 주세요");
+            alert("삭제할 제품을 선택해주세요");
             return;
         }
         const agree=confirm("삭제 하시겠습니까?");
         if (agree){
-
-            document.querySelectorAll("input[name=RowCheck]:checked")
-                .forEach(function (item)
-                {item.parentElement.parentElement.remove();});
-
             myFetch.delete(`/board/cart/${icart}`, data => {
                 if(data) {
-                //data 안넘어옴, 넘어왔을 때 위에 세 줄 실행되도록 옮기기
+                    document.querySelectorAll("input[name=RowCheck]:checked")
+                        .forEach(function (item)
+                        {item.parentElement.parentElement.remove();});
                 } else {
                     alert('장바구니가 비었습니다.');
+                }
+            });
+        }
+    }
+
+    //선택 주문
+    function order(){
+        let icart = "";
+        const itemChk = document.getElementsByName("RowCheck");
+        let indexid = false;
+        for(let i=0; i < itemChk.length; i++){
+            if(itemChk[i].checked){
+                if(indexid){
+                    icart = icart + '_';
+                }
+                icart = icart + itemChk[i].value;
+                indexid = true;
+            }
+        }
+        if(!indexid){
+            alert("구매할 제품을 선택해주세요");
+            return;
+        }
+        const agree=confirm("구매하시겠습니까?");
+        if (agree){
+            myFetch.put(`/board/selected/${icart}`, data => {
+                if(data) {
+                    location.href="/user/order";
+                } else {
+
                 }
             });
         }
@@ -67,29 +93,37 @@
     document.querySelectorAll('.upDown').forEach(
         function(item, idx){
             //수량 감소버튼 클릭
-            item.children[0].addEventListener('click', function(){
-                console.log('다운버튼');
-                const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
-                const size = item.parentElement.querySelector("input[name=size]").value;
-
-                const param = {
-                    'icart' : icart,
-                    'size' : size
+            item.children[0].addEventListener('click', function(e){
+                if(parseInt(item.children[1].value) === 1) {
+                    e.preventDefault();
+                    item.children[0].disabled = true;
+                    alert('더 이상 줄일 수 없습니다.');
                 }
+                else {
+                    const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
+                    const size = item.parentElement.querySelector("input[name=size]").value;
 
-                myFetch.post('/board/dCart', data => {
-                    const dataResult = data.result;
-                    switch (dataResult) {
-                        case dataResult:
-                            alert('수량이 변경되었습니다');
-                            break;
+                    const param = {
+                        'icart' : icart,
+                        'size' : size
                     }
-                }, param);
+                    myFetch.put('/board/dCart', data => {
+                        const dataResult = data.result;
+                        switch (dataResult) {
+                            case 0:
+                                alert('수량이 변경에 실패하였습니다');
+                                break;
+                            case 1:
+                                alert('수량을 변경했습니다.');
+                                window.location.reload();
+                                break;
+                        }
+                    }, param);
+                }
             });
 
             //수량 증가버튼 클릭
-            item.children[1].addEventListener('click', function(){
-                console.log('업버튼');
+            item.children[2].addEventListener('click', function(){
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;
                 
@@ -98,11 +132,15 @@
                     'size' : size
                 }
 
-                myFetch.post('/board/pCart', data => {
+                myFetch.put('/board/pCart', data => {
                     const dataResult = data.result;
                     switch (dataResult) {
-                        case dataResult:
-                            alert('수량이 변경되었습니다');
+                        case 0:
+                            alert('수량이 변경에 실패하였습니다');
+                            break;
+                        case 1:
+                            alert('수량을 변경했습니다.');
+                            window.location.reload();
                             break;
                     }
                 }, param);

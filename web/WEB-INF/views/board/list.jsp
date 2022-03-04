@@ -3,7 +3,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <div>
     <c:set var="titleVal" value="공지사항" />
     <c:set var="notIn" value="글이 없습니다."/>
@@ -14,7 +13,8 @@
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <c:set var="titleVal" value="Cart" />
-            <%--ddddddddddddddddddddddddddddddddddddddd추가한 부분dddddddddddddddddddddddddddddddddddddd--%>
+            <c:set var="notIn" value="장바구니가 비어있습니다."/>
+            <%----------------------------------------추가한 부분-----------------------------------------------%>
             <form id="cartForm">
                 <table>
                     <thead>
@@ -46,7 +46,7 @@
                                 <td>sm<input hidden name="size" value="sm"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.sm}"/>
+                                    <input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
@@ -56,7 +56,7 @@
                                 <td>md<input hidden name="size" value="md"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.md}"/>
+                                    <input type="hidden" value="${item.md}"><c:out value="${item.md}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
@@ -66,7 +66,7 @@
                                 <td>lg<input hidden name="size" value="lg"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.lg}"/>
+                                    <input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
@@ -76,7 +76,7 @@
                                 <td>xl<input hidden name="size" value="xl"></td>
                                 <td class="upDown">
                                     <input type="button" value="-" class="numMinusBtn">
-                                    <c:out value="${item.xl}"/>
+                                    <input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/>
                                     <input type="button" value="+" class="numPlusBtn">
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
@@ -87,8 +87,8 @@
                 </table>
             </form>
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
-            <%--ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd--%>
-            <c:set var="notIn" value="장바구니가 비어있습니다."/>
+            <div><input type="button" value="선택주문" onclick="order()"></div>
+            <%----------------------------------------------------------------------------%>
         </c:when>
     </c:choose>
     <div class="tx-a-center m-b-30">${titleVal}</div>
