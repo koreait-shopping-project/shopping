@@ -1,5 +1,5 @@
 
-#detail_container { display: grid; grid-template-columns: repeat(auto-fill, minmax(450px, 1fr)); }
+#detail_container { display: grid; grid-template-columns: repeat(auto-fill, minmax(700px, 1fr)); }
 #detail_img_wrap { text-align: center; width: 100%; }
 #detail_img_wrap img { width: 80%; border-radius: 3px; }
 #detail_wrap { width: 100%; margin: 20px 0 0 20px; }
@@ -23,16 +23,19 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 #frmSubmit input[type=submit]:hover { opacity: 0.75; transition: 0.3s; }
 
 .selected_item { height: 3rem; font-size: 14px; display: flex; align-items: center; position: relative; }
-.selected_item span { padding: 0 30px; }
-.increase_btn { right: 30px; }
+.selected_item > .selected_color, .selected_size, .selected_price { letter-spacing: 0.125rem; padding: 0 30px; }
+.selected_item > .selected_price { position: absolute; left: 350px; }
 .price_total { font-size: 16px; position: absolute; right: 0; padding-top: 20px; }
-.selected_item > .increase_plus, .selected_item > .increase_minus
+.selected_item > .increase_plus, .increase_minus
 { border: 0; border-radius: 50%; background: #333; color: #fff;
     width: 25px; height: 25px; font-size: 20px; display: flex; justify-content: space-around;
     flex-direction: row-reverse; align-items: flex-end; }
 .selected_item > .increase_plus { position: absolute; right: 30px; }
 .selected_item > .increase_minus { position: absolute; right: 130px; }
-.selected_item > .increase_num { position: absolute; right: 60px; }
+.selected_item > .increase_num { position: absolute; right: 60px; padding: 0 30px; }
 .selected_item > .increase_btn:hover { opacity: 0.75; transition: 0.3s; }
 .selected_item > .remove_btn { position: absolute; right: 0; border: 0; background: none; font-size: 20px; }
 .selected_item > .remove_btn:hover { opacity: 0.75; transition: 0.3s; }
+
+#allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; }
+#allPrice:after { content: " 원"; }

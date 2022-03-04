@@ -55,8 +55,8 @@
 
         let i = 1;
         li.innerHTML= `
-            <span>컬러 : ${colorTxt}</span>
-            <span>사이즈 : ${size}</span>
+            <span class="selected_color">컬러 : ${colorTxt}</span>
+            <span class="selected_size">사이즈 : ${size}</span>
             <input id="size" name="productList[${listNum}].size" value="${size}" type="hidden"/>
             <input id="color" name="productList[${listNum}].color" value="${color}" type="hidden"/>
             <input id="price" name="productList[${listNum}].price" value="${totalPrice}" type="hidden"/>
@@ -69,6 +69,7 @@
         //가격
         const priceVo = document.createElement('div');
         priceVo.innerHTML = `가격 : ${priceToString(totalPrice)}원`;
+        priceVo.className = 'selected_price';
         // num(수량) +, - 버튼
         const numMinusBtn = document.createElement('button');
         numMinusBtn.innerHTML = `-`;
@@ -99,7 +100,7 @@
 
                 totalCnt--;
 
-                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
+                allPrice.innerHTML=`total : ${allPlusPrice(price, totalCnt)}`;
             }
         });
 
@@ -118,7 +119,7 @@
 
                 totalCnt++;
 
-                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
+                allPrice.innerHTML=`total : ${allPlusPrice(price, totalCnt)}`;
             } else {
                 e.preventDefault();
                 i++;
@@ -132,7 +133,7 @@
 
                 totalCnt++;
 
-                allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
+                allPrice.innerHTML=`total : ${allPlusPrice(price, totalCnt)}`;
             }
         });
         li.appendChild(priceVo);
@@ -149,13 +150,13 @@
             li.parentNode.removeChild(li);
             delete colorSizeObj [`${colorSize}`];
             totalCnt = totalCnt - Number(li.querySelector('#itemNum').value);
-            allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
+            allPrice.innerHTML=`total : ${allPlusPrice(price, totalCnt)}`;
         });
         li.appendChild(removeBtn);
         //사이즈 선택후 options 첫번째만 보이게함
         sizeBox.options.length = 1;
 
-        allPrice.innerHTML=`TOTAL : ${allPlusPrice(price, totalCnt)}`;
+        allPrice.innerHTML=`total : ${allPlusPrice(price, totalCnt)}`;
 
         reAllBox();
     });
@@ -182,7 +183,7 @@
     function submitBtn(addr) {
         const form = document.querySelector(`#frmSubmit`);
         if(addr == 'cart') {
-            form.action = "/board/cart"
+            form.action = "/board/cart";
         }
         else if (addr == 'purchase') {
             form.action = "/board/purchase"

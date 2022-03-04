@@ -35,6 +35,10 @@ public class UserService {
             return 3; // 비밀번호 틀림
         }
         dbUser.setUpw(null);
+        dbUser.setSocial(null);
+        dbUser.setGender(0);
+        dbUser.setJoin_date(null);
+        dbUser.setMod_date(null);
         dbUser.setJoin_date(null);
         dbUser.setMod_date(null);
         utils.setLoginUser(dbUser);

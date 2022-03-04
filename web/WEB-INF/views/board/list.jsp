@@ -12,28 +12,28 @@
             <c:set var="notIn" value="글이 없습니다."/>
         </c:when>
         <c:when test="${requestScope.icategory == 3}">
+            <%-------- cart -----------%>
             <c:set var="titleVal" value="Cart" />
-            <c:set var="notIn" value="장바구니가 비어있습니다."/>
-            <%----------------------------------------추가한 부분-----------------------------------------------%>
+            <div class="tx-a-center m-b-30">${titleVal}</div>
             <form id="cartForm">
                 <table>
                     <thead>
                     <tr>
                         <th><input id="allCheck" type="checkbox" onclick="allChk(this);"></th>
-                        <th>상품 이미지</th>
-                        <th>상품명</th>
-                        <th>판매가</th>
-                        <th>컬러</th>
-                        <th>사이즈</th>
-                        <th>수량</th>
-                        <th>주문금액</th>
+                        <th width="20%">상품 이미지</th>
+                        <th width="25%">상품명</th>
+                        <th width="10%">판매가</th>
+                        <th width="10%">컬러</th>
+                        <th width="10%">사이즈</th>
+                        <th width="15%">수량</th>
+                        <th width="10%">주문금액</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="item" items="${requestScope.cart}">
                         <tr>
                             <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
-                            <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
+                            <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
                             <td><c:out value="${item.title}"/></td>
                             <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
                             <td><c:choose>
@@ -45,9 +45,10 @@
                             <c:if test="${item.sm !=0 && item.sm != null}">
                                 <td>sm<input hidden name="size" value="sm"></td>
                                 <td class="upDown">
-                                    <input type="button" value="-" class="numMinusBtn">
-                                    <input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/>
-                                    <input type="button" value="+" class="numPlusBtn">
+                                    <span class="numMinusBtn">-</span>
+                                    <input type="hidden" value="${item.sm}">
+                                    <span class="nowNum"><c:out value="${item.sm}"/></span>
+                                    <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
                             </c:if>
@@ -55,9 +56,10 @@
                             <c:if test="${item.md !=0 && item.md != null}">
                                 <td>md<input hidden name="size" value="md"></td>
                                 <td class="upDown">
-                                    <input type="button" value="-" class="numMinusBtn">
-                                    <input type="hidden" value="${item.md}"><c:out value="${item.md}"/>
-                                    <input type="button" value="+" class="numPlusBtn">
+                                    <span class="numMinusBtn">-</span>
+                                    <input type="hidden" value="${item.md}">
+                                    <span class="nowNum"><c:out value="${item.md}"/></span>
+                                    <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
                             </c:if>
@@ -65,9 +67,10 @@
                             <c:if test="${item.lg !=0 && item.xl != null}">
                                 <td>lg<input hidden name="size" value="lg"></td>
                                 <td class="upDown">
-                                    <input type="button" value="-" class="numMinusBtn">
-                                    <input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/>
-                                    <input type="button" value="+" class="numPlusBtn">
+                                    <span class="numMinusBtn">-</span>
+                                    <input type="hidden" value="${item.lg}">
+                                    <span class="nowNum"><c:out value="${item.lg}"/></span>
+                                    <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
                             </c:if>
@@ -75,9 +78,10 @@
                             <c:if test="${item.xl !=0 && item.xl != null}">
                                 <td>xl<input hidden name="size" value="xl"></td>
                                 <td class="upDown">
-                                    <input type="button" value="-" class="numMinusBtn">
-                                    <input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/>
-                                    <input type="button" value="+" class="numPlusBtn">
+                                    <span class="numMinusBtn">-</span>
+                                    <input type="hidden" value="${item.xl}">
+                                    <span class="nowNum"><c:out value="${item.xl}"/></span>
+                                    <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
                             </c:if>
@@ -85,13 +89,16 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <c:if test="${sessionScope.loginUser == null}">
+                    <c:set var="notIn" value="장바구니가 비어있습니다."/>
+                    <div class="tx-a-center p-tb-20">${notIn}</div>
+                </c:if>
             </form>
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
             <div><input type="button" value="선택주문" onclick="order()"></div>
-            <%----------------------------------------------------------------------------%>
         </c:when>
     </c:choose>
-    <div class="tx-a-center m-b-30">${titleVal}</div>
+    <%----------------------%>
     <div>
         <c:choose>
             <c:when test="${requestScope.icategory != 3}">
@@ -129,7 +136,7 @@
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
                                             <td class="tx-a-center">${item.notice}</td>
-                                            <td><c:out value="${item.title}"/></td>
+                                            <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
                                     </c:forEach>
@@ -138,7 +145,7 @@
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
                                             <td class="tx-a-center">${item.iboard}</td>
-                                            <td><c:out value="${item.title}"/></td>
+                                            <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
                                     </c:forEach>

@@ -114,7 +114,6 @@
                                 alert('수량이 변경에 실패하였습니다');
                                 break;
                             case 1:
-                                alert('수량을 변경했습니다.');
                                 window.location.reload();
                                 break;
                         }
@@ -123,7 +122,7 @@
             });
 
             //수량 증가버튼 클릭
-            item.children[2].addEventListener('click', function(){
+            item.children[3].addEventListener('click', function(){
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
                 const size = item.parentElement.querySelector("input[name=size]").value;
                 
@@ -139,7 +138,6 @@
                             alert('수량이 변경에 실패하였습니다');
                             break;
                         case 1:
-                            alert('수량을 변경했습니다.');
                             window.location.reload();
                             break;
                     }
