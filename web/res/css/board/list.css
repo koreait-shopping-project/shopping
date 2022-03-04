@@ -11,10 +11,19 @@ tr:first-child { border-bottom: 2px solid #a7a7a7; }
 #list_search_frm > *:nth-child(2) { margin-left: 20px; border: 1px solid #cccccc; border-radius: 3px; }
 #list_search_frm input[type=search] { padding: 0 10px; border-radius: 3px; border: 1px solid #cccccc; }
 #list_search_frm input[type=submit] { padding: 0 10px; border-radius: 5px; }
+#list_search_frm input[type=submit]:hover { opacity: 0.75; }
 
 .numPlusBtn, .numMinusBtn { width: 20px; height: 20px; border-radius: 50%;
-    background-color: #444444; color: #fff; cursor: pointer; display: inline-flex; justify-content: center;
-    align-items: flex-start;
+    background-color: #444444; color: #ffffff; cursor: pointer; display: inline-flex; justify-content: center;
+    align-items: flex-start; box-shadow: 0 0 1px 1px #cccccc; transition: 0.3s;
 }
-.numPlusBtn:hover, .numMinusBtn:hover { opacity: 0.75; }
+.numPlusBtn:hover, .numMinusBtn:hover { opacity: 0.75; transition: 0.3s; }
 .nowNum { padding: 0 10px; }
+
+#itemOrderBtn { text-align: center; padding: 20px 0; }
+#itemOrderBtn input[type=button] { background-color: #353535; color: #ffffff; border-radius: 5px;
+    margin: 0.5rem; padding: 10px; transition: 0.3s;
+}
+#itemOrderBtn input[type=button]:hover { opacity: 0.75; transition: 0.3s; }
+#allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; line-height: 3; }
+#allPrice:after { content: " 원"; }

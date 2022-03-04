@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
 <div id="pageUnit_wrap">
     <select id="pageUnit" name="pageUnit">
         <option value="10" <c:if test="${SearchVo.pageUnit == 10}">selected="selected"</c:if>>10개씩보기</option>
@@ -18,7 +17,7 @@
             상품 목록이 없습니다.
         </c:when>
         <c:otherwise>
-            <div id="product_list">
+            <div id="product_list" data-isubcategory="${isubcategory}">
             <c:forEach items="${requestScope.list}" var="item">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
@@ -35,45 +34,22 @@
             </div>
         </c:otherwise>
     </c:choose>
-    <div align="center">
-        <!-- pagination -->
-        <ul class="pagination">
-            <!-- 이전 -->
-            <c:choose>
-                <c:when test="${pageMaker.prev} ">
-                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.startPage-1)}" class="paginate_button previous">
-                        이전
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.startPage-1) }" class="paginate_button previous">
-                        이전
-                    </a>
-                </c:otherwise>
-            </c:choose>
+    <div class="pageInfo_wrap" >
+        <div class="pageInfo_area">
+        <!-- 이전페이지 버튼 -->
+        <c:if test="${pageMaker.prev}">
+            <li class="pageInfo_btn previous"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.startPage-1}">Previous</a></li>
+        </c:if>
 
-            <!-- 페이지 번호 -->
-            <c:forEach var="idx" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                <a href="/notice/noticeList.do${pageMaker.makeSearch(idx)}">
+        <!-- 각 번호 페이지 버튼 -->
+        <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            <li class="pageInfo_btn"><a href="/board/product/${isubcategory}?pageNum=${num}">${num}</a></li>
+        </c:forEach>
 
-                        ${idx}
-
-                </a>
-            </c:forEach>
-
-            <!-- 이후 -->
-            <c:choose>
-                <c:when test="${pageMaker.next}">
-                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.endPage+1)}" class="paginate_button next">
-                        다음
-                    </a>
-                </c:when>
-                <c:otherwise>
-                    <a href="/notice/noticeList.do${pageMaker.makeSearch(pageMaker.endPage+1)}" class="paginate_button next disabled">
-                        다음
-                    </a>
-                </c:otherwise>
-            </c:choose>
-            <span class="current">22/33</span></ul>
+        <!-- 다음페이지 버튼 -->
+        <c:if test="${pageMaker.next}">
+            <li class="pageInfo_btn next"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.endPage + 1 }">Next</a></li>
+        </c:if>
+        </div>
     </div>
 </div>

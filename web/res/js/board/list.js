@@ -88,6 +88,9 @@
             });
         }
     }
+    const allPrice = document.querySelector('#allPrice');
+    let price = document.querySelector('#purchase_wrap').dataset.price;
+    let totalCnt = 0;
 
     // num(수량) +, - 버튼
     document.querySelectorAll('.upDown').forEach(
@@ -121,6 +124,7 @@
                 }
             });
 
+
             //수량 증가버튼 클릭
             item.children[3].addEventListener('click', function(){
                 const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
@@ -142,8 +146,16 @@
                             break;
                     }
                 }, param);
-
             });
         }
     );
+
+    //전체 가격
+    function allPlusPrice(price, totalCnt) {
+        return priceToString(price * totalCnt);
+    }
+    //천단위 콤마 정규식
+    function priceToString(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
 }
