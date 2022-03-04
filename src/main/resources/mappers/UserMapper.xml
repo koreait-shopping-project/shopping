@@ -60,7 +60,7 @@
         WHERE iuser = ${iuser}
     </update>
 
-    <select id="checkedCart" resultType="BoardProductDto">
+    <select id="checkedCart" resultType="BoardProductVo">
         SELECT A.uid, A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, B.iuser, C.img_url_big, C.title, C.price
         FROM cart A
         INNER JOIN t_user B
