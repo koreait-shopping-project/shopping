@@ -8,5 +8,6 @@ import lombok.Setter;
 @Setter
 public class BoardListDto extends BoardListEntity{
     private int searchType;
+    private String searchText;
     private String writerNm;
 }
