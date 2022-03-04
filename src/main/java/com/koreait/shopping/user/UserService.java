@@ -3,6 +3,7 @@ package com.koreait.shopping.user;
 import com.koreait.shopping.UserUtils;
 
 import com.koreait.shopping.board.model.dto.BoardProductDto;
+import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -118,7 +119,7 @@ public class UserService {
         return mapper.updUserPw(dto);
     }
 
-    public List<BoardProductDto> checkedCart(UserEntity entity) {
+    public List<BoardProductVo> checkedCart(UserEntity entity) {
         return mapper.checkedCart(entity);
     }
 }
