@@ -159,7 +159,7 @@
 }
 
 {
-    window.addEventListener("beforeunload", function (event) {
+    window.addEventListener("beforeunload", function (e) {
         let icart = "";
         const item = document.getElementsByName("RowCheck");
         let indexid = false;
@@ -172,16 +172,18 @@
                 indexid = true;
             }
         }
-    //새로고침해도 날아간다. 안날아가게 조정 reload 시 e.preventdefault 걸리게
-
-        if(document.readyState == "complete") {
-            event.preventDefault();
-        } else {
-            myFetch.put(`/board/unselected/${icart}`, data => {
-                if(data) {
-
-                }
-            });
-        }
+        myFetch.put(`/board/unselected/${icart}`, data => {
+            if(data) {}
+        });
     });
+}
+
+{
+    document.onkeydown = function () {
+        if (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82) || event.keyCode ==116) {
+            event.keyCode = 0;
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
+    }
 }
