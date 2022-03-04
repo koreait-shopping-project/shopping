@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -43,6 +44,11 @@ public class BoardService {
         return mapper.selBoardDetail(vo);
     }
 
+    /* 게시물 총 갯수 */
+    public int getTotal(int isubctegory) {
+        return mapper.getTotal(isubctegory);
+    }
+
     public int updBoard(BoardListEntity entity) {
         try {
             entity.setIuser(userUtils.getLoginUserPk());
@@ -62,8 +68,8 @@ public class BoardService {
         return mapper.delBoard(entity);
     }
 
-    public List<BoardProductVo> selProductList(BoardProductDto dto) {
-        return mapper.selProductList(dto);
+    public List<BoardProductVo> selProductList(Criteria cri) {
+        return mapper.selProductList(cri);
     }
 
     public BoardProductEntity selProductDetail(BoardProductVo vo) {

@@ -1,6 +1,8 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.Paging.Criteria;
+import com.koreait.shopping.Paging.PageMakerDto;
 import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
@@ -122,10 +124,15 @@ public class BoardController {
     }
 
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto) {
+    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto, Criteria cri) {
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);
         dto.setIsubcategory(isubcategory);
-        model.addAttribute(Const.LIST, service.selProductList(dto));
+        model.addAttribute(Const.LIST, service.selProductList(cri));
+
+        int total = service.getTotal(isubcategory);
+        PageMakerDto pageMake = new PageMakerDto(cri, total);
+        model.addAttribute("pageMaker", pageMake);
+
         return "board/product";
     }
 

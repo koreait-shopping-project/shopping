@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
@@ -16,9 +17,11 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
     //subcategory
-    List<BoardProductVo> selProductList(BoardProductDto dto);
+    List<BoardProductVo> selProductList(Criteria cri);
     BoardProductVo selProductDetail(BoardProductVo vo);
     BoardProductVo selSize(BoardProductVo vo);
+    /* 게시판 총 갯수 */
+    int getTotal(int isubcategory);
     //category
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
