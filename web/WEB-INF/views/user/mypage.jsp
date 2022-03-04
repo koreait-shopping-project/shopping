@@ -5,7 +5,7 @@
     <div class="tx-a-center m-b-30 bold font-size-20">
         My Page
     </div>
-    <div class="tx-a-center font-size-20">
+    <div class="tx-a-center font-size-20 color-black">
         <c:choose>
             <c:when test="${sessionScope.loginUser != null}">
                 <div class="display-i-b p-r-100">

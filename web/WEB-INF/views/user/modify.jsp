@@ -1,9 +1,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
+<%
+    //비정상적인 경로 접근시 차단
+    String strReferer = request.getHeader("referer");
+    if(strReferer == null){
+%>
+<script language="javascript">
+    alert("비정상적인 접근입니다.");
+    document.location.href="/";
+</script>
+<%
+        return;
+    }
+%>
 <div>
     <div class="tx-a-center m-20 font-size-30">회원 정보 수정</div>
-    <form action="/user/modify" class="m-w" method="post" id="join_frm">
+    <form action="/user/modify" class="m-w" method="post" id="mod_frm">
         <hr>
         <div style="display: flex; justify-content: space-between">
             <h3 class="font-size-20">기본정보</h3>
@@ -32,16 +45,22 @@
                     </td>
                 </tr>
                 <c:if test="${param.social == null}">
+                    <c:choose>
+                        <c:when test="${msg != null}">
+                            <div class="display-b color-red" id="wrong">
+                                <script>alert('현재 비밀번호를 확인해주세요.')</script>
+                                    ${msg}
+                            </div>
+                        </c:when>
+                    </c:choose>
                     <tr>
                         <th class="display-b-f-l font-size-12">아이디*</th>
                         <td><input class="display-b-f-l bolder" type="text" name="uid" id="uid" value="${sessionScope.loginUser.uid}" readonly></td>
                     </tr>
-
                     <tr>
                         <th class="display-b-f-l font-size-12">현재 비밀번호*</th>
                         <td><input class="display-b-f-l bolder" type="password" name="currentupw" id="currentupw" ></td>
                     </tr>
-                    <span>${msg}</span>
                     <tr>
                         <th class="display-b-f-l font-size-12">새 비밀번호*</th>
                         <td><input class="display-b-f-l bolder" type="password" name="upw" id="upw" ></td>
