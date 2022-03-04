@@ -75,8 +75,8 @@
                 <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
                 <input type="hidden" name="uid" value="${sessionScope.loginUser.uid}">
             </div>
-            <input type="submit" value="바로구매" href="/board/purchase" onclick="submitBtn('purchase')">
-            <input type="submit" value="장바구니" href="/board/cart" onclick="submitBtn('cart')">
+            <input type="submit" value="바로구매" onclick="submitBtn('purchase')">
+            <input type="submit" value="장바구니 담기" onclick="submitBtn('cart')">
         </form>
         <div id="allPrice">total : 0</div>
     </section>

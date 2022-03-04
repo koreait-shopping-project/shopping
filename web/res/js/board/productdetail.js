@@ -183,7 +183,7 @@
     function submitBtn(addr) {
         const form = document.querySelector(`#frmSubmit`);
         if(addr == 'cart') {
-            form.action = "/board/cart"
+            form.action = "/board/cart";
         }
         else if (addr == 'purchase') {
             form.action = "/board/purchase"
