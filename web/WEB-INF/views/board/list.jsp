@@ -31,7 +31,7 @@
                     </thead>
                     <tbody>
                     <c:forEach var="item" items="${requestScope.cart}">
-                        <tr>
+                        <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
                             <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
                             <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
                             <td><c:out value="${item.title}"/></td>
@@ -94,8 +94,11 @@
                     <div class="tx-a-center p-tb-20">${notIn}</div>
                 </c:if>
             </form>
-            <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
-            <div><input type="button" value="선택주문" onclick="order()"></div>
+            <div id="allPrice">total : 0</div>
+            <div id="itemOrderBtn">
+                <input type="button" value="선택삭제" onclick="itemDel()">
+                <input type="button" value="선택주문" onclick="order()">
+            </div>
         </c:when>
     </c:choose>
     <%----------------------%>
@@ -180,16 +183,6 @@
                     </form>
                 </div>
             </c:when>
-            <c:otherwise>
-                <c:if test="">
-                    ${notIn}
-                </c:if>
-                <div>
-                    <a href="">전체상품주문</a>
-                    <a href="">선택상품주문</a>
-                    <div>총합계 가격</div>
-                </div>
-            </c:otherwise>
         </c:choose>
 
     </div>
