@@ -18,7 +18,7 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 #detail_box_wrap select{ width: 150px; height: 30px; cursor: pointer;
     background-color: #353535; color: #fff; border-radius: 3px; }
 #detail_box_wrap select:hover { opacity: 0.75; transition: 0.3s; }
-#frmSubmit input[type=submit]{ border: 0; border-radius: 3px; padding: 10px;
+#frmSubmit input[type=submit]{ border-radius: 5px; padding: 10px;
     background-color: #353535; color: #fff; margin: 10px 0; }
 #frmSubmit input[type=submit]:hover { opacity: 0.75; transition: 0.3s; }
 
@@ -37,5 +37,5 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 .selected_item > .remove_btn { position: absolute; right: 0; border: 0; background: none; font-size: 20px; }
 .selected_item > .remove_btn:hover { opacity: 0.75; transition: 0.3s; }
 
-#allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; }
+#allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; line-height: 3; }
 #allPrice:after { content: " 원"; }
