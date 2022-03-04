@@ -36,7 +36,7 @@
             <th class="m-10" colspan="2">
 <%--                <textarea class="w-all h-all" style="border: none; min-height: 100px;" readonly><c:out value="${data.ctnt}"/></textarea>--%>
                 <div>
-                    <c:out value="${data.ctnt}"/>
+                    ${data.ctnt}
                 </div>
             </th>
         </tr>
