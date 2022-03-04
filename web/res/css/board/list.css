@@ -11,8 +11,10 @@ tr:first-child { border-bottom: 2px solid #a7a7a7; }
 #list_search_frm > *:nth-child(2) { margin-left: 20px; border: 1px solid #cccccc; border-radius: 3px; }
 #list_search_frm input[type=search] { padding: 0 10px; border-radius: 3px; border: 1px solid #cccccc; }
 #list_search_frm input[type=submit] { padding: 0 10px; border-radius: 5px; }
-.numPlusBtn, .numMinusBtn { width: 15px; height: 15px; border: 0; border-radius: 50%;
-    background-color: #333333; color: #fff; cursor: pointer; display: inline-flex; justify-content: center;
-    align-items: flex-end;
+
+.numPlusBtn, .numMinusBtn { width: 20px; height: 20px; border-radius: 50%;
+    background-color: #444444; color: #fff; cursor: pointer; display: inline-flex; justify-content: center;
+    align-items: flex-start;
 }
 .numPlusBtn:hover, .numMinusBtn:hover { opacity: 0.75; }
+.nowNum { padding: 0 10px; }

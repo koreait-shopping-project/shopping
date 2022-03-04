@@ -46,7 +46,8 @@
                                 <td>sm<input hidden name="size" value="sm"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/>
+                                    <input type="hidden" value="${item.sm}">
+                                    <span class="nowNum"><c:out value="${item.sm}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
@@ -56,7 +57,8 @@
                                 <td>md<input hidden name="size" value="md"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.md}"><c:out value="${item.md}"/>
+                                    <input type="hidden" value="${item.md}">
+                                    <span class="nowNum"><c:out value="${item.md}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
@@ -66,7 +68,8 @@
                                 <td>lg<input hidden name="size" value="lg"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/>
+                                    <input type="hidden" value="${item.lg}">
+                                    <span class="nowNum"><c:out value="${item.lg}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
@@ -76,7 +79,8 @@
                                 <td>xl<input hidden name="size" value="xl"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/>
+                                    <input type="hidden" value="${item.xl}">
+                                    <span class="nowNum"><c:out value="${item.xl}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
                                 <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
@@ -92,7 +96,6 @@
             </form>
             <div><input type="button" value="선택삭제" onclick="itemDel()"></div>
             <div><input type="button" value="선택주문" onclick="order()"></div>
-            <%----------------------------------------------------------------------------%>
         </c:when>
     </c:choose>
     <%----------------------%>
@@ -133,7 +136,7 @@
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
                                             <td class="tx-a-center">${item.notice}</td>
-                                            <td><c:out value="${item.title}"/></td>
+                                            <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
                                     </c:forEach>
@@ -142,7 +145,7 @@
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
                                             <td class="tx-a-center">${item.iboard}</td>
-                                            <td><c:out value="${item.title}"/></td>
+                                            <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
                                     </c:forEach>
