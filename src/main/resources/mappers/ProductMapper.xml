@@ -80,6 +80,13 @@
         WHERE icart = ${icart}
     </update>
 
+    <update id="unselectedCart">
+        UPDATE cart
+        SET checked = 0
+        WHERE icart = ${icart}
+    </update>
+
+
     <select id="searchProductList" resultType="BoardProductEntity">
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'

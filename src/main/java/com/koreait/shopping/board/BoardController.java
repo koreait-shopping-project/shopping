@@ -290,4 +290,17 @@ public class BoardController {
         }
         return result;
     }
+    @PutMapping("/unselected/{icart}")
+    @ResponseBody
+    public Map<String, Integer> unchecked(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.unselectedCart(Integer.parseInt(icartArr[i]));
+            }
+            result.put(Const.RESULT, 1);
+        }
+        return result;
+    }
 }

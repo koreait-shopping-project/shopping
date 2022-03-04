@@ -197,6 +197,7 @@
                     <tbody>
                     <c:forEach var="item" items="${requestScope.checked}">
                         <tr>
+                            <input name="RowCheck" type="hidden" value="${item.icart}"/>
                             <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
                             <td><c:out value="${item.title}"/></td>
                             <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>

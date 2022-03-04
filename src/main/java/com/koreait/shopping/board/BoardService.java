@@ -86,6 +86,11 @@ public class BoardService {
         vo.setIcart(icart);
         return mapper.selectedCart(vo);
     }
+    public int unselectedCart(int icart) {
+        BoardProductVo vo = new BoardProductVo();
+        vo.setIcart(icart);
+        return mapper.unselectedCart(vo);
+    }
 
     public int updCartUp(BoardProductVo vo) {
         return mapper.updCartUp(vo);
