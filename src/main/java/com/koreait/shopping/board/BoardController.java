@@ -157,13 +157,13 @@ public class BoardController {
     }
 
     @PostMapping("/cart")
-    public String cartProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
+    public String cartProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-            vo.setUid(request.getParameter("uid"));
+            vo.setIuser(utils.getLoginUserPk());
 
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
@@ -188,13 +188,13 @@ public class BoardController {
     }
 
     @PostMapping("/order")
-    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
+    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
-            vo.setUid(request.getParameter("uid"));
+            vo.setIuser(utils.getLoginUserPk());
 
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":

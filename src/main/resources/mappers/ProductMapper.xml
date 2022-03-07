@@ -47,12 +47,12 @@
     </select>
 
     <insert id="insCart">
-        insert into cart(iboard, uid, color,
+        insert into cart(iboard, iuser, color,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>
         <if test=" xl != null and xl !=0 ">xl</if>)
-        VALUES (${iboard}, #{uid}, ${color},
+        VALUES (${iboard}, ${iuser}, ${color},
         <if test=" sm != null and sm !=0 ">${sm}</if>
         <if test=" md != null and md !=0 ">${md}</if>
         <if test=" lg != null and lg !=0 ">${lg}</if>
@@ -60,12 +60,12 @@
     </insert>
 
     <insert id="insCartChecked">
-        insert into cart(iboard, uid, color, checked,
+        insert into cart(iboard, iuser, color, checked,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>
         <if test=" xl != null and xl !=0 ">xl</if>)
-        VALUES (${iboard}, #{uid}, ${color}, 1,
+        VALUES (${iboard}, ${iuser}, ${color}, 1,
         <if test=" sm != null and sm !=0 ">${sm}</if>
         <if test=" md != null and md !=0 ">${md}</if>
         <if test=" lg != null and lg !=0 ">${lg}</if>
@@ -73,12 +73,12 @@
     </insert>
 
     <select id="selCart" resultType="BoardProductVo">
-        SELECT A.uid, A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart,
+        SELECT A.iuser, A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart,
                B.iuser,
                C.img_url_big, C.title, C.price
         FROM cart A
         INNER JOIN t_user B
-        ON A.uid = B.uid
+        ON A.iuser = B.iuser
         INNER JOIN product_list C
         ON A.iboard = C.iboard
         WHERE B.iuser = ${iuser}
@@ -125,7 +125,7 @@
     </update>
 
     <insert id="insPurchased">
-        insert into cart(iboard, iuser, color,
+        insert into purchased(iboard, iuser, color,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>

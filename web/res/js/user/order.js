@@ -159,23 +159,28 @@
 }
 
 {
-    window.addEventListener("beforeunload", function (e) {
+    function purchaseBtn() {
+        const form = document.querySelector(`#frmSubmit`);
+        form.addEventListener('submit', function () {
+            window.removeEventListener("beforeunload", listener);
+        })
+    }
+    const listener = () => {
         let icart = "";
         const item = document.getElementsByName("RowCheck");
         let indexid = false;
-        for(let i=0; i < item.length; i++){
-            if(item[i]){
-                if(indexid){
+        for (let i = 0; i < item.length; i++) {
+            if (item[i]) {
+                if (indexid) {
                     icart = icart + '_';
                 }
                 icart = icart + item[i].value;
                 indexid = true;
             }
         }
-        myFetch.put(`/board/unselected/${icart}`, data => {
-            if(data) {}
-        });
-    });
+        myFetch.put(`/board/unselected/${icart}`);
+    }
+    window.addEventListener("beforeunload", listener);
 }
 
 {
