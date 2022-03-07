@@ -38,22 +38,28 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
-        model.addAttribute(Const.LIST, service.selBoardList(dto));
+        model.addAttribute(Const.LIST, service.selBoardList(cri));
         dto.setIcategory(icategory);
+        int total = service.getBoardTotal(icategory);
+
         if (dto.getSearchType() != 0) {
-            model.addAttribute(Const.LIST, service.searchBoardList(dto));
+            model.addAttribute(Const.LIST, service.searchBoardList(cri));
             model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
-            System.out.println("writerNm : " + dto.getWriterNm());
+            total = service.getSearchTotal(cri);
         } else {
-            model.addAttribute(Const.LIST, service.selBoardList(dto));
+            model.addAttribute(Const.LIST, service.selBoardList(cri));
         }
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
+            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
+
+        BoardPageMakerDto pageMake = new BoardPageMakerDto(cri, total);
+        model.addAttribute("pageMaker", pageMake);
 
         return "board/list";
     }
