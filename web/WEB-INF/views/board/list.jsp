@@ -104,7 +104,7 @@
     <%----------------------%>
     <div>
         <c:choose>
-            <c:when test="${requestScope.icategory != 3 && requestScope}">
+            <c:when test="${requestScope.icategory != 3}">
                 <c:choose>
                     <c:when test="${fn:length(requestScope.list) == 0}">
                         <table>

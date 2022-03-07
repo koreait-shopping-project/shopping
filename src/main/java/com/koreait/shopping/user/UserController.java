@@ -176,9 +176,10 @@ public class UserController {
 
     @PostMapping("/order")
     public String orderProc(UserEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
         for(int i = 0; i < service.checkedCart(entity).size(); i++) {
             BoardProductVo vo = new BoardProductVo();
-            vo.setIuser(utils.getLoginUserPk());
+            vo.setIuser(entity.getIuser());
             vo.setColor(service.checkedCart(entity).get(i).getColor());
             vo.setIboard(service.checkedCart(entity).get(i).getIboard());
 

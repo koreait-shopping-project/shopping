@@ -9,7 +9,7 @@
         <div class="tx-a-center font-size-20 h-50 bc-black color-white">Order</div>
         <hr>
         <div>
-            <form action="/user/order" method="post">
+            <form action="/user/order" method="post" id="frmSubmit">
                 <table>
                     <div>주문 정보</div>
                     <tr>
