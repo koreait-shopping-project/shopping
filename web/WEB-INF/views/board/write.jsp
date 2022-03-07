@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="titleVal" value="글쓰기" />
@@ -34,7 +35,7 @@
     </div>
 
     <h1 class="tx-a-center font-size-12 p-b-20">${titleVal}</h1>
-    <form action="${actionVal}" method="post">
+    <form action="${actionVal}" method="post" id="write_form">
         <input type="hidden" name="iboard" value="${iboardVal}">
         <input type="hidden" name="icategory" value="${icategoryVal}">
         <table>
@@ -44,7 +45,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea class="w-all h-200 font-size-16" name="ctnt"><c:out value="${requestScope.data.ctnt}" /></textarea>
+                    <textarea id="editor" name="ctnt">
+                        ${requestScope.data.ctnt}
+                    </textarea >
                 </td>
             </tr>
         </table>
