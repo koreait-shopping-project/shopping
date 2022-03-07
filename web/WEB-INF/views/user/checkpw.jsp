@@ -7,7 +7,9 @@
     <div class="font-size-16 bold p-b-20">비밀번호 확인</div>
     <div class="tx-a-center display-i-b m-b-20" style="width: 255px;">${sessionScope.loginUser.uid} 님의 회원정보를 안전하게 보호하기 위해 비밀번호를 한번 더 확인해 주세요.</div>
     <form action="/user/checkpw" method="post" id="checkpw_frm" class="tx-a-center">
-        <Strong class="color-red font-size-16">${requestScope.msg}</Strong>
+        <c:if test="${requestScope.msg != null}" >
+            <Strong class="color-red font-size-16" id="err" load="alert('test')"><script>alert('비밀번호를 확인하세요!')</script>${requestScope.msg}</Strong>
+        </c:if>
         <div class="m-b-20">
             <input type="hidden" name="uid" value="${sessionScope.loginUser.uid}">
             <div class="w-100p">
