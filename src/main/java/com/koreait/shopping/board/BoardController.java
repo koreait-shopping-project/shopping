@@ -59,8 +59,10 @@ public class BoardController {
     }
 
     @GetMapping("/detail")
-    public void detail(Model model, BoardListVo vo) {
-        model.addAttribute(Const.DATA, service.selBoard(vo));
+    public void detail(BoardListDto dto, Model model) {
+        BoardListVo vo = service.selBoard(dto);
+        model.addAttribute(Const.DATA, vo);
+        model.addAttribute(Const.PREV_NEXT, service.selPrevNext(vo));
     }
 
     @GetMapping("/prsearch")
@@ -85,8 +87,8 @@ public class BoardController {
     }
 
     @GetMapping("/mod")
-    public String mod(BoardListVo vo, Model model) {
-        model.addAttribute(Const.DATA, service.selBoard(vo));
+    public String mod(BoardListDto dto, Model model) {
+        model.addAttribute(Const.DATA, service.selBoard(dto));
         return "board/write";
     }
 

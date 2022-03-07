@@ -37,11 +37,12 @@ public class BoardService {
         return mapper.selBoardList(dto);
     }
 
-    public BoardListVo selBoard(BoardListVo vo) {
-        System.out.println(vo.getIboard());
+    //BoardListVo -> BoardListDto 로 바꿔줌 (디테일 창에서 이전 다음글 정상화)
+    public BoardListVo selBoard(BoardListDto dto) {
+        System.out.println(dto.getIboard());
         System.out.println(userUtils.getLoginUserPk());
 
-        return mapper.selBoardDetail(vo);
+        return mapper.selBoardDetail(dto);
     }
 
     /* 게시물 총 갯수 */
@@ -59,7 +60,7 @@ public class BoardService {
         }
     }
 
-    public BoardPrevNextVo BoardPrevNext(BoardListVo vo) {
+    public BoardPrevNextVo selPrevNext(BoardListVo vo) {
         return mapper.selPrevNext(vo);
     }
 

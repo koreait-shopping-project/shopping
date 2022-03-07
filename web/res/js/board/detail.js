@@ -228,4 +228,12 @@
         return trArr.length;
     }
     getCmtList();
+
+    //목록가기 버튼
+    const backListBtn = document.querySelector('#list');
+    backListBtn.addEventListener('click', () => {
+        const dataElem = document.querySelector('#data');
+        const icategory = dataElem.dataset.icategory;
+        location.href = `/board/list/${icategory}`;
+    })
 }
