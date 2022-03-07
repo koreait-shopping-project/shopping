@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.ResultVo;
 import com.koreait.shopping.board.model.dto.BoardListDto;
@@ -26,6 +27,8 @@ public interface BoardMapper {
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
     BoardListVo selBoardDetail(BoardListDto dto);
+    int getBoardTotal(int icategory);
+    int getSearchTotal(BoardCriteria cri);
     int insCart(BoardProductVo vo);
     int insCartChecked(BoardProductVo vo);
     int delCart(BoardProductVo vo);

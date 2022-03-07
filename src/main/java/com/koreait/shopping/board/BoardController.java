@@ -1,14 +1,14 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
-import com.koreait.shopping.Paging.PageMakerDto;
-import com.koreait.shopping.ResultVo;
+import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
+import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
-import com.koreait.shopping.board.model.entity.BoardCmtEntity;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
