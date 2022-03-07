@@ -169,7 +169,24 @@
                     </c:choose>
                 </div>
 
-                <div>페이징이다</div>
+                <div class="pageInfo_wrap" >
+                    <div class="pageInfo_area">
+                        <!-- 이전페이지 버튼 -->
+                        <c:if test="${pageMaker.prev}">
+                            <li class="pageInfo_btn previous"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.startPage-1}">Previous</a></li>
+                        </c:if>
+
+                        <!-- 각 번호 페이지 버튼 -->
+                        <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage - 1}">
+                            <li class="pageInfo_btn"><a href="/board/list/${requestScope.icategory}?pageNum=${num}">${num}</a></li>
+                        </c:forEach>
+
+                        <!-- 다음페이지 버튼 -->
+                        <c:if test="${pageMaker.next}">
+                            <li class="pageInfo_btn next"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.endPage + 1 }">Next</a></li>
+                        </c:if>
+                    </div>
+                </div>
                 <div id="list_search_wrap">
                     <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
                         <span class="color-gray">검색어</span>
@@ -178,7 +195,7 @@
                             <option value="2" ${requestScope.searchType == 2 ? 'selected' : ''}>내용</option>
                             <option value="3" ${requestScope.searchType == 3 ? 'selected' : ''}>글쓴이</option>
                         </select>
-                        <input type="search" name="searchText">
+                        <input type="search" name="searchText" value="">
                         <input class="bc-black color-white" type="submit" value="찾기">
                     </form>
                 </div>

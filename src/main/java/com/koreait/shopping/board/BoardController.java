@@ -1,14 +1,14 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
-import com.koreait.shopping.Paging.PageMakerDto;
-import com.koreait.shopping.ResultVo;
+import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
+import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
-import com.koreait.shopping.board.model.entity.BoardCmtEntity;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
@@ -38,22 +38,28 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
-        model.addAttribute(Const.LIST, service.selBoardList(dto));
+        model.addAttribute(Const.LIST, service.selBoardList(cri));
         dto.setIcategory(icategory);
+        int total = service.getBoardTotal(icategory);
+
         if (dto.getSearchType() != 0) {
-            model.addAttribute(Const.LIST, service.searchBoardList(dto));
+            model.addAttribute(Const.LIST, service.searchBoardList(cri));
             model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
-            System.out.println("writerNm : " + dto.getWriterNm());
+            total = service.getSearchTotal(cri);
         } else {
-            model.addAttribute(Const.LIST, service.selBoardList(dto));
+            model.addAttribute(Const.LIST, service.selBoardList(cri));
         }
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
+            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
+
+        BoardPageMakerDto pageMake = new BoardPageMakerDto(cri, total);
+        model.addAttribute("pageMaker", pageMake);
 
         return "board/list";
     }

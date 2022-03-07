@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
@@ -33,8 +34,8 @@ public class BoardService {
         }
     }
 
-    public List<BoardListVo> selBoardList(BoardListDto dto) {
-        return mapper.selBoardList(dto);
+    public List<BoardListVo> selBoardList(BoardCriteria cri) {
+        return mapper.selBoardList(cri);
     }
 
     //BoardListVo -> BoardListDto 로 바꿔줌 (디테일 창에서 이전 다음글 정상화)
@@ -45,10 +46,20 @@ public class BoardService {
         return mapper.selBoardDetail(dto);
     }
 
-    /* 게시물 총 갯수 */
+    /* Board 게시물 총 갯수 */
+    public int getBoardTotal(int icategory) {
+        return mapper.getBoardTotal(icategory);
+    }
+
+    public int getSearchTotal(BoardCriteria cri) {
+        return mapper.getSearchTotal(cri);
+    }
+
+    /* Product 게시물 총 갯수 */
     public int getTotal(int isubctegory) {
         return mapper.getTotal(isubctegory);
     }
+
 
     public int updBoard(BoardListEntity entity) {
         try {
@@ -116,7 +127,6 @@ public class BoardService {
     }
 
     public List<BoardListVo> searchBoardList(BoardListDto dto) {
-        System.out.println("icategory : " + dto.getIcategory());
         return mapper.searchBoardList(dto);
     }
 
