@@ -27,3 +27,14 @@ tr:first-child { border-bottom: 2px solid #a7a7a7; }
 #itemOrderBtn input[type=button]:hover { opacity: 0.75; transition: 0.3s; }
 #allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; line-height: 3; }
 #allPrice:after { content: " 원"; }
+
+.pageInfo_wrap { display: flex; justify-content: center; align-items: center; padding-top: 50px; }
+.pageInfo_area > li { float: left; font-size: 18px; margin-left: 10px; line-height: 50px; }
+.pageInfo_area > li:first-child { margin-left: 0; }
+.pageInfo_area .next a, .previous a { background-color: #353535; color: #ffffff!important; }
+
+.pageInfo_area a { color: #353535; padding: 5px; border:1px solid #dddddd; border-radius: 5px; }
+.pageInfo_area a:hover { opacity: 0.75; }
+
+.active { color: #ffffff!important; background-color: #353535!important; }
+.active:hover { opacity: 1!important; }
