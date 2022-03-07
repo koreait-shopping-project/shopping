@@ -177,36 +177,29 @@ public class UserController {
     @PostMapping("/order")
     public String orderProc(UserEntity entity) {
         entity.setIuser(utils.getLoginUserPk());
-        for(int i = 0; i < service.checkedCart(entity).size(); i++) {
+        System.out.println(service.checkedCart(entity).size());
+        System.out.println("-------------------------------");
+        for(int i = 0; i <= service.checkedCart(entity).size(); i++) {
+            System.out.println("for문 도는 순서 : " + i);
             BoardProductVo vo = new BoardProductVo();
             vo.setIuser(entity.getIuser());
+            System.out.println("아이유저 : " + entity.getIuser());
+
             vo.setColor(service.checkedCart(entity).get(i).getColor());
+            System.out.println("컬러 : " + service.checkedCart(entity).get(i).getColor());
+
             vo.setIboard(service.checkedCart(entity).get(i).getIboard());
-            if(service.checkedCart(entity).get(i).getSm() != 0) {
-                vo.setSm(service.checkedCart(entity).get(i).getSm());
-                boardService.insPurchased(vo);
-                service.updProductDetail(vo);
-                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
-                return "board/main";
-            } else if(service.checkedCart(entity).get(i).getMd() != 0) {
-                vo.setMd(service.checkedCart(entity).get(i).getMd());
-                boardService.insPurchased(vo);
-                service.updProductDetail(vo);
-                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
-                return "board/main";
-            } else if(service.checkedCart(entity).get(i).getLg() != 0) {
-                vo.setLg(service.checkedCart(entity).get(i).getLg());
-                boardService.insPurchased(vo);
-                service.updProductDetail(vo);
-                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
-                return "board/main";
-            } else if(service.checkedCart(entity).get(i).getXl() != 0) {
-                vo.setXl(service.checkedCart(entity).get(i).getXl());
-                boardService.insPurchased(vo);
-                service.updProductDetail(vo);
-                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
-                return "board/main";
-            }
-        }return "board/main";
+            System.out.println("아이보드 : " + service.checkedCart(entity).get(i).getIboard());
+
+            System.out.println("-------------------------------");
+            if(service.checkedCart(entity).get(i).getSm() != 0) {vo.setSm(service.checkedCart(entity).get(i).getSm());}
+            else if(service.checkedCart(entity).get(i).getMd() != 0) {vo.setMd(service.checkedCart(entity).get(i).getMd());}
+            else if(service.checkedCart(entity).get(i).getLg() != 0) {vo.setLg(service.checkedCart(entity).get(i).getLg());}
+            else if(service.checkedCart(entity).get(i).getXl() != 0) {vo.setXl(service.checkedCart(entity).get(i).getXl());}
+            boardService.insPurchased(vo);
+            service.updProductDetail(vo);
+            boardService.delCart(service.checkedCart(entity).get(i).getIcart());
+        }
+        return "board/main";
     }
 }

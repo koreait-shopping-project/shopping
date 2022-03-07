@@ -54,7 +54,6 @@ public class BoardController {
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
-            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
 
@@ -240,22 +239,18 @@ public class BoardController {
             case "sm":
                 vo.setSm(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                System.out.println(result);
                 return result;
             case "md":
                 vo.setMd(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                System.out.println(result);
                 return result;
             case "lg":
                 vo.setLg(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                System.out.println(result);
                 return result;
             case "xl":
                 vo.setXl(1);
                 result.put(Const.RESULT, service.updCartUp(vo));
-                System.out.println(result);
                 return result;
         }
         return null;
@@ -269,22 +264,18 @@ public class BoardController {
             case "sm":
                 vo.setSm(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                System.out.println(result);
                 return result;
             case "md":
                 vo.setMd(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                System.out.println(result);
                 return result;
             case "lg":
                 vo.setLg(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                System.out.println(result);
                 return result;
             case "xl":
                 vo.setXl(1);
                 result.put(Const.RESULT, service.updCartDown(vo));
-                System.out.println(result);
                 return result;
         }
         return null;
