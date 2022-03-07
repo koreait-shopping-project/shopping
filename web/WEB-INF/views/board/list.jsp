@@ -173,12 +173,12 @@
                     <div class="pageInfo_area">
                         <!-- 이전페이지 버튼 -->
                         <c:if test="${pageMaker.prev}">
-                            <li class="pageInfo_btn previous"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.startPage-1}">Previous</a></li>
+                            <li class="pageInfo_btn previous"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.startPage-1}">Prev</a></li>
                         </c:if>
 
                         <!-- 각 번호 페이지 버튼 -->
                         <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage - 1}">
-                            <li class="pageInfo_btn"><a href="/board/list/${requestScope.icategory}?pageNum=${num}">${num}</a></li>
+                            <li class="pageInfo_btn num"><a href="/board/list/${requestScope.icategory}?pageNum=${num}">${num}</a></li>
                         </c:forEach>
 
                         <!-- 다음페이지 버튼 -->
