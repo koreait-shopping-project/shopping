@@ -1,5 +1,6 @@
-package com.koreait.shopping.Paging;
+package com.koreait.shopping.Paging.dto;
 
+import com.koreait.shopping.Paging.Criteria;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
