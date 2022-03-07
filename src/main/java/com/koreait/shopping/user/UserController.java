@@ -162,11 +162,11 @@ public class UserController {
         return "redirect:/user/mypage";
     }
 
+    //카트에서 checked 된 상품 select
     @GetMapping("/order")
     public void order(Model model, UserEntity entity) {
         entity.setIuser(utils.getLoginUserPk());
         model.addAttribute(Const.CHECKED, service.checkedCart(entity));
-        //결제 완료하면 purchase 해주고 만약 결제 취소하면... 체크정보 해제해야하는데... 다른 페이지로 이동 누르면 체크 해제하는 update문 시전
     }
 
     @PostMapping("/order")
