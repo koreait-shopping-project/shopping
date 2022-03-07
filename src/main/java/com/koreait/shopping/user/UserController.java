@@ -4,7 +4,11 @@ import com.koreait.shopping.Const;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.BoardService;
+import com.koreait.shopping.board.model.dto.BoardProductDto;
+import com.koreait.shopping.board.model.dto.BoardProductListDto;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
+import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -26,6 +30,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired private UserService service;
+    @Autowired private BoardService boardService;
 
     @Autowired private UserUtils utils;
 
@@ -170,7 +175,38 @@ public class UserController {
     }
 
     @PostMapping("/order")
-    public String orderProc() {
-        return "redirect:/user/order";
+    public String orderProc(UserEntity entity) {
+        for(int i = 0; i < service.checkedCart(entity).size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setIuser(utils.getLoginUserPk());
+            vo.setColor(service.checkedCart(entity).get(i).getColor());
+            vo.setIboard(service.checkedCart(entity).get(i).getIboard());
+
+            if(service.checkedCart(entity).get(i).getSm() != 0) {
+                vo.setSm(service.checkedCart(entity).get(i).getSm());
+                boardService.insPurchased(vo);
+                service.updProductDetail(vo);
+                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
+                return "redirect:/user/order";
+            } else if(service.checkedCart(entity).get(i).getMd() != 0) {
+                vo.setMd(service.checkedCart(entity).get(i).getMd());
+                boardService.insPurchased(vo);
+                service.updProductDetail(vo);
+                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
+                return "redirect:/user/order";
+            } else if(service.checkedCart(entity).get(i).getLg() != 0) {
+                vo.setLg(service.checkedCart(entity).get(i).getLg());
+                boardService.insPurchased(vo);
+                service.updProductDetail(vo);
+                boardService.delCart(service.checkedCart(entity).get(i).getIcart());
+                return "redirect:/user/order";
+            } else if(service.checkedCart(entity).get(i).getXl() != 0) {
+                vo.setXl(service.checkedCart(entity).get(i).getXl());
+                boardService.insPurchased(vo);
+                service.updProductDetail(vo);
+
+                return "redirect:/user/order";
+            }
+        }return "redirect:/user/order";
     }
 }

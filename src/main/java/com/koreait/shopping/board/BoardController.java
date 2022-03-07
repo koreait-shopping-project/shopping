@@ -144,39 +144,6 @@ public class BoardController {
         return res;
     }
 
-    @GetMapping("/purchase")
-    public void purchase() {
-    }
-
-    @PostMapping("/purchase")
-    public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
-        for (int i = 0; i < listDto.getProductList().size(); i++) {
-            BoardProductVo vo = new BoardProductVo();
-            vo.setColor(listDto.getProductList().get(i).getColor());
-            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
-            vo.setIboard(listDto.getProductList().get(i).getIboard());
-            switch (listDto.getProductList().get(i).getSize()) {
-                case "sm":
-                    vo.setSm(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "md":
-                    vo.setMd(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "lg":
-                    vo.setLg(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "xl":
-                    vo.setXl(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-            }
-        }
-        return "board/purchase";
-    }
-
     @GetMapping("/cart")
     public void cart() {
     }

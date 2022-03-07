@@ -78,8 +78,6 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 
-    public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
-
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
     public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
 
@@ -119,6 +117,10 @@ public class BoardService {
     public List<BoardListVo> searchBoardList(BoardListDto dto) {
         System.out.println("icategory : " + dto.getIcategory());
         return mapper.searchBoardList(dto);
+    }
+
+    public int insPurchased(BoardProductVo vo) {
+        return mapper.insPurchased(vo);
     }
 
 }

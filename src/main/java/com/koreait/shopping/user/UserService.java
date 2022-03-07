@@ -122,4 +122,5 @@ public class UserService {
     public List<BoardProductVo> checkedCart(UserEntity entity) {
         return mapper.checkedCart(entity);
     }
+    public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
 }

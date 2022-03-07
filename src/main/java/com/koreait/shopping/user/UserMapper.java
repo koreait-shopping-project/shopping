@@ -18,6 +18,8 @@ public interface UserMapper {
     int updUserPw(UserEntity entity);
     UserEntity selSocial(UserEntity entity);
     int insReview (UserReviewEntity entity);
+
     List<BoardProductVo> checkedCart(UserEntity entity);
+    int updProductDetail(BoardProductVo vo);
 
 }
