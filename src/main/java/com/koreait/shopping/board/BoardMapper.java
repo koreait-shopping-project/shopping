@@ -25,7 +25,7 @@ public interface BoardMapper {
     //category
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
-    BoardListVo selBoardDetail(BoardListVo vo);
+    BoardListVo selBoardDetail(BoardListDto dto);
     int insCart(BoardProductVo vo);
     int delCart(BoardProductVo vo);
     int selectedCart(BoardProductVo vo);

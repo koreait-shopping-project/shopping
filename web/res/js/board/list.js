@@ -8,6 +8,8 @@
         });
     };
     recordList.forEach(recordEvent);
+
+
     
     //모두 선택
     function allChk(obj){

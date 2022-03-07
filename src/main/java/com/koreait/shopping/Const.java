@@ -24,6 +24,8 @@ public class Const {
     public static final String CART = "cart";
     public static final String DELCART = "delCart";
     public static final String CHECKED = "checked";
+    public static final String PREV_NEXT = "prevNext";
+
 
 
     public static final String ERR_1 = "아이디를 입력하세요.";

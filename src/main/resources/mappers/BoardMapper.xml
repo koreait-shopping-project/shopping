@@ -30,22 +30,27 @@
     <select id="selPrevNext" resultType="BoardPrevNextVo">
         <![CDATA[
         SELECT
-            IFNULL(
-                    (SELECT iboard
-                     FROM t_board_list
-                     WHERE icategory = ${icategory}
-                       AND iboard > ${iboard}
-                     ORDER BY iboard
-                        LIMIT 1), 0
-        ) AS previboard,
+        IFNULL(
+                (
+                    SELECT iboard
+                    FROM t_board_list
+                    WHERE icategory = ${icategory}
+                    AND iboard > ${iboard}
+                    ORDER BY iboard
+                    LIMIT 1
+                ), 0
+                ) AS previboard,
 
-            IFNULL(
-                    (SELECT iboard FROM t_board_list
-                     WHERE icategory = ${icategory}
-                       AND iboard < ${iboard}
-                     ORDER BY iboard DESC
-                        LIMIT 1), 0
-        )AS nextiboard
+        IFNULL(
+                 (
+                    SELECT iboard
+                    FROM t_board_list
+                    WHERE icategory = ${icategory}
+                    AND iboard < ${iboard}
+                    ORDER BY iboard DESC
+                    LIMIT 1
+                    ) , 0
+                )AS nextiboard
         ]]>
     </select>
 
