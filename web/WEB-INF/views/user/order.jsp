@@ -295,7 +295,7 @@
                     </label>
                 </div>
                 <hr>
-                <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" value="0000 원 결제하기">
+                <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" onclick="purchaseBtn()" value="0000 원 결제하기">
             </form>
         </div>
     </div>
