@@ -1,5 +1,6 @@
 package com.koreait.shopping.board;
 
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
@@ -33,21 +34,32 @@ public class BoardService {
         }
     }
 
-    public List<BoardListVo> selBoardList(BoardListDto dto) {
-        return mapper.selBoardList(dto);
+    public List<BoardListVo> selBoardList(BoardCriteria cri) {
+        return mapper.selBoardList(cri);
     }
 
-    public BoardListVo selBoard(BoardListVo vo) {
-        System.out.println(vo.getIboard());
+    //BoardListVo -> BoardListDto 로 바꿔줌 (디테일 창에서 이전 다음글 정상화)
+    public BoardListVo selBoard(BoardListDto dto) {
+        System.out.println(dto.getIboard());
         System.out.println(userUtils.getLoginUserPk());
 
-        return mapper.selBoardDetail(vo);
+        return mapper.selBoardDetail(dto);
     }
 
-    /* 게시물 총 갯수 */
+    /* Board 게시물 총 갯수 */
+    public int getBoardTotal(int icategory) {
+        return mapper.getBoardTotal(icategory);
+    }
+
+    public int getSearchTotal(BoardCriteria cri) {
+        return mapper.getSearchTotal(cri);
+    }
+
+    /* Product 게시물 총 갯수 */
     public int getTotal(int isubctegory) {
         return mapper.getTotal(isubctegory);
     }
+
 
     public int updBoard(BoardListEntity entity) {
         try {
@@ -59,7 +71,7 @@ public class BoardService {
         }
     }
 
-    public BoardPrevNextVo BoardPrevNext(BoardListVo vo) {
+    public BoardPrevNextVo selPrevNext(BoardListVo vo) {
         return mapper.selPrevNext(vo);
     }
 
@@ -78,9 +90,9 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
 
-    public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
-
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
+    public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
+
     public List<BoardProductVo> selCart(UserEntity entity) {return mapper.selCart(entity);}
     public int delCart(int icart) {
         BoardProductVo vo = new BoardProductVo();
@@ -91,6 +103,11 @@ public class BoardService {
         BoardProductVo vo = new BoardProductVo();
         vo.setIcart(icart);
         return mapper.selectedCart(vo);
+    }
+    public int unselectedCart(int icart) {
+        BoardProductVo vo = new BoardProductVo();
+        vo.setIcart(icart);
+        return mapper.unselectedCart(vo);
     }
 
     public int updCartUp(BoardProductVo vo) {
@@ -110,8 +127,11 @@ public class BoardService {
     }
 
     public List<BoardListVo> searchBoardList(BoardListDto dto) {
-        System.out.println("icategory : " + dto.getIcategory());
         return mapper.searchBoardList(dto);
+    }
+
+    public int insPurchased(BoardProductVo vo) {
+        return mapper.insPurchased(vo);
     }
 
 }

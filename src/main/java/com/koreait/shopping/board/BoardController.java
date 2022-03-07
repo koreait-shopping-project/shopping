@@ -1,14 +1,14 @@
 package com.koreait.shopping.board;
 
 import com.koreait.shopping.Const;
+import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
-import com.koreait.shopping.Paging.PageMakerDto;
-import com.koreait.shopping.ResultVo;
+import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
+import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
-import com.koreait.shopping.board.model.entity.BoardCmtEntity;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
@@ -38,29 +38,37 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardListDto dto, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
-        model.addAttribute(Const.LIST, service.selBoardList(dto));
+        model.addAttribute(Const.LIST, service.selBoardList(cri));
         dto.setIcategory(icategory);
+        int total = service.getBoardTotal(icategory);
+
         if (dto.getSearchType() != 0) {
-            model.addAttribute(Const.LIST, service.searchBoardList(dto));
+            model.addAttribute(Const.LIST, service.searchBoardList(cri));
             model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
-            System.out.println("writerNm : " + dto.getWriterNm());
+            total = service.getSearchTotal(cri);
         } else {
-            model.addAttribute(Const.LIST, service.selBoardList(dto));
+            model.addAttribute(Const.LIST, service.selBoardList(cri));
         }
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
+            System.out.println(utils.getLoginUserPk());
             model.addAttribute(Const.CART, service.selCart(entity));
         }
+
+        BoardPageMakerDto pageMake = new BoardPageMakerDto(cri, total);
+        model.addAttribute("pageMaker", pageMake);
 
         return "board/list";
     }
 
     @GetMapping("/detail")
-    public void detail(Model model, BoardListVo vo) {
-        model.addAttribute(Const.DATA, service.selBoard(vo));
+    public void detail(BoardListDto dto, Model model) {
+        BoardListVo vo = service.selBoard(dto);
+        model.addAttribute(Const.DATA, vo);
+        model.addAttribute(Const.PREV_NEXT, service.selPrevNext(vo));
     }
 
     @GetMapping("/prsearch")
@@ -85,8 +93,8 @@ public class BoardController {
     }
 
     @GetMapping("/mod")
-    public String mod(BoardListVo vo, Model model) {
-        model.addAttribute(Const.DATA, service.selBoard(vo));
+    public String mod(BoardListDto dto, Model model) {
+        model.addAttribute(Const.DATA, service.selBoard(dto));
         return "board/write";
     }
 
@@ -144,39 +152,6 @@ public class BoardController {
         return res;
     }
 
-    @GetMapping("/purchase")
-    public void purchase() {
-    }
-
-    @PostMapping("/purchase")
-    public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
-        for (int i = 0; i < listDto.getProductList().size(); i++) {
-            BoardProductVo vo = new BoardProductVo();
-            vo.setColor(listDto.getProductList().get(i).getColor());
-            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
-            vo.setIboard(listDto.getProductList().get(i).getIboard());
-            switch (listDto.getProductList().get(i).getSize()) {
-                case "sm":
-                    vo.setSm(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "md":
-                    vo.setMd(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "lg":
-                    vo.setLg(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "xl":
-                    vo.setXl(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-            }
-        }
-        return "board/purchase";
-    }
-
     @GetMapping("/cart")
     public void cart() {
     }
@@ -210,6 +185,37 @@ public class BoardController {
             }
         }
         return "board/main";
+    }
+
+    @PostMapping("/order")
+    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
+        for (int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+            vo.setIboard(listDto.getProductList().get(i).getIboard());
+            vo.setUid(request.getParameter("uid"));
+
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm":
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "md":
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "lg":
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "xl":
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+            }
+        }
+        return null;
     }
 
     @DeleteMapping("/cart/{icart}")
@@ -292,6 +298,19 @@ public class BoardController {
         if(icartArr != null && icartArr.length>0){
             for(int i=0 ; i<icartArr.length ; i++){
                 service.selectedCart(Integer.parseInt(icartArr[i]));
+            }
+            result.put(Const.RESULT, 1);
+        }
+        return result;
+    }
+    @PutMapping("/unselected/{icart}")
+    @ResponseBody
+    public Map<String, Integer> unchecked(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.unselectedCart(Integer.parseInt(icartArr[i]));
             }
             result.put(Const.RESULT, 1);
         }
