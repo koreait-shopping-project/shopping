@@ -3,7 +3,19 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-
+<%
+    //비정상적인 경로 접근시 차단
+    String strReferer = request.getHeader("referer");
+    if(strReferer == null){
+%>
+<script language="javascript">
+    alert("비정상적인 접근입니다.");
+    document.location.href="/";
+</script>
+<%
+        return;
+    }
+%>
 <div>
     <div>
         <div class="tx-a-center font-size-20 h-50 bc-black color-white">Order</div>
@@ -11,7 +23,7 @@
         <div>
             <form action="/user/order" method="post">
                 <table>
-                    <div>주문 정보</div>
+                    <div class="bold">주문 정보</div>
                     <tr>
                         <th class="display-b-f-l font-size-12 w-90">주문자*</th>
                         <td class="">
@@ -93,7 +105,7 @@
                 </table>
                 <hr>
                 <table>
-                    <div>배송지</div>
+                    <div class="bold">배송지</div>
                     <tr>
                         <th class="display-b-f-l font-size-12 w-90">받는사람*</th>
                         <td>
@@ -181,57 +193,60 @@
 
                 </div>
                 <hr>
-                <div>주문상품</div>
-                <table>
+                <div class="bold p-b-10">주문상품</div>
+                <table class="w-100p">
                     <thead>
-                    <tr>
-                        <th>상품 이미지</th>
-                        <th>상품명</th>
-                        <th>판매가</th>
-                        <th>컬러</th>
-                        <th>사이즈</th>
-                        <th>수량</th>
-                        <th>주문금액</th>
+                    <tr class="tx-a-center" style="border-bottom: 1px solid #c1c1c1;">
+                        <th class="font-size-10 p-b-10" width="20%">상품 이미지</th>
+                        <th class="font-size-10 p-b-10" width="20%">상품명</th>
+                        <th class="font-size-10 p-b-10" width="15%">판매가</th>
+                        <th class="font-size-10 p-b-10" width="10%">컬러</th>
+                        <th class="font-size-10 p-b-10" width="10%">사이즈</th>
+                        <th class="font-size-10 p-b-10" width="10%">수량</th>
+                        <th class="font-size-10 p-b-10" width="15">주문금액</th>
                     </tr>
                     </thead>
                     <tbody>
+                    <c:if test="${requestScope.checked == null}">
+                        주문산 상품이 없습니다.
+                    </c:if>
                     <c:forEach var="item" items="${requestScope.checked}">
-                        <tr>
+                        <tr class="tx-a-center">
                             <input name="RowCheck" type="hidden" value="${item.icart}"/>
-                            <td><img src="${item.img_url_big}" style="width: 10%; height: 10%;"></td>
-                            <td><c:out value="${item.title}"/></td>
-                            <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
-                            <td><c:choose>
+                            <td><img class="p-10 max-w" src="${item.img_url_big}" style="width: 100%; height: 100%;"></td>
+                            <td class="font-size-10"><c:out value="${item.title}"/></td>
+                            <td class="font-size-10"><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
+                            <td class="font-size-10"><c:choose>
                                 <c:when test="${item.color == 1}">흰색</c:when>
                                 <c:when test="${item.color == 2}">검정색</c:when>
                                 <c:when test="${item.color == 3}">회색</c:when></c:choose>
                             </td>
                             <c:if test="${item.sm !=0 && item.sm != null}">
-                                <td>sm</td>
-                                <td><input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/></td>
-                                <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
+                                <td class="font-size-10">sm</td>
+                                <td class="font-size-10"><input type="hidden" value="${item.sm}"><c:out value="${item.sm}"/></td>
+                                <td class="font-size-10"><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
                             </c:if>
                             <c:if test="${item.md !=0 && item.md != null}">
-                                <td>md</td>
-                                <td><c:out value="${item.md}"/></td>
-                                <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
+                                <td class="font-size-10">md</td>
+                                <td class="font-size-10"><c:out value="${item.md}"/></td>
+                                <td class="font-size-10"><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
                             </c:if>
                             <c:if test="${item.lg !=0 && item.xl != null}">
-                                <td>lg</td>
-                                <td><input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/></td>
-                                <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
+                                <td class="font-size-10">lg</td>
+                                <td class="font-size-10"><input type="hidden" value="${item.lg}"><c:out value="${item.lg}"/></td>
+                                <td class="font-size-10"><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
                             </c:if>
                             <c:if test="${item.xl !=0 && item.xl != null}">
-                                <td>xl</td>
-                                <td><input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/></td>
-                                <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
+                                <td class="font-size-10">xl</td>
+                                <td class="font-size-10"><input type="hidden" value="${item.xl}"><c:out value="${item.xl}"/></td>
+                                <td class="font-size-10"><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
                             </c:if>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
                 <hr>
-                <div>결제수단</div>
+                <div class="bold p-b-10">결제수단</div>
                 <label class="w-auto">
                     <input type="radio" name="pay_method" id="card" value="1">카드결제
                 </label>
@@ -290,13 +305,20 @@
                         </tr>
                     </table>
                     <hr>
-                    <label>
+                    <label class="p-b-10">
                         <input type="checkbox" name="payagent_agree_flag">[필수]결제대행서비스 약관 동의
                     </label>
+                    <textarea class="w-100p bolder font-size-10" cols="250" rows="3" readonly>전자금융거래 기본약관(이용자용)
+제 1조 (목적)
+이 약관은 전자지급결제 대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</textarea>
                 </div>
                 <hr>
-                <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" value="0000 원 결제하기">
+                <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" value="${} 원 결제하기">
             </form>
+            <ul class="font-size-10 m-t-10" style="color: #a99d95">
+              <li class="m-b-10">- 무이자할부가 적용되지 않은 상품과 무이자할부가 가능한 상품을 동시에 구매할 경우 전체 주문 상품 금액에 대해 무이자할부가 적용되지 않습니다. 무이자할부를 원하시는 경우 장바구니에서 무이자할부 상품만 선택하여 주문하여 주시기 바랍니다.</li>
+              <li>- 최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</li>
+            </ul>
         </div>
     </div>
 
