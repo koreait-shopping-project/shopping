@@ -2,7 +2,7 @@
 var pos = 0;
 // 슬라이드 총 길이
 var totalSlides = $('#slider li').length;
-// 각 슬라이드 width
+// 각 슬라이드 넓이
 var sliderWidth = $('#slider_wrap').width();
 
 
