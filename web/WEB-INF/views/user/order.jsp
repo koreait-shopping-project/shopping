@@ -309,8 +309,8 @@
                         <input type="checkbox" name="payagent_agree_flag">[필수]결제대행서비스 약관 동의
                     </label>
                     <textarea class="w-100p bolder font-size-10" cols="250" rows="3" readonly>전자금융거래 기본약관(이용자용)
-제 1조 (목적)
-이 약관은 전자지급결제 대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</textarea>
+                        제 1조 (목적)
+                        이 약관은 전자지급결제 대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</textarea>
                 </div>
                 <hr>
                 <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" onclick="purchaseBtn()" value="0000 원 결제하기">
