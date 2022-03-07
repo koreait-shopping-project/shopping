@@ -27,16 +27,18 @@ public interface BoardMapper {
     List<BoardListVo> selBoardList(BoardListDto dto);
     BoardListVo selBoardDetail(BoardListVo vo);
     int insCart(BoardProductVo vo);
+    int insCartChecked(BoardProductVo vo);
     int delCart(BoardProductVo vo);
     int selectedCart(BoardProductVo vo);
+    int unselectedCart(BoardProductVo vo);
     int updCartUp(BoardProductVo vo);
     int updCartDown(BoardProductVo vo);
     List<BoardProductVo> selCart(UserEntity entity);
     int insBoard(BoardListEntity entity);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
-    int updProductDetail(BoardProductVo vo);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
     List<BoardProductVo> searchProductList(BoardProductEntity entity);
     List<BoardListVo> searchBoardList(BoardListDto dto);
+    int insPurchased(BoardProductVo vo);
 }

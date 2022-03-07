@@ -40,7 +40,6 @@
 
 }
 
-
 {
     //카카오 우편주소 검색 API
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -156,5 +155,35 @@
                 }
             }
         }).open();
+    }
+}
+
+{
+    window.addEventListener("beforeunload", function (e) {
+        let icart = "";
+        const item = document.getElementsByName("RowCheck");
+        let indexid = false;
+        for(let i=0; i < item.length; i++){
+            if(item[i]){
+                if(indexid){
+                    icart = icart + '_';
+                }
+                icart = icart + item[i].value;
+                indexid = true;
+            }
+        }
+        myFetch.put(`/board/unselected/${icart}`, data => {
+            if(data) {}
+        });
+    });
+}
+
+{
+    document.onkeydown = function () {
+        if (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82) || event.keyCode ==116) {
+            event.keyCode = 0;
+            event.cancelBubble = true;
+            event.returnValue = false;
+        }
     }
 }

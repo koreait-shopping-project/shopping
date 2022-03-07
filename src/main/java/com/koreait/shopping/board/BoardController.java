@@ -144,39 +144,6 @@ public class BoardController {
         return res;
     }
 
-    @GetMapping("/purchase")
-    public void purchase() {
-    }
-
-    @PostMapping("/purchase")
-    public String purchaseProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
-        for (int i = 0; i < listDto.getProductList().size(); i++) {
-            BoardProductVo vo = new BoardProductVo();
-            vo.setColor(listDto.getProductList().get(i).getColor());
-            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
-            vo.setIboard(listDto.getProductList().get(i).getIboard());
-            switch (listDto.getProductList().get(i).getSize()) {
-                case "sm":
-                    vo.setSm(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "md":
-                    vo.setMd(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "lg":
-                    vo.setLg(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-                case "xl":
-                    vo.setXl(listDto.getProductList().get(i).getItemNum());
-                    service.updProductDetail(vo);
-                    break;
-            }
-        }
-        return "board/purchase";
-    }
-
     @GetMapping("/cart")
     public void cart() {
     }
@@ -210,6 +177,37 @@ public class BoardController {
             }
         }
         return "board/main";
+    }
+
+    @PostMapping("/order")
+    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto, HttpServletRequest request) {
+        for (int i = 0; i < listDto.getProductList().size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setColor(listDto.getProductList().get(i).getColor());
+            vo.setItemNum(listDto.getProductList().get(i).getItemNum());
+            vo.setIboard(listDto.getProductList().get(i).getIboard());
+            vo.setUid(request.getParameter("uid"));
+
+            switch (listDto.getProductList().get(i).getSize()) {
+                case "sm":
+                    vo.setSm(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "md":
+                    vo.setMd(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "lg":
+                    vo.setLg(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+                case "xl":
+                    vo.setXl(listDto.getProductList().get(i).getItemNum());
+                    service.insCartChecked(vo);
+                    return "redirect:/user/order";
+            }
+        }
+        return null;
     }
 
     @DeleteMapping("/cart/{icart}")
@@ -292,6 +290,19 @@ public class BoardController {
         if(icartArr != null && icartArr.length>0){
             for(int i=0 ; i<icartArr.length ; i++){
                 service.selectedCart(Integer.parseInt(icartArr[i]));
+            }
+            result.put(Const.RESULT, 1);
+        }
+        return result;
+    }
+    @PutMapping("/unselected/{icart}")
+    @ResponseBody
+    public Map<String, Integer> unchecked(@PathVariable String icart) {
+        Map<String, Integer> result = new HashMap<>();
+        String[] icartArr = icart.split("_");
+        if(icartArr != null && icartArr.length>0){
+            for(int i=0 ; i<icartArr.length ; i++){
+                service.unselectedCart(Integer.parseInt(icartArr[i]));
             }
             result.put(Const.RESULT, 1);
         }
