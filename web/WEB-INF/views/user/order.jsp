@@ -178,20 +178,21 @@
                             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                         </td>
                     </tr>
+                    <tr style="">
+                        <td></td>
+                        <td id="msg_container">
+                            <select class="m-b-10" name="msg" id="msg" onchange="changeSelect()" style="font-size: 13px; margin-top: 15px;">
+                                <option value="메세지 선택(선택사항)">메세지 선택(선택사항)</option>
+                                <option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
+                                <option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
+                                <option value="부재 시 문 앞에 놓아주세요.">부재 시 문 앞에 놓아주세요.</option>
+                                <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+                                <option value="택배함에 보관해 주세요.">택배함에 보관해 주세요.</option>
+                                <option value="직접 입력" id="self">직접 입력 <input class="display-b w-100p" type="hidden" id="self_input"></option>
+                            </select>
+                        </td>
+                    </tr>
                 </table>
-                <hr>
-                <div id="msg_container">
-                    <select class="m-b-10" name="msg" id="msg" onchange="changeSelect()" style="font-size: 13px; margin-left: 95px;">
-                        <option value="메세지 선택(선택사항)">메세지 선택(선택사항)</option>
-                        <option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
-                        <option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
-                        <option value="부재 시 문 앞에 놓아주세요.">부재 시 문 앞에 놓아주세요.</option>
-                        <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
-                        <option value="택배함에 보관해 주세요.">택배함에 보관해 주세요.</option>
-                        <option value="직접 입력" id="self">직접 입력 <input class="display-b w-100p" type="hidden" id="self_input"></option>
-                    </select>
-
-                </div>
                 <hr>
                 <div class="bold p-b-10">주문상품</div>
                 <table class="w-100p">
@@ -313,7 +314,7 @@
 이 약관은 전자지급결제 대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</textarea>
                 </div>
                 <hr>
-                <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" onclick="purchaseBtn()" value="<fmt:formatNumber value="${requestScope.cost}" pattern="#,###"/>원 결제하기">
+                <input style="height: 50px;" class="tx-a-center b-radius w-100p font-size-14 bc-black color-white" type="submit" onclick="purchaseBtn()" value="<fmt:formatNumber value="${requestScope.cost}" pattern="#,###"/>원 결제하기">
             </form>
             <ul class="font-size-10 m-t-10" style="color: #a99d95; padding: 8px;">
               <li class="m-b-10" style="line-height: 20px;">- 무이자할부가 적용되지 않은 상품과 무이자할부가 가능한 상품을 동시에 구매할 경우 전체 주문 상품 금액에 대해 무이자할부가 적용되지 않습니다. 무이자할부를 원하시는 경우 장바구니에서 무이자할부 상품만 선택하여 주문하여 주시기 바랍니다.</li>

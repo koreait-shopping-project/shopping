@@ -37,7 +37,7 @@
                     <c:forEach var="item" items="${requestScope.cart}">
                         <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
                             <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
-                            <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
+                            <td><a id="product_item_link" href="/board/productdetail/${item.iboard}"><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></a></td>
                             <td><c:out value="${item.title}"/></td>
                             <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
                             <td><c:choose>

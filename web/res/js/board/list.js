@@ -50,7 +50,7 @@ $(document).ready(function(){
             }
         }
         if(!indexid){
-            alert("삭제할 제품을 선택해주세요");
+            alert("삭제할 상품을 선택해주세요");
             return;
         }
         const agree=confirm("삭제 하시겠습니까?");
@@ -82,7 +82,7 @@ $(document).ready(function(){
             }
         }
         if(!indexid){
-            alert("구매할 제품을 선택해주세요");
+            alert("구매할 상품을 선택해주세요");
             return;
         }
         const agree=confirm("구매하시겠습니까?");
