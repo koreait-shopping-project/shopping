@@ -172,6 +172,14 @@ public class UserController {
     public void order(Model model, UserEntity entity) {
         entity.setIuser(utils.getLoginUserPk());
         model.addAttribute(Const.CHECKED, service.checkedCart(entity));
+        int cost = 0;
+        for(int i = 0; i < service.checkedCart(entity).size(); i++) {
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getSm();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getMd();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getLg();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getXl();
+        }
+        model.addAttribute(Const.COST, cost);
     }
 
     @PostMapping("/order")
