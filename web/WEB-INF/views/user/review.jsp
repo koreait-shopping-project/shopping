@@ -1,6 +1,16 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/decoupled-document/ckeditor.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<div id="data"
+     data-icategory="${data.icategory}"
+     data-iboard="${data.iboard}"
+     data-nm="${sessionScope.loginUser.nm}"
+     data-iuser="${sessionScope.loginUser.iuser}">
+</div>
 <form action="/user/review" method="post" id="reviewFrm">
     <!-- 별점 -->
+    <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>
     <div class="m-t-20 display-i-b p-b-20">
@@ -107,7 +117,19 @@
         </li>
     </ul>
     <label class="bold">상품에 대한 평가를 20자 이상 작성해 주세요</label>
-    <input type="text" class="bolder w-all h-150" id="ctnt" name="ctnt">
+    <table class="w-100p">
+        <tr class="bolder-top bolder-right bolder-left">
+            <th scope="row" class="tx-a-center" style="border-right: 1px solid #c1c1c1">제목</th>
+            <td><input class="w-all" style="border: none" type="text" name="title" value="<c:out value='${requestScope.data.title}'/>"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                    <textarea id="editor" name="ctnt">
+                        ${requestScope.data.ctnt}
+                    </textarea >
+            </td>
+        </tr>
+    </table>
     <div class="bold">
         <label>
             <input type="checkbox" id="all" onclick="selectAll(this)">전체 동의하기
