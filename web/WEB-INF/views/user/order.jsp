@@ -17,11 +17,11 @@
     }
 %>
 <div>
-    <div>
-        <div class="tx-a-center font-size-20 h-50 bc-black color-white">Order</div>
+    <div style="box-shadow: 1px 1px 5px #bbb; border-radius: 5px;">
+        <div style="padding: 8px; border-top-left-radius: 5px; border-top-right-radius: 5px;" class="tx-a-center font-size-20 h-50 bc-black color-white">Order</div>
         <hr>
         <div>
-            <form action="/user/order" method="post" id="frmSubmit">
+            <form action="/user/order" method="post" id="frmSubmit" style="padding: 8px;">
                 <table>
                     <div class="bold">주문 정보</div>
                     <tr>
@@ -181,7 +181,7 @@
                 </table>
                 <hr>
                 <div id="msg_container">
-                    <select class="m-b-10" name="msg" id="msg" onchange="changeSelect()">
+                    <select class="m-b-10" name="msg" id="msg" onchange="changeSelect()" style="font-size: 13px; margin-left: 95px;">
                         <option value="메세지 선택(선택사항)">메세지 선택(선택사항)</option>
                         <option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
                         <option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
@@ -308,16 +308,16 @@
                     <label class="p-b-10">
                         <input type="checkbox" name="payagent_agree_flag">[필수]결제대행서비스 약관 동의
                     </label>
-                    <textarea class="w-100p bolder font-size-10" cols="250" rows="3" readonly>전자금융거래 기본약관(이용자용)
+                    <textarea style="height: 100px;" class="w-100p bolder font-size-10" cols="250" rows="3" readonly>전자금융거래 기본약관(이용자용)
 제 1조 (목적)
 이 약관은 전자지급결제 대행서비스 및 결제대금예치서비스를 제공하는 토스페이먼츠 주식회사(이하 '회사'라 합니다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 전자금융거래의 안정성과 신뢰성을 확보함에 그 목적이 있습니다.</textarea>
                 </div>
                 <hr>
                 <input class="tx-a-center w-100p h-50 font-size-20 bc-black color-white" type="submit" onclick="purchaseBtn()" value="<fmt:formatNumber value="${requestScope.cost}" pattern="#,###"/>원 결제하기">
             </form>
-            <ul class="font-size-10 m-t-10" style="color: #a99d95">
-              <li class="m-b-10">- 무이자할부가 적용되지 않은 상품과 무이자할부가 가능한 상품을 동시에 구매할 경우 전체 주문 상품 금액에 대해 무이자할부가 적용되지 않습니다. 무이자할부를 원하시는 경우 장바구니에서 무이자할부 상품만 선택하여 주문하여 주시기 바랍니다.</li>
-              <li>- 최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</li>
+            <ul class="font-size-10 m-t-10" style="color: #a99d95; padding: 8px;">
+              <li class="m-b-10" style="line-height: 20px;">- 무이자할부가 적용되지 않은 상품과 무이자할부가 가능한 상품을 동시에 구매할 경우 전체 주문 상품 금액에 대해 무이자할부가 적용되지 않습니다. 무이자할부를 원하시는 경우 장바구니에서 무이자할부 상품만 선택하여 주문하여 주시기 바랍니다.</li>
+              <li style="line-height: 20px;">- 최소 결제 가능 금액은 결제금액에서 배송비를 제외한 금액입니다.</li>
             </ul>
         </div>
     </div>

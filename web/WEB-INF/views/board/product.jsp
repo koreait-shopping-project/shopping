@@ -2,15 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<div id="pageUnit_wrap">
-    <select id="pageUnit" name="pageUnit">
-        <option value="10" <c:if test="${SearchVo.pageUnit == 10}">selected="selected"</c:if>>10개씩보기</option>
-        <option value="15" <c:if test="${SearchVo.pageUnit == 15}">selected="selected"</c:if>>15개씩보기</option>
-        <option value="20" <c:if test="${SearchVo.pageUnit == 20}">selected="selected"</c:if>>20개씩보기</option>
-        <option value="25" <c:if test="${SearchVo.pageUnit == 25}">selected="selected"</c:if>>25개씩보기</option>
-        <option value="30" <c:if test="${SearchVo.pageUnit == 30}">selected="selected"</c:if>>30개씩보기</option>
-    </select>
-</div>
+<%--<div id="pageUnit_wrap">--%>
+<%--    <select id="pageUnit" name="pageUnit">--%>
+<%--        <option value="10" <c:if test="${SearchVo.pageUnit == 10}">selected="selected"</c:if>>10개씩보기</option>--%>
+<%--        <option value="15" <c:if test="${SearchVo.pageUnit == 15}">selected="selected"</c:if>>15개씩보기</option>--%>
+<%--        <option value="20" <c:if test="${SearchVo.pageUnit == 20}">selected="selected"</c:if>>20개씩보기</option>--%>
+<%--        <option value="25" <c:if test="${SearchVo.pageUnit == 25}">selected="selected"</c:if>>25개씩보기</option>--%>
+<%--        <option value="30" <c:if test="${SearchVo.pageUnit == 30}">selected="selected"</c:if>>30개씩보기</option>--%>
+<%--    </select>--%>
+<%--</div>--%>
 <div id="product_item_grid">
     <c:choose>
         <c:when test="${fn:length(requestScope.list) == 0}">
