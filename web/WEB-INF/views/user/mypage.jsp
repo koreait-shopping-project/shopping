@@ -10,13 +10,13 @@
             <c:when test="${sessionScope.loginUser != null}">
                 <div class="display-i-b p-r-100">
                     <ui>
-                        <li><a href="#">구매 목록</a></li>
+                        <li><a href="/user/purchased">구매 목록</a></li>
                         <li><a href="/user/checkpw">회원 정보</a></li>
                     </ui>
                 </div>
                 <div class="display-i-b">
                     <ui>
-                        <li><a href="/user/review">리뷰</a></li>
+                        <li><a href="#">무엇을 넣을까</a></li>
                         <li><a href="#">Wish List</a></li>
                     </ui>
                 </div>
