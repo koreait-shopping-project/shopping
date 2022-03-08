@@ -96,9 +96,6 @@ $(document).ready(function(){
             });
         }
     }
-    const allPrice = document.querySelector('#allPrice');
-    let price = document.querySelector('#purchase_wrap').dataset.price;
-    let totalCnt = 0;
 
     //전체 가격
     function allPlusPrice(price, totalCnt) {
@@ -109,9 +106,26 @@ $(document).ready(function(){
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    allPrice.innerHTML
-
-
+    let cost = 0;
+    document.querySelectorAll("input[name=RowCheck]").forEach(
+        function(item, idx){
+            let allPrice = document.querySelector('#allPrice');
+            const check = item.checked;
+            let itemNum = parseInt(item.parentElement.parentElement.querySelector("input[name=itemNum]").value);
+            let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
+            let mul = itemNum * price;
+            item.addEventListener('click', function () {
+                if(check) {
+                    cost = cost + mul;
+                    allPrice.innerHTML = cost;
+                }
+                else {
+                    cost = cost - mul;
+                    allPrice.innerHTML = cost;
+                }
+            })
+        }
+    );
 
     // num(수량) +, - 버튼
     document.querySelectorAll('.upDown').forEach(

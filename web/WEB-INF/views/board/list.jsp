@@ -32,10 +32,11 @@
                     <tbody>
                     <c:forEach var="item" items="${requestScope.cart}">
                         <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
+
                             <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
                             <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
                             <td><c:out value="${item.title}"/></td>
-                            <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>
+                            <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원<input type="hidden" name="price" value="${item.price}"></td>
                             <td><c:choose>
                                 <c:when test="${item.color == 1}">흰색</c:when>
                                 <c:when test="${item.color == 2}">검정색</c:when>
@@ -46,40 +47,40 @@
                                 <td>sm<input hidden name="size" value="sm"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.sm}">
+                                    <input type="hidden" name="itemNum" value="${item.sm}">
                                     <span class="nowNum"><c:out value="${item.sm}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
-                                <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원</td>
+                                <td><fmt:formatNumber value="${item.price * item.sm}" pattern="#,###"/>원<input type="hidden" name="price" value="${item.price}"></td>
                             </c:if>
 
                             <c:if test="${item.md !=0 && item.md != null}">
                                 <td>md<input hidden name="size" value="md"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.md}">
+                                    <input type="hidden" name="itemNum" value="${item.md}">
                                     <span class="nowNum"><c:out value="${item.md}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
-                                <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원</td>
+                                <td><fmt:formatNumber value="${item.price * item.md}" pattern="#,###"/>원<input type="hidden" name="price" value="${item.price}"></td>
                             </c:if>
 
                             <c:if test="${item.lg !=0 && item.xl != null}">
                                 <td>lg<input hidden name="size" value="lg"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.lg}">
+                                    <input type="hidden" name="itemNum" value="${item.lg}">
                                     <span class="nowNum"><c:out value="${item.lg}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
-                                <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원</td>
+                                <td><fmt:formatNumber value="${item.price * item.lg}" pattern="#,###"/>원<input type="hidden" name="price" value="${item.price}"></td>
                             </c:if>
 
                             <c:if test="${item.xl !=0 && item.xl != null}">
                                 <td>xl<input hidden name="size" value="xl"></td>
                                 <td class="upDown">
                                     <span class="numMinusBtn">-</span>
-                                    <input type="hidden" value="${item.xl}">
+                                    <input type="hidden" name="itemNum" value="${item.xl}">
                                     <span class="nowNum"><c:out value="${item.xl}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
@@ -93,13 +94,8 @@
                     <c:set var="notIn" value="장바구니가 비어있습니다."/>
                     <div class="tx-a-center p-tb-20">${notIn}</div>
                 </c:if>
-            <div id="allPrice">total :
-                <c:if test="${item.sm !=0 && item.sm != null}">${item.price * item.sm} </c:if>
-                <c:if test="${item.md !=0 && item.md != null}">${item.price * item.sm} </c:if>
-                <c:if test="${item.lg !=0 && item.lg != null}">${item.price * item.sm} </c:if>
-                <c:if test="${item.xl !=0 && item.xl != null}">${item.price * item.sm} </c:if>
-            </div>
             </form>
+            <div id="allPrice"></div>
             <div id="itemOrderBtn">
                 <input type="button" value="선택삭제" onclick="itemDel()">
                 <input type="button" value="선택주문" onclick="order()">
