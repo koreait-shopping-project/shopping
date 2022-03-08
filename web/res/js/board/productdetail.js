@@ -180,7 +180,7 @@
     }
 
     const form = document.querySelector('#frmSubmit');
-    form.addEventListener('click', function (e) {
+    form.addEventListener('submit', function (e) {
         if (allPrice.innerHTML === "total : 0") {
             alert("상품을 선택해주세요.")
             e.preventDefault();
