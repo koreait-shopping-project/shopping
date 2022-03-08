@@ -114,6 +114,9 @@ $(document).ready(function(){
             let itemNum = parseInt(item.parentElement.parentElement.querySelector("input[name=itemNum]").value);
             let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
             let mul = itemNum * price;
+            alert(itemNum);
+            alert(price);
+            alert(mul);
             item.addEventListener('click', function () {
                 if(check) {
                     cost = cost + mul;
