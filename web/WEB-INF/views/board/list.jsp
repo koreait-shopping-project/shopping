@@ -182,9 +182,6 @@
                         <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
                             <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
                         </c:when>
-                        <c:when test="${requestScope.icategory == 4 && sessionScope.loginUser != null}">
-                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-                        </c:when>
                     </c:choose>
                 <div id="write_search_wrap">
                     <div id="list_search_wrap">
