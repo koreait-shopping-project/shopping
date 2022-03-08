@@ -5,6 +5,7 @@ import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 
+import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,8 +19,9 @@ public interface UserMapper {
     int updUserPw(UserEntity entity);
     UserEntity selSocial(UserEntity entity);
     int insReview (UserReviewEntity entity);
-
     List<BoardProductVo> checkedCart(UserEntity entity);
+    List<BoardProductVo> selPurchased(UserReviewEntity entity);
+    List<BoardProductVo> selPurchased2(UserPurchasedEntity entity);
     int updProductDetail(BoardProductVo vo);
 
 }

@@ -11,6 +11,7 @@ import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -155,7 +156,13 @@ public class UserController {
     public void mypage() {}
 
     @GetMapping("/review")
-    public void review() {}
+    public void review(UserReviewEntity entity, Model model) {
+        model.addAttribute(Const.LIST, service.selPurchased(entity));
+        System.out.println(service.selPurchased(entity).get(1).getIboard());
+//        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
+//            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
+//            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
+    }
 
     @PostMapping("/review")
     public String reviewProc(UserReviewEntity entity, RedirectAttributes reAttr) {
@@ -166,6 +173,7 @@ public class UserController {
         }
         return "redirect:/user/mypage";
     }
+
 
     //카트에서 checked 된 상품 select
     @GetMapping("/order")
@@ -201,4 +209,11 @@ public class UserController {
         boardService.delCartChecked(entity.getIuser());
         return "board/main";
     }
+
+    @GetMapping("/purchased")
+    public void purchased(UserPurchasedEntity entity, Model model) {
+        model.addAttribute(Const.PURCHASED, service.selPurchased2(entity));
+        service.selPurchased2(entity);
+    }
+
 }

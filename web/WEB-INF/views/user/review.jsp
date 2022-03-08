@@ -10,6 +10,7 @@
 </div>
 <form action="/user/review" method="post" id="reviewFrm">
     <!-- 별점 -->
+    <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>
     <div class="m-t-20 display-i-b p-b-20">
