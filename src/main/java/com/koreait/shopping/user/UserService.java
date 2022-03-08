@@ -2,6 +2,7 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.BoardService;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
@@ -20,6 +21,9 @@ public class UserService {
     private UserMapper mapper;
     @Autowired
     private UserUtils utils;
+    @Autowired
+    private BoardService service;
+
 
     public int login(UserEntity entity) {
         UserEntity dbUser = null;
@@ -63,8 +67,7 @@ public class UserService {
         return mapper.insUser(copyEntity);
     }
 
-    public int review(UserReviewEntity entity) {
-
+    public int review(UserReviewEntity entity, UserEntity userEntity) {
         entity.setIboard(utils.getLoginUserPk());
         entity.setIuser(utils.getLoginUserPk());
         System.out.println("entity : " + entity);

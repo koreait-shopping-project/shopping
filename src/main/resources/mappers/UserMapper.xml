@@ -23,12 +23,12 @@
         INSERT INTO t_user_review
         (
             iboard, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
-        , weight, ctnt, prom_agree_flag, inf_agree_flag
+        , weight, title,ctnt, prom_agree_flag, inf_agree_flag
         )
         VALUES
         (
-            #{iboard}, #{iuser}, #{rating}, #{answer0}, #{answer1}, #{answer2}, #{answer3}
-            , #{gender}, ${tall}, ${weight}, ${ctnt}, #{prom_agree_flag}, #{inf_agree_flag}
+            ${iboard}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            , ${gender}, #{tall}, #{weight}, #{title}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
         )
     </insert>
 

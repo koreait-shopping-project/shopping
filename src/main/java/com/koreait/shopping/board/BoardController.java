@@ -57,6 +57,10 @@ public class BoardController {
             model.addAttribute(Const.CART, service.selCart(entity));
         }
 
+        if (icategory == 4) {
+
+        }
+
         BoardPageMakerDto pageMake = new BoardPageMakerDto(cri, total);
         model.addAttribute("pageMaker", pageMake);
 

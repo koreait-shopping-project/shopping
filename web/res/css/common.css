@@ -13,6 +13,10 @@ textarea { resize: none; }
 .bold { font-weight: bold; }
 .display-b { display: block; }
 .bolder {border : 1px solid #c1c1c1; width: 140px; font-size: 12px; padding: 2px; }
+.bolder-top { border-top: 1px solid #c1c1c1; width: 140px; font-size: 12px; padding: 2px;}
+.bolder-right { border-right: 1px solid #c1c1c1; width: 140px; font-size: 12px; padding: 2px; }
+.bolder-left { border-left: 1px solid #c1c1c1; width: 140px; font-size: 12px; padding: 2px; }
+
 .bolder-p {border : 1px solid #c1c1c1; width: 70px; font-size: 12px; padding: 2px; }
 .bolder-a {border : 1px solid #c1c1c1; width: 280px; font-size: 12px; padding: 2px; }
 .bolder-c {border : 1px solid #c1c1c1; font-size: 12px; padding: 2px; }

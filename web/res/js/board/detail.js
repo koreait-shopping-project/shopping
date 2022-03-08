@@ -1,4 +1,13 @@
 {
+    ClassicEditor
+        .create( document.querySelector( '#editor' ))
+        .catch( error => {
+            console.error( error );
+
+        } );
+
+}
+{
     const dataElem = document.querySelector('#data');
 
     //글 삭제 버튼
