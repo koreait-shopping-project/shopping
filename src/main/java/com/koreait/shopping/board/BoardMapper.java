@@ -32,6 +32,7 @@ public interface BoardMapper {
     int insCart(BoardProductVo vo);
     int insCartChecked(BoardProductVo vo);
     int delCart(BoardProductVo vo);
+    int delCartChecked(int iuser);
     int selectedCart(BoardProductVo vo);
     int unselectedCart(BoardProductVo vo);
     int updCartUp(BoardProductVo vo);

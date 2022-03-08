@@ -88,6 +88,10 @@
         DELETE FROM cart WHERE icart = ${icart}
     </delete>
 
+    <delete id="delCartChecked">
+        DELETE FROM cart WHERE iuser = ${iuser} AND checked = 1;
+    </delete>
+
     <update id="selectedCart">
         UPDATE cart
         SET checked = 1
