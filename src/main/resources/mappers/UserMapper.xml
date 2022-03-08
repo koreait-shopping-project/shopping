@@ -61,7 +61,7 @@
     </update>
 
     <select id="checkedCart" resultType="BoardProductVo">
-        SELECT A.iuser, A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, B.iuser, C.img_url_big, C.title, C.price
         FROM cart A
         INNER JOIN t_user B
         ON A.iuser = B.iuser

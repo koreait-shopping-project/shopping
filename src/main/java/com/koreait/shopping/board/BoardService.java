@@ -99,6 +99,9 @@ public class BoardService {
         vo.setIcart(icart);
         return mapper.delCart(vo);
     }
+    public int delCartChecked(int iuser) {
+        return mapper.delCartChecked(iuser);
+    }
     public int selectedCart(int icart) {
         BoardProductVo vo = new BoardProductVo();
         vo.setIcart(icart);
