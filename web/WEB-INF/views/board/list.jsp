@@ -11,6 +11,10 @@
             <c:set var="titleVal" value="상품 Q/A" />
             <c:set var="notIn" value="글이 없습니다."/>
         </c:when>
+        <c:when test="${requestScope.icategory == 4}">
+            <c:set var="titleVal" value="리뷰" />
+            <c:set var="notIn" value="글이 없습니다."/>
+        </c:when>
         <c:when test="${requestScope.icategory == 3}">
             <%-------- cart -----------%>
             <c:set var="titleVal" value="Cart" />
@@ -131,19 +135,27 @@
                                         <th width="20%">Writer</th>
                                     </tr>
                                 </c:when>
-                                <c:otherwise>
+                                <c:when test="${requestScope.icategory == 2}">
                                     <tr class="tx-a-center">
                                         <th width="15%">Products</th>
                                         <th width="65%">Title</th>
                                         <th width="20%">Writer</th>
                                     </tr>
-                                </c:otherwise>
+                                </c:when>
+                                <c:when test="${requestScope.icategory == 4}">
+
+                                    <tr class="tx-a-center">
+                                        <th width="15%">Products</th>
+                                        <th width="65%">Title</th>
+                                        <th width="20%">Writer</th>
+                                    </tr>
+                                </c:when>
                             </c:choose>
                             <c:choose>
                                 <c:when test="${requestScope.icategory == 1}">
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
-                                            <td class="tx-a-center">${item.notice}</td>
+                                            <td class="tx-a-center">공지</td>
                                             <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
@@ -159,10 +171,21 @@
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
-
                         </table>
                     </c:otherwise>
                 </c:choose>
+                <div id="go_write">
+                    <c:choose>
+                        <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
+                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
+                        </c:when>
+                        <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
+                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
+                        </c:when>
+                        <c:when test="${requestScope.icategory == 4 && sessionScope.loginUser != null}">
+                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
+                        </c:when>
+                    </c:choose>
                 <div id="write_search_wrap">
                     <div id="list_search_wrap">
                         <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">

@@ -1,4 +1,14 @@
 {
+    ClassicEditor
+        .create( document.querySelector( '#editor' ))
+        .catch( error => {
+            console.error( error );
+
+        } );
+
+
+}
+{
     const reviewFrmElem = document.querySelector('#reviewFrm');
     const tallElem = document.querySelector('#tall');
     const weightElem = document.querySelector('#weight');

@@ -26,6 +26,7 @@ public class Const {
     public static final String CHECKED = "checked";
     public static final String PREV_NEXT = "prevNext";
     public static final String COST = "cost";
+    public static final String PURCHASED = "purchased";
 
 
 

@@ -2,10 +2,12 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.BoardService;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
@@ -20,6 +22,7 @@ public class UserService {
     private UserMapper mapper;
     @Autowired
     private UserUtils utils;
+
 
     public int login(UserEntity entity) {
         UserEntity dbUser = null;
@@ -64,12 +67,22 @@ public class UserService {
     }
 
     public int review(UserReviewEntity entity) {
-
-        entity.setIboard(utils.getLoginUserPk());
+        entity.setIboard(selPurchased(entity).get(1).getIboard());
         entity.setIuser(utils.getLoginUserPk());
         System.out.println("entity : " + entity);
         return mapper.insReview(entity);
     }
+
+    public List<BoardProductVo> selPurchased(UserReviewEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        return mapper.selPurchased(entity);
+    }
+
+    public List<BoardProductVo> selPurchased2(UserPurchasedEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        return mapper.selPurchased2(entity);
+    }
+
 
     //소셜 로그인시 이메일 체크
     public int selSocial(UserEntity entity) {
@@ -122,5 +135,6 @@ public class UserService {
     public List<BoardProductVo> checkedCart(UserEntity entity) {
         return mapper.checkedCart(entity);
     }
+
     public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
 }
