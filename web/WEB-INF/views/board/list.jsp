@@ -97,8 +97,13 @@
                     <c:set var="notIn" value="장바구니가 비어있습니다."/>
                     <div class="tx-a-center p-tb-20">${notIn}</div>
                 </c:if>
+            <div id="allPrice">total :
+                <c:if test="${item.sm !=0 && item.sm != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.md !=0 && item.md != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.lg !=0 && item.lg != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.xl !=0 && item.xl != null}">${item.price * item.sm} </c:if>
+            </div>
             </form>
-            <div id="allPrice">total : 0</div>
             <div id="itemOrderBtn">
                 <input type="button" value="선택삭제" onclick="itemDel()">
                 <input type="button" value="선택주문" onclick="order()">

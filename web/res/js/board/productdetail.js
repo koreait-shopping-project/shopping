@@ -179,9 +179,16 @@
         sizeBox.value='';
     }
 
+    const form = document.querySelector('#frmSubmit');
+    form.addEventListener('submit', function (e) {
+        if (allPrice.innerHTML === "total : 0") {
+            alert("상품을 선택해주세요.")
+            e.preventDefault();
+        }
+    })
+
     //버튼 변경
     function submitBtn(addr) {
-        const form = document.querySelector(`#frmSubmit`);
         if(addr == 'cart') {
             form.action = "/board/cart";
         }

@@ -91,7 +91,7 @@ $(document).ready(function(){
                 if(data) {
                     location.href="/user/order";
                 } else {
-
+                    alert('구매에 실패하였습니다');
                 }
             });
         }
@@ -99,6 +99,19 @@ $(document).ready(function(){
     const allPrice = document.querySelector('#allPrice');
     let price = document.querySelector('#purchase_wrap').dataset.price;
     let totalCnt = 0;
+
+    //전체 가격
+    function allPlusPrice(price, totalCnt) {
+        return priceToString(price * totalCnt);
+    }
+    //천단위 콤마 정규식
+    function priceToString(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    allPrice.innerHTML
+
+
 
     // num(수량) +, - 버튼
     document.querySelectorAll('.upDown').forEach(
@@ -157,14 +170,5 @@ $(document).ready(function(){
             });
         }
     );
-
-    //전체 가격
-    function allPlusPrice(price, totalCnt) {
-        return priceToString(price * totalCnt);
-    }
-    //천단위 콤마 정규식
-    function priceToString(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
 
 }
