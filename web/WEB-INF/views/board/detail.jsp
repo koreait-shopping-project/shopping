@@ -18,7 +18,8 @@
          data-iuser="${sessionScope.loginUser.iuser}">
     </div>
     <div class="tx-a-center m-b-15">${titleVal}</div>
-    <div>
+    <div style="position:relative;">
+        <div style="position: absolute; right: 0;"><button class="bolder-p b-radius bc-black color-white m-10" id="list" >목록</button></div>
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
         <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">다음</button></a>
     </div>
@@ -48,7 +49,6 @@
         </div>
     </c:if>
     <div><button class="bolder-p b-radius bc-black color-white m-10" id="back" onclick="history.back()">뒤로가기</button></div>
-    <div><button class="bolder-p b-radius bc-black color-white m-10" id="list" >목록</button></div>
 </div>
 
 <div>
