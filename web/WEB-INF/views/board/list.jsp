@@ -107,7 +107,6 @@
     </c:choose>
     <%----------------------%>
     <div>
-        <div class="tx-a-center m-b-30">${titleVal}</div>
         <c:choose>
             <c:when test="${requestScope.icategory != 3}">
                 <c:choose>
@@ -182,6 +181,27 @@
                             <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
                         </c:when>
                     </c:choose>
+                <div id="write_search_wrap">
+                    <div id="list_search_wrap">
+                        <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
+                            <span class="color-gray">검색어</span>
+                            <select name="searchType">
+                                <option value="1" ${requestScope.searchType == 1 ? 'selected' : ''}>제목</option>
+                                <option value="2" ${requestScope.searchType == 2 ? 'selected' : ''}>내용</option>
+                                <option value="3" ${requestScope.searchType == 3 ? 'selected' : ''}>글쓴이</option>
+                            </select>
+                            <input type="search" name="searchText" value="">
+                            <input class="bc-black color-white" type="submit" value="찾기">
+                            <c:choose>
+                                <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
+                                    <button type="button" class="btn btn-dark"><a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a></button>
+                                </c:when>
+                                <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
+                                    <button type="button" class="btn btn-dark"><a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a></button>
+                                </c:when>
+                            </c:choose>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="pageInfo_wrap" >
@@ -201,18 +221,6 @@
                             <li class="pageInfo_btn next"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.endPage + 1 }">Next</a></li>
                         </c:if>
                     </div>
-                </div>
-                <div id="list_search_wrap">
-                    <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
-                        <span class="color-gray">검색어</span>
-                        <select name="searchType">
-                            <option value="1" ${requestScope.searchType == 1 ? 'selected' : ''}>제목</option>
-                            <option value="2" ${requestScope.searchType == 2 ? 'selected' : ''}>내용</option>
-                            <option value="3" ${requestScope.searchType == 3 ? 'selected' : ''}>글쓴이</option>
-                        </select>
-                        <input type="search" name="searchText" value="">
-                        <input class="bc-black color-white" type="submit" value="찾기">
-                    </form>
                 </div>
             </c:when>
         </c:choose>
