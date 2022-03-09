@@ -84,7 +84,7 @@
                                     <span class="nowNum"><c:out value="${item.xl}"/></span>
                                     <span class="numPlusBtn">+</span>
                                 </td>
-                                <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원</td>
+                                <td><fmt:formatNumber value="${item.price * item.xl}" pattern="#,###"/>원<input type="hidden" name="price" value="${item.price}"></td>
                             </c:if>
                         </tr>
                     </c:forEach>
