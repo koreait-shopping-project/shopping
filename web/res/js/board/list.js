@@ -106,19 +106,16 @@ $(document).ready(function(){
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    let cost = 0;
     document.querySelectorAll("input[name=RowCheck]").forEach(
         function(item, idx){
             let allPrice = document.querySelector('#allPrice');
-            const check = item.checked;
             let itemNum = parseInt(item.parentElement.parentElement.querySelector("input[name=itemNum]").value);
             let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
             let mul = itemNum * price;
-            alert(itemNum);
-            alert(price);
             alert(mul);
+            let cost = 0;
             item.addEventListener('click', function () {
-                if(check) {
+                if(item.checked) {
                     cost = cost + mul;
                     allPrice.innerHTML = cost;
                 }
