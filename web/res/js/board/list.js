@@ -16,7 +16,7 @@ $(document).ready(function(){
     recordList.forEach(recordEvent);
 
 
-    
+
     //모두 선택
     function allChk(obj){
         const chkObj = document.getElementsByName("RowCheck");
@@ -106,14 +106,40 @@ $(document).ready(function(){
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    document.querySelectorAll("input[name=RowCheck]").forEach(
+    const tbody = document.querySelector('.tbody');
+    const allCheck = document.querySelector('#allCheck');
+    const boxList = document.querySelectorAll("input[name=RowCheck]");
+    let allPrice = document.querySelector('#allPrice');
+    let cost = 0;
+
+    allCheck.addEventListener('click', function () {
+        if(allCheck.checked) {
+            for(let i = 0; i < boxList.length; i++) {
+                const tr = tbody.children[i];
+                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
+                let price = parseInt(tr.querySelector("input[name=price]").value);
+                let mul = itemNum * price;
+                cost = cost + mul;
+            }
+            allPrice.innerHTML = cost;
+        } else {
+            for(let i = 0; i < boxList.length; i++) {
+                const tr = tbody.children[i];
+                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
+                let price = parseInt(tr.querySelector("input[name=price]").value);
+                let mul = itemNum * price;
+                cost = cost - mul;
+            }
+        }
+        allPrice.innerHTML = cost;
+    })
+
+    boxList.forEach(
         function(item, idx){
-            let allPrice = document.querySelector('#allPrice');
             let itemNum = parseInt(item.parentElement.parentElement.querySelector("input[name=itemNum]").value);
             let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
             let mul = itemNum * price;
-            alert(mul);
-            let cost = 0;
+
             item.addEventListener('click', function () {
                 if(item.checked) {
                     cost = cost + mul;

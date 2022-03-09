@@ -29,7 +29,7 @@
                         <th width="10%">주문금액</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="tbody">
                     <c:forEach var="item" items="${requestScope.cart}">
                         <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
 
