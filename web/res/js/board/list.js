@@ -15,26 +15,25 @@ $(document).ready(function(){
     };
     recordList.forEach(recordEvent);
 
-
-
     //모두 선택
     function allChk(obj){
         const chkObj = document.getElementsByName("RowCheck");
-        const rowCnt = chkObj.length - 1;
+        const rowCnt = chkObj.length;
         const check = obj.checked;
         if (check) {
-          for (let i=0; i<=rowCnt; i++){
-              if(chkObj[i].type == "checkbox")
+          for (let i=0; i<rowCnt; i++){
+              if(chkObj[i].type === "checkbox")
                   chkObj[i].checked = true;
           }
         } else {
             for (let i=0; i<=rowCnt; i++) {
-                if(chkObj[i].type == "checkbox"){
+                if(chkObj[i].type === "checkbox"){
                     chkObj[i].checked = false;
                 }
             }
         }
     }
+
     //선택 삭제
     function itemDel(){
         let icart = "";
@@ -140,16 +139,7 @@ $(document).ready(function(){
             let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
             let mul = itemNum * price;
 
-            item.addEventListener('click', function () {
-                if(item.checked) {
-                    cost = cost + mul;
-                    allPrice.innerHTML = cost;
-                }
-                else {
-                    cost = cost - mul;
-                    allPrice.innerHTML = cost;
-                }
-            })
+
         }
     );
 

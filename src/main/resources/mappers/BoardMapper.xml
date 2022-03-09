@@ -79,6 +79,7 @@
             </if>
         AND icategory = ${icategory}
         ORDER BY iboard DESC
+        LIMIT ${page}, ${amount}
     </select>
 
     <select id="getSearchTotal" resultType="int">

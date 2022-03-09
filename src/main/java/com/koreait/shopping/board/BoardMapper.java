@@ -43,6 +43,6 @@ public interface BoardMapper {
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
     List<BoardProductVo> searchProductList(BoardProductEntity entity);
-    List<BoardListVo> searchBoardList(BoardListDto dto);
+    List<BoardListVo> searchBoardList(BoardCriteria cri);
     int insPurchased(BoardProductVo vo);
 }

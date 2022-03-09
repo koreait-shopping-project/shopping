@@ -129,8 +129,8 @@ public class BoardService {
         return mapper.searchProductList(entity);
     }
 
-    public List<BoardListVo> searchBoardList(BoardListDto dto) {
-        return mapper.searchBoardList(dto);
+    public List<BoardListVo> searchBoardList(BoardCriteria cri) {
+        return mapper.searchBoardList(cri);
     }
 
     public int insPurchased(BoardProductVo vo) {

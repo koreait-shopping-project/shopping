@@ -21,6 +21,7 @@ public class Const {
     public static final String MAX_PAGE = "maxPage";
     public static final String SIZE = "size";
     public static final String SEARCH_TYPE = "searchType";
+    public static final String SEARCH_TEXT = "searchText";
     public static final String CART = "cart";
     public static final String DELCART = "delCart";
     public static final String CHECKED = "checked";

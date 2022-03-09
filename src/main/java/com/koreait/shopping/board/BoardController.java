@@ -38,15 +38,16 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, BoardCriteria cri, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(cri));
-        dto.setIcategory(icategory);
+        cri.setIcategory(icategory);
         int total = service.getBoardTotal(icategory);
 
-        if (dto.getSearchType() != 0) {
+        if (cri.getSearchType() != 0) {
             model.addAttribute(Const.LIST, service.searchBoardList(cri));
-            model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
+            model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
+            model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
             total = service.getSearchTotal(cri);
         } else {
             model.addAttribute(Const.LIST, service.selBoardList(cri));
