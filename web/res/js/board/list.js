@@ -16,7 +16,7 @@ $(document).ready(function(){
     recordList.forEach(recordEvent);
 
 
-    
+
     //모두 선택
     function allChk(obj){
         const chkObj = document.getElementsByName("RowCheck");
@@ -96,9 +96,6 @@ $(document).ready(function(){
             });
         }
     }
-    const allPrice = document.querySelector('#allPrice');
-    let price = document.querySelector('#purchase_wrap').dataset.price;
-    let totalCnt = 0;
 
     //전체 가격
     function allPlusPrice(price, totalCnt) {
@@ -109,9 +106,52 @@ $(document).ready(function(){
         return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     }
 
-    allPrice.innerHTML
+    const tbody = document.querySelector('.tbody');
+    const allCheck = document.querySelector('#allCheck');
+    const boxList = document.querySelectorAll("input[name=RowCheck]");
+    let allPrice = document.querySelector('#allPrice');
+    let cost = 0;
 
+    allCheck.addEventListener('click', function () {
+        if(allCheck.checked) {
+            for(let i = 0; i < boxList.length; i++) {
+                const tr = tbody.children[i];
+                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
+                let price = parseInt(tr.querySelector("input[name=price]").value);
+                let mul = itemNum * price;
+                cost = cost + mul;
+            }
+            allPrice.innerHTML = cost;
+        } else {
+            for(let i = 0; i < boxList.length; i++) {
+                const tr = tbody.children[i];
+                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
+                let price = parseInt(tr.querySelector("input[name=price]").value);
+                let mul = itemNum * price;
+                cost = cost - mul;
+            }
+        }
+        allPrice.innerHTML = cost;
+    })
 
+    boxList.forEach(
+        function(item, idx){
+            let itemNum = parseInt(item.parentElement.parentElement.querySelector("input[name=itemNum]").value);
+            let price = parseInt(item.parentElement.parentElement.querySelector("input[name=price]").value);
+            let mul = itemNum * price;
+
+            item.addEventListener('click', function () {
+                if(item.checked) {
+                    cost = cost + mul;
+                    allPrice.innerHTML = cost;
+                }
+                else {
+                    cost = cost - mul;
+                    allPrice.innerHTML = cost;
+                }
+            })
+        }
+    );
 
     // num(수량) +, - 버튼
     document.querySelectorAll('.upDown').forEach(
