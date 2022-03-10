@@ -38,7 +38,6 @@
                     <tbody class="tbody">
                     <c:forEach var="item" items="${requestScope.cart}">
                         <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
-
                             <td><input name="RowCheck" type="checkbox" value="${item.icart}"/></td>
                             <td><a id="product_item_link" href="/board/productdetail/${item.iboard}"><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></a></td>
                             <td><c:out value="${item.title}"/></td>
@@ -100,20 +99,24 @@
                     <c:set var="notIn" value="장바구니가 비어있습니다."/>
                     <div class="tx-a-center p-tb-20">${notIn}</div>
                 </c:if>
+            <div id="allPrice">total :
+                <c:if test="${item.sm !=0 && item.sm != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.md !=0 && item.md != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.lg !=0 && item.lg != null}">${item.price * item.sm} </c:if>
+                <c:if test="${item.xl !=0 && item.xl != null}">${item.price * item.sm} </c:if>
+            </div>
             </form>
-            <div id="allPrice">0</div>
             <div id="itemOrderBtn">
                 <input type="button" value="선택삭제" onclick="itemDel()">
                 <input type="button" value="선택주문" onclick="order()">
             </div>
         </c:when>
     </c:choose>
-        <%----------------------%>
+    <%----------------------%>
     <div>
 
         <c:choose>
             <c:when test="${requestScope.icategory != 3}">
-
             <c:choose>
                 <c:when test="${fn:length(requestScope.list) == 0}">
                     <table>
@@ -157,27 +160,22 @@
                                         <td class="tx-a-center">공지</td>
                                         <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                         <td class="tx-a-center">${item.writerNm}</td>
+                                    </tr>
+                                </c:when>
+                                <c:when test="${requestScope.icategory == 2}">
+                                    <tr class="tx-a-center">
+                                        <th width="15%">Products</th>
+                                        <th width="65%">Title</th>
+                                        <th width="20%">Writer</th>
+                                    </tr>
+                                </c:when>
+                                <c:when test="${requestScope.icategory == 4}">
 
+                                    <tr class="tx-a-center">
+                                        <th width="15%">Products</th>
+                                        <th width="65%">Title</th>
+                                        <th width="20%">Writer</th>
                                     </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:when test="${requestScope.icategory == 2}">
-                                <c:forEach items="${requestScope.list}" var="item">
-                                    <tr class="record" data-iboard="${item.iboard}">
-                                        <td class="tx-a-center">${item.iboard}</td>
-                                        <td style="text-align: left;"><c:out value="${item.title}"/></td>
-                                        <td class="tx-a-center">${item.writerNm}</td>
-                                    </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:when test="${requestScope.icategory == 4}">
-                                <c:forEach items="${requestScope.review}" var="item">
-                                    <tr class="record" data-iboard="${item.iboard}">
-                                        <td class="tx-a-center" >${item.ireview}</td>
-                                        <td style="text-align: left;"><c:out value="${item.title}"/></td>
-                                        <td class="tx-a-center" >${item.writerNm}</td>
-                                    </tr>
-
                                 </c:forEach>
                             </c:when>
                         </c:choose>
@@ -214,28 +212,29 @@
                             </c:when>
                         </c:choose>
                     </form>
-
                 </div>
-            </div>
-            <div class="pageInfo_wrap" >
-                <div class="pageInfo_area">
-                    <!-- 이전페이지 버튼 -->
-                    <c:if test="${pageMaker.prev}">
-                        <li class="pageInfo_btn previous"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.startPage}">Prev</a></li>
-                    </c:if>
 
-                    <!-- 각 번호 페이지 버튼 -->
-                    <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                        <li class="pageInfo_btn num"><a href="/board/list/${requestScope.icategory}?pageNum=${num}">${num}</a></li>
-                    </c:forEach>
+                <div class="pageInfo_wrap" >
+                    <div class="pageInfo_area">
+                        <!-- 이전페이지 버튼 -->
+                        <c:if test="${pageMaker.prev}">
+                            <li class="pageInfo_btn previous"><a href="/board/list/${requestScope.icategory - 1}?pageNum=${pageMaker.startPage}&searchType=${requestScope.searchType}&searchText=${requestScope.searchText}">Prev</a></li>
+                        </c:if>
 
-                    <!-- 다음페이지 버튼 -->
-                    <c:if test="${pageMaker.next}">
-                        <li class="pageInfo_btn next"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.endPage}">Next</a></li>
-                    </c:if>
+                        <!-- 각 번호 페이지 버튼 -->
+                        <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                            <li class="pageInfo_btn num"><a href="/board/list/${requestScope.icategory}?pageNum=${num}&searchType=${requestScope.searchType}&searchText=${requestScope.searchText}">${num}</a></li>
+                        </c:forEach>
+
+                        <!-- 다음페이지 버튼 -->
+                        <c:if test="${pageMaker.next}">
+                            <li class="pageInfo_btn next"><a href="/board/list/${requestScope.icategory}?pageNum=${pageMaker.endPage + 1}&searchType=${requestScope.searchType}&searchText=${requestScope.searchText}">Next</a></li>
+                        </c:if>
+                    </div>
                 </div>
-            </div>
-        </c:when>
+            </c:when>
         </c:choose>
+
     </div>
 </div>
+

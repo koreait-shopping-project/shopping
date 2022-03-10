@@ -16,33 +16,38 @@ import java.util.List;
 
 @Mapper
 public interface BoardMapper {
-    //subcategory
+    //====================== subcategory ======================
     List<BoardProductVo> selProductList(Criteria cri);
+    List<BoardProductVo> searchProductList(Criteria cri);
     BoardProductVo selProductDetail(BoardProductVo vo);
     BoardProductVo selSize(BoardProductVo vo);
-    /* 게시판 총 갯수 */
+    //=====페이징=====
     int getTotal(int isubcategory);
-    //category
+    int getPrSearchTotal(Criteria cri);
+    //====================== category ======================
     List<BoardProductVo> selDetailList(BoardProductVo vo);
     List<BoardListVo> selBoardList(BoardListDto dto);
     BoardListVo selBoardDetail(BoardListDto dto);
-    int getBoardTotal(int icategory);
+    //=====페이징=====
+    int getBoardTotal(BoardCriteria cri);
     int getSearchTotal(BoardCriteria cri);
+    //cart
     int insCart(BoardProductVo vo);
     int insCartChecked(BoardProductVo vo);
-    int delCart(BoardProductVo vo);
-    int delCartChecked(int iuser);
+    List<BoardProductVo> selCart(UserEntity entity);
     int selectedCart(BoardProductVo vo);
     int unselectedCart(BoardProductVo vo);
     int updCartUp(BoardProductVo vo);
     int updCartDown(BoardProductVo vo);
-    List<BoardProductVo> selCart(UserEntity entity);
+    int delCart(BoardProductVo vo);
+    //Board List
+    int delCartChecked(int iuser);
     int insBoard(BoardListEntity entity);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
-    List<BoardProductVo> searchProductList(BoardProductEntity entity);
-    List<BoardListVo> searchBoardList(BoardListDto dto);
-    List<UserReviewDto> selReview();
+    List<BoardListVo> searchBoardList(BoardCriteria cri);
     int insPurchased(BoardProductVo vo);
+    //============= Review ==============
+    List<UserReviewDto> selReview();
 }
