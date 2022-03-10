@@ -1,5 +1,4 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/decoupled-document/ckeditor.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -25,13 +24,12 @@
     <div class="tx-a-center m-b-15">${titleVal}</div>
 
     <div style="position:relative;">
-        <div style="position: absolute; right: 0;"><button class="bolder-p b-radius bc-black color-white m-10" id="list" >목록</button></div>
+        <button class="bolder-p b-radius bc-black color-white m-10" style="position: absolute; right: 0; z-index: 100" id="list" >목록</button>
 
     <div style="position: relative">
 
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
         <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">다음</button></a>
-        <button class="bolder-p b-radius bc-black color-white m-10" style="position: absolute; right: 0" id="list" >목록</button>
     </div>
     <table>
         <tr>
@@ -174,7 +172,7 @@
 
 <div>
     <c:if test="${sessionScope.loginUser != null}">
-        <div class="m-t-20 invisibility">
+        <div class="m-t-20">
             <form id="cmtFrm">
                 <input type="text" name="ctnt">
                 <input type="button" id="btn_submit" value="댓글달기">
@@ -182,4 +180,5 @@
         </div>
     </c:if>
     <div class="m-t-20" id="cmt_list"></div>
+</div>
 </div>

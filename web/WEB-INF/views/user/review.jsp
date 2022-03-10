@@ -16,7 +16,7 @@
     <em class="p-b-20 bold">별점을 매겨주세요</em>
     <div class="m-t-20 display-i-b p-b-20">
         <div class="star-rating space-x-4 mx-auto">
-            <input typ  e="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+            <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
             <label for="5-stars" class="star pr-4">★</label>
             <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
             <label for="4-stars" class="star">★</label>
@@ -24,7 +24,7 @@
             <label for="3-stars" class="star">★</label>
             <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
             <label for="2-stars" class="star">★</label>
-            <input type="radio" id="1-star" name="rating" value="1" v-model="ratings" />
+            <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
             <label for="1-star" class="star">★</label>
         </div>
     </div>

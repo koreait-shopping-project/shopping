@@ -15,6 +15,8 @@
             <c:set var="titleVal" value="리뷰" />
             <c:set var="notIn" value="글이 없습니다."/>
         </c:when>
+    </c:choose>
+    <c:choose>
         <c:when test="${requestScope.icategory == 3}">
             <%-------- cart -----------%>
             <c:set var="titleVal" value="Cart" />
@@ -108,8 +110,10 @@
     </c:choose>
     <%----------------------%>
     <div>
+
         <c:choose>
             <c:when test="${requestScope.icategory != 3}">
+            <div class="tx-a-center m-b-30">${titleVal}</div>
                 <c:choose>
                     <c:when test="${fn:length(requestScope.list) == 0}">
                         <table>
@@ -168,7 +172,7 @@
                                 </c:when>
                                 <c:when test="${requestScope.icategory == 4}">
                                     <c:forEach items="${requestScope.review}" var="item">
-                                        <tr class="record" data-iboard="${item.iboard}">
+                                        <tr class="record" data-iboard="${item.iboard}" data-icategory="${item.icategory}" data-ireview="${item.ireview}">
                                             <td class="tx-a-center" >${item.ireview}</td>
                                             <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                             <td class="tx-a-center" >${item.writerNm}</td>
@@ -180,14 +184,14 @@
                     </c:otherwise>
                 </c:choose>
                 <div id="go_write">
-                    <c:choose>
-                        <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
-                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-                        </c:when>
-                        <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
-                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-                        </c:when>
-                    </c:choose>
+<%--                    <c:choose>--%>
+<%--                        <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">--%>
+<%--                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>--%>
+<%--                        </c:when>--%>
+<%--                        <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">--%>
+<%--                            <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>--%>
+<%--                        </c:when>--%>
+<%--                    </c:choose>--%>
                 <div id="write_search_wrap">
                     <div id="list_search_wrap">
                         <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
