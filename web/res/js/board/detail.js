@@ -1,12 +1,15 @@
 {
-    //CK에디터
-    ClassicEditor
-        .create( document.querySelector( '#editor' ))
-        .catch( error => {
-            console.error( error );
 
-        } );
+    //목록가기 버튼
+    const backListBtn = document.querySelector('#list');
+    backListBtn.addEventListener('click', () => {
+        const dataElem = document.querySelector('#data');
+        const icategory = dataElem.dataset.icategory;
+        location.href = `/board/list/${icategory}`;
+    })
+    
 }
+
 {
     const dataElem = document.querySelector('#data');
 
@@ -238,11 +241,5 @@
     }
     getCmtList();
 
-    //목록가기 버튼
-    const backListBtn = document.querySelector('#list');
-    backListBtn.addEventListener('click', () => {
-        const dataElem = document.querySelector('#data');
-        const icategory = dataElem.dataset.icategory;
-        location.href = `/board/list/${icategory}`;
-    })
+
 }

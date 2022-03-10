@@ -15,6 +15,8 @@
             <c:set var="titleVal" value="리뷰" />
             <c:set var="notIn" value="글이 없습니다."/>
         </c:when>
+    </c:choose>
+    <c:choose>
         <c:when test="${requestScope.icategory == 3}">
             <%-------- cart -----------%>
             <c:set var="titleVal" value="Cart" />
@@ -108,8 +110,10 @@
     </c:choose>
         <%----------------------%>
     <div>
+
         <c:choose>
             <c:when test="${requestScope.icategory != 3}">
+
             <c:choose>
                 <c:when test="${fn:length(requestScope.list) == 0}">
                     <table>
@@ -153,6 +157,7 @@
                                         <td class="tx-a-center">공지</td>
                                         <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                         <td class="tx-a-center">${item.writerNm}</td>
+
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -172,6 +177,7 @@
                                         <td style="text-align: left;"><c:out value="${item.title}"/></td>
                                         <td class="tx-a-center" >${item.writerNm}</td>
                                     </tr>
+
                                 </c:forEach>
                             </c:when>
                         </c:choose>
@@ -208,6 +214,7 @@
                             </c:when>
                         </c:choose>
                     </form>
+
                 </div>
             </div>
             <div class="pageInfo_wrap" >
