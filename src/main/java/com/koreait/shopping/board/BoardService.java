@@ -47,8 +47,8 @@ public class BoardService {
     }
 
     /* Board 게시물 총 갯수 */
-    public int getBoardTotal(int icategory) {
-        return mapper.getBoardTotal(icategory);
+    public int getBoardTotal(BoardCriteria cri) {
+        return mapper.getBoardTotal(cri);
     }
 
     public int getSearchTotal(BoardCriteria cri) {
@@ -130,13 +130,18 @@ public class BoardService {
         return mapper.selSize(vo);
     }
 
-    public List<BoardProductVo> searchProductList (BoardProductEntity entity) {
-        return mapper.searchProductList(entity);
+    public List<BoardProductVo> searchProductList (Criteria cri) {
+        return mapper.searchProductList(cri);
     }
 
-    public List<BoardListVo> searchBoardList(BoardListDto dto) {
-        return mapper.searchBoardList(dto);
+    public int getPrSearchTotal(Criteria cri) {
+        return mapper.getPrSearchTotal(cri);
     }
+
+    public List<BoardListVo> searchBoardList(BoardCriteria cri) {
+        return mapper.searchBoardList(cri);
+    }
+
 
     public int insPurchased(BoardProductVo vo) {
         return mapper.insPurchased(vo);

@@ -37,15 +37,16 @@ public class BoardController {
     }
 
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardListDto dto, BoardCriteria cri, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(cri));
-        dto.setIcategory(icategory);
-        int total = service.getBoardTotal(icategory);
+        cri.setIcategory(icategory);
+        int total = service.getBoardTotal(cri);
 
-        if (dto.getSearchType() != 0) {
+        if (cri.getSearchType() != 0) {
             model.addAttribute(Const.LIST, service.searchBoardList(cri));
-            model.addAttribute(Const.SEARCH_TYPE, dto.getSearchType());
+            model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
+            model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
             total = service.getSearchTotal(cri);
         } else {
             model.addAttribute(Const.LIST, service.selBoardList(cri));
@@ -74,9 +75,15 @@ public class BoardController {
     }
 
     @GetMapping("/prsearch")
-    public List<BoardProductVo> searchProc(Model model, BoardProductDto dto) {
-        model.addAttribute(Const.LIST, service.searchProductList(dto));
-        return service.searchProductList(dto);
+    public List<BoardProductVo> searchProc(Model model, Criteria cri) {
+        model.addAttribute(Const.LIST, service.searchProductList(cri));
+        model.addAttribute(Const.TITLE, cri.getTitle());
+        int total = service.getPrSearchTotal(cri);
+
+        PageMakerDto pageMake = new PageMakerDto(cri, total);
+        model.addAttribute("pageMaker", pageMake);
+
+        return service.searchProductList(cri);
     }
 
 
@@ -134,9 +141,9 @@ public class BoardController {
     }
 
     @GetMapping("/product/{isubcategory}")
-    public String subList(@PathVariable int isubcategory, Model model, BoardProductDto dto, Criteria cri) {
+    public String subList(@PathVariable int isubcategory, Model model, Criteria cri) {
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);
-        dto.setIsubcategory(isubcategory);
+        cri.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(cri));
 
         int total = service.getTotal(isubcategory);
