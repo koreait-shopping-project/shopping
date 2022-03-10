@@ -114,6 +114,7 @@ $(document).ready(function(){
 
     allCheck.addEventListener('click', function () {
         if(allCheck.checked) {
+            cost = 0;
             for(let i = 0; i < boxList.length; i++) {
                 const tr = tbody.children[i];
                 let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
@@ -121,17 +122,9 @@ $(document).ready(function(){
                 let mul = itemNum * price;
                 cost = cost + mul;
             }
-            allPrice.innerHTML = cost;
-        } else {
-            for(let i = 0; i < boxList.length; i++) {
-                const tr = tbody.children[i];
-                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
-                let price = parseInt(tr.querySelector("input[name=price]").value);
-                let mul = itemNum * price;
-                cost = cost - mul;
-            }
-        }
-        allPrice.innerHTML = cost;
+            allPrice.innerHTML = priceToString(cost);
+        } else {cost = 0;}
+        allPrice.innerHTML = priceToString(cost);
     })
 
     boxList.forEach(
@@ -143,11 +136,11 @@ $(document).ready(function(){
             item.addEventListener('click', function () {
                 if(item.checked) {
                     cost = cost + mul;
-                    allPrice.innerHTML = cost;
+                    allPrice.innerHTML = priceToString(cost);
                 }
                 else {
                     cost = cost - mul;
-                    allPrice.innerHTML = cost;
+                    allPrice.innerHTML = priceToString(cost);
                 }
             })
         }
