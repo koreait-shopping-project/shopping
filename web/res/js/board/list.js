@@ -9,8 +9,13 @@ $(document).ready(function(){
     const recordEvent = (item) => {
         item.addEventListener('click', () => {
             const iboard = item.dataset.iboard;
+            const icategory = item.dataset.icategory;
+            const ireview = item.dataset.ireview;
             console.log(iboard);
             location.href = `/board/detail?iboard=${iboard}`;
+            if (icategory == 4) {
+                location.href = `/board/detail?ireview=${ireview}`;
+            }
         });
     };
     recordList.forEach(recordEvent);
