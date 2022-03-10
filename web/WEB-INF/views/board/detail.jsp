@@ -31,7 +31,6 @@
 
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
         <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">다음</button></a>
-        <button class="bolder-p b-radius bc-black color-white m-10" style="position: absolute; right: 0" id="list" >목록</button>
     </div>
     <table>
         <tr>
