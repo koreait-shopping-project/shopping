@@ -30,6 +30,7 @@ public class Const {
     public static final String COST = "cost";
     public static final String PURCHASED = "purchased";
     public static final String REVIEW = "review";
+    public static final String IUSER = "iuser";
 
 
 

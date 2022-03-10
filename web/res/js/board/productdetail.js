@@ -189,7 +189,14 @@
 
     //버튼 변경
     function submitBtn(addr) {
-        if(addr == 'cart') {
+        const iuserElem = document.querySelector('#iuser');
+        const iuser = iuserElem.dataset.iuser;
+        if(iuser === '0') {
+            event.preventDefault();
+            alert('로그인 시 사용할 수 있습니다.');
+            location.href="/user/login";
+        }
+        else if(addr == 'cart') {
             form.action = "/board/cart";
         }
         else if (addr == 'order') {
