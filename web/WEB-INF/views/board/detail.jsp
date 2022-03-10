@@ -24,6 +24,7 @@
     <div class="tx-a-center m-b-15">${titleVal}</div>
 
     <div style="position:relative;">
+
         <button class="bolder-p b-radius bc-black color-white m-10" style="position: absolute; right: 0; z-index: 100" id="list" >목록</button>
 
     <div style="position: relative">
@@ -169,7 +170,7 @@
     <div><button class="bolder-p b-radius bc-black color-white m-10" id="back" onclick="history.back()">뒤로가기</button></div>
 
 </div>
-
+</div>
 <div>
     <c:if test="${sessionScope.loginUser != null}">
         <div class="m-t-20">

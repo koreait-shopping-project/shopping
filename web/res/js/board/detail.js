@@ -1,4 +1,5 @@
 {
+
     //목록가기 버튼
     const backListBtn = document.querySelector('#list');
     backListBtn.addEventListener('click', () => {
@@ -6,6 +7,7 @@
         const icategory = dataElem.dataset.icategory;
         location.href = `/board/list/${icategory}`;
     })
+    
 }
 
 {
