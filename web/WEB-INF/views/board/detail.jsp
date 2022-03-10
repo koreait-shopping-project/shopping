@@ -24,8 +24,9 @@
     <div class="tx-a-center m-b-15">${titleVal}</div>
 
     <div style="position:relative;">
-        <div style="position: absolute; right: 0;"><button class="bolder-p b-radius bc-black color-white m-10" id="list" >목록</button></div>
-`
+
+        <button class="bolder-p b-radius bc-black color-white m-10" style="position: absolute; right: 0; z-index: 100" id="list" >목록</button>
+
     <div style="position: relative">
 
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
