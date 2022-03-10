@@ -8,7 +8,7 @@ var sliderWidth = $('#slider_wrap').width();
 
 // jQuery 시작 부분
 $(document).ready(function(){
-
+    // slider를 감싸는 ul의 총 넓이를 li의 길이와 각 슬라이드의 넓이를 곱한다.
     $('#slider').width(sliderWidth * totalSlides);
 
     //next slide button 클릭 이벤트
