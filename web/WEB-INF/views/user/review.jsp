@@ -10,12 +10,13 @@
 </div>
 <form action="/user/review" method="post" id="reviewFrm">
     <!-- 별점 -->
+    <input type="hidden" name="iboard" value="${requestScope.iboard}">
     <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>
     <div class="m-t-20 display-i-b p-b-20">
         <div class="star-rating space-x-4 mx-auto">
-            <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+            <input typ  e="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
             <label for="5-stars" class="star pr-4">★</label>
             <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
             <label for="4-stars" class="star">★</label>
@@ -120,7 +121,7 @@
     <table class="w-100p">
         <tr class="bolder-top bolder-right bolder-left">
             <th scope="row" class="tx-a-center" style="border-right: 1px solid #c1c1c1">제목</th>
-            <td><input class="w-all" style="border: none" type="text" name="title" value="<c:out value='${requestScope.data.title}'/>"></td>
+            <td><input class="w-all" style="border: none" type="text" name="title" value="${requestScope.data.title}"></td>
         </tr>
         <tr>
             <td colspan="2">

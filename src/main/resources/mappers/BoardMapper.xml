@@ -99,6 +99,13 @@
         ORDER BY iboard DESC
     </select>
 
+    <select id="selReview" resultType="UserReviewDto">
+        SELECT A.iboard, A.ireview, A.title, B.nm AS writerNm
+        FROM t_user_review A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+    </select>
+
     <update id="updBoard">
         UPDATE t_board_list
         <set>

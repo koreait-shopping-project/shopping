@@ -4,13 +4,13 @@ import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.dto.BoardListDto;
-import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -107,6 +107,11 @@ public class BoardService {
         vo.setIcart(icart);
         return mapper.selectedCart(vo);
     }
+
+    public List<UserReviewDto> selReview() {
+        return mapper.selReview();
+    }
+
     public int unselectedCart(int icart) {
         BoardProductVo vo = new BoardProductVo();
         vo.setIcart(icart);

@@ -5,14 +5,11 @@ import com.koreait.shopping.Const;
 import com.koreait.shopping.UserUtils;
 
 import com.koreait.shopping.board.BoardService;
-import com.koreait.shopping.board.model.dto.BoardProductDto;
-import com.koreait.shopping.board.model.dto.BoardProductListDto;
-import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
-import com.koreait.shopping.user.model.entity.UserReviewEntity;
+import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
@@ -156,20 +152,22 @@ public class UserController {
     public void mypage() {}
 
     @GetMapping("/review")
-    public void review(UserReviewEntity entity, Model model) {
+    public void review(UserReviewDto entity, Model model) {
+        model.addAttribute(Const.IBOARD, entity.getIboard());
         model.addAttribute(Const.LIST, service.selPurchased(entity));
-        System.out.println(service.selPurchased(entity).get(1).getIboard());
+        System.out.println("iboard : " + entity.getIboard());
+
 //        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
 //            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
 //            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
     }
 
     @PostMapping("/review")
-    public String reviewProc(UserReviewEntity entity, RedirectAttributes reAttr) {
+    public String reviewProc(UserReviewDto entity, RedirectAttributes reAttr) {
+        System.out.println("Piboard : " + entity.getIboard());
         int result = service.review(entity);
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
-            return "redirect:/user/review";
         }
         return "redirect:/user/mypage";
     }
