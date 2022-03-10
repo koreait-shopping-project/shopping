@@ -114,6 +114,7 @@ $(document).ready(function(){
 
     allCheck.addEventListener('click', function () {
         if(allCheck.checked) {
+            cost = 0;
             for(let i = 0; i < boxList.length; i++) {
                 const tr = tbody.children[i];
                 let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
@@ -122,15 +123,7 @@ $(document).ready(function(){
                 cost = cost + mul;
             }
             allPrice.innerHTML = cost;
-        } else {
-            for(let i = 0; i < boxList.length; i++) {
-                const tr = tbody.children[i];
-                let itemNum = parseInt(tr.querySelector("input[name=itemNum]").value);
-                let price = parseInt(tr.querySelector("input[name=price]").value);
-                let mul = itemNum * price;
-                cost = cost - mul;
-            }
-        }
+        } else {cost = 0;}
         allPrice.innerHTML = cost;
     })
 
