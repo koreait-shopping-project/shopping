@@ -22,7 +22,6 @@
             <tbody>
             <c:forEach var="item" items="${requestScope.purchased}">
                 <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
-                    <td>${item.iboard}</td>
                     <td><a href="/user/review?iboard=${item.iboard}"><button class="bolder-sm">Review</button></a></td>
                     <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
                     <td><c:out value="${item.title}"/></td>

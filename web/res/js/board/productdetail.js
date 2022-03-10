@@ -197,3 +197,21 @@
         }
     }
 }
+{
+
+
+    $( function() {
+        $( "#progressbar-1" ).progressbar({value: 10});
+        $( "#progressbar-2" ).progressbar({value: 10});
+        $( "#progressbar-3" ).progressbar({value: 10});
+        $( "#progressbar-4" ).progressbar({value: 10});
+        $( "#progressbar-5" ).progressbar({value: 10});
+        $( "#progressbar-6" ).progressbar({value: 10});
+        $( "#progressbar-7" ).progressbar({value: 10});
+        $( "#progressbar-8" ).progressbar({value: 10});
+        $( "#progressbar-9" ).progressbar({value: 10});
+        $( "#progressbar-10" ).progressbar({value: 10});
+        $( "#progressbar-11" ).progressbar({value: 10});
+        $( "#progressbar-12" ).progressbar({value: 10});
+    } );
+}
