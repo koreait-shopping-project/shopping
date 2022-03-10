@@ -6,7 +6,6 @@
             console.error( error );
 
         } );
-
 }
 {
     const dataElem = document.querySelector('#data');

@@ -26,7 +26,7 @@
 
     <div style="position:relative;">
         <div style="position: absolute; right: 0;"><button class="bolder-p b-radius bc-black color-white m-10" id="list" >목록</button></div>
-
+`
     <div style="position: relative">
 
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
@@ -170,10 +170,10 @@
     <div><button class="bolder-p b-radius bc-black color-white m-10" id="back" onclick="history.back()">뒤로가기</button></div>
 
 </div>
-
+</div>
 <div>
     <c:if test="${sessionScope.loginUser != null}">
-        <div class="m-t-20 invisibility">
+        <div class="m-t-20">
             <form id="cmtFrm">
                 <input type="text" name="ctnt">
                 <input type="button" id="btn_submit" value="댓글달기">
