@@ -10,6 +10,7 @@
         <c:when test="${requestScope.icategory == 1}">
             <c:set var="notIn" value="글이 없습니다."/>
             <div>
+                <div class="tx-a-center m-b-30">${titleVal}</div>
                 <table>
                     <tr class="tx-a-center">
                         <th width="15%"></th>
@@ -30,6 +31,7 @@
             <c:set var="titleVal" value="상품 Q/A" />
             <c:set var="notIn" value="글이 없습니다."/>
             <div>
+                <div class="tx-a-center m-b-30">${titleVal}</div>
                 <table>
                     <tr class="tx-a-center">
                         <th width="15%">Products</th>
@@ -50,6 +52,7 @@
             <c:set var="titleVal" value="리뷰" />
             <c:set var="notIn" value="글이 없습니다."/>
             <div>
+                <div class="tx-a-center m-b-30">${titleVal}</div>
                 <table>
                     <tr class="tx-a-center">
                         <th width="15%">Products</th>
