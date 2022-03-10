@@ -13,6 +13,7 @@ public class Const {
     public static final String LIST = "list";
     public static final String I_CATEGORY = "icategory";
     public static final String I_SUBCATEGORY = "isubcategory";
+    public static final String TITLE = "title";
     public static final String DATA = "data";
     public static final String DETAIL = "detail";
     public static final String COLOR = "color";
@@ -21,6 +22,7 @@ public class Const {
     public static final String MAX_PAGE = "maxPage";
     public static final String SIZE = "size";
     public static final String SEARCH_TYPE = "searchType";
+    public static final String SEARCH_TEXT = "searchText";
     public static final String CART = "cart";
     public static final String DELCART = "delCart";
     public static final String CHECKED = "checked";
