@@ -11,6 +11,9 @@
     <c:when test="${data.icategory == 2}">
         <c:set var="titleVal" value="상품 Q/A" />
     </c:when>
+    <c:when test="${data.icategory == 4}">
+        <c:set var="titleVal" value="리뷰" />
+    </c:when>
 </c:choose>
 <div class="m-w">
     <div id="data"
@@ -150,7 +153,6 @@
                         </c:when>
                     </c:choose>
                 ${data.ctnt}
-
                 </div>
             </th>
         </tr>

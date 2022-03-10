@@ -19,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +57,7 @@ public class BoardController {
         }
 
         if (icategory == 4) {
-
+            model.addAttribute(Const.REVIEW, service.selReview());
         }
 
         BoardPageMakerDto pageMake = new BoardPageMakerDto(cri, total);

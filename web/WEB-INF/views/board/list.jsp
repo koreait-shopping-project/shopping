@@ -161,7 +161,7 @@
                                         </tr>
                                     </c:forEach>
                                 </c:when>
-                                <c:otherwise>
+                                <c:when test="${requestScope.icategory == 2}">
                                     <c:forEach items="${requestScope.list}" var="item">
                                         <tr class="record" data-iboard="${item.iboard}">
                                             <td class="tx-a-center">${item.iboard}</td>
@@ -169,7 +169,16 @@
                                             <td class="tx-a-center">${item.writerNm}</td>
                                         </tr>
                                     </c:forEach>
-                                </c:otherwise>
+                                </c:when>
+                                <c:when test="${requestScope.icategory == 4}">
+                                    <c:forEach items="${requestScope.review}" var="item">
+                                        <tr class="record" data-iboard="${item.iboard}">
+                                            <td class="tx-a-center" >${item.ireview}</td>
+                                            <td style="text-align: left;"><c:out value="${item.title}"/></td>
+                                            <td class="tx-a-center" >${item.writerNm}</td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:when>
                             </c:choose>
                         </table>
                     </c:otherwise>
