@@ -122,9 +122,9 @@ $(document).ready(function(){
                 let mul = itemNum * price;
                 cost = cost + mul;
             }
-            allPrice.innerHTML = cost;
+            allPrice.innerHTML = priceToString(cost);
         } else {cost = 0;}
-        allPrice.innerHTML = cost;
+        allPrice.innerHTML = priceToString(cost);
     })
 
     boxList.forEach(
@@ -136,11 +136,11 @@ $(document).ready(function(){
             item.addEventListener('click', function () {
                 if(item.checked) {
                     cost = cost + mul;
-                    allPrice.innerHTML = cost;
+                    allPrice.innerHTML = priceToString(cost);
                 }
                 else {
                     cost = cost - mul;
-                    allPrice.innerHTML = cost;
+                    allPrice.innerHTML = priceToString(cost);
                 }
             })
         }
