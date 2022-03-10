@@ -73,6 +73,7 @@
                     </c:choose>
                 </ul>
                 <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
+                <input id="iuser" name="iuser" type="hidden" value="${requestScope.iuser}" data-iuser="${requestScope.iuser}">
             </div>
             <div id="allPrice">total : 0</div>
             <input type="submit" value="바로구매" onclick="submitBtn('order')">

@@ -131,6 +131,7 @@ public class BoardController {
     public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
+        model.addAttribute(Const.IUSER, utils.getLoginUserPk());
         //productdetail 제품 불러오기
         BoardProductEntity entity = service.selProductDetail(vo);
         model.addAttribute(Const.DETAIL, entity);

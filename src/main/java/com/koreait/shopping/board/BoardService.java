@@ -88,7 +88,9 @@ public class BoardService {
         return mapper.selProductDetail(vo);
     }
 
-    public List<BoardProductVo> selDetailList(BoardProductVo vo) { return mapper.selDetailList(vo); }
+    public List<BoardProductVo> selDetailList(BoardProductVo vo) {
+        return mapper.selDetailList(vo);
+    }
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
     public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
