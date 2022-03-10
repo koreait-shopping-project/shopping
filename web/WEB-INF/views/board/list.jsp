@@ -139,7 +139,6 @@
                                 </tr>
                             </c:when>
                             <c:when test="${requestScope.icategory == 4}">
-
                                 <tr class="tx-a-center">
                                     <th width="15%">Products</th>
                                     <th width="65%">Title</th>
