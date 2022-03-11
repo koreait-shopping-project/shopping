@@ -54,6 +54,12 @@
             <select id="sizebox">
                 <option value="" selected disabled>사이즈선택</option>
             </select>
+            <span>
+                <c:if test="${sessionScope.loginUser != null}">
+                <!-- 좋아요 -->
+                    <i id="like_icon" class="fs-30 pointer far fa-heart"></i>
+                </c:if>
+            </span>
         </div>
 
         <form method="post" id="frmSubmit">

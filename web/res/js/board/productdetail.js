@@ -203,4 +203,70 @@
             form.action = "/board/order";
         }
     }
+
+    //좋아요
+    const likeIconElem = document.querySelector('#like_icon');
+
+    const isLike = () => {
+        myFetch.get(`/board/like/${iboard}`, (data) => {
+            switch(data.result) {
+                case 0:
+                    disableLike();
+                    break;
+                case 1:
+                    enableLike();
+                    break;
+            }
+        });
+    }
+
+    const disableLike = () => {
+        if(likeIconElem) {
+            likeIconElem.classList.remove('fas');
+            likeIconElem.classList.add('far');
+        }
+    }
+
+    const enableLike = () => {
+        if(likeIconElem) {
+            likeIconElem.classList.remove('far');
+            likeIconElem.classList.add('fas');
+        }
+    }
+
+    const iuserElem = document.querySelector('#iuser');
+    const iuser = iuserElem.dataset.iuser;
+    if(iuser) {
+        isLike();
+        likeIconElem.addEventListener('click', () => {
+            if(likeIconElem.classList.contains('far')) { //no 좋아요
+                const param = { iboard };
+                /*
+                위 문장의 결과는 아래와 같다.
+                const param = {'iboard': iboard }
+                */
+                myFetch.post(`/board/like`, data => {
+                    switch (data.result) {
+                        case 0:
+                            alert('좋아요 처리에 실패하였습니다.');
+                            break;
+                        case 1:
+                            enableLike();
+                            break;
+                    }
+                }, param);
+            } else { //yes 좋아요
+                myFetch.delete(`/board/like/${iboard}`, data => {
+                    switch (data.result) {
+                        case 0:
+                            alert('좋아요 처리에 실패하였습니다.');
+                            break;
+                        case 1:
+                            disableLike();
+                            break;
+                    }
+                });
+            }
+        });
+    }
 }
