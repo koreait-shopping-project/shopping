@@ -178,7 +178,7 @@
             </td>
         </tr>
     </table>
-
+<div>test</div>
     <c:forEach var="item" items="${requestScope.review}">
     <div>
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
