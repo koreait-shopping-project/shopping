@@ -6,7 +6,7 @@
 <article id="main_wrap">
     <section id="slider_wrap">
         <ul id="slider">
-            <c:forEach var="i" begin="1" end="9">
+            <c:forEach var="i" begin="1" end="10">
                 <li class="slider_item"><div></div></li>
             </c:forEach>
         </ul>
@@ -18,7 +18,7 @@
         </div>
         <div id="counter"></div>
         <div id="pagination_wrap">
-            <ul></ul>
+            <ul id="pagination_controller"></ul>
         </div>
     </section>
 </article>
