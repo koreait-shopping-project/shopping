@@ -2,8 +2,11 @@ package com.koreait.shopping.board.like;
 
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.entity.BoardLikeEntity;
+import com.koreait.shopping.board.model.vo.BoardProductVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class BoardLikeService {
@@ -28,6 +31,10 @@ public class BoardLikeService {
         entity.setIboard(iboard);
         entity.setIuser(utils.getLoginUserPk());
         return entity;
+    }
+
+    public List<BoardLikeEntity> selBoardLikeNum(int iboard) {
+        return mapper.selBoardLikeNum(iboard);
     }
 
 }

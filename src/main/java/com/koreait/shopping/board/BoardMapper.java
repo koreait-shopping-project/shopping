@@ -18,6 +18,7 @@ import java.util.List;
 public interface BoardMapper {
     //====================== subcategory ======================
     List<BoardProductVo> selProductList(Criteria cri);
+    List<BoardProductVo> seliboardList(BoardProductVo vo);
     List<BoardProductVo> searchProductList(Criteria cri);
     BoardProductVo selProductDetail(BoardProductVo vo);
     BoardProductVo selSize(BoardProductVo vo);

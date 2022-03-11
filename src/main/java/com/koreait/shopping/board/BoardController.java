@@ -6,6 +6,8 @@ import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
 import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.board.like.BoardLikeService;
+import com.koreait.shopping.board.model.dto.BoardLikeDto;
 import com.koreait.shopping.board.model.dto.BoardListDto;
 import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
@@ -28,6 +30,9 @@ import java.util.Map;
 public class BoardController {
     @Autowired
     private BoardService service;
+
+    @Autowired
+    private BoardLikeService likeService;
 
     @Autowired
     private UserUtils utils;
@@ -146,6 +151,14 @@ public class BoardController {
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);
         cri.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(cri));
+
+        BoardProductVo vo = new BoardProductVo();
+        vo.setIsubcategory(isubcategory);
+        BoardLikeDto dto = new BoardLikeDto();
+        for (BoardProductVo list : service.seliboardList(vo)) {
+            dto.setList(likeService.selBoardLikeNum(list.getIboard()));
+        }
+        model.addAttribute(Const.LIKE, dto);
 
         int total = service.getTotal(isubcategory);
         PageMakerDto pageMake = new PageMakerDto(cri, total);
