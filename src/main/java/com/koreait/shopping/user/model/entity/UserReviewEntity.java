@@ -7,7 +7,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class UserReviewEntity {
+public class    UserReviewEntity {
     private int ireview;
     private int icategory;
     private int iboard;

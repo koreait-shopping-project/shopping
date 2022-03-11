@@ -178,17 +178,38 @@
             </td>
         </tr>
     </table>
-
-<%--    <c:forEach var="item" items="${}">--%>
-    <progress value="50" max="100" style="height: 5px;"></progress>
+<div>test</div>
+    <c:forEach var="item" items="${requestScope.review}">
     <div>
-        <div>uid</div>
-        <div>tall, weight</div>
-        <div>product-img</div>
-        <div>상품명, 컬러, 사이즈</div>
-        <div>별점</div>
-        <div>ctnt</div>
-        <div>후기</div>
+        <input type="hidden" name="iboard" value="${requestScope.iboard}">
+        <div>${item.uid}</div>
+        <div>${item.tall}</div>
+        <div>${item.weight}</div>
+        <div><img src="${item.img_url_big}" alt="product"></div>
+        <div>${item.title}</div>
+        <c:if test="${item.color == 1}">
+            <div>흰색</div>
+        </c:if>
+        <c:if test="${item.color == 2}">
+            <div>검은색</div>
+        </c:if>
+        <c:if test="${item.color == 3}">
+            <div>회색</div>
+        </c:if>
+        <c:if test="${item.sm != 0}">
+            <div>small</div>
+        </c:if>
+        <c:if test="${item.md != 0}">
+            <div>medium</div>
+        </c:if>
+        <c:if test="${item.lg != 0}">
+            <div>large</div>
+        </c:if>
+        <c:if test="${item.xl != 0}">
+            <div>x-large</div>
+        </c:if>
+        <div>별점 : ${item.rating}</div>
+        <div>평가 글 : ${item.ctnt}</div>
     </div>
-<%--    </c:forEach>--%>
+    </c:forEach>
 </div>
