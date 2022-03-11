@@ -11,6 +11,7 @@ import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
+import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -45,6 +46,6 @@ public interface BoardMapper {
     List<BoardProductVo> searchProductList(BoardProductEntity entity);
     List<BoardListVo> searchBoardList(BoardListDto dto);
     List<UserReviewDto> selReview();
-    List<UserReviewDto> selBoardReview();
+    List<UserReviewVo> selBoardReview(UserReviewVo vo);
     int insPurchased(BoardProductVo vo);
 }

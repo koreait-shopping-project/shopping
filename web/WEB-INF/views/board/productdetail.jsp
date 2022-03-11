@@ -174,7 +174,7 @@
 
     <c:forEach var="item" items="${requestScope.review}">
     <div>
-        <input type="text" name="iboard" value="${requestScope.iboard}">
+        <input type="hidden" name="iboard" value="${requestScope.iboard}">
         <div>${item.uid}</div>
         <div>${item.tall}</div>
         <div>${item.weight}</div>

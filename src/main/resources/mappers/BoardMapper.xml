@@ -106,7 +106,7 @@
         ON A.iuser = B.iuser
     </select>
 
-    <select id="selBoardReview" resultType="UserReviewDto">
+    <select id="selBoardReview" resultType="UserReviewVo">
         SELECT A.tall, A.weight, A.rating, A.ctnt,
                B.uid,
                C.img_url_big, C.title,
@@ -118,6 +118,8 @@
                             ON A.iboard = C.iboard
                  INNER JOIN purchased D
                             ON A.iboard = D.iboard
+        WHERE A.iboard = ${iboard}
+        LIMIT 10
 
     </select>
 

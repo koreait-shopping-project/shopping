@@ -16,6 +16,7 @@ import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
+import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,7 +124,7 @@ public class BoardController {
     }
 
     @GetMapping("/productdetail/{iboard}")
-    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo) {
+    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo, UserReviewVo vo2) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
         //productdetail 제품 불러오기
@@ -134,9 +135,9 @@ public class BoardController {
         model.addAttribute(Const.DATA, service.selDetailList(vo));
 
         //리뷰
-
-        model.addAttribute(Const.REVIEW, service.selBoardReview());
-        System.out.println("필요한 값 : " + service.selBoardReview());
+        vo2.setIboard(vo.getIboard());
+        model.addAttribute(Const.REVIEW, service.selBoardReview(vo2));
+        System.out.println("필요한 값 : " + service.selBoardReview(vo2));
 
         return "board/productdetail";
     }
