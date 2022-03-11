@@ -10,11 +10,19 @@
     </insert>
 
     <select id="selBoardList" resultType="BoardListVo">
-        SELECT A.iboard, A.notice, A.title, B.nm AS writerNm
+        SELECT A.iboard, A.title, B.nm AS writerNm
         FROM t_board_list A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
         WHERE A.icategory = ${icategory}
+        ORDER BY iboard DESC
+        LIMIT ${page}, ${amount}
+    </select>
+
+    <!-- 게시물 총 갯수 -->
+    <select id="getBoardTotal" resultType="int">
+        SELECT COUNT(*) FROM t_board_list
+        WHERE icategory = ${icategory}
         ORDER BY iboard DESC
     </select>
 
@@ -30,22 +38,27 @@
     <select id="selPrevNext" resultType="BoardPrevNextVo">
         <![CDATA[
         SELECT
-            IFNULL(
-                    (SELECT iboard
-                     FROM t_board_list
-                     WHERE icategory = ${icategory}
-                       AND iboard > ${iboard}
-                     ORDER BY iboard
-                        LIMIT 1), 0
-        ) AS previboard,
+        IFNULL(
+                (
+                    SELECT iboard
+                    FROM t_board_list
+                    WHERE icategory = ${icategory}
+                    AND iboard > ${iboard}
+                    ORDER BY iboard
+                    LIMIT 1
+                ), 0
+                ) AS previboard,
 
-            IFNULL(
-                    (SELECT iboard FROM t_board_list
-                     WHERE icategory = ${icategory}
-                       AND iboard < ${iboard}
-                     ORDER BY iboard DESC
-                        LIMIT 1), 0
-        )AS nextiboard
+        IFNULL(
+                 (
+                    SELECT iboard
+                    FROM t_board_list
+                    WHERE icategory = ${icategory}
+                    AND iboard < ${iboard}
+                    ORDER BY iboard DESC
+                    LIMIT 1
+                    ) , 0
+                )AS nextiboard
         ]]>
     </select>
 
@@ -66,7 +79,31 @@
             </if>
         AND icategory = ${icategory}
         ORDER BY iboard DESC
+        LIMIT ${page}, ${amount}
+    </select>
 
+    <select id="getSearchTotal" resultType="int">
+        SELECT COUNT(*)
+        FROM t_board_list A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        <if test=" searchType == 1">
+            WHERE A.title LIKE '%${searchText}%'
+        </if>
+        <if test=" searchType == 2">
+            WHERE A.ctnt LIKE '%${searchText}%'
+        </if>
+        <if test=" searchType == 3">
+            WHERE B.nm LIKE '%${searchText}%'
+        </if>
+        AND icategory = ${icategory}
+    </select>
+
+    <select id="selReview" resultType="UserReviewDto">
+        SELECT A.iboard, A.ireview, A.title, B.nm AS writerNm
+        FROM t_user_review A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
     </select>
 
     <update id="updBoard">

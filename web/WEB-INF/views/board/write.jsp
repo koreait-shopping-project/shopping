@@ -1,3 +1,4 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="titleVal" value="글쓰기" />
@@ -12,6 +13,19 @@
     <c:set var="iboardVal" value="${requestScope.data.iboard}" />
     <c:set var="icategoryVal" value="0" />
 </c:if>
+<%
+    //비정상적인 경로 접근시 차단
+    String strReferer = request.getHeader("referer");
+    if(strReferer == null){
+%>
+<script language="javascript">
+    alert("비정상적인 접근입니다.");
+    document.location.href="/";
+</script>
+<%
+        return;
+    }
+%>
 <div>
     <div id="data"
          data-icategory="${data.icategory}"
@@ -19,8 +33,9 @@
          data-nm="${sessionScope.loginUser.nm}"
          data-iuser="${sessionScope.loginUser.iuser}">
     </div>
+
     <h1 class="tx-a-center font-size-12 p-b-20">${titleVal}</h1>
-    <form action="${actionVal}" method="post">
+    <form action="${actionVal}" method="post" id="write_form">
         <input type="hidden" name="iboard" value="${iboardVal}">
         <input type="hidden" name="icategory" value="${icategoryVal}">
         <table>
@@ -30,7 +45,9 @@
             </tr>
             <tr>
                 <td colspan="2">
-                    <textarea class="w-all h-200 font-size-16" name="ctnt"><c:out value="${requestScope.data.ctnt}" /></textarea>
+                    <textarea id="editor" name="ctnt">
+                        ${requestScope.data.ctnt}
+                    </textarea >
                 </td>
             </tr>
         </table>

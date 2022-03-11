@@ -1,13 +1,16 @@
 {
     let emailChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
 
-    const joinFrmElem = document.querySelector('#join_frm');
+    const modFrmElem = document.querySelector('#mod_frm');
     const idRegex = /^([a-zA-Z0-9]{4,15})$/;//대소문자 + 숫자 조합 4~15글자
     const pwRegex = /^([a-zA-Z0-9!@_]{4,20}$)/;//대소문자 + 숫자 조합 4~15글자
     const nmRegex = /^([가-힣]{2,10})$/; //한글 2~10자 조합 (영어, 특수기호X)
-    const phRegex = /^([0-9]{11})$/;
+    const firstphRegex = /^([0-9]{3})$/;
+    const secondphRegex = /^([0-9]{4})$/;
+    const thirdphRegex = /^([0-9]{4})$/;
     const emailRegex = /^(?=.{8,50}$)([0-9a-z_]{4,})@([0-9a-z][0-9a-z\-]*[0-9a-z]\.)?([0-9a-z][0-9a-z\-]*[0-9a-z])\.([a-z]{2,15})(\.[a-z]{2})?$/;
     const birthRegex = /^([0-9]{6})$/;
+    const msg1 = '아이디는 대소문자, 숫자조합으로 4~15자 이상 되어야합니다.';
     const msg2 = '이메일 형식을 확인해주세요. Ex) abc123@examle.com';
 
     //회원 정보 수정에서 본인 이메일 중복아니게 하기 위한 작업
@@ -17,7 +20,7 @@
     const setEmailChkMsg = (data) => {
         emailChkState = data.result; // 0 or 1
 
-        const emailChkMsgElem = joinFrmElem.querySelector('#email-chk-msg');
+        const emailChkMsgElem = modFrmElem.querySelector('#email-chk-msg');
 
         //회원 정보 수정에서 본인 이메일 중복아니게 하기 위한 작업, 보류
         //
@@ -35,39 +38,55 @@
                 emailChkMsgElem.innerHTML = `<span style="color: blue">사용 가능한 이메일입니다.</span>`;
                 break;
         }
+
     }
 
-    if (joinFrmElem) {
-        joinFrmElem.addEventListener('submit', (e) => {
+    if (modFrmElem) {
+        modFrmElem.addEventListener('submit', (e) => {
 
-            const uid = joinFrmElem.uid.value;
-            const upw = joinFrmElem.upw.value;
-            const upwChk = joinFrmElem.upw_check.value;
-            const nm = joinFrmElem.nm.value;
-            const ph = joinFrmElem.ph.value;
-            const email = joinFrmElem.email.value;
-            const birth = joinFrmElem.birth.value;
+            const uid = modFrmElem.uid.value;
+            const currentupw = modFrmElem.currentupw.value;
+            const upw = modFrmElem.upw.value;
+            const upwcheck = modFrmElem.upwcheck.value;
+            const nm = modFrmElem.nm.value;
+            const firstph = modFrmElem.firstph.value;
+            const secondph = modFrmElem.secondph.value;
+            const thirdph = modFrmElem.thirdph.value;
+            const email = modFrmElem.email.value;
+            const birth = modFrmElem.birth.value;
 
             if (!idRegex.test(uid)) {
                 alert('아이디는 대소문자, 숫자조합으로 4~20자 되어야 합니다.');
                 e.preventDefault();
                 document.querySelector('#uid').scrollIntoView();
+            } else if (!pwRegex.test(currentupw)) {
+                alert('현재 비밀번호를 입력해주세요.');
+                e.preventDefault();
+                document.querySelector('#currentupw').scrollIntoView();
             } else if (!pwRegex.test(upw)) {
-                alert('비밀번호는 대소문자, 숫자, !, @, _ 조합으로 4~100자 되어야합니다.');
+                alert('수정 할 비밀번호는 대소문자, 숫자, !, @, _ 조합으로 4~100자 되어야합니다.');
                 e.preventDefault();
                 document.querySelector('#upw').scrollIntoView();
-            } else if (upw !== upwChk) {
-                alert('비밀번호 확인을 확인해주세요.');
+            } else if (upw !== upwcheck) {
+                alert('수정할 비밀번호 확인을 확인해주세요.');
                 e.preventDefault();
-                document.querySelector('#upw_check').scrollIntoView();
+                document.querySelector('#upwcheck').scrollIntoView();
             } else if (!nmRegex.test(nm)) {
                 alert('이름은 한글 조합으로 2~10자 여야합니다.');
                 e.preventDefault();
                 document.querySelector('#nm').scrollIntoView();
-            } else if (!phRegex.test(ph)) {
-                alert('010 포함, - 없이 11자리를 입력해주세요.');
+            } else if (!firstphRegex.test(firstph)) {
+                alert('휴대전화 앞자리를 선택해주세요.');
                 e.preventDefault();
-                document.querySelector('#ph').scrollIntoView();
+                document.querySelector('#firstph').scrollIntoView();
+            } else if (!secondphRegex.test(secondph)) {
+                alert('휴대전화 두번째 자리를 입력해주세요.');
+                e.preventDefault();
+                document.querySelector('#secondph').scrollIntoView();
+            } else if (!thirdphRegex.test(thirdph)) {
+                alert('휴대전화 세번째 자리를 입력해주세요.');
+                e.preventDefault();
+                document.querySelector('#firstph').scrollIntoView();
             } else if (!emailRegex.test(email)) {
                 alert('이메일 형식을 확인해주세요. Ex) abc123@examle.com');
                 e.preventDefault();
@@ -76,42 +95,31 @@
                 alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
                 document.querySelector('#birth').scrollIntoView();
-            } else if (emailChkState !== 1) {
-                switch (emailChkState) {
-                    case 0:
-                        alert('다른 이메일을 사용해 주세요.');
-                        break;
-                    case 2:
-                        alert('이메일 중복 체크를 해 주세요.');
-                        break;
-                }
-                e.preventDefault();
             }
 
         });
 
         //누른키에서 손 땔때 발생(이메일)
-        joinFrmElem.email.addEventListener('keyup', () => {
-            const emailChkMsgElem = joinFrmElem.querySelector('#email-chk-msg');
+        modFrmElem.email.addEventListener('keyup', () => {
+            const emailChkMsgElem = modFrmElem.querySelector('#email-chk-msg');
             emailChkMsgElem.innerText = '';
             emailChkState = 2;
         });
 
-        //이메일 중복 체크 버튼
-        const emailBtnChkElem = joinFrmElem.querySelector('#email-btn-chk');
-        emailBtnChkElem.addEventListener('click', () => {
-
-            const emailVal = joinFrmElem.email.value;
-            // alert(emailVal);
-            // alert(currentEmail);
-            if (!emailRegex.test(emailVal)) {
-                alert(msg2);
-                return;
-            }
-            myFetch.get(`/user/emailChk`, (data) => {
-                setEmailChkMsg(data);
-            }, { 'email' : emailVal});
-        });
+        const emailBtnChkElem = modFrmElem.querySelector('#email-btn-chk');
+        if (emailBtnChkElem) {
+            //이메일 중복 체크 버튼
+            emailBtnChkElem.addEventListener('click', () => {
+                const emailVal = modFrmElem.email.value;
+                if (!emailRegex.test(emailVal)) {
+                    alert(msg2);
+                    return;
+                }
+                myFetch.get(`/user/emailChk`, (data) => {
+                    setEmailChkMsg(data);
+                }, { 'email' : emailVal});
+            });
+        }
     }
 
 }

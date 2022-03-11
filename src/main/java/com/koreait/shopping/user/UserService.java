@@ -2,12 +2,17 @@ package com.koreait.shopping.user;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
+import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -15,6 +20,7 @@ public class UserService {
     private UserMapper mapper;
     @Autowired
     private UserUtils utils;
+
 
     public int login(UserEntity entity) {
         UserEntity dbUser = null;
@@ -30,6 +36,10 @@ public class UserService {
             return 3; // 비밀번호 틀림
         }
         dbUser.setUpw(null);
+        dbUser.setSocial(null);
+        dbUser.setGender(0);
+        dbUser.setJoin_date(null);
+        dbUser.setMod_date(null);
         dbUser.setJoin_date(null);
         dbUser.setMod_date(null);
         utils.setLoginUser(dbUser);
@@ -53,6 +63,25 @@ public class UserService {
         utils.setLoginUser(entity);
         return mapper.insUser(copyEntity);
     }
+
+    public int review(UserReviewDto entity) {
+
+        entity.setIuser(utils.getLoginUserPk());
+        System.out.println("entity : " + entity);
+        return mapper.insReview(entity);
+    }
+
+    public List<BoardProductVo> selPurchased(UserReviewDto entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        return mapper.selPurchased(entity);
+    }
+
+    public List<BoardProductVo> selPurchased2(UserPurchasedEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        System.out.println("purchased : " + entity);
+        return mapper.selPurchased2(entity);
+    }
+
 
     //소셜 로그인시 이메일 체크
     public int selSocial(UserEntity entity) {
@@ -101,4 +130,10 @@ public class UserService {
         dto.setUpw(hashedPw);
         return mapper.updUserPw(dto);
     }
+
+    public List<BoardProductVo> checkedCart(UserEntity entity) {
+        return mapper.checkedCart(entity);
+    }
+
+    public int updProductDetail(BoardProductVo vo) {return mapper.updProductDetail(vo);}
 }

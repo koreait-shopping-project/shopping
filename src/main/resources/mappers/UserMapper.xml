@@ -19,6 +19,19 @@
          )
     </insert>
 
+    <insert id="insReview">
+        INSERT INTO t_user_review
+        (
+            iboard, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
+        , weight, title,ctnt, prom_agree_flag, inf_agree_flag
+        )
+        VALUES
+        (
+            ${iboard}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            , ${gender}, #{tall}, #{weight}, #{title}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
+        )
+    </insert>
+
     <select id="selUser" resultType="UserEntity">
         SELECT * FROM t_user
         WHERE
@@ -45,6 +58,46 @@
             upw = #{upw}
         </if>
         WHERE iuser = ${iuser}
+    </update>
+
+    <select id="checkedCart" resultType="BoardProductVo">
+        SELECT A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, B.iuser, C.img_url_big, C.title, C.price
+        FROM cart A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        INNER JOIN product_list C
+        ON A.iboard = C.iboard
+        WHERE B.iuser = ${iuser} AND A.checked = 1
+    </select>
+
+    <select id="selPurchased" resultType="BoardProductVo">
+        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, B.iuser, C.img_url_big, C.title, C.price
+        FROM purchased A
+                 INNER JOIN t_user B
+                            ON A.iuser = B.iuser
+                 INNER JOIN product_list C
+                            ON A.iboard = C.iboard
+        WHERE B.iuser = ${iuser}
+    </select>
+
+    <select id="selPurchased2" resultType="BoardProductVo">
+        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.color, B.iuser, C.img_url_big, C.title, C.price
+        FROM purchased A
+                 INNER JOIN t_user B
+                            ON A.iuser = B.iuser
+                 INNER JOIN product_list C
+                            ON A.iboard = C.iboard
+        WHERE B.iuser = ${iuser}
+    </select>
+
+
+    <update id="updProductDetail">
+        UPDATE product_detail
+        <if test=" sm != null and sm !=0 ">SET sm = sm - ${sm}</if>
+        <if test=" md != null and md !=0 ">SET md = md - ${md}</if>
+        <if test=" lg != null and lg !=0 ">SET lg = lg - ${lg}</if>
+        <if test=" xl != null and xl !=0 ">SET xl = xl - ${xl}</if>
+        WHERE iboard = ${iboard} AND color = ${color}
     </update>
 
 </mapper>

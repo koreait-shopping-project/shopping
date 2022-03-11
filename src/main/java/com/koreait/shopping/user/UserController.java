@@ -4,10 +4,15 @@ import com.koreait.shopping.Const;
 
 import com.koreait.shopping.UserUtils;
 
+import com.koreait.shopping.board.BoardService;
+import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
+import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +27,7 @@ import java.util.Map;
 @RequestMapping("/user")
 public class UserController {
     @Autowired private UserService service;
+    @Autowired private BoardService boardService;
 
     @Autowired private UserUtils utils;
 
@@ -146,5 +152,66 @@ public class UserController {
     public void mypage() {}
 
     @GetMapping("/review")
-    public void review() {}
+    public void review(UserReviewDto entity, Model model) {
+        model.addAttribute(Const.IBOARD, entity.getIboard());
+        model.addAttribute(Const.LIST, service.selPurchased(entity));
+        System.out.println("iboard : " + entity.getIboard());
+
+//        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
+//            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
+//            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
+    }
+
+    @PostMapping("/review")
+    public String reviewProc(UserReviewDto entity, RedirectAttributes reAttr) {
+        System.out.println("Piboard : " + entity.getIboard());
+        int result = service.review(entity);
+        if (result == 0) {
+            reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
+        }
+        return "redirect:/user/mypage";
+    }
+
+
+    //카트에서 checked 된 상품 select
+    @GetMapping("/order")
+    public void order(Model model, UserEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        model.addAttribute(Const.CHECKED, service.checkedCart(entity));
+        int cost = 0;
+        for(int i = 0; i < service.checkedCart(entity).size(); i++) {
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getSm();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getMd();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getLg();
+            cost += service.checkedCart(entity).get(i).getPrice() * service.checkedCart(entity).get(i).getXl();
+        }
+        model.addAttribute(Const.COST, cost);
+    }
+
+    @PostMapping("/order")
+    public String orderProc(UserEntity entity) {
+        entity.setIuser(utils.getLoginUserPk());
+        System.out.println(service.checkedCart(entity).size());
+        for(int i = 0; i < service.checkedCart(entity).size(); i++) {
+            BoardProductVo vo = new BoardProductVo();
+            vo.setIuser(entity.getIuser());
+            vo.setColor(service.checkedCart(entity).get(i).getColor());
+            vo.setIboard(service.checkedCart(entity).get(i).getIboard());
+            if(service.checkedCart(entity).get(i).getSm() != 0) {vo.setSm(service.checkedCart(entity).get(i).getSm());}
+            else if(service.checkedCart(entity).get(i).getMd() != 0) {vo.setMd(service.checkedCart(entity).get(i).getMd());}
+            else if(service.checkedCart(entity).get(i).getLg() != 0) {vo.setLg(service.checkedCart(entity).get(i).getLg());}
+            else if(service.checkedCart(entity).get(i).getXl() != 0) {vo.setXl(service.checkedCart(entity).get(i).getXl());}
+            boardService.insPurchased(vo);
+            service.updProductDetail(vo);
+        }
+        boardService.delCartChecked(entity.getIuser());
+        return "board/main";
+    }
+
+    @GetMapping("/purchased")
+    public void purchased(UserPurchasedEntity entity, Model model) {
+        model.addAttribute(Const.PURCHASED, service.selPurchased2(entity));
+        service.selPurchased2(entity);
+    }
+
 }

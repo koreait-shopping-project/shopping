@@ -6,8 +6,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class BoardListDto extends BoardListEntity {
+public class BoardListDto extends BoardListEntity{
     private int searchType;
-    private String writerNm;
     private String searchText;
+    private String writerNm;
 }

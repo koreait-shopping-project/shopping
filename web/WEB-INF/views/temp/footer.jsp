@@ -1,6 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ page contentType="text/html;charset=utf-8" language="java" %>
+<c:if test="${sessionScope.loginUser == null}">
+    <c:set var="tag" value="/user/login"/>
+</c:if>
+<c:if test="${sessionScope.loginUser != null}">
+    <c:set var="tag" value="/user/mypage"/>
+</c:if>
 <footer id="footer">
     <div>
         <ul id="sns">
@@ -22,7 +28,7 @@
         </ul>
         <ul id="f_menu">
             <li><a href="#">about</a></li>
-            <li><a href="/user/mypage">my page</a></li>
+            <li><a href="${tag}">my page</a></li>
             <li><a href="#">order</a></li>
             <li><a href="#">agreement</a></li>
             <li><a href="#">privacy</a></li>
