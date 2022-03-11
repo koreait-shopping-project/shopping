@@ -84,10 +84,6 @@ public class BoardService {
         return mapper.selProductList(cri);
     }
 
-    public List<BoardProductVo> seliboardList(BoardProductVo vo) {
-        return mapper.seliboardList(vo);
-    }
-
     public BoardProductEntity selProductDetail(BoardProductVo vo) {
         return mapper.selProductDetail(vo);
     }

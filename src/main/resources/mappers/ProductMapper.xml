@@ -9,13 +9,6 @@
         LIMIT ${page}, ${amount}
     </select>
 
-    <select id="seliboardList" resultType="BoardProductVo">
-        SELECT iboard
-        FROM product_list
-        WHERE category_num = ${isubcategory}
-        ORDER BY iboard ASC
-    </select>
-
     <select id="selProductListRecord" resultType="BoardProductVo">
         SELECT *
         FROM product_list

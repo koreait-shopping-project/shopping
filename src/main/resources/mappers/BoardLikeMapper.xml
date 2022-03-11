@@ -20,6 +20,6 @@
     </delete>
 
     <select id="selBoardLikeNum" resultType="BoardLikeEntity">
-        SELECT COUNT(iboard) AS iboard FROM t_board_like WHERE iboard = ${iboard};
+        SELECT COUNT(iboard) AS likeNum FROM t_board_like WHERE iboard = ${iboard};
     </select>
 </mapper>

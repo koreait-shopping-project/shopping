@@ -152,13 +152,11 @@ public class BoardController {
         cri.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(cri));
 
-        BoardProductVo vo = new BoardProductVo();
-        vo.setIsubcategory(isubcategory);
         BoardLikeDto dto = new BoardLikeDto();
-        for (BoardProductVo list : service.seliboardList(vo)) {
+        for (BoardProductEntity list : service.selProductList(cri)) {
             dto.setList(likeService.selBoardLikeNum(list.getIboard()));
         }
-        model.addAttribute(Const.LIKE, dto);
+        model.addAttribute(Const.LIKE, dto.getList());
 
         int total = service.getTotal(isubcategory);
         PageMakerDto pageMake = new PageMakerDto(cri, total);

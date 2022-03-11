@@ -26,8 +26,10 @@
                     <c:if test="${item.gender == 1}"><p>남성용</p></c:if>
                     <c:if test="${item.gender == 2}"><p>여성용</p></c:if>
                     <c:if test="${item.gender == 3}"><p>공용</p></c:if>
-                    <p><i style="color: plum" class="fa-solid fa-2x fa-heart"></i></p>
+                <c:forEach items="${requestScope.like}" var="item">
+                    <p><i style="color: plum" class="fa-solid fa-2x fa-heart">${item.likeNum}</i></p>
                 </a>
+                </c:forEach>
             </c:forEach>
             </div>
         </c:otherwise>
