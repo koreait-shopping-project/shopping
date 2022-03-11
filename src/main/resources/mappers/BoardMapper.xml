@@ -79,6 +79,7 @@
             </if>
         AND icategory = ${icategory}
         ORDER BY iboard DESC
+        LIMIT ${page}, ${amount}
     </select>
 
     <select id="getSearchTotal" resultType="int">
@@ -96,7 +97,6 @@
             WHERE B.nm LIKE '%${searchText}%'
         </if>
         AND icategory = ${icategory}
-        ORDER BY iboard DESC
     </select>
 
     <select id="selReview" resultType="UserReviewDto">

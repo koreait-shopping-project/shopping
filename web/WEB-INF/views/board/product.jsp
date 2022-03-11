@@ -35,7 +35,7 @@
         <ul class="pageInfo_area">
         <!-- 이전페이지 버튼 -->
         <c:if test="${pageMaker.prev}">
-            <li class="pageInfo_btn previous"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.startPage-1}">Prev</a></li>
+            <li class="pageInfo_btn previous"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.startPage - 1}">Prev</a></li>
         </c:if>
 
         <!-- 각 번호 페이지 버튼 -->
@@ -45,7 +45,7 @@
 
         <!-- 다음페이지 버튼 -->
         <c:if test="${pageMaker.next}">
-            <li class="pageInfo_btn next"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.endPage + 1 }">Next</a></li>
+            <li class="pageInfo_btn next"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.endPage + 1}">Next</a></li>
         </c:if>
         </ul>
     </div>

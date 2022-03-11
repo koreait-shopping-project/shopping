@@ -109,6 +109,12 @@
         SELECT * FROM product_list
         WHERE title LIKE '%${title}%'
         ORDER BY iboard DESC
+        LIMIT ${page}, ${amount}
+    </select>
+
+    <select id="getPrSearchTotal" resultType="int">
+        SELECT COUNT(*) FROM product_list
+        WHERE title LIKE '%${title}%'
     </select>
 
     <update id="updCartUp">

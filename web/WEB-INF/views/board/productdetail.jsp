@@ -58,6 +58,12 @@
             <select id="sizebox">
                 <option value="" selected disabled>사이즈선택</option>
             </select>
+            <span>
+                <c:if test="${sessionScope.loginUser != null}">
+                <!-- 좋아요 -->
+                    <i id="like_icon" class="fs-30 pointer far fa-heart"></i>
+                </c:if>
+            </span>
         </div>
 
         <form method="post" id="frmSubmit">
@@ -77,6 +83,7 @@
                     </c:choose>
                 </ul>
                 <input id="data" name="iboard" type="hidden" value="${requestScope.detail.iboard}" data-iboard="${requestScope.detail.iboard}">
+                <input id="iuser" name="iuser" type="hidden" value="${requestScope.iuser}" data-iuser="${requestScope.iuser}">
             </div>
             <div id="allPrice">total : 0</div>
             <input type="submit" value="바로구매" onclick="submitBtn('order')">
