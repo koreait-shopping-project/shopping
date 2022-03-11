@@ -106,6 +106,21 @@
         ON A.iuser = B.iuser
     </select>
 
+    <select id="selBoardReview" resultType="UserReviewDto">
+        SELECT A.tall, A.weight, A.rating, A.ctnt,
+               B.uid,
+               C.img_url_big, C.title,
+               D.color, D.sm, D.md, D.lg, D.xl
+        FROM t_user_review A
+                 INNER JOIN t_user B
+                            ON A.iuser = B.iuser
+                 INNER JOIN product_list C
+                            ON A.iboard = C.iboard
+                 INNER JOIN purchased D
+                            ON A.iboard = D.iboard
+
+    </select>
+
     <update id="updBoard">
         UPDATE t_board_list
         <set>
