@@ -203,7 +203,7 @@
             form.action = "/board/order";
         }
     }
-
+  
     //좋아요
     const likeIconElem = document.querySelector('#like_icon');
 

@@ -35,6 +35,7 @@ public class Const {
 
 
 
+
     public static final String ERR_1 = "아이디를 입력하세요.";
     public static final String ERR_2 = "아이디가 없습니다.";
     public static final String ERR_3 = "비밀번호를 확인하십시오.";

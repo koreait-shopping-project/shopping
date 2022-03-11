@@ -11,6 +11,7 @@
 <form action="/user/review" method="post" id="reviewFrm">
     <!-- 별점 -->
     <input type="hidden" name="iboard" value="${requestScope.iboard}">
+    <input type="hidden" name="img" value="${requestScope.img}">
     <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>

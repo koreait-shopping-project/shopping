@@ -160,16 +160,6 @@
             </div>
         </c:when>
     </c:choose>
-    <div id="go_write">
-        <c:choose>
-            <c:when test="${requestScope.icategory == 1 && sessionScope.loginUser.admin_flag == true}">
-                <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-            </c:when>
-            <c:when test="${requestScope.icategory == 2 && sessionScope.loginUser != null}">
-                <a href="/board/write?icategory=${requestScope.icategory}">글쓰기</a>
-            </c:when>
-        </c:choose>
-    </div>
     <div id="write_search_wrap">
         <div id="list_search_wrap">
             <form action="/board/list/${requestScope.icategory}" method="get" id="list_search_frm">
