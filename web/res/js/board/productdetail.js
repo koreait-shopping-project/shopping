@@ -201,7 +201,7 @@
 
 
     $( function() {
-        $( "#progressbar-1" ).progressbar({value: 10});
+        $( "#progressbar-1" ).progressbar({value: 50});
         $( "#progressbar-2" ).progressbar({value: 10});
         $( "#progressbar-3" ).progressbar({value: 10});
         $( "#progressbar-4" ).progressbar({value: 10});

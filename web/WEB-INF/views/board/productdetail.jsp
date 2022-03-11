@@ -99,36 +99,36 @@
                 <div class="leftTop">사이즈</div>
                 <div class="m-w-170">
                     <div class="display-i-b">큼</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-1" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-2" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">작음</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-3" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
             <td>
                 <div class="leftTop">밝기</div>
                 <div class="m-w-170">
                     <div class="display-i-b">밝음</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-4" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-5" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">어두움</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-6" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
         </tr>
@@ -137,42 +137,43 @@
                 <div class="leftTop">색감</div>
                 <div class="m-w-170">
                     <div class="display-i-b">선명</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-7" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-8" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">흐림</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-9" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
             <td width="30%">
                 <div class="leftTop">두께감</div>
                 <div class="m-w-170">
                     <div class="display-i-b">두꺼움</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-10" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-11" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">얇음</div>
-                    <div class="display-i-b">5%</div>
-                    <div class="display-i-b" id="progressbar-12" style="height: 8px; width: 100%;"></div>
+                    <div class="display-i-b">50%</div>
+                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
         </tr>
     </table>
 
 <%--    <c:forEach var="item" items="${}">--%>
+    <progress value="50" max="100" style="height: 5px;"></progress>
     <div>
         <div>uid</div>
         <div>tall, weight</div>
