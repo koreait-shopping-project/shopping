@@ -183,6 +183,12 @@
     <div>
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
         <div>${item.uid}</div>
+        <c:if test="${item.gender == 1}">
+            <div>남자</div>
+        </c:if>
+        <c:if test="${item.gender == 2}">
+            <div>여자</div>
+        </c:if>
         <div>${item.tall}</div>
         <div>${item.weight}</div>
         <div><img src="${item.img_url_big}" alt="product"></div>

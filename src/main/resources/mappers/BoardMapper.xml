@@ -107,7 +107,7 @@
     </select>
 
     <select id="selBoardReview" resultType="UserReviewVo">
-        SELECT A.tall, A.weight, A.rating, A.ctnt,
+        SELECT A.tall, A.weight, A.rating, A.ctnt, A.gender,
                B.uid,
                C.img_url_big, C.title,
                D.color, D.sm, D.md, D.lg, D.xl
