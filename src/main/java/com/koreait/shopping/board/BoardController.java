@@ -222,27 +222,26 @@ public class BoardController {
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setIuser(utils.getLoginUserPk());
-
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
             }
         }
-        return null;
+        return "redirect:/user/order";
     }
 
     @DeleteMapping("/cart/{icart}")
