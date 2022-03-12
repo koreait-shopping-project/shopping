@@ -8,6 +8,7 @@ import com.koreait.shopping.board.BoardService;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserOrderEntity;
 import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,7 +190,7 @@ public class UserController {
     }
 
     @PostMapping("/order")
-    public String orderProc(UserEntity entity) {
+    public String orderProc(UserEntity entity, UserOrderEntity entity2) {
         entity.setIuser(utils.getLoginUserPk());
         System.out.println(service.checkedCart(entity).size());
         for(int i = 0; i < service.checkedCart(entity).size(); i++) {
@@ -205,6 +206,7 @@ public class UserController {
             service.updProductDetail(vo);
         }
         boardService.delCartChecked(entity.getIuser());
+        service.order(entity2);
         return "board/main";
     }
 

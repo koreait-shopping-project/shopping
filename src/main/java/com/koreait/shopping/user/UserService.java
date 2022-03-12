@@ -5,6 +5,7 @@ import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserOrderEntity;
 import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.mindrot.jbcrypt.BCrypt;
@@ -69,6 +70,10 @@ public class UserService {
         entity.setIuser(utils.getLoginUserPk());
         System.out.println("entity : " + entity);
         return mapper.insReview(entity);
+    }
+
+    public int order(UserOrderEntity entity) {
+        return mapper.insOrder(entity);
     }
 
     public List<BoardProductVo> selPurchased(UserReviewDto entity) {

@@ -32,7 +32,7 @@
         <a href="/board/detail?iboard=${requestScope.prevNext.previboard}" class="${requestScope.prevNext.previboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">이전</button></a>
         <a href="/board/detail?iboard=${requestScope.prevNext.nextiboard}" class="${requestScope.prevNext.nextiboard == 0 ? 'invisibility' : ''}"><button class="bolder-p b-radius bc-black color-white m-10">다음</button></a>
     </div>
-    <table>
+    <table style="width: 100%">
         <tr>
             <th width="15%" scope="row">제목</th>
             <td class="p-l-10" width="85%">${requestScope.data.title}</td>
