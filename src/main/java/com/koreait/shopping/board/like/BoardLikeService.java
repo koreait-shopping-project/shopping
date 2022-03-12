@@ -30,4 +30,8 @@ public class BoardLikeService {
         return entity;
     }
 
+    public int selBoardLikeNum(int iboard) {
+        return mapper.selBoardLikeNum(iboard);
+    }
+
 }

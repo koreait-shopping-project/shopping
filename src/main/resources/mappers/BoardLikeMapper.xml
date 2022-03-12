@@ -18,4 +18,8 @@
         WHERE iboard = ${iboard}
           AND iuser = ${iuser}
     </delete>
+
+    <select id="selBoardLikeNum" resultType="int">
+        SELECT COUNT(iboard) AS likeNum FROM t_board_like WHERE iboard = ${iboard};
+    </select>
 </mapper>
