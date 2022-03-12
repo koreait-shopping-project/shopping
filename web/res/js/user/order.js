@@ -1,4 +1,116 @@
 {
+    const frmSubmitElem = document.querySelector('#frmSubmit');
+    const nmRegex = /^([가 -힣]{2,10})$/; //`한글 2~10자 조합 (영어, 특수기호X)
+    const firstphRegex = /^([0-9]{3})$/;
+    const secondphRegex = /^([0-9]{4})$/;
+    const thirdphRegex = /^([0-9]{4})$/;
+    const emailRegex = /^(?=.{8,50}$)([0-9a-z_]{4,})@([0-9a-z][0-9a-z\-]*[0-9a-z]\.)?([0-9a-z][0-9a-z\-]*[0-9a-z])\.([a-z]{2,15})(\.[a-z]{2})?$/;
+    const postnumRegex = /^([0-9]{5})$/;
+    const addRegex = /^([가 -힣]{2,50})$/; //`한글 숫자 50자 이하 조합 (영어, 특수기호X)
+
+    if (frmSubmitElem) {
+        frmSubmitElem.addEventListener('submit', (e) => {
+
+            const oname = frmSubmitElem.oname.value;
+            const oemail = frmSubmitElem.oemail.value;
+            const ofirstph = frmSubmitElem.ofirstph.value;
+            const osecondph = frmSubmitElem.osecondph.value;
+            const othirdph = frmSubmitElem.othirdph.value;
+            const opost_num = frmSubmitElem.sample4_postcode.value;
+            const oload_nm = frmSubmitElem.sample4_roadAddress.value;
+            const olot_addr = frmSubmitElem.sample4_jibunAddress.value;
+            const odetail_addr = frmSubmitElem.sample4_detailAddress.value;
+            const oref = frmSubmitElem.sample4_extraAddress.value;
+            const rname = frmSubmitElem.rname.value;
+            const rfirstph = frmSubmitElem.rfirstph.value;
+            const rsecondph = frmSubmitElem.rsecondph.value;
+            const rthirdph = frmSubmitElem.rthirdph.value;
+            const rpost_num = frmSubmitElem.sample5_postcode.value;
+            const rload_nm = frmSubmitElem.sample5_roadAddress.value;
+            const rlot_addr = frmSubmitElem.sample5_jibunAddress.value;
+            const rdetail_addr = frmSubmitElem.sample5_detailAddress.value;
+            const rref = frmSubmitElem.sample5_extraAddress.value;
+            const card = frmSubmitElem.card;
+            const banktransfer = frmSubmitElem.banktransfer;
+            const payagent_agree_flag = frmSubmitElem.payagent_agree_flag;
+
+            if (!nmRegex.test(oname)) {
+                alert('[주문]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#oname').scrollIntoView();
+            } else if (!emailRegex.test(oemail)) {
+                alert('[이메일]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#oemail').scrollIntoView();
+            } else if (!firstphRegex.test(ofirstph) || !secondphRegex.test(osecondph) || !thirdphRegex.test(othirdph)) {
+                alert('[휴대전화]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#ofirstph').scrollIntoView();
+            } else if (!postnumRegex.test(opost_num)) {
+                alert('[주소-우편번호]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample4_postcode').scrollIntoView();
+            } else if (!addRegex.test(oload_nm)) {
+                alert('[주소-도로명]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample4_roadAddress').scrollIntoView();
+            } else if (!addRegex.test(olot_addr)) {
+                alert('[주소-지번]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample4_jibunAddress').scrollIntoView();
+            } else if (!addRegex.test(odetail_addr)) {
+                alert('[주소-상세]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample4_detailAddress').scrollIntoView();
+            } else if (!addRegex.test(oref)) {
+                alert('[주소-참고항목]주문 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample4_extraAddress').scrollIntoView();
+            } else if (!nmRegex.test(rname)) {
+                alert('[받는사람]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#rname').scrollIntoView();
+            } else if (!firstphRegex.test(rfirstph) || !secondphRegex.test(rsecondph) || !thirdphRegex.test(rthirdph)) {
+                alert('[휴대전화]주문자 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#rfirstph').scrollIntoView();
+            } else if (!postnumRegex.test(rpost_num)) {
+                alert('[주소-우편번호]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample5_postcode').scrollIntoView();
+            } else if (!addRegex.test(rload_nm)) {
+                alert('[주소-도로명]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample5_roadAddress').scrollIntoView();
+            } else if (!addRegex.test(rlot_addr)) {
+                alert('[주소-지번]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample5_jibunAddress').scrollIntoView();
+            } else if (!addRegex.test(rdetail_addr)) {
+                alert('[주소-상세]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample5_detailAddress').scrollIntoView();
+            } else if (!addRegex.test(rref)) {
+                alert('[주소-참고항목]배송지 정보는 필수 입력 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#sample5_extraAddress').scrollIntoView();
+            } else if (!card.checked && !banktransfer.checked) {
+                alert('결제 수단을 선택해주세요.');
+                e.preventDefault();
+                document.querySelector('#pay_method').scrollIntoView();
+            } else if (!payagent_agree_flag.checked) {
+                alert('결제대행서비스 약관 동의는 필수 사항입니다.');
+                e.preventDefault();
+                document.querySelector('#payagent_agree_flag').scrollIntoView();
+            }
+        })
+    }
+
+}
+
+
+
+{
     //select 에서 원하는 option 선택시 이벤트 발생
     function changeSelect() {
         const msgElem = document.querySelector('#msg');
