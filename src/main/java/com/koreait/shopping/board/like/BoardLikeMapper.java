@@ -11,5 +11,5 @@ public interface BoardLikeMapper {
     int insBoardLike(BoardLikeEntity entity);
     BoardLikeEntity selBoardLike(BoardLikeEntity entity);
     int delBoardLike(BoardLikeEntity entity);
-    List<BoardLikeEntity> selBoardLikeNum(int iboard);
+    int selBoardLikeNum(int iboard);
 }

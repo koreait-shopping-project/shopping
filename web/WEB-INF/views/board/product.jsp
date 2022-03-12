@@ -18,7 +18,7 @@
         </c:when>
         <c:otherwise>
             <div id="product_list" data-isubcategory="${isubcategory}">
-            <c:forEach items="${requestScope.list}" var="item">
+            <c:forEach items="${requestScope.list}" var="item" varStatus="status">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
                     <p>${item.title}</p>
@@ -26,10 +26,8 @@
                     <c:if test="${item.gender == 1}"><p>남성용</p></c:if>
                     <c:if test="${item.gender == 2}"><p>여성용</p></c:if>
                     <c:if test="${item.gender == 3}"><p>공용</p></c:if>
-                <c:forEach items="${requestScope.like}" var="item">
-                    <p><i style="color: plum" class="fa-solid fa-2x fa-heart">${item.likeNum}</i></p>
+                    <p><i style="color: plum" class="fa-solid fa-2x fa-heart">${requestScope.like[status.index]}</i></p>
                 </a>
-                </c:forEach>
             </c:forEach>
             </div>
         </c:otherwise>

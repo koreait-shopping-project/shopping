@@ -12,4 +12,5 @@ public class BoardLikeEntity {
     private int iboard;
     private int iuser;
     private String rdt;
+    private int likeNum;
 }

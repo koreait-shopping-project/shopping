@@ -7,23 +7,20 @@ import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
 import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.like.BoardLikeService;
-import com.koreait.shopping.board.model.dto.BoardLikeDto;
 import com.koreait.shopping.board.model.dto.BoardListDto;
-import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
-import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
-import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,11 +158,11 @@ public class BoardController {
         cri.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(cri));
 
-        BoardLikeDto dto = new BoardLikeDto();
+        List<Integer> likeList = new ArrayList();
         for (BoardProductEntity list : service.selProductList(cri)) {
-            dto.setList(likeService.selBoardLikeNum(list.getIboard()));
+            likeList.add(likeService.selBoardLikeNum(list.getIboard()));
         }
-        model.addAttribute(Const.LIKE, dto.getList());
+        model.addAttribute(Const.LIKE, likeList);
 
         int total = service.getTotal(isubcategory);
         PageMakerDto pageMake = new PageMakerDto(cri, total);
