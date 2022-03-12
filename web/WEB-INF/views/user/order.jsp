@@ -248,12 +248,14 @@
                 </table>
                 <hr>
                 <div class="bold p-b-10">결제수단</div>
+                <div id="pay_method">
                 <label class="w-auto">
                     <input type="radio" name="pay_method" id="card" value="1">카드결제
                 </label>
                 <label class="w-auto">
                     <input type="radio" name="pay_method" id="banktransfer" value="2">무통장 입금
                 </label>
+                </div>
 
                 <div>
                     <table class="hidden" id = cardtable>
@@ -307,7 +309,7 @@
                     </table>
                     <hr>
                     <label class="p-b-10">
-                        <input type="checkbox" name="payagent_agree_flag">[필수]결제대행서비스 약관 동의
+                        <input type="checkbox" name="payagent_agree_flag" id="payagent_agree_flag">[필수]결제대행서비스 약관 동의
                     </label>
                     <textarea style="height: 100px;" class="w-100p bolder font-size-10" cols="250" rows="3" readonly>전자금융거래 기본약관(이용자용)
 제 1조 (목적)
