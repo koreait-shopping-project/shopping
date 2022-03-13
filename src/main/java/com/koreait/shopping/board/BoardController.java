@@ -84,7 +84,11 @@ public class BoardController {
         model.addAttribute(Const.LIST, service.searchProductList(cri));
         model.addAttribute(Const.TITLE, cri.getTitle());
         int total = service.getPrSearchTotal(cri);
-
+        List<Integer> likeList = new ArrayList();
+        for (BoardProductEntity list : service.searchProductList(cri)) {
+            likeList.add(likeService.selBoardLikeNum(list.getIboard()));
+        }
+        model.addAttribute(Const.LIKE, likeList);
         PageMakerDto pageMake = new PageMakerDto(cri, total);
         model.addAttribute("pageMaker", pageMake);
 
