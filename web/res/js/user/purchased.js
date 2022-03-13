@@ -97,34 +97,26 @@ $(document).ready(function(){
         }
     }
 
-    //전체 가격
-    function allPlusPrice(price, totalCnt) {
-        return priceToString(price * totalCnt);
-    }
-    //천단위 콤마 정규식
-    function priceToString(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
-
-    const reviewBtn = document.querySelector('.reviewBtn');
-    const iboard = reviewBtn.dataset.iboard;
-    const idetail = reviewBtn.dataset.idetail;
-    const param = {
-        'idetail' : idetail
-    }
-    console.log(idetail);
-
-    reviewBtn.addEventListener('click', (e) => {
-        myFetch.get('/user/selReview', data => {
-            switch (data.result) {
-                case 1:
-                    alert('이미 리뷰를 남기신 상품입니다.');
-                    e.preventDefault();
-                    break;
-                case 0:
-                    window.location.href = `/user/review?iboard=${iboard}&idetail=${idetail}`
-                    break;
-            }
-        }, param);
-    });
+    // const reviewBtn = document.querySelectorAll('.reviewBtn');
+    // const purchase = document.querySelector('.purchase_wrap');
+    // const iboard = purchase.dataset.iboard;
+    // const idetail = purchase.dataset.idetail;
+    // const param = {
+    //     'idetail' : idetail
+    // }
+    //
+    // reviewBtn.addEventListener('click', (e) => {
+    //     myFetch.get('/user/selReview', data => {
+    //         console.log(data.result);
+    //         switch (data.result) {
+    //             case 1:
+    //                 alert('이미 리뷰를 남기신 상품입니다.');
+    //                 e.preventDefault();
+    //                 break;
+    //             case 0:
+    //                 window.location.href = `/user/review?iboard=${iboard}&idetail=${idetail}`
+    //                 break;
+    //         }
+    //     }, param);
+    // });
 }
