@@ -119,10 +119,6 @@
     </ul>
     <label class="bold">상품에 대한 평가를 20자 이상 작성해 주세요</label>
     <table class="w-100p">
-        <tr class="bolder-top bolder-right bolder-left">
-            <th scope="row" class="tx-a-center" style="border-right: 1px solid #c1c1c1">제목</th>
-            <td><input class="w-all" style="border: none" type="text" name="title" value="${requestScope.data.title}"></td>
-        </tr>
         <tr>
             <td colspan="2">
                     <textarea id="editor" name="ctnt">
