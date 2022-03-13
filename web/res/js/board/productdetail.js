@@ -53,20 +53,11 @@
             colorSizeObj[colorSize] = colorSize;
         }
 
-        const param = {
-            'color' : color,
-            'iboard' : iboard
-        }
-
         // const gender = res.kakao_account.gender;
         // const birthday = res.kakao_account.birthday;
-        myFetch.get('/board/selIdetail', data => {
-            idetailElem["idetail"] = data.result.idetail;
-        }, param);
-        
 
         let i = 1;
-            // <input id="idetail" name="productList[${listNum}].idetail" value="${idetail}" type="hidden">
+
         li.innerHTML= `
             <span class="selected_color">컬러 : ${colorTxt}</span>
             <span class="selected_size">사이즈 : ${size}</span>
