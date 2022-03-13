@@ -65,9 +65,14 @@ public class UserService {
         return mapper.insUser(copyEntity);
     }
 
-    public int review(UserReviewDto entity) {
-        entity.setIuser(utils.getLoginUserPk());
-        return mapper.insReview(entity);
+    public int review(UserReviewDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        return mapper.insReview(dto);
+    }
+
+    public int selReview(UserReviewDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        return mapper.selReview(dto);
     }
 
     public int order(UserOrderEntity entity) {

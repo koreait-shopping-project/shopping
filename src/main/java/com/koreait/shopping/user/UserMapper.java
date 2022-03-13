@@ -18,6 +18,7 @@ public interface UserMapper {
     int insOrder(UserOrderEntity entity);
     UserEntity selUser(UserEntity entity);
     UserEntity selMdUser(UserDto dto);
+    int selReview(UserReviewDto dto);
     int updUserPw(UserEntity entity);
     UserEntity selSocial(UserEntity entity);
     List<BoardProductVo> checkedCart(UserEntity entity);
