@@ -147,7 +147,6 @@ public class BoardController {
         //리뷰
         vo2.setIboard(vo.getIboard());
         model.addAttribute(Const.REVIEW, service.selBoardReview(vo2));
-        System.out.println("필요한 값 : " + service.selBoardReview(vo2));
 
         return "board/productdetail";
     }

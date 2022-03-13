@@ -49,9 +49,7 @@ public class UserService {
 
     public int join(UserEntity entity) {
         if (!entity.getSocial().equals("general")) {
-            System.out.println("social :" + entity.getSocial());
             String[] uid = entity.getEmail().split("@");
-            System.out.println("uid : " + uid[0]);
             entity.setUid(uid[0]);
             entity.setUpw(utils.getRandomPassword(15));
         }
@@ -68,7 +66,6 @@ public class UserService {
     public int review(UserReviewDto entity) {
 
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println("entity : " + entity);
         return mapper.insReview(entity);
     }
 
@@ -83,7 +80,6 @@ public class UserService {
 
     public List<BoardProductVo> selPurchased2(UserPurchasedEntity entity) {
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println("purchased : " + entity);
         return mapper.selPurchased2(entity);
     }
 
