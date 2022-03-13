@@ -96,9 +96,9 @@
 <!------------------------------------------------------------리뷰------------------------------------------------------------>
 <div>
     <table class="w-100p h-200" style="border: 1px solid #c1c1c1">
-        <div class="p-b-20 p-t-30">구매후기</div>
+        <div class="p-b-20 p-t-30 tx-a-center font-size-16">구매후기</div>
         <tr>
-            <td rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
+            <td class="tx-a-center font-size-14" rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">구매 만족도</div>
                 ★★★★★
             </td>
@@ -178,38 +178,28 @@
             </td>
         </tr>
     </table>
-<div>test</div>
     <c:forEach var="item" items="${requestScope.review}">
-    <div>
+    <div id="review_container">
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
-        <div>${item.uid}</div>
-        <div>${item.tall}</div>
-        <div>${item.weight}</div>
-        <div><img src="${item.img_url_big}" alt="product"></div>
-        <div>${item.title}</div>
-        <c:if test="${item.color == 1}">
-            <div>흰색</div>
-        </c:if>
-        <c:if test="${item.color == 2}">
-            <div>검은색</div>
-        </c:if>
-        <c:if test="${item.color == 3}">
-            <div>회색</div>
-        </c:if>
-        <c:if test="${item.sm != 0}">
-            <div>small</div>
-        </c:if>
-        <c:if test="${item.md != 0}">
-            <div>medium</div>
-        </c:if>
-        <c:if test="${item.lg != 0}">
-            <div>large</div>
-        </c:if>
-        <c:if test="${item.xl != 0}">
-            <div>x-large</div>
-        </c:if>
-        <div>별점 : ${item.rating}</div>
-        <div>평가 글 : ${item.ctnt}</div>
+        <div id="review_profile">
+            <div id="review_username"><h3>${item.uid}</h3></div>
+            <div id="review_tall_weight">${item.tall}cm, ${item.weight}kg</div>
+        </div>
+        <div id="review_information">
+            <div id="review_img"><img src="${item.img_url_big}" alt="product"></div>
+            <div id="review_title_color_size">
+                <div id="review_title">${item.title}</div>
+                <c:if test="${item.color == 1}"><span>흰색</span></c:if>
+                <c:if test="${item.color == 2}"><span>검은색</span></c:if>
+                <c:if test="${item.color == 3}"><span>회색</span></c:if>
+                <c:if test="${item.sm != 0}"><span>small</span></c:if>
+                <c:if test="${item.md != 0}"><span>medium</span></c:if>
+                <c:if test="${item.lg != 0}"><span>large</span></c:if>
+                <c:if test="${item.xl != 0}"><span>x-large</span></c:if>
+            </div>
+        </div>
+        <div id="review_rating">평점 : ${item.rating}점</div>
+        <div id="review_ctnt">${item.ctnt}</div>
     </div>
     </c:forEach>
 </div>

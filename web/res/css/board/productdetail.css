@@ -39,3 +39,24 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 
 #allPrice { font-size: 1.4rem; text-align: right; text-transform: capitalize; letter-spacing: 0.125rem; line-height: 3; }
 #allPrice:after { content: " 원"; }
+
+/* review */
+
+#review_container { margin-top: 30px; border-top: 1px solid #cccccc; }
+#review_container:last-child { border-bottom: 1px solid #cccccc; }
+#review_container > div { margin: 20px; }
+
+#review_profile {  }
+#review_profile div { margin: 0 20px; }
+#review_profile > #review_username {  }
+#review_profile > #review_tall_weight { color: #808080; font-size: 0.75rem; }
+
+#review_information { display: flex; }
+#review_information > div {  }
+#review_information > #review_img { margin-left: 20px; width: 50px; border-radius: 5px; overflow: hidden; display: inline-block; }
+#review_information > #review_img img { width: 100%; }
+#review_information > #review_title_color_size { margin-left: 15px; }
+#review_information > #review_title_color_size > #review_title { font-size: 18px; padding-bottom: 10px; }
+#review_information > #review_title_color_size span { font-size: 13px; padding: 5px; color: #ffffff; background-color: #525252; border-radius: 5px; }
+
+#review_rating, #review_ctnt { padding: 0 20px; font-size: 1rem; }

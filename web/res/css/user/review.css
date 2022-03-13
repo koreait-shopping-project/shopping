@@ -90,3 +90,5 @@ input[type=radio]:checked{
     background-color: #333;
     color: #fff;
 }
+
+.ck-content { height: 300px; }
