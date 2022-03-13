@@ -100,7 +100,7 @@
     </select>
 
     <select id="selReview" resultType="UserReviewDto">
-        SELECT A.iboard, A.ireview, A.title, B.nm AS writerNm
+        SELECT A.iboard, A.ireview, B.nm AS writerNm
         FROM t_user_review A
         INNER JOIN t_user B
         ON A.iuser = B.iuser

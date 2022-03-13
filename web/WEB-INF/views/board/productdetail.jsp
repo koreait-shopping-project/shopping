@@ -96,11 +96,24 @@
 <!------------------------------------------------------------리뷰------------------------------------------------------------>
 <div>
     <table class="w-100p h-200" style="border: 1px solid #c1c1c1">
-        <div class="p-b-20 p-t-30 tx-a-center font-size-16">구매후기</div>
+        <div class="p-b-20 p-t-30">구매후기</div>
         <tr>
-            <td class="tx-a-center font-size-14" rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
+            <td rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">구매 만족도</div>
-                ★★★★★
+                <div class="m-t-20 display-i-b p-b-20">
+                    <div class="star-rating space-x-4 mx-auto">
+                        <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                        <label for="5-stars" class="star pr-4">★</label>
+                        <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                        <label for="4-stars" class="star">★</label>
+                        <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                        <label for="3-stars" class="star">★</label>
+                        <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                        <label for="2-stars" class="star">★</label>
+                        <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
+                        <label for="1-star" class="star">★</label>
+                    </div>
+                </div>
             </td>
             <td width="30%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">사이즈</div>
@@ -178,6 +191,7 @@
             </td>
         </tr>
     </table>
+<div>test</div>
     <c:forEach var="item" items="${requestScope.review}">
     <div id="review_container">
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
