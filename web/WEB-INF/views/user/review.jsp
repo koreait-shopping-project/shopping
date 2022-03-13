@@ -72,7 +72,7 @@
             </div>
             <div class="select">
                 <input type="radio" id="choice9" value="12" name="answer2">
-                <label for="choice9">선명해요</label>
+                <label for="choice9">흐려요</label>
             </div>
         </li>
         <li>
