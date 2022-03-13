@@ -63,7 +63,6 @@ td { border-bottom: 1px solid #cecece; font-size: 12px; }
 #review_ctnt { padding: 0 20px; }
 
 /* rating style */
-ul, li { padding-bottom: 20px; padding-right: 20px; }
 .star-rating { display: flex; font-size: 1.5rem; width: 5em; }
 .star-rating input { display: none; }
 .star-rating label { -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */}
