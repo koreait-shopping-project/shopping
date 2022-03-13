@@ -6,22 +6,21 @@ import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.Paging.dto.BoardPageMakerDto;
 import com.koreait.shopping.Paging.dto.PageMakerDto;
 import com.koreait.shopping.UserUtils;
+import com.koreait.shopping.board.like.BoardLikeService;
 import com.koreait.shopping.board.model.dto.BoardListDto;
-import com.koreait.shopping.board.model.dto.BoardProductDto;
 import com.koreait.shopping.board.model.dto.BoardProductListDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
-import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
-import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +30,9 @@ import java.util.Map;
 public class BoardController {
     @Autowired
     private BoardService service;
+
+    @Autowired
+    private BoardLikeService likeService;
 
     @Autowired
     private UserUtils utils;
@@ -156,6 +158,12 @@ public class BoardController {
         cri.setIsubcategory(isubcategory);
         model.addAttribute(Const.LIST, service.selProductList(cri));
 
+        List<Integer> likeList = new ArrayList();
+        for (BoardProductEntity list : service.selProductList(cri)) {
+            likeList.add(likeService.selBoardLikeNum(list.getIboard()));
+        }
+        model.addAttribute(Const.LIKE, likeList);
+
         int total = service.getTotal(isubcategory);
         PageMakerDto pageMake = new PageMakerDto(cri, total);
         model.addAttribute("pageMaker", pageMake);
@@ -214,27 +222,26 @@ public class BoardController {
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setIuser(utils.getLoginUserPk());
-
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
                 case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    return "redirect:/user/order";
+                    break;
             }
         }
-        return null;
+        return "redirect:/user/order";
     }
 
     @DeleteMapping("/cart/{icart}")

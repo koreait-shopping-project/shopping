@@ -58,12 +58,6 @@
             <select id="sizebox">
                 <option value="" selected disabled>사이즈선택</option>
             </select>
-            <span>
-                <c:if test="${sessionScope.loginUser != null}">
-                <!-- 좋아요 -->
-                    <i id="like_icon" class="fs-30 pointer far fa-heart"></i>
-                </c:if>
-            </span>
         </div>
 
         <form method="post" id="frmSubmit">
@@ -88,6 +82,12 @@
             <div id="allPrice">total : 0</div>
             <input type="submit" value="바로구매" onclick="submitBtn('order')">
             <input type="submit" value="장바구니 담기" onclick="submitBtn('cart')">
+            <span>
+                <c:if test="${sessionScope.loginUser != null}">
+                    <!-- 좋아요 -->
+                    <i id="like_icon" class="pointer fa-2x far fa-heart"></i>
+                </c:if>
+            </span>
         </form>
 
 

@@ -32,6 +32,27 @@
         )
     </insert>
 
+    <insert id="insOrder">
+        INSERT INTO t_order
+        (
+            oname, oemail, ofirsthnum, osecondhnum, othirdhnum, ofirstph, osecondph,
+            othirdph, opost_num, oload_nm, olot_addr, odetail_addr, oref,
+            rname, rpost_num, rload_nm, rlot_addr, rdetail_addr, rref, rfirsthnum,
+            rsecondhnum, rthirdhnum, rfirstph, rsecondph, rthirdph,
+            msg, pay_method, payagent_agree_flag, buy_date
+        )
+        VALUES
+        (
+            #{oname}, #{oemail}, #{ofirsthnum}, #{osecondhnum}, #{othirdhnum},
+            #{ofirstph}, #{osecondph}, #{othirdph}, #{opost_num}, #{oload_nm},
+            #{olot_addr}, #{odetail_addr}, #{oref},
+            #{rname}, #{rpost_num}, #{rload_nm}, #{rlot_addr}, #{rdetail_addr}, #{rref},
+            #{rfirsthnum}, #{rsecondhnum}, #{rthirdhnum}, #{rfirstph},
+            #{rsecondph}, #{rthirdph}, #{msg}, ${pay_method},
+            #{payagent_agree_flag}, #{buy_date}
+        )
+    </insert>
+
     <select id="selUser" resultType="UserEntity">
         SELECT * FROM t_user
         WHERE
