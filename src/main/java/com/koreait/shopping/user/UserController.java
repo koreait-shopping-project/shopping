@@ -198,6 +198,7 @@ public class UserController {
             vo.setIuser(entity.getIuser());
             vo.setColor(service.checkedCart(entity).get(i).getColor());
             vo.setIboard(service.checkedCart(entity).get(i).getIboard());
+            vo.setIdetail(service.checkedCart(entity).get(i).getIdetail());
             if(service.checkedCart(entity).get(i).getSm() != 0) {vo.setSm(service.checkedCart(entity).get(i).getSm());}
             else if(service.checkedCart(entity).get(i).getMd() != 0) {vo.setMd(service.checkedCart(entity).get(i).getMd());}
             else if(service.checkedCart(entity).get(i).getLg() != 0) {vo.setLg(service.checkedCart(entity).get(i).getLg());}

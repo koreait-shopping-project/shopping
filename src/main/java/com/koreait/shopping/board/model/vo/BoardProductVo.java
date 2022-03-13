@@ -9,6 +9,7 @@ import lombok.Setter;
 public class BoardProductVo extends BoardProductEntity {
     private int isubcategory;
     private String subcategorynm;
+    private int idetail;
     private int color;
     private int sm;
     private int md;

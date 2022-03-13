@@ -3,6 +3,8 @@ package com.koreait.shopping.board;
 import com.koreait.shopping.Paging.BoardCriteria;
 import com.koreait.shopping.Paging.Criteria;
 import com.koreait.shopping.board.model.dto.BoardListDto;
+import com.koreait.shopping.board.model.dto.BoardProductDto;
+import com.koreait.shopping.board.model.dto.BoardProductListDto;
 import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
@@ -21,6 +23,7 @@ public interface BoardMapper {
     //====================== subcategory ======================
     List<BoardProductVo> selProductList(Criteria cri);
     List<BoardProductVo> searchProductList(Criteria cri);
+    BoardProductVo selIdetail(BoardProductVo vo);
     BoardProductVo selProductDetail(BoardProductVo vo);
     BoardProductVo selSize(BoardProductVo vo);
     //=====페이징=====

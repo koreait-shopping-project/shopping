@@ -94,6 +94,10 @@ public class BoardService {
         return mapper.selDetailList(vo);
     }
 
+    public BoardProductVo selIdetail(BoardProductVo vo) {
+        return mapper.selIdetail(vo);
+    }
+
     public List<UserReviewVo> selBoardReview(UserReviewVo vo) {
         return mapper.selBoardReview(vo);
     }

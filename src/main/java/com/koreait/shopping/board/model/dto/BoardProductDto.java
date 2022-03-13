@@ -14,6 +14,7 @@ public class BoardProductDto extends BoardProductEntity implements Serializable 
     private int isubcategory;
     private int iboard;
     private int color;
+    private int idetail;
     private String size;
     private int itemNum;
 }

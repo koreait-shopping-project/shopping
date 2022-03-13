@@ -191,6 +191,8 @@ public class BoardController {
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setIuser(utils.getLoginUserPk());
+            vo.setIdetail(service.selIdetail(vo).getIdetail());
+
 
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
@@ -222,26 +224,28 @@ public class BoardController {
             vo.setItemNum(listDto.getProductList().get(i).getItemNum());
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setIuser(utils.getLoginUserPk());
+            vo.setIdetail(service.selIdetail(vo).getIdetail());
+
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
                     vo.setSm(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    break;
+                    return "redirect:/user/order";
                 case "md":
                     vo.setMd(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    break;
+                    return "redirect:/user/order";
                 case "lg":
                     vo.setLg(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    break;
+                    return "redirect:/user/order";
                 case "xl":
                     vo.setXl(listDto.getProductList().get(i).getItemNum());
                     service.insCartChecked(vo);
-                    break;
+                    return "redirect:/user/order";
             }
         }
-        return "redirect:/user/order";
+        return null;
     }
 
     @DeleteMapping("/cart/{icart}")

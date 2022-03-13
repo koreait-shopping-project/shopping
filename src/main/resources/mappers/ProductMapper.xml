@@ -47,12 +47,12 @@
     </select>
 
     <insert id="insCart">
-        insert into cart(iboard, iuser, color,
+        insert into cart(iboard, iuser, color, idetail,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>
         <if test=" xl != null and xl !=0 ">xl</if>)
-        VALUES (${iboard}, ${iuser}, ${color},
+        VALUES (${iboard}, ${iuser}, ${color}, ${idetail},
         <if test=" sm != null and sm !=0 ">${sm}</if>
         <if test=" md != null and md !=0 ">${md}</if>
         <if test=" lg != null and lg !=0 ">${lg}</if>
@@ -60,12 +60,12 @@
     </insert>
 
     <insert id="insCartChecked">
-        insert into cart(iboard, iuser, color, checked,
+        insert into cart(iboard, iuser, color, checked, idetail,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>
         <if test=" xl != null and xl !=0 ">xl</if>)
-        VALUES (${iboard}, ${iuser}, ${color}, 1,
+        VALUES (${iboard}, ${iuser}, ${color}, 1, ${idetail},
         <if test=" sm != null and sm !=0 ">${sm}</if>
         <if test=" md != null and md !=0 ">${md}</if>
         <if test=" lg != null and lg !=0 ">${lg}</if>
@@ -82,6 +82,13 @@
         INNER JOIN product_list C
         ON A.iboard = C.iboard
         WHERE B.iuser = ${iuser}
+    </select>
+
+    <select id="selIdetail" resultType="BoardProductVo">
+        SELECT *
+        FROM product_detail
+        WHERE color = ${color}
+        AND iboard = ${iboard}
     </select>
 
     <delete id="delCart">
@@ -135,12 +142,12 @@
     </update>
 
     <insert id="insPurchased">
-        insert into purchased(iboard, iuser, color,
+        insert into purchased(iboard, iuser, color, idetail,
         <if test=" sm != null and sm !=0 ">sm</if>
         <if test=" md != null and md !=0 ">md</if>
         <if test=" lg != null and lg !=0 ">lg</if>
         <if test=" xl != null and xl !=0 ">xl</if>)
-        VALUES (${iboard}, ${iuser}, ${color},
+        VALUES (${iboard}, ${iuser}, ${color}, ${idetail},
         <if test=" sm != null and sm !=0 ">${sm}</if>
         <if test=" md != null and md !=0 ">${md}</if>
         <if test=" lg != null and lg !=0 ">${lg}</if>
