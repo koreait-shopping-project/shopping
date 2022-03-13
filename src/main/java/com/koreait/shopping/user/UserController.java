@@ -157,11 +157,18 @@ public class UserController {
         model.addAttribute(Const.IBOARD, dto.getIboard());
         model.addAttribute(Const.IDETAIL, dto.getIdetail());
         model.addAttribute(Const.LIST, service.selPurchased(dto));
-        System.out.println("iboard : " + dto.getIboard());
 
 //        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
 //            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
 //            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
+    }
+
+    @GetMapping("/selReview")
+    @ResponseBody
+    public Map<String, Integer> selReview(UserReviewDto dto) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.selReview(dto));
+        return res;
     }
 
     @PostMapping("/review")

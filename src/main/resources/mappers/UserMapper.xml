@@ -72,6 +72,13 @@
         WHERE email = #{email}
     </select>
 
+    <select id="selReview" resultType="int">
+        SELECT *
+        FROM t_user_review
+        WHERE iuser = ${iuser}
+        AND idetail = ${idetail}
+    </select>
+
     <update id="updUserPw">
         UPDATE t_user
         SET
