@@ -191,62 +191,35 @@
             </td>
         </tr>
     </table>
+<div>test</div>
     <c:forEach var="item" items="${requestScope.review}">
-    <div>
+    <div id="review_container">
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
-        <div>${item.uid}</div>
-        <c:if test="${item.gender == 1}">
-            <div>남자</div>
-        </c:if>
-        <c:if test="${item.gender == 2}">
-            <div>여자</div>
-        </c:if>
-        <div>${item.tall}</div>
-        <div>${item.weight}</div>
-        <div><img src="${item.img_url_big}" alt="product"></div>
-        <div>${item.title}</div>
-        <c:if test="${item.color == 1}">
-            <div>흰색</div>
-        </c:if>
-        <c:if test="${item.color == 2}">
-            <div>검은색</div>
-        </c:if>
-        <c:if test="${item.color == 3}">
-            <div>회색</div>
-        </c:if>
-        <c:if test="${item.sm != 0}">
-            <div>small</div>
-        </c:if>
-        <c:if test="${item.md != 0}">
-            <div>medium</div>
-        </c:if>
-        <c:if test="${item.lg != 0}">
-            <div>large</div>
-        </c:if>
-        <c:if test="${item.xl != 0}">
-            <div>x-large</div>
-        </c:if>
-            <div class="m-t-20 display-i-b p-b-20">
-                <div class="star-rating space-x-4 mx-auto" value="${item.rating}">
-                    <c:if test="${item.rating == 5}">
-                        <label for="5-stars" class="star pr-4">★★★★★</label>
-                    </c:if>
-                    <c:if test="${item.rating == 4}">
-                        <label for="5-stars" class="star pr-4">★★★★</label>
-                    </c:if>
-                    <c:if test="${item.rating == 3}">
-                        <label for="5-stars" class="star pr-4">★★★</label>
-                    </c:if>
-                    <c:if test="${item.rating == 2}">
-                        <label for="5-stars" class="star pr-4">★★</label>
-                    </c:if>
-                    <c:if test="${item.rating == 1}">
-                        <label for="5-stars" class="star pr-4">★</label>
-                    </c:if>
-                </div>
+        <div id="review_profile">
+            <div id="review_username"><h3>${item.uid}</h3></div>
+            <div id="review_tall_weight">${item.tall}cm, ${item.weight}kg</div>
+        </div>
+        <div id="review_information">
+            <div id="review_img"><img src="${item.img_url_big}" alt="product"></div>
+            <div id="review_title_color_size">
+                <div id="review_title">${item.title}</div>
+                <c:if test="${item.color == 1}"><span>흰색</span></c:if>
+                <c:if test="${item.color == 2}"><span>검은색</span></c:if>
+                <c:if test="${item.color == 3}"><span>회색</span></c:if>
+                <c:if test="${item.sm != 0}"><span>small</span></c:if>
+                <c:if test="${item.md != 0}"><span>medium</span></c:if>
+                <c:if test="${item.lg != 0}"><span>large</span></c:if>
+                <c:if test="${item.xl != 0}"><span>x-large</span></c:if>
             </div>
         </div>
-        <div>평가 글 : ${item.ctnt}</div>
+            <div id="review_rating" class="star-rating space-x-4 mx-auto" value="${item.rating}">
+                <c:if test="${item.rating == 5}"><label for="5-stars" class="star pr-4">★★★★★</label></c:if>
+                <c:if test="${item.rating == 4}"><label for="5-stars" class="star pr-4">★★★★</label></c:if>
+                <c:if test="${item.rating == 3}"><label for="5-stars" class="star pr-4">★★★</label></c:if>
+                <c:if test="${item.rating == 2}"><label for="5-stars" class="star pr-4">★★</label></c:if>
+                <c:if test="${item.rating == 1}"><label for="5-stars" class="star pr-4">★</label></c:if>
+            </div>
+        <div id="review_ctnt">${item.ctnt}</div>
     </div>
     </c:forEach>
 </div>

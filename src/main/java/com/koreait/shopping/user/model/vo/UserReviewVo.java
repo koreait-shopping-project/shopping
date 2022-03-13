@@ -16,6 +16,7 @@ public class UserReviewVo extends UserReviewEntity {
     private String ctnt;
     private String img_url_big;
     private String title;
+    private String review_title;
     private int color;
     private int sm;
     private int md;

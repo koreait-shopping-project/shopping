@@ -167,7 +167,7 @@
             <button class="bolder-p b-radius bc-black color-white m-10" id="delBtn">삭제</button>
         </div>
     </c:if>
-    <div><button class="bolder-p b-radius bc-black color-white m-10" id="back" onclick="history.back()">뒤로가기</button></div>
+    <div><button class="bolder-p b-radius bc-black color-white m-tb-10" id="back" onclick="history.back()">뒤로가기</button></div>
 
 </div>
 </div>
