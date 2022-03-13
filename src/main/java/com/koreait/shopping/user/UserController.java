@@ -153,10 +153,11 @@ public class UserController {
     public void mypage() {}
 
     @GetMapping("/review")
-    public void review(UserReviewDto entity, Model model) {
-        model.addAttribute(Const.IBOARD, entity.getIboard());
-        model.addAttribute(Const.LIST, service.selPurchased(entity));
-        System.out.println("iboard : " + entity.getIboard());
+    public void review(UserReviewDto dto, Model model) {
+        model.addAttribute(Const.IBOARD, dto.getIboard());
+        model.addAttribute(Const.IDETAIL, dto.getIdetail());
+        model.addAttribute(Const.LIST, service.selPurchased(dto));
+        System.out.println("iboard : " + dto.getIboard());
 
 //        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
 //            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
@@ -164,9 +165,10 @@ public class UserController {
     }
 
     @PostMapping("/review")
-    public String reviewProc(UserReviewDto entity, RedirectAttributes reAttr) {
-        System.out.println("Piboard : " + entity.getIboard());
-        int result = service.review(entity);
+    public String reviewProc(UserReviewDto dto, RedirectAttributes reAttr) {
+        int result = service.review(dto);
+        System.out.println(dto.getIboard());
+        System.out.println(dto.getIdetail());
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
         }
