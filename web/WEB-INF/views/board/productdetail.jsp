@@ -212,7 +212,13 @@
                 <c:if test="${item.xl != 0}"><span>x-large</span></c:if>
             </div>
         </div>
-        <div id="review_rating">평점 : ${item.rating}점</div>
+            <div id="review_rating" class="star-rating space-x-4 mx-auto" value="${item.rating}">
+                <c:if test="${item.rating == 5}"><label for="5-stars" class="star pr-4">★★★★★</label></c:if>
+                <c:if test="${item.rating == 4}"><label for="5-stars" class="star pr-4">★★★★</label></c:if>
+                <c:if test="${item.rating == 3}"><label for="5-stars" class="star pr-4">★★★</label></c:if>
+                <c:if test="${item.rating == 2}"><label for="5-stars" class="star pr-4">★★</label></c:if>
+                <c:if test="${item.rating == 1}"><label for="5-stars" class="star pr-4">★</label></c:if>
+            </div>
         <div id="review_ctnt">${item.ctnt}</div>
     </div>
     </c:forEach>
