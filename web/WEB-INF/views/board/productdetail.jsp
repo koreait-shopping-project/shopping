@@ -100,7 +100,20 @@
         <tr>
             <td rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">구매 만족도</div>
-                ★★★★★
+                <div class="m-t-20 display-i-b p-b-20">
+                    <div class="star-rating space-x-4 mx-auto">
+                        <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
+                        <label for="5-stars" class="star pr-4">★</label>
+                        <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
+                        <label for="4-stars" class="star">★</label>
+                        <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
+                        <label for="3-stars" class="star">★</label>
+                        <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
+                        <label for="2-stars" class="star">★</label>
+                        <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
+                        <label for="1-star" class="star">★</label>
+                    </div>
+                </div>
             </td>
             <td width="30%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">사이즈</div>
@@ -178,7 +191,6 @@
             </td>
         </tr>
     </table>
-<div>test</div>
     <c:forEach var="item" items="${requestScope.review}">
     <div>
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
@@ -214,7 +226,26 @@
         <c:if test="${item.xl != 0}">
             <div>x-large</div>
         </c:if>
-        <div>별점 : ${item.rating}</div>
+            <div class="m-t-20 display-i-b p-b-20">
+                <div class="star-rating space-x-4 mx-auto" value="${item.rating}">
+                    <c:if test="${item.rating == 5}">
+                        <label for="5-stars" class="star pr-4">★★★★★</label>
+                    </c:if>
+                    <c:if test="${item.rating == 4}">
+                        <label for="5-stars" class="star pr-4">★★★★</label>
+                    </c:if>
+                    <c:if test="${item.rating == 3}">
+                        <label for="5-stars" class="star pr-4">★★★</label>
+                    </c:if>
+                    <c:if test="${item.rating == 2}">
+                        <label for="5-stars" class="star pr-4">★★</label>
+                    </c:if>
+                    <c:if test="${item.rating == 1}">
+                        <label for="5-stars" class="star pr-4">★</label>
+                    </c:if>
+                </div>
+            </div>
+        </div>
         <div>평가 글 : ${item.ctnt}</div>
     </div>
     </c:forEach>
