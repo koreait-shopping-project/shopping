@@ -1,7 +1,3 @@
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -195,6 +191,7 @@
     <c:forEach var="item" items="${requestScope.review}">
     <div id="review_container">
         <input type="hidden" name="iboard" value="${requestScope.iboard}">
+        <input type="hidden" name="idetail" value="${requestScope.idetail}">
         <div id="review_profile">
             <div id="review_username"><h3>${item.uid}</h3></div>
             <div id="review_tall_weight">${item.tall}cm, ${item.weight}kg</div>
