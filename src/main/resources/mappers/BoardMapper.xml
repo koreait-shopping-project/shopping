@@ -112,15 +112,13 @@
                C.img_url_big, C.title,
                D.color, D.sm, D.md, D.lg, D.xl
         FROM t_user_review A
-                 INNER JOIN t_user B
-                            ON A.iuser = B.iuser
-                 INNER JOIN product_list C
-                            ON A.iboard = C.iboard
-                 INNER JOIN purchased D
-                            ON A.iboard = D.iboard
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        INNER JOIN product_list C
+        ON A.iboard = C.iboard
+        INNER JOIN purchased D
+        ON A.idetail = D.idetail
         WHERE A.iboard = ${iboard}
-        LIMIT 10
-
     </select>
 
     <update id="updBoard">
