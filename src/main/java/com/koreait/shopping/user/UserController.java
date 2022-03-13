@@ -157,10 +157,6 @@ public class UserController {
         model.addAttribute(Const.IBOARD, dto.getIboard());
         model.addAttribute(Const.IDETAIL, dto.getIdetail());
         model.addAttribute(Const.LIST, service.selPurchased(dto));
-
-//        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
-//            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
-//            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
     }
 
     @GetMapping("/selReview")
@@ -174,8 +170,6 @@ public class UserController {
     @PostMapping("/review")
     public String reviewProc(UserReviewDto dto, RedirectAttributes reAttr) {
         int result = service.review(dto);
-        System.out.println(dto.getIboard());
-        System.out.println(dto.getIdetail());
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
         }
@@ -201,7 +195,6 @@ public class UserController {
     @PostMapping("/order")
     public String orderProc(UserEntity entity, UserOrderEntity entity2) {
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println(service.checkedCart(entity).size());
         for(int i = 0; i < service.checkedCart(entity).size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setIuser(entity.getIuser());
