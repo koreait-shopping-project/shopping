@@ -10,6 +10,7 @@ import lombok.ToString;
 public class UserReviewEntity {
     private int ireview;
     private int icategory;
+    private int idetail;
     private int iboard;
     private int iuser;
     private int rating;

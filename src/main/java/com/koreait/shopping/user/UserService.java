@@ -66,9 +66,7 @@ public class UserService {
     }
 
     public int review(UserReviewDto entity) {
-
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println("entity : " + entity);
         return mapper.insReview(entity);
     }
 

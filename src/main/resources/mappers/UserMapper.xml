@@ -22,12 +22,12 @@
     <insert id="insReview">
         INSERT INTO t_user_review
         (
-            iboard, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
+            iboard, idetail, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
         , weight, ctnt, prom_agree_flag, inf_agree_flag
         )
         VALUES
         (
-            ${iboard}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            ${iboard}, ${idetail}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
             , ${gender}, #{tall}, #{weight}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
         )
     </insert>
@@ -102,7 +102,7 @@
     </select>
 
     <select id="selPurchased2" resultType="BoardProductVo">
-        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.color, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.idetail, A.color, B.iuser, C.img_url_big, C.title, C.price
         FROM purchased A
                  INNER JOIN t_user B
                             ON A.iuser = B.iuser
