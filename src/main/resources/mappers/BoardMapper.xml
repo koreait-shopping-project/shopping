@@ -100,10 +100,25 @@
     </select>
 
     <select id="selReview" resultType="UserReviewDto">
-        SELECT A.iboard, A.ireview, A.title, B.nm AS writerNm
+        SELECT A.iboard, A.ireview, B.nm AS writerNm
         FROM t_user_review A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
+    </select>
+
+    <select id="selBoardReview" resultType="UserReviewVo">
+        SELECT A.tall, A.weight, A.rating, A.ctnt,
+               B.uid,
+               C.img_url_big, C.title,
+               D.color, D.sm, D.md, D.lg, D.xl
+        FROM t_user_review A
+        INNER JOIN t_user B
+        ON A.iuser = B.iuser
+        INNER JOIN product_list C
+        ON A.iboard = C.iboard
+        INNER JOIN purchased D
+        ON A.idetail = D.idetail
+        WHERE A.iboard = ${iboard}
     </select>
 
     <update id="updBoard">

@@ -10,6 +10,7 @@ import lombok.ToString;
 public class UserReviewEntity {
     private int ireview;
     private int icategory;
+    private int idetail;
     private int iboard;
     private int iuser;
     private int rating;
@@ -20,7 +21,6 @@ public class UserReviewEntity {
     private int gender;
     private String tall;
     private String weight;
-    private String title;
     private String ctnt;
     private boolean prom_agree_flag;//홍보 컨텐츠 동의
     private boolean inf_agree_flag;//정보 수집 동의

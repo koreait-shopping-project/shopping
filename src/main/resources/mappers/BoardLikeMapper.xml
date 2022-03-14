@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.koreait.shopping.board.like.BoardLikeMapper">
+    <insert id="insBoardLike">
+        INSERT INTO t_board_Like (iboard, iuser)
+        VALUES (${iboard}, ${iuser})
+    </insert>
+
+    <select id="selBoardLike" resultType="BoardLikeEntity">
+        SELECT iboard, iuser, rdt
+        FROM t_board_Like
+        WHERE iboard = ${iboard}
+          AND iuser = ${iuser}
+    </select>
+
+    <delete id="delBoardLike">
+        DELETE FROM t_board_Like
+        WHERE iboard = ${iboard}
+          AND iuser = ${iuser}
+    </delete>
+
+    <select id="selBoardLikeNum" resultType="int">
+        SELECT COUNT(iboard) AS likeNum FROM t_board_like WHERE iboard = ${iboard};
+    </select>
+</mapper>

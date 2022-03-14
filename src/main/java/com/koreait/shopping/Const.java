@@ -31,6 +31,8 @@ public class Const {
     public static final String PURCHASED = "purchased";
     public static final String REVIEW = "review";
     public static final String IUSER = "iuser";
+    public static final String LIKE = "like";
+    public static final String IDETAIL = "idetail";
 
 
 

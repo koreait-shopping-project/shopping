@@ -21,8 +21,8 @@
             </thead>
             <tbody>
             <c:forEach var="item" items="${requestScope.purchased}">
-                <tr id="purchase_wrap" data-price="${requestScope.detail.price}">
-                    <td><a href="/user/review?iboard=${item.iboard}"><button class="bolder-sm">Review</button></a></td>
+                <tr id="purchase_wrap" data-iboard="${item.iboard}" data-idetail="${item.idetail}" data-price="${requestScope.detail.price}">
+                    <td><a href="/user/review?iboard=${item.iboard}&idetail=${item.idetail}"><button class="reviewBtn bolder-sm">Review</button></a></td>
                     <td><img src="${item.img_url_big}" style="width: 100%; min-width: 120px; max-width: 200px;"></td>
                     <td><c:out value="${item.title}"/></td>
                     <td><fmt:formatNumber value="${item.price}" pattern="#,###"/>원</td>

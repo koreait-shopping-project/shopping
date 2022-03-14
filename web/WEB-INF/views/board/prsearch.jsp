@@ -9,7 +9,7 @@
             검색하신 상품 목록이 없습니다.
         </c:when>
         <c:otherwise>
-            <c:forEach items="${requestScope.list}" var="item">
+            <c:forEach items="${requestScope.list}" var="item" varStatus="status">
                 <a id="product_item_link" href="/board/productdetail/${item.iboard}">
                     <img src="${item.img_url_big}">
                     <p>${item.title}</p>
@@ -17,26 +17,27 @@
                     <c:if test="${item.gender == 1}"><p>남성용</p></c:if>
                     <c:if test="${item.gender == 2}"><p>여성용</p></c:if>
                     <c:if test="${item.gender == 3}"><p>공용</p></c:if>
+                    <p><i style="color: plum" class="fa-solid fa-1x fa-heart"> ${requestScope.like[status.index]}</i></p>
                 </a>
             </c:forEach>
         </c:otherwise>
     </c:choose>
-    <div class="pageInfo_wrap" >
-        <ul class="pageInfo_area">
-            <!-- 이전페이지 버튼 -->
-            <c:if test="${pageMaker.prev}">
-                <li class="pageInfo_btn previous"><a href="/board/prsearch?pageNum=${pageMaker.startPage - 1}&title=${requestScope.title}">Prev</a></li>
-            </c:if>
+</div>
+<div class="pageInfo_wrap" >
+    <ul class="pageInfo_area">
+        <!-- 이전페이지 버튼 -->
+        <c:if test="${pageMaker.prev}">
+            <li class="pageInfo_btn previous"><a href="/board/prsearch?pageNum=${pageMaker.startPage - 1}&title=${requestScope.title}">Prev</a></li>
+        </c:if>
 
-            <!-- 각 번호 페이지 버튼 -->
-            <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                <li class="pageInfo_btn num"><a href="/board/prsearch?pageNum=${num}&title=${requestScope.title}">${num}</a></li>
-            </c:forEach>
+        <!-- 각 번호 페이지 버튼 -->
+        <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+            <li class="pageInfo_btn num"><a href="/board/prsearch?pageNum=${num}&title=${requestScope.title}">${num}</a></li>
+        </c:forEach>
 
-            <!-- 다음페이지 버튼 -->
-            <c:if test="${pageMaker.next}">
-                <li class="pageInfo_btn next"><a href="/board/prsearch?pageNum=${pageMaker.endPage + 1}&title=${requestScope.title}">Next</a></li>
-            </c:if>
-        </ul>
-    </div>
+        <!-- 다음페이지 버튼 -->
+        <c:if test="${pageMaker.next}">
+            <li class="pageInfo_btn next"><a href="/board/prsearch?pageNum=${pageMaker.endPage + 1}&title=${requestScope.title}">Next</a></li>
+        </c:if>
+    </ul>
 </div>

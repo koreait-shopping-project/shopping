@@ -11,6 +11,8 @@ import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
+import com.koreait.shopping.user.model.entity.UserReviewEntity;
+import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -90,6 +92,14 @@ public class BoardService {
 
     public List<BoardProductVo> selDetailList(BoardProductVo vo) {
         return mapper.selDetailList(vo);
+    }
+
+    public BoardProductVo selIdetail(BoardProductVo vo) {
+        return mapper.selIdetail(vo);
+    }
+
+    public List<UserReviewVo> selBoardReview(UserReviewVo vo) {
+        return mapper.selBoardReview(vo);
     }
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}

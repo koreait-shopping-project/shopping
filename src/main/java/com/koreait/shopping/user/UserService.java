@@ -5,6 +5,7 @@ import com.koreait.shopping.UserUtils;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserOrderEntity;
 import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.mindrot.jbcrypt.BCrypt;
@@ -48,9 +49,7 @@ public class UserService {
 
     public int join(UserEntity entity) {
         if (!entity.getSocial().equals("general")) {
-            System.out.println("social :" + entity.getSocial());
             String[] uid = entity.getEmail().split("@");
-            System.out.println("uid : " + uid[0]);
             entity.setUid(uid[0]);
             entity.setUpw(utils.getRandomPassword(15));
         }
@@ -64,11 +63,18 @@ public class UserService {
         return mapper.insUser(copyEntity);
     }
 
-    public int review(UserReviewDto entity) {
+    public int review(UserReviewDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        return mapper.insReview(dto);
+    }
 
-        entity.setIuser(utils.getLoginUserPk());
-        System.out.println("entity : " + entity);
-        return mapper.insReview(entity);
+    public int selReview(UserReviewDto dto) {
+        dto.setIuser(utils.getLoginUserPk());
+        return mapper.selReview(dto);
+    }
+
+    public int order(UserOrderEntity entity) {
+        return mapper.insOrder(entity);
     }
 
     public List<BoardProductVo> selPurchased(UserReviewDto entity) {
@@ -78,7 +84,6 @@ public class UserService {
 
     public List<BoardProductVo> selPurchased2(UserPurchasedEntity entity) {
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println("purchased : " + entity);
         return mapper.selPurchased2(entity);
     }
 

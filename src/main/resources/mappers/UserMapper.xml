@@ -22,13 +22,34 @@
     <insert id="insReview">
         INSERT INTO t_user_review
         (
-            iboard, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
-        , weight, title,ctnt, prom_agree_flag, inf_agree_flag
+            iboard, idetail, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
+        , weight, ctnt, prom_agree_flag, inf_agree_flag
         )
         VALUES
         (
-            ${iboard}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
-            , ${gender}, #{tall}, #{weight}, #{title}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
+            ${iboard}, ${idetail}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            , ${gender}, #{tall}, #{weight}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
+        )
+    </insert>
+
+    <insert id="insOrder">
+        INSERT INTO t_order
+        (
+            oname, oemail, ofirsthnum, osecondhnum, othirdhnum, ofirstph, osecondph,
+            othirdph, opost_num, oload_nm, olot_addr, odetail_addr, oref,
+            rname, rpost_num, rload_nm, rlot_addr, rdetail_addr, rref, rfirsthnum,
+            rsecondhnum, rthirdhnum, rfirstph, rsecondph, rthirdph,
+            msg, pay_method, payagent_agree_flag, buy_date
+        )
+        VALUES
+        (
+            #{oname}, #{oemail}, #{ofirsthnum}, #{osecondhnum}, #{othirdhnum},
+            #{ofirstph}, #{osecondph}, #{othirdph}, #{opost_num}, #{oload_nm},
+            #{olot_addr}, #{odetail_addr}, #{oref},
+            #{rname}, #{rpost_num}, #{rload_nm}, #{rlot_addr}, #{rdetail_addr}, #{rref},
+            #{rfirsthnum}, #{rsecondhnum}, #{rthirdhnum}, #{rfirstph},
+            #{rsecondph}, #{rthirdph}, #{msg}, ${pay_method},
+            #{payagent_agree_flag}, #{buy_date}
         )
     </insert>
 
@@ -51,6 +72,13 @@
         WHERE email = #{email}
     </select>
 
+    <select id="selReview" resultType="int">
+        SELECT *
+        FROM t_user_review
+        WHERE iuser = ${iuser}
+        AND idetail = ${idetail}
+    </select>
+
     <update id="updUserPw">
         UPDATE t_user
         SET
@@ -61,7 +89,7 @@
     </update>
 
     <select id="checkedCart" resultType="BoardProductVo">
-        SELECT A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.sm, A.md, A.lg, A.xl, A.color, A.iboard, A.icart, A.checked, A.idetail, B.iuser, C.img_url_big, C.title, C.price
         FROM cart A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
@@ -81,7 +109,7 @@
     </select>
 
     <select id="selPurchased2" resultType="BoardProductVo">
-        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.color, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.idetail, A.color, B.iuser, C.img_url_big, C.title, C.price
         FROM purchased A
                  INNER JOIN t_user B
                             ON A.iuser = B.iuser

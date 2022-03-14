@@ -16,7 +16,7 @@
                 </div>
                 <div class="display-i-b">
                     <ui>
-                        <li><a href="#">무엇을 넣을까</a></li>
+                        <li><a href="#">My Review</a></li>
                         <li><a href="#">Wish List</a></li>
                     </ui>
                 </div>

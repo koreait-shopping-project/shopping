@@ -65,6 +65,8 @@ $(document).ready(function(){
                     document.querySelectorAll("input[name=RowCheck]:checked")
                         .forEach(function (item)
                         {item.parentElement.parentElement.remove();});
+                        cost = 0;
+                        allPrice.innerHTML = priceToString(cost);
                 } else {
                     alert('장바구니가 비었습니다.');
                 }

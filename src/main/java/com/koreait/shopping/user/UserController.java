@@ -8,6 +8,7 @@ import com.koreait.shopping.board.BoardService;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
 import com.koreait.shopping.user.model.dto.UserDto;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserOrderEntity;
 import com.koreait.shopping.user.model.entity.UserPurchasedEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,20 +153,23 @@ public class UserController {
     public void mypage() {}
 
     @GetMapping("/review")
-    public void review(UserReviewDto entity, Model model) {
-        model.addAttribute(Const.IBOARD, entity.getIboard());
-        model.addAttribute(Const.LIST, service.selPurchased(entity));
-        System.out.println("iboard : " + entity.getIboard());
+    public void review(UserReviewDto dto, Model model) {
+        model.addAttribute(Const.IBOARD, dto.getIboard());
+        model.addAttribute(Const.IDETAIL, dto.getIdetail());
+        model.addAttribute(Const.LIST, service.selPurchased(dto));
+    }
 
-//        for (int i = 0; i < service.selPurchased(entity).size(); i++) {
-//            entity.setIboard(service.selPurchased(entity).get(i).getIboard());
-//            System.out.println("iboard : " + service.selPurchased(entity).get(i).getIboard());
+    @GetMapping("/selReview")
+    @ResponseBody
+    public Map<String, Integer> selReview(UserReviewDto dto) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.selReview(dto));
+        return res;
     }
 
     @PostMapping("/review")
-    public String reviewProc(UserReviewDto entity, RedirectAttributes reAttr) {
-        System.out.println("Piboard : " + entity.getIboard());
-        int result = service.review(entity);
+    public String reviewProc(UserReviewDto dto, RedirectAttributes reAttr) {
+        int result = service.review(dto);
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_8);
         }
@@ -189,14 +193,14 @@ public class UserController {
     }
 
     @PostMapping("/order")
-    public String orderProc(UserEntity entity) {
+    public String orderProc(UserEntity entity, UserOrderEntity entity2) {
         entity.setIuser(utils.getLoginUserPk());
-        System.out.println(service.checkedCart(entity).size());
         for(int i = 0; i < service.checkedCart(entity).size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setIuser(entity.getIuser());
             vo.setColor(service.checkedCart(entity).get(i).getColor());
             vo.setIboard(service.checkedCart(entity).get(i).getIboard());
+            vo.setIdetail(service.checkedCart(entity).get(i).getIdetail());
             if(service.checkedCart(entity).get(i).getSm() != 0) {vo.setSm(service.checkedCart(entity).get(i).getSm());}
             else if(service.checkedCart(entity).get(i).getMd() != 0) {vo.setMd(service.checkedCart(entity).get(i).getMd());}
             else if(service.checkedCart(entity).get(i).getLg() != 0) {vo.setLg(service.checkedCart(entity).get(i).getLg());}
@@ -205,6 +209,7 @@ public class UserController {
             service.updProductDetail(vo);
         }
         boardService.delCartChecked(entity.getIuser());
+        service.order(entity2);
         return "board/main";
     }
 

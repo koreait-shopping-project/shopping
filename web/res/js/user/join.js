@@ -1,4 +1,3 @@
-//TEST
 {
     let idChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
     let emailChkState = 2; //0: 아이디 사용 불가능, 1:아이디 사용가능, 2: 체크 안함
@@ -6,7 +5,7 @@
     const joinFrmElem = document.querySelector('#join_frm');
     const idRegex = /^([a-zA-Z0-9]{4,15})$/;//대소문자 + 숫자 조합 4~15글자
     const pwRegex = /^([a-zA-Z0-9!@_]{4,20}$)/;//대소문자 + 숫자 조합 4~15글자
-    const nmRegex = /^([가-힣]{2,10})$/; //한글 2~10자 조합 (영어, 특수기호X)
+    const nmRegex = /^([가 -힣]{2,10})$/; //`한글 2~10자 조합 (영어, 특수기호X)
     const firstphRegex = /^([0-9]{3})$/;
     const secondphRegex = /^([0-9]{4})$/;
     const thirdphRegex = /^([0-9]{4})$/;

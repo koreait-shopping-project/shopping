@@ -11,7 +11,7 @@
 <form action="/user/review" method="post" id="reviewFrm">
     <!-- 별점 -->
     <input type="hidden" name="iboard" value="${requestScope.iboard}">
-    <input type="hidden" name="img" value="${requestScope.img}">
+    <input type="hidden" name="idetail" value="${requestScope.idetail}">
     <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>
@@ -72,7 +72,7 @@
             </div>
             <div class="select">
                 <input type="radio" id="choice9" value="12" name="answer2">
-                <label for="choice9">선명해요</label>
+                <label for="choice9">흐려요</label>
             </div>
         </li>
         <li>
@@ -109,21 +109,21 @@
             <em class="bold">키</em>
             <input class="m-l-40" type="text" name="tall" id="tall">
             <span>cm</span>
-            <span>(ex. 170.0)</span>
+            <span>(ex. 170.0, 소수점 첫번째 자리수까지)</span>
         </li>
         <li style="margin-bottom: -20px;">
             <em class="bold">몸무게</em>
             <input class="m-l-20" type="text" name="weight" id="weight">
             <span>kg</span>
-            <span>(ex. 60.0)</span>
+            <span>(ex. 60.0, 소수점 첫번째 자리수까지)</span>
         </li>
     </ul>
     <label class="bold">상품에 대한 평가를 20자 이상 작성해 주세요</label>
     <table class="w-100p">
-        <tr class="bolder-top bolder-right bolder-left">
-            <th scope="row" class="tx-a-center" style="border-right: 1px solid #c1c1c1">제목</th>
-            <td><input class="w-all" style="border: none" type="text" name="title" value="${requestScope.data.title}"></td>
-        </tr>
+<%--        <tr class="bolder-top bolder-right bolder-left">--%>
+<%--            <th scope="row" class="tx-a-center" style="border-right: 1px solid #c1c1c1">제목</th>--%>
+<%--            <td><input class="w-all" style="border: none" type="text" name="title" value="${requestScope.data.title}"></td>--%>
+<%--        </tr>--%>
         <tr>
             <td colspan="2">
                     <textarea id="editor" name="ctnt">

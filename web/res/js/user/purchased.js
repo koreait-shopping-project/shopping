@@ -96,79 +96,27 @@ $(document).ready(function(){
             });
         }
     }
-    const allPrice = document.querySelector('#allPrice');
-    let price = document.querySelector('#purchase_wrap').dataset.price;
-    let totalCnt = 0;
 
-    //전체 가격
-    function allPlusPrice(price, totalCnt) {
-        return priceToString(price * totalCnt);
-    }
-    //천단위 콤마 정규식
-    function priceToString(price) {
-        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    }
-
-    allPrice.innerHTML
-
-
-
-    // num(수량) +, - 버튼
-    document.querySelectorAll('.upDown').forEach(
-        function(item, idx){
-            //수량 감소버튼 클릭
-            item.children[0].addEventListener('click', function(e){
-                if(parseInt(item.children[1].value) === 1) {
-                    e.preventDefault();
-                    item.children[0].disabled = true;
-                    alert('더 이상 줄일 수 없습니다.');
-                }
-                else {
-                    const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
-                    const size = item.parentElement.querySelector("input[name=size]").value;
-
-                    const param = {
-                        'icart' : icart,
-                        'size' : size
-                    }
-                    myFetch.put('/board/dCart', data => {
-                        const dataResult = data.result;
-                        switch (dataResult) {
-                            case 0:
-                                alert('수량이 변경에 실패하였습니다');
-                                break;
-                            case 1:
-                                window.location.reload();
-                                break;
-                        }
-                    }, param);
-                }
-            });
-
-
-            //수량 증가버튼 클릭
-            item.children[3].addEventListener('click', function(){
-                const icart = item.parentElement.querySelector("input[name=RowCheck]").value;
-                const size = item.parentElement.querySelector("input[name=size]").value;
-                
-                const param = {
-                    'icart' : icart,
-                    'size' : size
-                }
-
-                myFetch.put('/board/pCart', data => {
-                    const dataResult = data.result;
-                    switch (dataResult) {
-                        case 0:
-                            alert('수량이 변경에 실패하였습니다');
-                            break;
-                        case 1:
-                            window.location.reload();
-                            break;
-                    }
-                }, param);
-            });
-        }
-    );
-
+    // const reviewBtn = document.querySelectorAll('.reviewBtn');
+    // const purchase = document.querySelector('.purchase_wrap');
+    // const iboard = purchase.dataset.iboard;
+    // const idetail = purchase.dataset.idetail;
+    // const param = {
+    //     'idetail' : idetail
+    // }
+    //
+    // reviewBtn.addEventListener('click', (e) => {
+    //     myFetch.get('/user/selReview', data => {
+    //         console.log(data.result);
+    //         switch (data.result) {
+    //             case 1:
+    //                 alert('이미 리뷰를 남기신 상품입니다.');
+    //                 e.preventDefault();
+    //                 break;
+    //             case 0:
+    //                 window.location.href = `/user/review?iboard=${iboard}&idetail=${idetail}`
+    //                 break;
+    //         }
+    //     }, param);
+    // });
 }
