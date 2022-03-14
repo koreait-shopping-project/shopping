@@ -107,13 +107,13 @@
         </li>
         <li>
             <em class="bold">키</em>
-            <input class="m-l-40" type="text" name="tall" id="tall">
+            <input class="m-l-40" type="text" name="tall" id="tall" value="173.5">
             <span>cm</span>
             <span>(ex. 170.0, 소수점 첫번째 자리수까지)</span>
         </li>
         <li style="margin-bottom: -20px;">
             <em class="bold">몸무게</em>
-            <input class="m-l-20" type="text" name="weight" id="weight">
+            <input class="m-l-20" type="text" name="weight" id="weight" value="65.5">
             <span>kg</span>
             <span>(ex. 60.0, 소수점 첫번째 자리수까지)</span>
         </li>
