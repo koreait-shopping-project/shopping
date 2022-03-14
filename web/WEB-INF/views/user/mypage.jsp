@@ -8,22 +8,12 @@
     <div class="tx-a-center font-size-20 color-black">
         <c:choose>
             <c:when test="${sessionScope.loginUser != null}">
-                <div class="display-i-b p-r-100">
+                <div>
                     <ui>
-                        <li><a href="/user/purchased">구매 목록</a></li>
-                        <li><a href="/user/checkpw">회원 정보</a></li>
+                        <li><a href="/user/purchased">주문내역</a></li>
+                        <li><a href="/user/checkpw">회원정보</a></li>
                     </ui>
                 </div>
-                <div class="display-i-b">
-                    <ui>
-                        <li><a href="#">My Review</a></li>
-                        <li><a href="#">Wish List</a></li>
-                    </ui>
-                </div>
-
-
-
-
             </c:when>
         </c:choose>
     </div>
