@@ -80,7 +80,7 @@
                         const item = {
                             icmt: data.result,
                             iuser: parseInt(dataElem.dataset.iuser),
-                            writernm: dataElem.dataset.nm,
+                            writerNm: dataElem.dataset.nm,
                             profileimg: dataElem.dataset.profileimg,
                             ctnt: cmtFrmElem.ctnt.value,
                         }
@@ -140,7 +140,7 @@
                 <td>${item.icmt}</td>
                 <td>${item.ctnt}</td>
                 <td>
-                    <span>${item.writernm}</span>
+                    <span>${item.writerNm}</span>
                 </td>
             `;
         const td = document.createElement('td');
