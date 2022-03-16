@@ -37,10 +37,12 @@ public class BoardController {
     @Autowired
     private UserUtils utils;
 
+    //메인메뉴
     @GetMapping("/main")
     public void main() {
     }
 
+    //게시판 카테고리
     @GetMapping("/list/{icategory}")
     public String list(@PathVariable int icategory, Model model, BoardCriteria cri, UserEntity entity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
@@ -72,6 +74,7 @@ public class BoardController {
         return "board/list";
     }
 
+    //게시판 글목록
     @GetMapping("/detail")
     public void detail(BoardListDto dto, Model model) {
         BoardListVo vo = service.selBoard(dto);
@@ -79,6 +82,7 @@ public class BoardController {
         model.addAttribute(Const.PREV_NEXT, service.selPrevNext(vo));
     }
 
+    //검색창
     @GetMapping("/prsearch")
     public List<BoardProductVo> searchProc(Model model, Criteria cri) {
         model.addAttribute(Const.LIST, service.searchProductList(cri));
@@ -95,11 +99,10 @@ public class BoardController {
         return service.searchProductList(cri);
     }
 
-
+    //게시판 글쓰기
     @GetMapping("write")
     public void write() {
     }
-
     @PostMapping("/write")
     public String writeProc(Model model, BoardListEntity entity) {
         int result = service.insBoard(entity);
@@ -110,12 +113,12 @@ public class BoardController {
         return "redirect:/board/list/" + entity.getIcategory();
     }
 
+    //글 수정
     @GetMapping("/mod")
     public String mod(BoardListDto dto, Model model) {
         model.addAttribute(Const.DATA, service.selBoard(dto));
         return "board/write";
     }
-
     @PostMapping("/mod")
     public String modProc(Model model, BoardListEntity entity) {
         int result = service.updBoard(entity);
@@ -126,6 +129,7 @@ public class BoardController {
         return "redirect:/board/detail?iboard=" + entity.getIboard();
     }
 
+    //글삭제
     @GetMapping("/del")
     public String delProc(Model model, BoardListEntity entity) {
         int result = service.delBoard(entity);
@@ -136,25 +140,7 @@ public class BoardController {
         return "redirect:/board/list/" + entity.getIcategory();
     }
 
-    @GetMapping("/productdetail/{iboard}")
-    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo, UserReviewVo vo2) {
-        vo.setIboard(iboard);
-        model.addAttribute(Const.IBOARD, iboard);
-        model.addAttribute(Const.IUSER, utils.getLoginUserPk());
-        //productdetail 제품 불러오기
-        BoardProductEntity entity = service.selProductDetail(vo);
-        model.addAttribute(Const.DETAIL, entity);
-
-        //컬러, 사이즈 리스트 가져오기
-        model.addAttribute(Const.DATA, service.selDetailList(vo));
-
-        //리뷰
-        vo2.setIboard(vo.getIboard());
-        model.addAttribute(Const.REVIEW, service.selBoardReview(vo2));
-
-        return "board/productdetail";
-    }
-
+    //상품 카테고리
     @GetMapping("/product/{isubcategory}")
     public String subList(@PathVariable int isubcategory, Model model, Criteria cri) {
         model.addAttribute(Const.I_SUBCATEGORY, isubcategory);
@@ -174,6 +160,27 @@ public class BoardController {
         return "board/product";
     }
 
+    //개별 상품
+    @GetMapping("/productdetail/{iboard}")
+    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo, UserReviewVo vo2) {
+        vo.setIboard(iboard);
+        model.addAttribute(Const.IBOARD, iboard);
+        model.addAttribute(Const.IUSER, utils.getLoginUserPk());
+        //productdetail 제품 불러오기
+        BoardProductEntity entity = service.selProductDetail(vo);
+        model.addAttribute(Const.DETAIL, entity);
+
+        //컬러, 사이즈 리스트 가져오기
+        model.addAttribute(Const.DATA, service.selDetailList(vo));
+
+        //리뷰
+        vo2.setIboard(vo.getIboard());
+        model.addAttribute(Const.REVIEW, service.selBoardReview(vo2));
+
+        return "board/productdetail";
+    }
+
+    //개별 상품 색상별 사이즈 선택 Ajax
     @GetMapping("/size")
     @ResponseBody
     public Map<String, BoardProductVo> selSize(BoardProductVo vo) {
@@ -181,13 +188,15 @@ public class BoardController {
         res.put(Const.RESULT, service.selSize(vo));
         return res;
     }
-
+    
+    //카트창
     @GetMapping("/cart")
     public void cart() {
     }
-
+    
+    //카트 상품 추가
     @PostMapping("/cart")
-    public String cartProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+    public String cartProc(BoardProductListDto listDto) {
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
@@ -195,7 +204,6 @@ public class BoardController {
             vo.setIboard(listDto.getProductList().get(i).getIboard());
             vo.setIuser(utils.getLoginUserPk());
             vo.setIdetail(service.selIdetail(vo).getIdetail());
-
 
             switch (listDto.getProductList().get(i).getSize()) {
                 case "sm":
@@ -219,8 +227,9 @@ public class BoardController {
         return "board/main";
     }
 
+    //카트
     @PostMapping("/order")
-    public String orderProc(@ModelAttribute("BoardProductListDto") BoardProductListDto listDto) {
+    public String orderProc(BoardProductListDto listDto) {
         for (int i = 0; i < listDto.getProductList().size(); i++) {
             BoardProductVo vo = new BoardProductVo();
             vo.setColor(listDto.getProductList().get(i).getColor());
@@ -250,7 +259,7 @@ public class BoardController {
         }
         return "redirect:/user/order";
     }
-
+    //카트 삭제
     @DeleteMapping("/cart/{icart}")
     @ResponseBody
     public Map<String, Integer> delCart(@PathVariable String icart) {
@@ -264,7 +273,7 @@ public class BoardController {
         }
         return result;
     }
-
+    //카트 수량 증가
     @PutMapping("/pCart")
     @ResponseBody
     public Map<String, Integer> updCartUp(@RequestBody BoardProductVo vo) {
@@ -289,7 +298,7 @@ public class BoardController {
         }
         return null;
     }
-
+    //카트 수량 감소
     @PutMapping("/dCart")
     @ResponseBody
     public Map<String, Integer> updCartDown(@RequestBody BoardProductVo vo) {
@@ -315,6 +324,7 @@ public class BoardController {
         return null;
     }
 
+    //카트 체크 1 업데이트() 바로구매시 카트 추가하면서 체크 속성부여해서 구매페이지로 이동하도록
     @PutMapping("/selected/{icart}")
     @ResponseBody
     public Map<String, Integer> order(@PathVariable String icart) {
@@ -328,6 +338,7 @@ public class BoardController {
         }
         return result;
     }
+    //카트 체크 0 업데이트() 외부페이지 이동 시 체크 속성 풀리도록
     @PutMapping("/unselected/{icart}")
     @ResponseBody
     public Map<String, Integer> unchecked(@PathVariable String icart) {

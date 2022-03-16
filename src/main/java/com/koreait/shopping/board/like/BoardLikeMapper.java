@@ -1,9 +1,7 @@
 package com.koreait.shopping.board.like;
 
-import com.koreait.shopping.board.model.entity.BoardLikeEntity;
+import com.koreait.shopping.board.like.model.entity.BoardLikeEntity;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 
 @Mapper

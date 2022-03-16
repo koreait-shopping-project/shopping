@@ -1,4 +1,4 @@
-package com.koreait.shopping.board.model.entity;
+package com.koreait.shopping.board.cmt.model.entity;
 
 import lombok.Getter;
 import lombok.Setter;
