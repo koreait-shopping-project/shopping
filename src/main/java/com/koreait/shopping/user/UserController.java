@@ -29,7 +29,6 @@ import java.util.Map;
 public class UserController {
     @Autowired private UserService service;
     @Autowired private BoardService boardService;
-
     @Autowired private UserUtils utils;
 
     @GetMapping("/login")
