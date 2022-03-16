@@ -36,17 +36,17 @@
         <ul class="pageInfo_area">
         <!-- 이전페이지 버튼 -->
         <c:if test="${pageMaker.prev}">
-            <li class="pageInfo_btn previous"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.startPage - 1}">Prev</a></li>
+            <li class="pageInfo_btn previous"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.startPage - 1}&title=${requestScope.title}">Prev</a></li>
         </c:if>
 
         <!-- 각 번호 페이지 버튼 -->
         <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-            <li class="pageInfo_btn num"><a href="/board/product/${isubcategory}?pageNum=${num}">${num}</a></li>
+            <li class="pageInfo_btn num"><a href="/board/product/${isubcategory}?pageNum=${num}&title=${requestScope.title}">${num}</a></li>
         </c:forEach>
 
         <!-- 다음페이지 버튼 -->
         <c:if test="${pageMaker.next}">
-            <li class="pageInfo_btn next"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.endPage + 1}">Next</a></li>
+            <li class="pageInfo_btn next"><a href="/board/product/${isubcategory}?pageNum=${pageMaker.endPage + 1}&title=${requestScope.title}">Next</a></li>
         </c:if>
         </ul>
     </div>
