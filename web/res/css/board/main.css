@@ -3,7 +3,8 @@
 
 /* all */
 #main_wrap{ width: 100%; }
-#main_wrap > h1{ margin: 20px 0; color: #525252; text-align: center; text-transform: capitalize; font-family: 'Lobster', cursive; opacity: 0; }
+#main_wrap > #main_title{ margin: 20px 0; color: #525252; text-align: center; text-transform: capitalize; font-family: 'Lobster', cursive; opacity: 0; }
+#main_wrap > #main_title:hover{ cursor: default; }
 
 /* slide show */
 #slider_wrap{ color: #000; margin: 0 auto; width: 500px; height: 500px;

@@ -1,7 +1,14 @@
-table { width: 100%; border-top: 2px solid #a7a7a7; border-bottom: 2px solid #a7a7a7; border-collapse: collapse; }
-th, td { border : 1px solid #cecece; padding: 10px; }
-tr:first-child { border-bottom: 2px solid #a7a7a7; }
-ul, li { padding: 20px 0; }
+
+#main_table { width: 100%; border-top: 2px solid #a7a7a7; border-bottom: 2px solid #a7a7a7; border-collapse: collapse; }
+#main_table th, #main_table td { border : 1px solid #cecece; padding: 10px; }
+#main_table tr:first-child { border-bottom: 2px solid #a7a7a7; }
+
+#cmt_text_input { width: 50%; padding: 0.75rem; border: none; border-bottom: 1px solid #cbcbcb; font-size: 14px; }
+#btn_submit { padding: 5px; border-radius: 5px; background-color: #2b2b2b; color: #ffffff; }
+
+#cmt_table { width: 100%; }
+#cmt_table tr { border-bottom: 1px dotted #cccccc; }
+#cmt_table td { padding: 30px; }
 
 .star-rating { display: flex; flex-direction: row-reverse; font-size: 2.25rem; line-height: 2.5rem;
     justify-content: space-around; padding: 0 0.2em; text-align: center; width: 5em; }
