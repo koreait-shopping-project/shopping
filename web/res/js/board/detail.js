@@ -123,13 +123,7 @@
 
     const makeTable = () => {
         const table = document.createElement('table');
-        table.innerHTML = `
-            <tr>
-                <th>no</th>
-                <th>content</th>
-                <th>writer</th>
-                <th></th>
-            </tr>`;
+        table.id =  'cmt_table';
         return table;
     }
 

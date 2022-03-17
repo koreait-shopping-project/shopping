@@ -121,7 +121,7 @@ public class UserController {
             }
             return "redirect:/user/modify";
         }
-        return "redirect:/user/modify";
+        return "redirect:/board/main";
     }
 
     //비밀번호 확인(회원 정보 수정 진입)

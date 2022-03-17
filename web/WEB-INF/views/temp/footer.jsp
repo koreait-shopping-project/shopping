@@ -35,11 +35,13 @@
             <li><a href="#">guide</a></li>
         </ul>
         <p>
+            <span id="developers_title">developers</span><br>
+            <span id="developers_people">주현진 | 박재희 | 강지윤 | 이윤석</span><br>
             <span class="uppercase">etoile</span>
-            <span>CEO.KIM GUNMYUNG</span>
+            <span>Project.Shopping</span>
             <span>Business Licese. [410-29-99322]</span><br>
             <span>6 PUNGAMSINHEUNG-RO 39BEON-GIL, PUNGAM-DONG, SEO-GU, GWANGJU, KOREA</span><br>
-            <span>개인정보관리책임자 <a href="mailto:grandetoileshop@naver.com">KIM GUNMYUNG</a></span><br>
+            <span>개인정보관리책임자 <a href="mailto:wogml3270@gmail.com">PARK JAEHEE</a></span><br>
             <span>Copyright &copy; 2022</span>
             <strong>Grandetoile</strong>
         </p>
