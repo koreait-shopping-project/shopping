@@ -59,7 +59,6 @@ public class UserService {
         //비밀번호 암호화
         String hashPw = BCrypt.hashpw(entity.getUpw(), BCrypt.gensalt());
         copyEntity.setUpw(hashPw);//복사된 값에 비밀번호 암호화
-        utils.setLoginUser(entity);
         return mapper.insUser(copyEntity);
     }
 
@@ -91,6 +90,21 @@ public class UserService {
     //소셜 로그인시 이메일 체크
     public int selSocial(UserEntity entity) {
         UserEntity result = mapper.selSocial(entity);
+        return result == null ? 1 : 0;
+    }
+
+    //소셜 로그인
+    public int loginSocial(UserEntity entity) {
+        UserEntity result = mapper.selSocial(entity);
+        UserEntity dbUser = mapper.selSocial(entity);
+        dbUser.setUpw(null);
+        dbUser.setSocial(null);
+        dbUser.setGender(0);
+        dbUser.setJoin_date(null);
+        dbUser.setMod_date(null);
+        dbUser.setJoin_date(null);
+        dbUser.setMod_date(null);
+        utils.setLoginUser(dbUser);
         return result == null ? 1 : 0;
     }
 

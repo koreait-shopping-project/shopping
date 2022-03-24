@@ -50,7 +50,8 @@
                         const account_email = res.kakao_account.email;
                         const social = 'kakao';
                         const param = {
-                            'email' : account_email
+                            'email' : account_email,
+                            'social' : social
                         }
                         // const gender = res.kakao_account.gender;
                         // const birthday = res.kakao_account.birthday;
@@ -60,8 +61,16 @@
                                     window.location.href = `/user/join?social=${social}&email=${account_email}`;
                                     break;
                                 case 0:
-                                    window.location.href = '/board/main'
-                                    break;
+                                    myFetch.get('/user/loginSocial', data => {
+                                        switch (data.result) {
+                                            case 1:
+                                                alert('로그인 오류가 발생하였습니다.');
+                                                break;
+                                            case 0:
+                                                window.location.href = '/board/main';
+                                                break;
+                                        }
+                                    }, param);
                             }
                         }, param);
                     }
