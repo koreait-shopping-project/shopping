@@ -126,6 +126,10 @@ public class BoardController {
         return "redirect:/board/detail?iboard=" + entity.getIboard();
     }
 
+    @PostMapping("/editor")
+
+
+
     @GetMapping("/del")
     public String delProc(Model model, BoardListEntity entity) {
         int result = service.delBoard(entity);
