@@ -1,6 +1,6 @@
-package com.koreait.shopping.board.model.dto;
+package com.koreait.shopping.board.like.model.dto;
 
-import com.koreait.shopping.board.model.entity.BoardLikeEntity;
+import com.koreait.shopping.board.like.model.entity.BoardLikeEntity;
 import lombok.Getter;
 import lombok.Setter;
 
