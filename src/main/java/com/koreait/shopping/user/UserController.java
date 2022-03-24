@@ -41,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginProc(UserEntity entity, RedirectAttributes reAttr){
+    public String loginProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.login(entity);
         if(result != 1){
             reAttr.addFlashAttribute(Const.TRY_LOGIN, entity);
@@ -59,6 +59,14 @@ public class UserController {
             return "redirect:/user/login";
         }
         return "redirect:/board/main";
+    }
+
+    @GetMapping("loginSocial")
+    @ResponseBody
+    public Map<String, Integer> loginSocial(UserEntity entity, RedirectAttributes reAttr) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.loginSocial(entity));
+        return res;
     }
 
     @GetMapping("/join")

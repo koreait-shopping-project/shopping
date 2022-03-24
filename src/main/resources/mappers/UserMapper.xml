@@ -70,6 +70,7 @@
     <select id="selSocial" resultType="UserEntity">
         SELECT * FROM t_user
         WHERE email = #{email}
+        AND social = #{social}
     </select>
 
     <select id="selReview" resultType="int">
