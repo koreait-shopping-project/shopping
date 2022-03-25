@@ -166,8 +166,6 @@ public class BoardService {
     }
 
 
-
-
     private static final String CK_IMAGE_PATH = File.separator + "uploadImage";
 
     public Map<String, String> ckEditorUploadImage(MultipartFile file, HttpServletRequest request) {

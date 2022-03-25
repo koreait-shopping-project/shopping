@@ -23,4 +23,5 @@ public class BoardProductVo extends BoardProductEntity {
     private int pageNum;
     private int amount;
     private int page;
+    private int ipurchased;
 }
