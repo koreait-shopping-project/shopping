@@ -96,37 +96,32 @@
         <tr>
             <td rowspan="2" width="40%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop tx-a-center">구매 만족도</div>
-                <div class="p-b-20">
                     <div class="star-rating space-x-4 mx-auto">
-                        <input type="radio" id="5-stars" name="rating" value="5" v-model="ratings"/>
-                        <label for="5-stars" class="star pr-4">★</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" v-model="ratings"/>
-                        <label for="4-stars" class="star">★</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" v-model="ratings"/>
-                        <label for="3-stars" class="star">★</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" v-model="ratings"/>
-                        <label for="2-stars" class="star">★</label>
-                        <input type="radio" id="1-star" name="rating" value="1" v-model="ratings"/>
-                        <label for="1-star" class="star">★</label>
+                            <c:if test="${requestScope. avgrating <= 5 && requestScope. avgrating > 4}"><label class="star pr-4">★★★★★</label></c:if>
+                            <c:if test="${requestScope. avgrating <= 4 && requestScope. avgrating > 3}"><label class="star pr-4">★★★★☆</label></c:if>
+                            <c:if test="${requestScope. avgrating <= 3 && requestScope. avgrating > 2}"><label class="star pr-4">★★★☆☆</label></c:if>
+                            <c:if test="${requestScope. avgrating <= 2 && requestScope. avgrating > 1}"><label class="star pr-4">★★☆☆☆</label></c:if>
+                            <c:if test="${requestScope. avgrating <= 1 && requestScope. avgrating > 0}"><label class="star pr-4">★☆☆☆☆</label></c:if>
+                            <c:if test="${requestScope. avgrating <= 1 && requestScope. avgrating == 0}"><label class="star pr-4">☆☆☆☆☆</label></c:if>
                     </div>
-                </div>
+                    <div style="text-align: center">${requestScope.avgrating}</div>
             </td>
             <td width="30%" style="border-right: 1px solid #c1c1c1">
                 <div class="leftTop">사이즈</div>
                 <div class="m-w-170">
                     <div class="display-i-b">큼</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer0_4}%</div>
+                    <progress value="${requestScope.answer0_4}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer0_5}%</div>
+                    <progress value="${requestScope.answer0_5}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">작음</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer0_6}%</div>
+                    <progress value="${requestScope.answer0_6}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
             <td>
@@ -210,12 +205,12 @@
             </div>
         </div>
             <div id="review_rating" class="star-rating space-x-4 mx-auto" value="${item.rating}">
-                <c:if test="${item.rating == 5}"><label for="5-stars" class="star pr-4">★★★★★</label></c:if>
-                <c:if test="${item.rating == 4}"><label for="5-stars" class="star pr-4">★★★★☆</label></c:if>
-                <c:if test="${item.rating == 3}"><label for="5-stars" class="star pr-4">★★★☆☆</label></c:if>
-                <c:if test="${item.rating == 2}"><label for="5-stars" class="star pr-4">★★☆☆☆</label></c:if>
-                <c:if test="${item.rating == 1}"><label for="5-stars" class="star pr-4">★☆☆☆☆</label></c:if>
-                <c:if test="${item.rating == 0}"><label for="5-stars" class="star pr-4">☆☆☆☆☆</label></c:if>
+                <c:if test="${item.rating == 5}"><label class="star pr-4">★★★★★</label></c:if>
+                <c:if test="${item.rating == 4}"><label class="star pr-4">★★★★☆</label></c:if>
+                <c:if test="${item.rating == 3}"><label class="star pr-4">★★★☆☆</label></c:if>
+                <c:if test="${item.rating == 2}"><label class="star pr-4">★★☆☆☆</label></c:if>
+                <c:if test="${item.rating == 1}"><label class="star pr-4">★☆☆☆☆</label></c:if>
+                <c:if test="${item.rating == 0}"><label class="star pr-4">☆☆☆☆☆</label></c:if>
             </div>
         <div id="review_ctnt">${item.ctnt}</div>
     </div>

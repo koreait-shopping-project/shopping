@@ -9,6 +9,7 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.board.model.vo.ProductDetailVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -107,6 +108,11 @@ public class BoardService {
     public List<UserReviewVo> selBoardReview(UserReviewVo vo) {
         return mapper.selBoardReview(vo);
     }
+
+    public Double selRating(ProductDetailVo vo) {
+        return mapper.selRating(vo);
+    }
+
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
     public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
@@ -208,8 +214,41 @@ public class BoardService {
         Map<String, String> result = new HashMap<String, String>();
         result.put("uploaded", uploaded + "");
         result.put("url", relativeUrl);
-
         return result;
+    }
+
+    //노가다
+
+    public int answer0_4(UserReviewEntity entity) {
+        int cntAnswer0_4 = mapper.cntAnswer0_4(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        System.out.println(cntAnswer0_4);
+        System.out.println(cntAllAnswer);
+        System.out.println((cntAnswer0_4 * 100)/ cntAllAnswer);
+
+        return (cntAnswer0_4 * 100)/ cntAllAnswer;
+    }
+    public int answer0_5(UserReviewEntity entity) {
+        int cntAnswer0_5 = mapper.cntAnswer0_5(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        System.out.println(cntAnswer0_5);
+        System.out.println(cntAllAnswer);
+        System.out.println((cntAnswer0_5 * 100)/ cntAllAnswer);
+
+        return (cntAnswer0_5 * 100)/ cntAllAnswer;
+    }
+
+    public int answer0_6(UserReviewEntity entity) {
+        int cntAnswer0_6 = mapper.cntAnswer0_6(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        System.out.println(cntAnswer0_6);
+        System.out.println(cntAllAnswer);
+        System.out.println((cntAnswer0_6 * 100)/ cntAllAnswer);
+
+        return (cntAnswer0_6 * 100)/ cntAllAnswer;
     }
 
 

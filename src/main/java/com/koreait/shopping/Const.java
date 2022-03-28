@@ -33,7 +33,11 @@ public class Const {
     public static final String IUSER = "iuser";
     public static final String LIKE = "like";
     public static final String IDETAIL = "idetail";
+    public static final String AVGRATING = "avgrating";
 
+    public static final String ANSWER0_4 = "answer0_4";
+    public static final String ANSWER0_5 = "answer0_5";
+    public static final String ANSWER0_6 = "answer0_6";
 
 
 
