@@ -61,7 +61,7 @@
                 </c:if>
                 <tr>
                     <th class="display-b-f-l font-size-12">이름*</th>
-                    <td><input class="display-b-f-l bolder" type="text" name="nm" id="nm" value="주현진" ></td>
+                    <td><input class="display-b-f-l bolder" type="text" name="nm" id="nm"></td>
                 </tr>
 
                 <tr>
@@ -98,7 +98,7 @@
                     <td>
                         <select name="firstph" id="firstph">
                             <option></option>
-                            <option value="010" selected>010</option>
+                            <option value="010">010</option>
                             <option value="011">011</option>
                             <option value="016">016</option>
                             <option value="017">017</option>
@@ -106,26 +106,26 @@
                             <option value="019">019</option>
                         </select>
                         <span>-</span>
-                        <input class="bolder-p" type="text" name="secondph" id="secondph" maxlength="4" value="5838">
+                        <input class="bolder-p" type="text" name="secondph" id="secondph" maxlength="4">
                         <span>-</span>
-                        <input class="bolder-p" type="text" name="thirdph" id="thirdph" maxlength="4" value="4869">
+                        <input class="bolder-p" type="text" name="thirdph" id="thirdph" maxlength="4">
                     </td>
                 </tr>
                 <tr>
                     <!--카카오 우편주소 API-->
                     <th class="display-b-f-l font-size-12">주소</th>
                     <td>
-                        <input class="bolder-p" type="text" id="sample4_postcode" name="post_num" placeholder="우편번호" value="42707">
+                        <input class="bolder-p" type="text" id="sample4_postcode" name="post_num" placeholder="우편번호">
                         <input class="font-size-12 bolder-c" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
                         <br>
-                        <input class="bolder" type="text" id="sample4_roadAddress" name="load_nm" placeholder="도로명주소" class="w-350" value="대구 달서구 호산로 126">
+                        <input class="bolder" type="text" id="sample4_roadAddress" name="load_nm" placeholder="도로명주소" class="w-350">
                         <br>
-                        <input class="bolder-a" type="text" id="sample4_jibunAddress" name="lot_addr" placeholder="지번주소" value="대구 달서구 호산동 350">
+                        <input class="bolder-a" type="text" id="sample4_jibunAddress" name="lot_addr" placeholder="지번주소">
                         <span id="guide" style="color:#999;display:none"></span>
                         <br>
-                        <input class="bolder-a" type="text" id="sample4_detailAddress" name="detail_addr" placeholder="상세주소" value="110동 903호">
+                        <input class="bolder-a" type="text" id="sample4_detailAddress" name="detail_addr" placeholder="상세주소">
                         <br>
-                        <input class="bolder-a" type="text" id="sample4_extraAddress" name="ref" placeholder="참고항목" value=" (호산동, 삼성한국형아파트)">
+                        <input class="bolder-a" type="text" id="sample4_extraAddress" name="ref" placeholder="참고항목">
                         <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
                     </td>
                 </tr>
@@ -164,7 +164,7 @@
                     <tbody>
                     <tr>
                         <th class="display-b-f-l font-size-12" >생년월일*</th>
-                        <td class="w-600"><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth" value="930809"></td>
+                        <td class="w-600"><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth"></td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">지역</th>
@@ -180,7 +180,7 @@
                                 <option value="대전">대전</option>
                                 <option value="경북">경북</option>
                                 <option value="경남">경남</option>
-                                <option value="대구" selected>대구</option>
+                                <option value="대구">대구</option>
                                 <option value="부산">부산</option>
                                 <option value="울산">울산</option>
                                 <option value="전북">전북</option>
@@ -193,7 +193,7 @@
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">추천인 아이디</th>
-                        <td><input class="display-b-f-l bolder" type="text" name="recommendation" value="admin"></td>
+                        <td><input class="display-b-f-l bolder" type="text" name="recommendation"></td>
                     </tr>
                     </tbody>
                 </table>

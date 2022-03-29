@@ -66,6 +66,15 @@ public interface BoardMapper {
     int cntAnswer0_4 (UserReviewEntity entity);
     int cntAnswer0_5 (UserReviewEntity entity);
     int cntAnswer0_6 (UserReviewEntity entity);
+    int cntAnswer1_7 (UserReviewEntity entity);
+    int cntAnswer1_8 (UserReviewEntity entity);
+    int cntAnswer1_9 (UserReviewEntity entity);
+    int cntAnswer2_10 (UserReviewEntity entity);
+    int cntAnswer2_11 (UserReviewEntity entity);
+    int cntAnswer2_12 (UserReviewEntity entity);
+    int cntAnswer3_13 (UserReviewEntity entity);
+    int cntAnswer3_14 (UserReviewEntity entity);
+    int cntAnswer3_15 (UserReviewEntity entity);
 
     //모든 리뷰 갯수
     int cntAllAnswer (UserReviewEntity entity);

@@ -27,13 +27,14 @@
                     <tr>
                         <th class="display-b-f-l font-size-12 w-90">주문자*</th>
                         <td class="">
-                            <input class="display-b-f-l bolder w-100p" type="text" name="oname" id="oname" value="test1">
+                            <input class="display-b-f-l bolder w-100p" type="text" name="oname" id="oname" value="주현진">
                         </td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">이메일*</th>
                         <td>
-                            <input class="display-b-f-l bolder w-100p" type="text" name="oemail" id="oemail" value="test1@gmail.com"<c:if test="${param.social != null}" >readonly</c:if>>
+                            <input class="display-b-f-l bolder w-100p" type="text" name="oemail" id="oemail" value="icepri3535@naver.com"<c:if test="${param.social != null}" >readonly</c:if>>
+
                         </td>
                     </tr>
                     <tr>
@@ -183,7 +184,7 @@
                         <td id="msg_container">
                             <select class="m-b-10" name="msg" id="msg" onchange="changeSelect()" style="font-size: 13px; margin-top: 15px;">
                                 <option value="메세지 선택(선택사항)">메세지 선택(선택사항)</option>
-                                <option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
+                                <option value="배송 전에 미리 연락바랍니다." selected>배송 전에 미리 연락바랍니다.</option>
                                 <option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
                                 <option value="부재 시 문 앞에 놓아주세요.">부재 시 문 앞에 놓아주세요.</option>
                                 <option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>

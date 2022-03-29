@@ -56,12 +56,12 @@ public class BoardController {
 
         if (cri.getSearchType() != 0) {
             model.addAttribute(Const.LIST, service.searchBoardList(cri));
-            model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
-            model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
             total = service.getSearchTotal(cri);
         } else {
             model.addAttribute(Const.LIST, service.selBoardList(cri));
         }
+        model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
+        model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
@@ -194,6 +194,15 @@ public class BoardController {
         model.addAttribute(Const.ANSWER0_4, service.answer0_4(vo3));
         model.addAttribute(Const.ANSWER0_5, service.answer0_5(vo3));
         model.addAttribute(Const.ANSWER0_6, service.answer0_6(vo3));
+        model.addAttribute(Const.ANSWER1_7, service.answer1_7(vo3));
+        model.addAttribute(Const.ANSWER1_8, service.answer1_8(vo3));
+        model.addAttribute(Const.ANSWER1_9, service.answer1_9(vo3));
+        model.addAttribute(Const.ANSWER2_10, service.answer2_10(vo3));
+        model.addAttribute(Const.ANSWER2_11, service.answer2_11(vo3));
+        model.addAttribute(Const.ANSWER2_12, service.answer2_12(vo3));
+        model.addAttribute(Const.ANSWER3_13, service.answer3_13(vo3));
+        model.addAttribute(Const.ANSWER3_14, service.answer3_14(vo3));
+        model.addAttribute(Const.ANSWER3_15, service.answer3_15(vo3));
 
 
         return "board/productdetail";

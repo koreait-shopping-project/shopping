@@ -110,15 +110,19 @@
         SELECT A.tall, A.weight, A.rating, A.ctnt,
                B.uid,
                C.img_url_big, C.title,
-               D.color, D.sm, D.md, D.lg, D.xl
+               D.color,
+               F.sm, F.md, F.lg, F.xl
         FROM t_user_review A
         INNER JOIN t_user B
         ON A.iuser = B.iuser
         INNER JOIN product_list C
         ON A.iboard = C.iboard
-        INNER JOIN purchased D
+        INNER JOIN product_detail D
         ON A.idetail = D.idetail
+        INNER JOIN purchased F
+        ON A.ipurchased = F.ipurchased
         WHERE A.iboard = ${iboard}
+        ORDER BY rdt DESC
     </select>
 
 <!--    /*별점 평균*/-->
@@ -132,21 +136,75 @@
     <!--0-->
     <!--0-4-->
     <select id="cntAnswer0_4" resultType="int">
-        SELECT COUNT(answer0) FROM t_user_review
+        SELECT IFNULL (COUNT(answer0), 0) FROM t_user_review
         WHERE iboard = ${iboard}
           AND answer0 = 4
     </select>
     <!--0-5-->
     <select id="cntAnswer0_5" resultType="int">
-        SELECT COUNT(answer0) FROM t_user_review
+        SELECT  IFNULL (COUNT(answer0), 0) FROM t_user_review
         WHERE iboard = ${iboard}
           AND answer0 = 5
     </select>
     <!--0-6-->
     <select id="cntAnswer0_6" resultType="int">
-        SELECT COUNT(answer0) FROM t_user_review
+        SELECT IFNULL (COUNT(answer0), 0) FROM t_user_review
         WHERE iboard = ${iboard}
           AND answer0 = 6
+    </select>
+
+    <select id="cntAnswer1_7" resultType="int">
+        SELECT IFNULL (COUNT(answer1), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer1 = 7
+    </select>
+    <!--0-5-->
+    <select id="cntAnswer1_8" resultType="int">
+        SELECT IFNULL (COUNT(answer1), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer1 = 8
+    </select>
+    <!--0-6-->
+    <select id="cntAnswer1_9" resultType="int">
+        SELECT IFNULL (COUNT(answer1), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer1 = 9
+    </select>
+
+    <select id="cntAnswer2_10" resultType="int">
+        SELECT IFNULL (COUNT(answer2), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer2 = 10
+    </select>
+    <!--0-5-->
+    <select id="cntAnswer2_11" resultType="int">
+        SELECT IFNULL (COUNT(answer2), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer2 = 11
+    </select>
+    <!--0-6-->
+    <select id="cntAnswer2_12" resultType="int">
+        SELECT IFNULL (COUNT(answer2), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer2 = 12
+    </select>
+
+    <select id="cntAnswer3_13" resultType="int">
+        SELECT IFNULL (COUNT(answer3), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer3 = 13
+    </select>
+    <!--0-5-->
+    <select id="cntAnswer3_14" resultType="int">
+        SELECT IFNULL (COUNT(answer3), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer3 = 14
+    </select>
+    <!--0-6-->
+    <select id="cntAnswer3_15" resultType="int">
+        SELECT IFNULL (COUNT(answer3), 0) FROM t_user_review
+        WHERE iboard = ${iboard}
+          AND answer3 = 15
     </select>
     <!--0-->
 <!--    &lt;!&ndash;0-7&ndash;&gt;-->
@@ -160,7 +218,7 @@
 
     <!--모든 리뷰 갯수-->
     <select id="cntAllAnswer" resultType="int">
-        SELECT COUNT(answer0) FROM t_user_review
+        SELECT IFNULL (COUNT(*),0)  FROM t_user_review
         WHERE iboard = ${iboard}
     </select>
     <!--모든 리뷰 갯수-->

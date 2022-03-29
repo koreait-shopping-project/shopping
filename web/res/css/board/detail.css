@@ -1,3 +1,6 @@
+/*table > tr > td > input {*/
+/*    background-color: black;*/
+/*}*/
 
 #main_table { width: 100%; border-top: 2px solid #a7a7a7; border-bottom: 2px solid #a7a7a7; border-collapse: collapse; }
 #main_table th, #main_table td { border : 1px solid #cecece; padding: 10px; }

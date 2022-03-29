@@ -128,18 +128,18 @@
                 <div class="leftTop">밝기</div>
                 <div class="m-w-170">
                     <div class="display-i-b">밝음</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer1_7}%</div>
+                    <progress value="${requestScope.answer1_7}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer1_8}%</div>
+                    <progress value="${requestScope.answer1_8}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">어두움</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer1_9}%</div>
+                    <progress value="${requestScope.answer1_9}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
         </tr>
@@ -148,36 +148,36 @@
                 <div class="leftTop">색감</div>
                 <div class="m-w-170">
                     <div class="display-i-b">선명</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer2_10}%</div>
+                    <progress value="${requestScope.answer2_10}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer2_11}%</div>
+                    <progress value="${requestScope.answer2_11}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">흐림</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer2_12}%</div>
+                    <progress value="${requestScope.answer2_12}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
             <td width="30%">
                 <div class="leftTop">두께감</div>
                 <div class="m-w-170">
                     <div class="display-i-b">두꺼움</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer3_13}%</div>
+                    <progress value="${requestScope.answer3_13}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">보통</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer3_14}%</div>
+                    <progress value="${requestScope.answer3_14}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
                 <div class="m-w-170">
                     <div class="display-i-b">얇음</div>
-                    <div class="display-i-b">50%</div>
-                    <progress value="50" max="100" style="height: 5px; width: 100%;"></progress>
+                    <div class="display-i-b">${requestScope.answer3_15}%</div>
+                    <progress value="${requestScope.answer3_15}" max="100" style="height: 5px; width: 100%;"></progress>
                 </div>
             </td>
         </tr>
