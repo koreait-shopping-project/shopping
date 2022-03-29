@@ -22,12 +22,12 @@
     <insert id="insReview">
         INSERT INTO t_user_review
         (
-            iboard, idetail, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
+            iboard, idetail, iuser, ipurchased, rating, answer0, answer1, answer2, answer3, gender, tall
         , weight, ctnt, prom_agree_flag, inf_agree_flag
         )
         VALUES
         (
-            ${iboard}, ${idetail}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            ${iboard}, ${idetail}, ${iuser}, ${ipurchased}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
             , ${gender}, #{tall}, #{weight}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
         )
     </insert>

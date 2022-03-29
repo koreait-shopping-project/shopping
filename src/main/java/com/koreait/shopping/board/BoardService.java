@@ -9,6 +9,7 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.board.model.vo.ProductDetailVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -107,6 +108,11 @@ public class BoardService {
     public List<UserReviewVo> selBoardReview(UserReviewVo vo) {
         return mapper.selBoardReview(vo);
     }
+
+    public Double selRating(ProductDetailVo vo) {
+        return mapper.selRating(vo);
+    }
+
 
     public int insCart(BoardProductVo vo) {return mapper.insCart(vo);}
     public int insCartChecked(BoardProductVo vo) {return mapper.insCartChecked(vo);}
@@ -208,8 +214,140 @@ public class BoardService {
         Map<String, String> result = new HashMap<String, String>();
         result.put("uploaded", uploaded + "");
         result.put("url", relativeUrl);
-
         return result;
+    }
+
+    //노가다
+
+    public int answer0_4(UserReviewEntity entity) {
+        int cntAnswer0_4 = mapper.cntAnswer0_4(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer0_4 * 100)/ cntAllAnswer;
+    }
+    public int answer0_5(UserReviewEntity entity) {
+        int cntAnswer0_5 = mapper.cntAnswer0_5(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer0_5 * 100)/ cntAllAnswer;
+    }
+
+    public int answer0_6(UserReviewEntity entity) {
+        int cntAnswer0_6 = mapper.cntAnswer0_6(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer0_6 * 100)/ cntAllAnswer;
+    }
+
+    public int answer1_7(UserReviewEntity entity) {
+        int cntAnswer1_7 = mapper.cntAnswer1_7(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer1_7 * 100)/ cntAllAnswer;
+    }
+
+    public int answer1_8(UserReviewEntity entity) {
+        int cntAnswer1_8 = mapper.cntAnswer1_8(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer1_8 * 100)/ cntAllAnswer;
+    }
+
+    public int answer1_9(UserReviewEntity entity) {
+        int cntAnswer1_9 = mapper.cntAnswer1_9(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer1_9 * 100)/ cntAllAnswer;
+    }
+
+    public int answer2_10(UserReviewEntity entity) {
+        int cntAnswer2_10 = mapper.cntAnswer2_10(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer2_10 * 100)/ cntAllAnswer;
+    }
+
+    public int answer2_11(UserReviewEntity entity) {
+        int cntAnswer2_11 = mapper.cntAnswer2_11(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer2_11 * 100)/ cntAllAnswer;
+    }
+
+    public int answer2_12(UserReviewEntity entity) {
+        int cntAnswer2_12 = mapper.cntAnswer2_12(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer2_12 * 100)/ cntAllAnswer;
+    }
+
+    public int answer3_13(UserReviewEntity entity) {
+        int cntAnswer3_13 = mapper.cntAnswer3_13(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer3_13 * 100)/ cntAllAnswer;
+    }
+
+    public int answer3_14(UserReviewEntity entity) {
+        int cntAnswer3_14 = mapper.cntAnswer3_14(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer3_14 * 100)/ cntAllAnswer;
+    }
+
+    public int answer3_15(UserReviewEntity entity) {
+        int cntAnswer3_15 = mapper.cntAnswer3_15(entity);//0_5 개수
+        int cntAllAnswer = mapper.cntAllAnswer(entity);//총 개수
+
+        if (cntAllAnswer == 0) {
+            return 0;
+        }
+
+        return (cntAnswer3_15 * 100)/ cntAllAnswer;
     }
 
 

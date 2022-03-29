@@ -12,6 +12,7 @@
     <!-- 별점 -->
     <input type="hidden" name="iboard" value="${requestScope.iboard}">
     <input type="hidden" name="idetail" value="${requestScope.idetail}">
+    <input type="hidden" name="ipurchased" value="${requestScope.ipurchased}">
     <input type="hidden" value="${requestScope.list}">
     <hr style="margin-bottom: -10px">
     <em class="p-b-20 bold">별점을 매겨주세요</em>

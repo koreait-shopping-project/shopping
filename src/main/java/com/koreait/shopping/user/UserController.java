@@ -87,6 +87,8 @@ public class UserController {
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_4);
             return "redirect:/user/join";
+        } else if (!entity.getSocial().equals("general")) {
+            service.loginSocial(entity);
         }
         //회원가입 성공하면 로그인 처리는 나중에
         return "redirect:/";
@@ -163,6 +165,7 @@ public class UserController {
     public void review(UserReviewDto dto, Model model) {
         model.addAttribute(Const.IBOARD, dto.getIboard());
         model.addAttribute(Const.IDETAIL, dto.getIdetail());
+        model.addAttribute(Const.IPURCHASED, dto.getIpurchased());
         model.addAttribute(Const.LIST, service.selPurchased(dto));
     }
 

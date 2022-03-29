@@ -13,7 +13,9 @@ import com.koreait.shopping.board.model.entity.BoardListEntity;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.board.model.vo.ProductDetailVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
+import com.koreait.shopping.user.model.entity.UserReviewEntity;
 import com.koreait.shopping.user.model.vo.UserReviewVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +24,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +48,7 @@ public class BoardController {
 
     //게시판 카테고리
     @GetMapping("/list/{icategory}")
-    public String list(@PathVariable int icategory, Model model, BoardCriteria cri, UserEntity entity) {
+    public String list(@PathVariable int icategory, Model model, BoardCriteria cri, UserEntity entity, UserReviewEntity userReviewEntity) {
         model.addAttribute(Const.I_CATEGORY, icategory);
         model.addAttribute(Const.LIST, service.selBoardList(cri));
         cri.setIcategory(icategory);
@@ -56,12 +56,12 @@ public class BoardController {
 
         if (cri.getSearchType() != 0) {
             model.addAttribute(Const.LIST, service.searchBoardList(cri));
-            model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
-            model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
             total = service.getSearchTotal(cri);
         } else {
             model.addAttribute(Const.LIST, service.selBoardList(cri));
         }
+        model.addAttribute(Const.SEARCH_TYPE, cri.getSearchType());
+        model.addAttribute(Const.SEARCH_TEXT, cri.getSearchText());
 
         if (icategory == 3) {
             entity.setIuser(utils.getLoginUserPk());
@@ -77,6 +77,8 @@ public class BoardController {
 
         return "board/list";
     }
+
+
 
     //게시판 글목록
     @GetMapping("/detail")
@@ -174,7 +176,7 @@ public class BoardController {
 
     //개별 상품
     @GetMapping("/productdetail/{iboard}")
-    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo, UserReviewVo vo2) {
+    public String detail(@PathVariable int iboard, Model model, BoardProductVo vo, UserReviewVo vo2, ProductDetailVo vo3) {
         vo.setIboard(iboard);
         model.addAttribute(Const.IBOARD, iboard);
         model.addAttribute(Const.IUSER, utils.getLoginUserPk());
@@ -188,6 +190,20 @@ public class BoardController {
         //리뷰
         vo2.setIboard(vo.getIboard());
         model.addAttribute(Const.REVIEW, service.selBoardReview(vo2));
+        model.addAttribute(Const.AVGRATING, service.selRating(vo3));
+        model.addAttribute(Const.ANSWER0_4, service.answer0_4(vo3));
+        model.addAttribute(Const.ANSWER0_5, service.answer0_5(vo3));
+        model.addAttribute(Const.ANSWER0_6, service.answer0_6(vo3));
+        model.addAttribute(Const.ANSWER1_7, service.answer1_7(vo3));
+        model.addAttribute(Const.ANSWER1_8, service.answer1_8(vo3));
+        model.addAttribute(Const.ANSWER1_9, service.answer1_9(vo3));
+        model.addAttribute(Const.ANSWER2_10, service.answer2_10(vo3));
+        model.addAttribute(Const.ANSWER2_11, service.answer2_11(vo3));
+        model.addAttribute(Const.ANSWER2_12, service.answer2_12(vo3));
+        model.addAttribute(Const.ANSWER3_13, service.answer3_13(vo3));
+        model.addAttribute(Const.ANSWER3_14, service.answer3_14(vo3));
+        model.addAttribute(Const.ANSWER3_15, service.answer3_15(vo3));
+
 
         return "board/productdetail";
     }

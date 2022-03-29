@@ -10,4 +10,5 @@ import lombok.ToString;
 @ToString
 public class UserReviewDto extends UserReviewEntity {
     private String writerNm;
+    private int ipurchased;
 }

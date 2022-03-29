@@ -10,6 +10,7 @@ import com.koreait.shopping.board.model.entity.BoardPrevNextVo;
 import com.koreait.shopping.board.model.entity.BoardProductEntity;
 import com.koreait.shopping.board.model.vo.BoardListVo;
 import com.koreait.shopping.board.model.vo.BoardProductVo;
+import com.koreait.shopping.board.model.vo.ProductDetailVo;
 import com.koreait.shopping.user.model.entity.UserEntity;
 import com.koreait.shopping.user.model.dto.UserReviewDto;
 import com.koreait.shopping.user.model.entity.UserReviewEntity;
@@ -48,6 +49,8 @@ public interface BoardMapper {
     //Board List
     int delCartChecked(int iuser);
     int insBoard(BoardListEntity entity);
+    double selRating(ProductDetailVo vo);
+    List<ProductDetailVo> rating(ProductDetailVo vo);
     int updBoard(BoardListEntity entity);
     int delBoard(BoardListEntity entity);
     BoardPrevNextVo selPrevNext(BoardListVo vo);
@@ -57,4 +60,22 @@ public interface BoardMapper {
     List<UserReviewVo> selBoardReview(UserReviewVo vo);
     List<BoardListVo> searchBoardList(BoardCriteria cri);
     int insPurchased(BoardProductVo vo);
+
+    //노가다
+    //0
+    int cntAnswer0_4 (UserReviewEntity entity);
+    int cntAnswer0_5 (UserReviewEntity entity);
+    int cntAnswer0_6 (UserReviewEntity entity);
+    int cntAnswer1_7 (UserReviewEntity entity);
+    int cntAnswer1_8 (UserReviewEntity entity);
+    int cntAnswer1_9 (UserReviewEntity entity);
+    int cntAnswer2_10 (UserReviewEntity entity);
+    int cntAnswer2_11 (UserReviewEntity entity);
+    int cntAnswer2_12 (UserReviewEntity entity);
+    int cntAnswer3_13 (UserReviewEntity entity);
+    int cntAnswer3_14 (UserReviewEntity entity);
+    int cntAnswer3_15 (UserReviewEntity entity);
+
+    //모든 리뷰 갯수
+    int cntAllAnswer (UserReviewEntity entity);
 }

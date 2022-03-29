@@ -195,7 +195,7 @@
 
             <!-- 각 번호 페이지 버튼 -->
             <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                <li class="pageInfo_btn num"><a href="/board/list/${requestScope.icategory}?pageNum=${num}&searchType=${requestScope.searchType}&searchText=${requestScope.searchText}">${num}</a></li>
+                <li class="pageInfo_btn num"><a href="/board/list/${icategory}?pageNum=${num}&searchType=${requestScope.searchType}&searchText=${requestScope.searchText}">${num}</a></li>
             </c:forEach>
 
             <!-- 다음페이지 버튼 -->
