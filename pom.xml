@@ -11,7 +11,7 @@
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <spring.version>4.3.30.RELEASE</spring.version>
+        <spring.version>5.3.18</spring.version>
         <tiles-version>3.0.8</tiles-version>
     </properties>
 
