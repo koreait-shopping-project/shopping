@@ -131,11 +131,8 @@
         const tr = document.createElement('tr');
 
         tr.innerHTML = `
-                <td>${item.icmt}</td>
+                <td>${item.writerNm}</td>
                 <td>${item.ctnt}</td>
-                <td>
-                    <span>${item.writerNm}</span>
-                </td>
             `;
         const td = document.createElement('td');
         tr.appendChild(td);
