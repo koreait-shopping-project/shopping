@@ -1,7 +1,7 @@
 package com.koreait.shopping.board.like;
 
 import com.koreait.shopping.UserUtils;
-import com.koreait.shopping.board.model.entity.BoardLikeEntity;
+import com.koreait.shopping.board.like.model.entity.BoardLikeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

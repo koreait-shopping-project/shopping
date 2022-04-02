@@ -95,8 +95,9 @@
                 alert('생년월일 6자리를 확인해주세요. Ex) 880101');
                 e.preventDefault();
                 document.querySelector('#birth').scrollIntoView();
+            } else {
+                alert('회원 정보가 수정되었습니다.');
             }
-
         });
 
         //누른키에서 손 땔때 발생(이메일)

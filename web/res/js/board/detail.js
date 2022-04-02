@@ -80,7 +80,7 @@
                         const item = {
                             icmt: data.result,
                             iuser: parseInt(dataElem.dataset.iuser),
-                            writernm: dataElem.dataset.nm,
+                            writerNm: dataElem.dataset.nm,
                             profileimg: dataElem.dataset.profileimg,
                             ctnt: cmtFrmElem.ctnt.value,
                         }
@@ -123,13 +123,7 @@
 
     const makeTable = () => {
         const table = document.createElement('table');
-        table.innerHTML = `
-            <tr>
-                <th>no</th>
-                <th>content</th>
-                <th>writer</th>
-                <th></th>
-            </tr>`;
+        table.id =  'cmt_table';
         return table;
     }
 
@@ -140,7 +134,7 @@
                 <td>${item.icmt}</td>
                 <td>${item.ctnt}</td>
                 <td>
-                    <span>${item.writernm}</span>
+                    <span>${item.writerNm}</span>
                 </td>
             `;
         const td = document.createElement('td');

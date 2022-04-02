@@ -31,6 +31,7 @@ CREATE TABLE t_user (
 /*리뷰정보*/
 CREATE TABLE t_user_review(
                               ireview INT UNSIGNED AUTO_INCREMENT,
+                              idetail INT UNSIGNED,
                               iboard INT UNSIGNED,
                               iuser INT UNSIGNED,
                               icategory TINYINT NOT NULL DEFAULT 4,
@@ -42,7 +43,6 @@ CREATE TABLE t_user_review(
                               gender TINYINT UNSIGNED CHECK(gender IN (1, 2)),
                               tall VARCHAR(10),
                               weight VARCHAR(10),
-                              title VARCHAR(50) NOT NULL,
                               ctnt VARCHAR(1000) NOT NULL,
                               prom_agree_flag BOOLEAN NOT NULL,
                               inf_agree_flag BOOLEAN NOT NULL DEFAULT FALSE,
@@ -126,6 +126,7 @@ CREATE TABLE t_board_write (
 /*장바구니*/
 CREATE TABLE cart (
                       icart INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+                      idetail  INT UNSIGNED NOT NULL,
                       iboard INT UNSIGNED NOT NULL,
                       iuser INT UNSIGNED NOT NULL,
                       color INT UNSIGNED NOT NULL,
@@ -143,23 +144,12 @@ CREATE TABLE purchased(
                           iboard INT UNSIGNED NOT NULL,
                           iuser INT UNSIGNED  NOT NULL,
                           color INT UNSIGNED NOT NULL,
+                          idetail  INT UNSIGNED NOT NULL,
                           sm	INT UNSIGNED NOT NULL DEFAULT 0,
                           md	INT UNSIGNED NOT NULL DEFAULT 0,
                           lg	INT UNSIGNED NOT NULL DEFAULT 0,
                           xl	INT UNSIGNED NOT NULL DEFAULT 0,
                           FOREIGN KEY (iuser) REFERENCES t_user(iuser)
-);
-
-/*?*/
-CREATE TABLE addrinfo (
-                          iaddr INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                          addr VARCHAR(30) NOT NULL,
-                          addrnum VARCHAR(10) NOT NULL,
-                          baddr VARCHAR(20) NOT NULL,
-                          oaddr VARCHAR(20) NOT NULL,
-                          hnum VARCHAR(12) NOT NULL,
-                          ph VARCHAR(13) NOT NULL,
-                          automsg VARCHAR(50) NOT NULL
 );
 
 /*게시글 댓글*/
@@ -184,17 +174,17 @@ CREATE TABLE t_order (
                          ofirstph VARCHAR(3) NOT NULL,
                          osecondph VARCHAR(4) NOT NULL,
                          othirdph VARCHAR(4) NOT NULL,
-                         opost_num VARCHAR(10),
-                         oload_nm VARCHAR(50),
-                         olot_addr VARCHAR(50),
-                         odetail_addr VARCHAR(50),
-                         oref VARCHAR(50),
+                         opost_num VARCHAR(10) NOT NULL,
+                         oload_nm VARCHAR(50) NOT NULL,
+                         olot_addr VARCHAR(50) NOT NULL,
+                         odetail_addr VARCHAR(50) NOT NULL,
+                         oref VARCHAR(50) NOT NULL,
                          rname VARCHAR(10) NOT NULL,
-                         rpost_num VARCHAR(10),
-                         rload_nm VARCHAR(50),
-                         rlot_addr VARCHAR(50),
-                         rdetail_addr VARCHAR(50),
-                         rref VARCHAR(50),
+                         rpost_num VARCHAR(10) NOT NULL,
+                         rload_nm VARCHAR(50) NOT NULL,
+                         rlot_addr VARCHAR(50) NOT NULL,
+                         rdetail_addr VARCHAR(50) NOT NULL,
+                         rref VARCHAR(50) NOT NULL,
                          rfirsthnum VARCHAR(3),
                          rsecondhnum VARCHAR(4),
                          rthirdhnum VARCHAR(4),
@@ -211,19 +201,18 @@ CREATE TABLE t_order (
 INSERT INTO t_board_category
 (categorynm)
 VALUES
-    ('notice'), ('q / a'), ('cart');
+('notice'), ('q / a'), ('cart');
 
 /*물품 카테고리 입력*/
 INSERT INTO t_board_sub_category
 (isubcategory, subcategorynm)
 VALUES
-    (1001, '반팔티셔츠'),
-    (1002, '셔츠/블라우스'),
-    (1003, ' 피케/카라 티셔츠'),
-    (1004, '후드 티셔츠'),
-    (1005, '맨투맨/스웨트셔츠'),
-    (1006, '니트/스웨터'),
-    (1008, '기타상의'),
-    (1010, '긴팔 티셔츠'),
-    (1011, '민소매 티셔츠');
-
+(1001, '반팔티셔츠'),
+(1002, '셔츠/블라우스'),
+(1003, ' 피케/카라 티셔츠'),
+(1004, '후드 티셔츠'),
+(1005, '맨투맨/스웨트셔츠'),
+(1006, '니트/스웨터'),
+(1008, '기타상의'),
+(1010, '긴팔 티셔츠'),
+(1011, '민소매 티셔츠');

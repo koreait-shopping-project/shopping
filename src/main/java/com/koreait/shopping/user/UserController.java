@@ -29,7 +29,6 @@ import java.util.Map;
 public class UserController {
     @Autowired private UserService service;
     @Autowired private BoardService boardService;
-
     @Autowired private UserUtils utils;
 
     @GetMapping("/login")
@@ -42,7 +41,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String loginProc(UserEntity entity, RedirectAttributes reAttr){
+    public String loginProc(UserEntity entity, RedirectAttributes reAttr) {
         int result = service.login(entity);
         if(result != 1){
             reAttr.addFlashAttribute(Const.TRY_LOGIN, entity);
@@ -60,6 +59,14 @@ public class UserController {
             return "redirect:/user/login";
         }
         return "redirect:/board/main";
+    }
+
+    @GetMapping("loginSocial")
+    @ResponseBody
+    public Map<String, Integer> loginSocial(UserEntity entity, RedirectAttributes reAttr) {
+        Map<String, Integer> res = new HashMap<>();
+        res.put("result", service.loginSocial(entity));
+        return res;
     }
 
     @GetMapping("/join")
@@ -80,6 +87,8 @@ public class UserController {
         if (result == 0) {
             reAttr.addFlashAttribute(Const.MSG, Const.ERR_4);
             return "redirect:/user/join";
+        } else if (!entity.getSocial().equals("general")) {
+            service.loginSocial(entity);
         }
         //회원가입 성공하면 로그인 처리는 나중에
         return "redirect:/";
@@ -122,7 +131,7 @@ public class UserController {
             }
             return "redirect:/user/modify";
         }
-        return "redirect:/user/modify";
+        return "redirect:/board/main";
     }
 
     //비밀번호 확인(회원 정보 수정 진입)
@@ -156,6 +165,7 @@ public class UserController {
     public void review(UserReviewDto dto, Model model) {
         model.addAttribute(Const.IBOARD, dto.getIboard());
         model.addAttribute(Const.IDETAIL, dto.getIdetail());
+        model.addAttribute(Const.IPURCHASED, dto.getIpurchased());
         model.addAttribute(Const.LIST, service.selPurchased(dto));
     }
 

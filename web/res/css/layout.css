@@ -62,5 +62,5 @@
 #footer div #f_menu li a:hover { color: #cccccc; }
 
 #footer div p { text-align: center; }
-#footer div p span { color: #727272; }
+#footer div p span { color: #727272; line-height: 1.65; }
 #footer div p span a { color: #353535; font-weight: bold; }

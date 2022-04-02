@@ -33,6 +33,22 @@ public class Const {
     public static final String IUSER = "iuser";
     public static final String LIKE = "like";
     public static final String IDETAIL = "idetail";
+    public static final String AVGRATING = "avgrating";
+    public static final String IPURCHASED = "ipurchased";
+
+
+    public static final String ANSWER0_4 = "answer0_4";
+    public static final String ANSWER0_5 = "answer0_5";
+    public static final String ANSWER0_6 = "answer0_6";
+    public static final String ANSWER1_7 = "answer1_7";
+    public static final String ANSWER1_8 = "answer1_8";
+    public static final String ANSWER1_9 = "answer1_9";
+    public static final String ANSWER2_10 = "answer2_10";
+    public static final String ANSWER2_11 = "answer2_11";
+    public static final String ANSWER2_12 = "answer2_12";
+    public static final String ANSWER3_13 = "answer3_13";
+    public static final String ANSWER3_14 = "answer3_14";
+    public static final String ANSWER3_15 = "answer3_15";
 
 
 

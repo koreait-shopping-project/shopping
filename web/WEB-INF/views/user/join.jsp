@@ -61,7 +61,7 @@
                 </c:if>
                 <tr>
                     <th class="display-b-f-l font-size-12">이름*</th>
-                    <td><input class="display-b-f-l bolder" type="text" name="nm" id="nm" ></td>
+                    <td><input class="display-b-f-l bolder" type="text" name="nm" id="nm"></td>
                 </tr>
 
                 <tr>
@@ -163,8 +163,8 @@
                     </colgroup>
                     <tbody>
                     <tr>
-                        <th class="display-b-f-l font-size-12">생년월일*</th>
-                        <td class="w-600"><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth" ></td>
+                        <th class="display-b-f-l font-size-12" >생년월일*</th>
+                        <td class="w-600"><input class="display-b-f-l bolder" type="text" name="birth" maxlength="6" id="birth"></td>
                     </tr>
                     <tr>
                         <th class="display-b-f-l font-size-12">지역</th>

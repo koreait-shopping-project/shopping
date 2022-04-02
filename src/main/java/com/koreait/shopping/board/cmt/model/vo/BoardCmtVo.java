@@ -1,6 +1,6 @@
-package com.koreait.shopping.board.model.vo;
+package com.koreait.shopping.board.cmt.model.vo;
 
-import com.koreait.shopping.board.model.entity.BoardCmtEntity;
+import com.koreait.shopping.board.cmt.model.entity.BoardCmtEntity;
 import lombok.Getter;
 import lombok.Setter;
 

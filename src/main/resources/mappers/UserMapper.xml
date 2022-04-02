@@ -22,12 +22,12 @@
     <insert id="insReview">
         INSERT INTO t_user_review
         (
-            iboard, idetail, iuser, rating, answer0, answer1, answer2, answer3, gender, tall
+            iboard, idetail, iuser, ipurchased, rating, answer0, answer1, answer2, answer3, gender, tall
         , weight, ctnt, prom_agree_flag, inf_agree_flag
         )
         VALUES
         (
-            ${iboard}, ${idetail}, ${iuser}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
+            ${iboard}, ${idetail}, ${iuser}, ${ipurchased}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
             , ${gender}, #{tall}, #{weight}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
         )
     </insert>
@@ -70,6 +70,7 @@
     <select id="selSocial" resultType="UserEntity">
         SELECT * FROM t_user
         WHERE email = #{email}
+        AND social = #{social}
     </select>
 
     <select id="selReview" resultType="int">
@@ -99,7 +100,7 @@
     </select>
 
     <select id="selPurchased" resultType="BoardProductVo">
-        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.ipurchased, A.sm, A.md, A.lg, A.xl, A.iboard, B.iuser, C.img_url_big, C.title, C.price
         FROM purchased A
                  INNER JOIN t_user B
                             ON A.iuser = B.iuser
@@ -109,7 +110,7 @@
     </select>
 
     <select id="selPurchased2" resultType="BoardProductVo">
-        SELECT A.sm, A.md, A.lg, A.xl, A.iboard, A.idetail, A.color, B.iuser, C.img_url_big, C.title, C.price
+        SELECT A.ipurchased, A.sm, A.md, A.lg, A.xl, A.iboard, A.idetail, A.color, B.iuser, C.img_url_big, C.title, C.price
         FROM purchased A
                  INNER JOIN t_user B
                             ON A.iuser = B.iuser

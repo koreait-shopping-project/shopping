@@ -4,7 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <article id="main_wrap">
-    <h1>welcome to grandetoile</h1>
+    <h1 id="main_title">welcome to grandetoile</h1>
     <section id="slider_wrap">
         <ul id="slider">
             <c:forEach var="i" begin="1" end="10">

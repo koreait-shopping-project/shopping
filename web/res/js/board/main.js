@@ -1,15 +1,12 @@
-// position
-var pos = 0;
-// 슬라이드 총 길이
-var totalSlides = $('#slider li').length;
-// 각 슬라이드 넓이
-var sliderWidth = $('#slider_wrap').width();
 
+var pos = 0; // position
+var totalSlides = $('#slider li').length; // 슬라이드 총 길이
+var sliderWidth = $('#slider_wrap').width(); // 각 슬라이드 넓이
 
 // jQuery 시작 부분
 $(document).ready(function(){
-    // h1을 서서히 나타나게 해주고나서 color를 gold로 바꿔줌
-    $('h1').animate({opacity: "1"}, 3000).animate({color: "#ffd700"}, 1500);
+    // h1#main_title 을 서서히 나타나게 해주고나서 color를 gold로 바꿔줌
+    $('#main_title').animate({opacity: "1"}, 3000).animate({color: "#ffd700"}, 1500);
 
     // slider를 감싸는 ul의 총 넓이를 li의 길이와 각 슬라이드의 넓이를 곱한다.
     $('#slider').width(sliderWidth * totalSlides);
