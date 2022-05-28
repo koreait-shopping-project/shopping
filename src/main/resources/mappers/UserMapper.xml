@@ -20,7 +20,7 @@
     </insert>
 
     <insert id="insReview">
-        INSERT INTO t_user_review
+        INSERT IGNORE INTO t_user_review
         (
             iboard, idetail, iuser, ipurchased, rating, answer0, answer1, answer2, answer3, gender, tall
         , weight, ctnt, prom_agree_flag, inf_agree_flag
@@ -30,6 +30,7 @@
             ${iboard}, ${idetail}, ${iuser}, ${ipurchased}, ${rating}, ${answer0}, ${answer1}, ${answer2}, ${answer3}
             , ${gender}, #{tall}, #{weight}, #{ctnt}, ${prom_agree_flag}, ${inf_agree_flag}
         )
+
     </insert>
 
     <insert id="insOrder">

@@ -12,33 +12,3 @@
 #cmt_table { width: 100%; }
 #cmt_table tr { border-bottom: 1px dotted #cccccc; }
 #cmt_table td { padding: 30px; }
-
-.star-rating { display: flex; flex-direction: row-reverse; font-size: 2.25rem; line-height: 2.5rem;
-    justify-content: space-around; padding: 0 0.2em; text-align: center; width: 5em; }
-.star-rating input { display: none; }
-.star-rating label { cursor: pointer;
-    -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-    -webkit-text-stroke-width: 2.3px;
-    -webkit-text-stroke-color: #2b2a29; }
-.star-rating :checked ~ label { -webkit-text-fill-color: gold; }
-.star-rating label:hover,
-.star-rating label:hover ~ label { -webkit-text-fill-color: #fff58c; }
-
-div.radio-wrap { display: inline-flex; align-items: center; }
-input[type=radio]{ background-color: #FFFF; margin-left: 16px; border: 1px solid rgb(216, 216, 216);
-    width: 14px; height: 14px; border-radius: 100%;
-    -webkit-appearance: none;
-    -moz-appearance: none; }
-input[type=radio]:checked{ background-color: rgb(25, 118, 248); margin-left: 16px;
-    border: none; width: 14px; height: 14px; border-radius: 100%;
-    -webkit-appearance: none;
-    -moz-appearance: none; }
-
-.select { display: inline-block; }
-.select input[type=radio]{ display: none; }
-.select input[type=radio]+label{
-    display: inline-block; cursor: pointer; height: 24px; width: 90px;
-    border: 1px solid #333; line-height: 24px; text-align: center;
-    font-weight:bold; font-size:13px; }
-.select input[type=radio] + label{ background-color: #fff; color: #333; }
-.select input[type=radio]:checked + label{ background-color: #333; color: #fff; }
