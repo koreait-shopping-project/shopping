@@ -1,4 +1,3 @@
-<script src="https://cdn.ckeditor.com/ckeditor5/32.0.0/classic/ckeditor.js"></script>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -18,6 +17,7 @@
     <div id="data"
          data-icategory="${data.icategory}"
          data-iboard="${data.iboard}"
+         data-rdt="${data.rdt}"
          data-nm="${sessionScope.loginUser.nm}"
          data-iuser="${sessionScope.loginUser.iuser}">
     </div>
